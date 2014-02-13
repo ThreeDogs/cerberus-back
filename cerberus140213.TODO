@@ -1,0 +1,5 @@
+View:
+  ☐ Project List (projects#index)
+  ☐ Dashboard (projects#show)
+  ☐ Report List (reports#index)
+  ☐ Report (reports#show)

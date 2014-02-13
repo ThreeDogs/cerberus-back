@@ -1,4 +1,12 @@
 CerberusBack::Application.routes.draw do
+  resources :reports
+
+  resources :projects
+
+  devise_for :users, path_names: {sign_in: 'login', sing_out: 'logout'}
+
+  root 'main#home'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
