@@ -1,0 +1,28 @@
+/* axis css */
+.axis path{
+	fill:none;
+	stroke: black;
+}
+.axis {
+	font-size:8pt;
+	font-family:sans-serif;
+}
+.tick {
+	fill:none;
+	stroke:black;
+}
+
+.event_text {
+	font-size:8pt;
+	font-family:sans-serif;
+}
+
+/*html layout css*/
+
+#event_chart {
+	height: 250px;
+	width: 1000px;
+	overflow-x: auto;
+	overflow-y: hidden;
+
+}
