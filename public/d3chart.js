@@ -5,7 +5,7 @@ function drawEventChart(data){
 	//SETUP margin, width, height
 	var margin = 50,
 		width = 2000,
-		height = 200;
+		height = 150;
 
 	//SETUP svg
 	var svg = d3.select("#event_chart")
@@ -52,61 +52,46 @@ function drawEventChart(data){
 
 		events.attr("transform",function (d) {return "translate("+x_scale(d.time)+","+calcy(x_scale(d.time))+")"});
 		gtext.attr("dx",5)
-			.attr("dy",5);
+			.attr("dy",4);
+
+		//function to determine what shape for which event
+		function whatShape(event_type){
+			if (event_type == "onClick") {return 0}
+			else if (event_type == "hard_key") {return 1}
+			else if (event_type == "swipe") {return 2}
+			else {return 3}
+		}
 
 		//add shape to the group
-		gshape = events.append("circle")
-			.attr("r",10)
-			.attr("fill","grey")
-			.attr("stroke","black");
-
+		gshape = events.append("path")
+		.attr("d", d3.svg.symbol().type(function(d) { return d3.svg.symbolTypes[whatShape(d.event_type)]; }));
 		//x-axis
 		d3.select("svg")
 		  .append("g")
 		  .attr("class", "x axis")
+		  .attr("opacity",1)
 		  .attr("transform", "translate(0,"+(height)+")")
 		  .call(x_axis);
 	}
 
+
+	function chart2() {
+		
+		//rescale x-axis
+		x_extent = d3.extent(data, function (d) {return d.order});
+		x_scale = d3.scale.linear().domain(x_extent).range([margin,width]);
+		
+		//remove x-axis line (fadeout)
+		d3.select(".axis").transition().attr("opacity",0).duration(500);
+
+		//add rect to the group
+		events.append("rect")
+				.attr("width",80)
+				.attr("height",30)
+				.attr("fill","grey")
+				.attr("stroke","black");
+
+	}
+
 	chart1();
-
 }
-
-/*
-function drawEventChart(data){
-
-	//SETUP margin, width, height
-	var margin = 50,
-		width = 2000 - margin,
-		height = 200 - margin;
-
-	//SETUP svg
-	var svg = d3.select("body")
-				.append("svg")
-				.attr("width", width+margin)
-				.attr("height", height+margin);
-
-	//SETUP x_extent
-	var x_extent = d3.extent(data, function (d) {return d.order});
-	var x_scale = d3.scale.linear().domain(x_extent).range([margin,width]);
-
-	//JOIN data and put the group in place
-	var events = svg.selectAll("g event")
-					.data(data)
-					.enter()
-					.append("g")
-					.attr("transform",function (d) {return "translate("+x_scale(d.order)+",50)"});
-	
-	//add rect to the group
-	events.append("rect")
-			.attr("width",80)
-			.attr("height",30)
-			.attr("fill","grey")
-			.attr("stroke","black");
-
-	//add text to the group
-	events.append("text")
-			.text(function (d) {return d.event_name})
-			.attr("dy",5);
-
-}*/
