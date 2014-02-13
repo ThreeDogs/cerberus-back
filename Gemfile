@@ -31,6 +31,11 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :production do # heroku
+	gem 'pg'
+	gem 'rails_12factor'
+end
+
 group :development, :test do
 	gem 'sqlite3'
 	gem 'rails-erd'
