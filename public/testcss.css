@@ -20,7 +20,7 @@
 /*html layout css*/
 
 #event_chart {
-	height: 200px;
+	height: 600px;
 	width: 1000px;
 	overflow-x: auto;
 	overflow-y: hidden;
