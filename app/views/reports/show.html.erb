@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Package name:</strong>
+  <%= @report.package_name %>
+</p>
+
+<p>
+  <strong>Icon:</strong>
+  <%= @report.icon %>
+</p>
+
+<p>
+  <strong>App version:</strong>
+  <%= @report.app_version %>
+</p>
+
+<p>
+  <strong>Os version:</strong>
+  <%= @report.os_version %>
+</p>
+
+<p>
+  <strong>Time for test:</strong>
+  <%= @report.time_for_test %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @report.project_id %>
+</p>
+
+<%= link_to 'Edit', edit_report_path(@report) %> |
+<%= link_to 'Back', reports_path %>

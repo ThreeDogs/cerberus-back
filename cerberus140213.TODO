@@ -1,0 +1,11 @@
+View:
+  ✔ Project List (projects#index) @done (14-02-13 14:05)
+  ✔ Dashboard (projects#show) @done (14-02-13 14:08)
+  ✔ Heroku push @done (14-02-13 14:17)
+  ☐ Test Report List (reports#index)
+  ☐ Report (reports#show)
+
+ModeL:
+  ☐ Report Polymorphic model?  (여러 종류 가능)
+  
+

@@ -1,0 +1,39 @@
+<%= stylesheet_link_tag  "cover" %>
+<div class="site-wrapper">
+  <div class="site-wrapper-inner">
+
+    <div class="cover-container">
+
+      <div class="masthead clearfix">
+        <div class="inner">
+          <h3 class="masthead-brand">Cerberus</h3>
+          <ul class="nav masthead-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Contact</a></li>
+            <% if user_signed_in? %>
+              <li><%= link_to "Log out", destroy_user_session_path,method: :delete %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+
+      <div class="inner cover">
+        <h1 class="cover-heading">Cerberus Temporary page</h1>
+        <p class="lead">Cerberus is the Mobile - Application Performance Management & Test Automation Service.</p>
+        <p class="lead">
+          <%= link_to "Login",new_user_session_path, class: "btn btn-lg btn-default" %>
+        </p>
+      </div>
+
+      <div class="mastfoot">
+        <div class="inner">
+          <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
