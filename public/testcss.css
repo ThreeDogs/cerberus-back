@@ -20,11 +20,31 @@
 /*html layout css*/
 
 #event_chart {
-	height: 600px;
+	height: 120px;
 	width: 1000px;
 	overflow-x: auto;
 	overflow-y: hidden;
 	border: dotted;
 	border-width: 1px;
+	margin-bottom: 10px;
+}
 
+#cpu_chart {
+	height: 170px;
+	width: 1000px;
+	overflow-x: auto;
+	overflow-y: hidden;
+	border: dotted;
+	border-width: 1px;
+	margin-bottom: 10px;
+}
+
+#mem_chart {
+	height: 170px;
+	width: 1000px;
+	overflow-x: auto;
+	overflow-y: hidden;
+	border: dotted;
+	border-width: 1px;
+	margin-bottom: 10px;
 }

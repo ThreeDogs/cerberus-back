@@ -5,15 +5,17 @@
 <head>
 	<meta charset="utf-8">
 	<script src="d3.v3.js"></script>
-	<script src="d3chart.js"></script>
+	<script src="d3charts.js"></script>
 	<link href="testcss.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 	<div id="event_chart"></div>
+	<div id="cpu_chart"></div>
+	<div id="mem_chart"></div>
 
 	<script>
-		d3.json("testdata.json",drawEventChart);
+		d3.json("testdata.json",drawCharts);
 	</script>
 </body>
 
