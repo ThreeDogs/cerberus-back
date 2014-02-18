@@ -31,9 +31,45 @@
 	stroke-width: 2px;
 }
 
+.tooltip {
+	border: dotted;
+	border-width: 1px;
+	width: 100px;
+	height: 30px;
+}
+
 /* html layout css */
 
+.chart_wrapper {
+	float: left;
+}
+
+#event_chart_label {
+	float: left;
+	width: 20px;
+	height: 130px;
+	border: solid;
+	border-width: 1px;
+}
+
+#cpu_chart_label {
+	float: left;
+	height: 160px;
+	width: 20px;
+	border: solid;
+	border-width: 1px;
+}
+
+#mem_chart_label {
+	float: left;
+	height: 160px;
+	width: 20px;
+	border: solid;
+	border-width: 1px;
+}
+
 #event_chart {
+	float: left;
 	height: 130px;
 	width: 1000px;
 	overflow-x: auto;
@@ -44,7 +80,8 @@
 }
 
 #cpu_chart {
-	height: 170px;
+	float: left;
+	height: 160px;
 	width: 1000px;
 	overflow-x: auto;
 	overflow-y: hidden;
@@ -54,7 +91,8 @@
 }
 
 #mem_chart {
-	height: 170px;
+	float: left;
+	height: 160px;
 	width: 1000px;
 	overflow-x: auto;
 	overflow-y: hidden;

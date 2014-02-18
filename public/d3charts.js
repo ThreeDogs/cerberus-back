@@ -22,6 +22,8 @@ function drawCharts(data) {
 	var cpu_group, gcpudot, cpu_axis; //for cpu svg
 	var mem_group, gmemdot, mem_axis; //for mem svg
 
+	//SETUP tooltip
+	var tooltip;
 
 	function initialize() {
 
@@ -74,6 +76,8 @@ function drawCharts(data) {
 
 		var initialize_event_chart = function () {
 
+			var color = d3.scale.category10();
+
 			event_group = event_svg.selectAll("g event")
 						.data(data.events)
 						.enter()
@@ -99,8 +103,9 @@ function drawCharts(data) {
 			});
 
 			function getColorFromEventType(event_type) {
-				if (event_type == "onClick") {return "blue"}
-				else {return "black"}
+				if (event_type == "onClick") {return color(1)}
+				else if (event_type == "hard_key") {return color(2)}
+				else {return color(0)}
 			}
 
 			event_svg.append("g")
@@ -178,11 +183,28 @@ function drawCharts(data) {
 					.call(d3.svg.axis().scale(y_percent_scale).ticks(5).orient("left"));
 		}
 
+		var initialize_tooltip = function () {
+
+			tooltip = d3.select("body")
+						.append("div")
+						.attr("class","tooltip")
+						.style("position", "absolute")
+						.style("z-index", "10")
+						.style("visibility", "hidden");
+
+			event_group.selectAll("rect").on("mouseover", function () {
+				return tooltip.style("visibility", "visible")
+							.style("top", (event.pageY-50)+"px")
+							.style("left",(event.pageX-50)+"px");
+				}).on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+		}
+
 		initialize_scales();
 		initialize_svg();
 		initialize_event_chart();
 		initialize_cpu_chart();
 		initialize_mem_chart();
+		initialize_tooltip();
 
 	}
 

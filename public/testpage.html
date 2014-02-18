@@ -11,10 +11,19 @@
 </head>
 
 <body>
-	<div id="event_chart"></div>
-	<div id="cpu_chart"></div>
-	<div id="mem_chart"></div>
-
+	<div class="chart_wrapper">
+		<div id="event_chart_label"></div>
+		<div id="event_chart"></div>
+	</div>
+	<div class="chart_wrapper">
+		<div id="cpu_chart_label"></div>
+		<div id="cpu_chart"></div>
+	</div>
+	<div class="chart_wrapper">
+		<div id="mem_chart_label"></div>
+		<div id="mem_chart"></div>
+	</div>
+	
 	<script>
 		d3.json("testdata.json",drawCharts);
 		
