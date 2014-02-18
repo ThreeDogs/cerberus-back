@@ -19,11 +19,14 @@ function drawCharts(data) {
 
 	//SETUP variables necessary for manipulating transitions
 	var event_group, gtext, grect, garrow, event_axis; //for event svg
-	var cpu_group, gcpudot, cpu_axis; //for cpu svg
-	var mem_group, gmemdot, mem_axis; //for mem svg
+	var cpu_group, gcpudot, cpu_path, cpu_axis; //for cpu svg
+	var mem_group, gmemdot, mem_path, mem_axis; //for mem svg
 
 	//SETUP tooltip
 	var tooltip;
+
+	//SETUP toggle to toggle between form1 - form2
+	var toggle=1;
 
 	function initialize() {
 
@@ -37,17 +40,17 @@ function drawCharts(data) {
 			x_range = [margin,width-margin];
 			t_scale = d3.scale.linear().domain(x_domain).range(x_range);
 
-			x_domain = d3.extent(data.events, function (d) {return d.order});
+			x_domain = [0,data.events.length+1];
 			order_scale = d3.scale.linear().domain(x_domain).range(x_range);
 
 			x_domain = [];
 			x_range = [];
-			d3.selectAll("g event")
-				.data(data.events)
-				.each(function (d, i){
-					x_range.push(d.order);
-					x_extent.push(d.time);
-				});
+			
+			for(var i=0; i<data.events.length; i++){
+				x_domain.push(data.events[i].time);
+				x_range.push(data.events[i].order);
+			}
+
 			polylinear_helper = d3.scale.linear().domain(x_domain).range(x_range);
 
 			y_percent_scale = d3.scale.linear().domain([0,100]).range([120, 20]);
@@ -108,11 +111,11 @@ function drawCharts(data) {
 				else {return color(0)}
 			}
 
-			event_svg.append("g")
-					  .attr("class", "x axis")
-					  .attr("opacity",1)
-					  .attr("transform", "translate(0,"+(event_svg_height-20)+")")
-					  .call(d3.svg.axis().scale(t_scale));
+			event_axis = event_svg.append("g")
+						  .attr("class", "x axis")
+						  .attr("opacity",1)
+						  .attr("transform", "translate(0,"+(event_svg_height-20)+")")
+						  .call(d3.svg.axis().scale(t_scale));
 		}
 
 		var initialize_cpu_chart = function () {
@@ -134,14 +137,14 @@ function drawCharts(data) {
 							.x(function(d){return t_scale(d.time)})
 							.y(function(d){return y_percent_scale(d.percentage)});
 
-			cpu_svg.append("path")
-					.attr("d",line(data.cpu))
-					.attr("class","cpu_path");
+			cpu_path = cpu_svg.append("path")
+							.attr("d",line(data.cpu))
+							.attr("class","cpu_path");
 
-			cpu_svg.append("g")
-					.attr("class", "x axis")
-					.attr("transform", "translate(0,"+(cpu_svg_height-30)+")")
-					.call(d3.svg.axis().scale(t_scale));
+			cpu_axis = cpu_svg.append("g")
+							.attr("class", "x axis")
+							.attr("transform", "translate(0,"+(cpu_svg_height-30)+")")
+							.call(d3.svg.axis().scale(t_scale));
 
 			cpu_svg.append("g")
 					.attr("class", "y axis")
@@ -168,14 +171,14 @@ function drawCharts(data) {
 							.x(function(d){return t_scale(d.time)})
 							.y(function(d){return y_percent_scale(d.percentage)});
 
-			mem_svg.append("path")
-					.attr("d",line(data.mem))
-					.attr("class","mem_path");
+			mem_path = mem_svg.append("path")
+							.attr("d",line(data.mem))
+							.attr("class","mem_path");
 
-			mem_svg.append("g")
-					.attr("class", "x axis")
-					.attr("transform", "translate(0,"+(mem_svg_height-30)+")")
-					.call(d3.svg.axis().scale(t_scale));
+			mem_axis = mem_svg.append("g")
+							.attr("class", "x axis")
+							.attr("transform", "translate(0,"+(mem_svg_height-30)+")")
+							.call(d3.svg.axis().scale(t_scale));
 
 			mem_svg.append("g")
 					.attr("class", "y axis")
@@ -208,6 +211,112 @@ function drawCharts(data) {
 
 	}
 
-	initialize();
+	function form1() {
 
+		var line = d3.svg.line()
+						.x(function(d){return t_scale(d.time)})
+						.y(function(d){return y_percent_scale(d.percentage)});
+
+		function event_chart_change() {
+			event_group.transition()
+						.attr("transform", function (d) {
+							return "translate("+t_scale(d.time)+",80)";
+						});
+			event_axis.transition()
+						.attr("opacity",1);
+
+			grect.transition()
+						.attr("width",10)
+						.attr("height",10)
+						.attr("rx",10)
+						.attr("ry",10);
+		}
+
+		function cpu_chart_change() {
+			cpu_group.transition()
+					.attr("transform", function (d) {
+						return "translate("+t_scale(d.time)+","+y_percent_scale(d.percentage)+")";
+					});
+
+			cpu_path.transition()
+					.attr("d",line(data.cpu));
+
+			cpu_svg.select(".x").transition().call(d3.svg.axis().scale(t_scale));
+		}
+
+		function mem_chart_change() {
+			mem_group.transition()
+					.attr("transform", function (d) {
+						return "translate("+t_scale(d.time)+","+y_percent_scale(d.percentage)+")";
+					});
+
+			mem_path.transition()
+					.attr("d",line(data.mem));
+
+			mem_svg.select(".x").transition().call(d3.svg.axis().scale(t_scale));
+		}
+
+		event_chart_change();
+		cpu_chart_change();
+		mem_chart_change();
+	}
+
+
+	function form2() {
+
+		var line = d3.svg.line()
+						.x(function(d){return order_scale(polylinear_helper(d.time))})
+						.y(function(d){return y_percent_scale(d.percentage)});
+
+		function event_chart_change() {
+			event_group.transition()
+				.attr("transform", function (d) {
+					return "translate("+order_scale(d.order)+",40)";
+				});
+
+			grect.transition()
+					.attr("width",60)
+					.attr("height",30)
+					.attr("rx",5)
+					.attr("ry",5);
+
+			event_axis.transition()
+					.attr("opacity",0);
+		}
+
+		function cpu_chart_change() {
+			cpu_group.transition()
+				.attr("transform", function (d) {
+					return "translate("+order_scale(polylinear_helper(d.time))+","+y_percent_scale(d.percentage)+")";
+				});
+		
+			cpu_path.transition()
+					.attr("d",line(data.cpu));
+
+			cpu_svg.select(".x").transition().call(d3.svg.axis().scale(order_scale));
+		}
+		
+		function mem_chart_change() {
+			mem_group.transition()
+					.attr("transform", function (d) {
+						return "translate("+order_scale(polylinear_helper(d.time))+","+y_percent_scale(d.percentage)+")";
+					});
+
+			mem_path.transition()
+					.attr("d",line(data.mem));
+
+			mem_svg.select(".x").transition().call(d3.svg.axis().scale(order_scale));
+		}
+
+		event_chart_change();
+		cpu_chart_change();
+		mem_chart_change();
+	}
+
+	document.getElementById("toggle").onclick = function(){
+		if (toggle==1) {toggle=2; form2();}
+		else {toggle=1; form1();}
+	}
+
+	initialize();
 }

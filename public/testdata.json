@@ -1,8 +1,15 @@
 {
 	"events": [
 		{
-			"order": 1,
+			"order": 0,
 			"time": 0,
+			"activity_name": "activity0",
+			"event_type": "onClick",
+			"event_name": "blah0"
+		},
+		{
+			"order": 1,
+			"time": 1,
 			"activity_name": "activity1",
 			"event_type": "onClick",
 			"event_name": "blahblah1"
