@@ -4,6 +4,7 @@
 
 <head>
 	<meta charset="utf-8">
+	<script src="jquery-2.1.0.min.js"></script>
 	<script src="d3.v3.js"></script>
 	<script src="d3charts.js"></script>
 	<link href="testcss.css" rel="stylesheet" type="text/css">
@@ -16,6 +17,20 @@
 
 	<script>
 		d3.json("testdata.json",drawCharts);
+		
+		$('#event_chart').scroll(function () {
+			$('#cpu_chart').scrollLeft($(this).scrollLeft());
+			$('#mem_chart').scrollLeft($(this).scrollLeft());
+		});
+		$('#cpu_chart').scroll(function () {
+			$('#event_chart').scrollLeft($(this).scrollLeft());
+			$('#mem_chart').scrollLeft($(this).scrollLeft());
+		});
+		$('#mem_chart').scroll(function () {
+			$('#cpu_chart').scrollLeft($(this).scrollLeft());
+			$('#event_chart').scrollLeft($(this).scrollLeft());
+		});
+
 	</script>
 </body>
 

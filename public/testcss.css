@@ -1,26 +1,40 @@
 /* axis css */
 .axis path{
-	fill:none;
+	fill: none;
 	stroke: black;
 }
 .axis {
-	font-size:8pt;
-	font-family:sans-serif;
+	font-size: 8pt;
+	font-family: sans-serif;
 }
 .tick {
-	fill:none;
-	stroke:black;
+	fill: none;
+	stroke: black;
 }
 
 .event_text {
-	font-size:8pt;
-	font-family:sans-serif;
+	font-size: 8pt;
+	font-family: sans-serif;
 }
 
-/*html layout css*/
+/* graph css */
+
+.cpu_path {
+	fill: none;
+	stroke: #0aa;
+	stroke-width: 2px;
+}
+
+.mem_path {
+	fill: none;
+	stroke: #a0a;
+	stroke-width: 2px;
+}
+
+/* html layout css */
 
 #event_chart {
-	height: 120px;
+	height: 130px;
 	width: 1000px;
 	overflow-x: auto;
 	overflow-y: hidden;
