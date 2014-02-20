@@ -200,6 +200,18 @@ function drawCharts(data) {
 							.style("top", (event.pageY-50)+"px")
 							.style("left",(event.pageX-50)+"px");
 				}).on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+
+			cpu_group.selectAll("circle").on("mouseover", function () {
+				return tooltip.style("visibility", "visible")
+							.style("top", (event.pageY-50)+"px")
+							.style("left",(event.pageX-50)+"px");
+				}).on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+
+			mem_group.selectAll("circle").on("mouseover", function () {
+				return tooltip.style("visibility", "visible")
+							.style("top", (event.pageY-50)+"px")
+							.style("left",(event.pageX-50)+"px");
+				}).on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 		}
 
 		initialize_scales();
@@ -313,6 +325,7 @@ function drawCharts(data) {
 		mem_chart_change();
 	}
 
+	//attach function to the button
 	document.getElementById("toggle").onclick = function(){
 		if (toggle==1) {toggle=2; form2();}
 		else {toggle=1; form1();}
