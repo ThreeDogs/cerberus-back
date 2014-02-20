@@ -1,6 +1,6 @@
 CerberusBack::Application.routes.draw do
+  resources :motion_events
   resources :reports
-
   resources :projects
 
   devise_for :users, path_names: {sign_in: 'login', sing_out: 'logout'}

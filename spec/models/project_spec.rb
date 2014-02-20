@@ -23,12 +23,6 @@ describe Project do
   it{should respond_to(:user)} # belongs_to user
   it{should respond_to(:reports)}
   it{should respond_to(:name)}
-
-  # it "should validate presence of" do
-  # 	should validate_presence_of :name
-  # 	should validate_presence_of :user_id
-  # 	should validate_presence_of :report_id
-  # end
 end
 
 describe Report do

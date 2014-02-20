@@ -1,0 +1,49 @@
+<%= form_for(@motion_event) do |f| %>
+  <% if @motion_event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@motion_event.errors.count, "error") %> prohibited this motion_event from being saved:</h2>
+
+      <ul>
+      <% @motion_event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :seq_id %><br>
+    <%= f.number_field :seq_id %>
+  </div>
+  <div class="field">
+    <%= f.label :time_stamp %><br>
+    <%= f.datetime_select :time_stamp %>
+  </div>
+  <div class="field">
+    <%= f.label :sleep %><br>
+    <%= f.number_field :sleep %>
+  </div>
+  <div class="field">
+    <%= f.label :activity_class %><br>
+    <%= f.text_field :activity_class %>
+  </div>
+  <div class="field">
+    <%= f.label :action_type %><br>
+    <%= f.text_field :action_type %>
+  </div>
+  <div class="field">
+    <%= f.label :param %><br>
+    <%= f.text_field :param %>
+  </div>
+  <div class="field">
+    <%= f.label :view %><br>
+    <%= f.text_field :view %>
+  </div>
+  <div class="field">
+    <%= f.label :report_id %><br>
+    <%= f.number_field :report_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

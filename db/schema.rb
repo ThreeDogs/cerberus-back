@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140212153353) do
+ActiveRecord::Schema.define(version: 20140220073341) do
+
+  create_table "motion_events", force: true do |t|
+    t.integer  "seq_id"
+    t.datetime "time_stamp"
+    t.integer  "sleep"
+    t.string   "activity_class"
+    t.string   "action_type"
+    t.string   "param"
+    t.string   "view"
+    t.integer  "report_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "projects", force: true do |t|
     t.string   "name"

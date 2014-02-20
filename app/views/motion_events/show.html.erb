@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Seq:</strong>
+  <%= @motion_event.seq_id %>
+</p>
+
+<p>
+  <strong>Time stamp:</strong>
+  <%= @motion_event.time_stamp %>
+</p>
+
+<p>
+  <strong>Sleep:</strong>
+  <%= @motion_event.sleep %>
+</p>
+
+<p>
+  <strong>Activity class:</strong>
+  <%= @motion_event.activity_class %>
+</p>
+
+<p>
+  <strong>Action type:</strong>
+  <%= @motion_event.action_type %>
+</p>
+
+<p>
+  <strong>Param:</strong>
+  <%= @motion_event.param %>
+</p>
+
+<p>
+  <strong>View:</strong>
+  <%= @motion_event.view %>
+</p>
+
+<p>
+  <strong>Report:</strong>
+  <%= @motion_event.report_id %>
+</p>
+
+<%= link_to 'Edit', edit_motion_event_path(@motion_event) %> |
+<%= link_to 'Back', motion_events_path %>
