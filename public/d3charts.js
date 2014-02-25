@@ -99,7 +99,23 @@ function drawCharts(data) {
 						.attr("class", "event_text")
 						.text(function (d) {return d.event_name});
 
-			//garrow =
+			event_svg.append("marker")
+						.attr("id","arrow")
+						.attr("viewBox","0 0 10 10")
+						.attr("refX",0)
+						.attr("refY",5)
+						.attr("markerWidth",3)
+						.attr("markerHeight",3)
+						.append("path")
+						.attr("d","M 0 0 L 10 5 L 0 10 z");
+
+			garrow = event_group.append("line")
+						.attr("x1",10).attr("y1",5)
+						.attr("x2",20).attr("y2",5)
+						.style("stroke","black")
+						.attr("stroke-width",2)
+						.attr("marker-end","url(#arrow)")
+						.attr("opacity",0);
 
 			event_group.attr("transform", function (d) {
 				return "translate("+t_scale(d.time)+",80)";
@@ -237,6 +253,11 @@ function drawCharts(data) {
 			event_axis.transition()
 						.attr("opacity",1);
 
+			garrow.transition()
+					.attr("x1",10).attr("y1",5)
+					.attr("x2",20).attr("y2",5)
+					.attr("opacity",0);
+
 			grect.transition()
 						.attr("width",10)
 						.attr("height",10)
@@ -291,6 +312,11 @@ function drawCharts(data) {
 					.attr("height",30)
 					.attr("rx",5)
 					.attr("ry",5);
+
+			garrow.transition()
+					.attr("x1",60).attr("y1",15)
+					.attr("x2",70).attr("y2",15)
+					.attr("opacity",1);
 
 			event_axis.transition()
 					.attr("opacity",0);
