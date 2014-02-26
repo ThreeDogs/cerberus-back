@@ -73,7 +73,7 @@ describe ReportsController do
 		end
 	end
 
-	describe "PUT update" do
+	describe "PATCH update" do
 		before :each do 
 			@report = create(:init_report)
 		end

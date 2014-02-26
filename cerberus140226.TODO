@@ -4,20 +4,16 @@ Modeling:
   ✔ Relationship Validation @started(14-02-26 17:00) @done (14-02-26 17:23) @lasted(0:23:00)
 
 Controller Test?:
-  ✔ RSpec Controller Test Example @done (14-02-26 20:31)
-
-D3 Connection:
-  ☐ motion_event connection
-  ☐ memory_info connection
-  ☐ cpu_info connection
-
-Restful API Design:
-  ☐ motion_event create (client)
-  ☐ memory_info create (client)
-  ☐ cpu_info create (client)
-  ☐ motion_event show (d3)
-  ☐ memory_info show (d3)
-  ☐ cpu_info show (d3)
+  ✔ RSpec Controller Test Example @done (14-02-26 23:15)
+ -> permit 코드에서 시간 날림 
 
  Issue:
    ✔ TimeStamp -> Discuss @done (14-02-26 18:15)
+
+Restful API Design:
+  ✘ motion_event create (client) @cancelled (14-02-26 23:15)
+  ✘ memory_info create (client) @cancelled (14-02-26 23:15)
+  ✘ cpu_info create (client) @cancelled (14-02-26 23:15)
+  ✘ motion_event show (d3) @cancelled (14-02-26 23:14)
+  ✘ memory_info show (d3) @cancelled (14-02-26 23:14)
+  ✘ cpu_info show (d3) @cancelled (14-02-26 23:14)

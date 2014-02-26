@@ -18,7 +18,7 @@ FactoryGirl.define do
   end
 
   factory :init_project, parent: :project do
-  	name "First Project"
+  	name "first"
   	user_id 1
   end
 
