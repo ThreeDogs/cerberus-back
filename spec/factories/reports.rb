@@ -19,11 +19,28 @@
 
 FactoryGirl.define do
   factory :report do
-    package_name "MyString"
-    icon "MyString"
-    app_version "MyString"
-    os_version "MyString"
-    time_for_test "9.99"
+    package_name "com.android.sample"
+    icon "/public/rails.png"
+    app_version "1.0"
+    os_version "4.1"
+    device_name "SHEV-640"
+    country "KR"
+    time_for_test "109.99"
     project_id 1
+  end
+
+  factory :init_report, parent: :report do
+    package_name "com.android.sample"
+    icon "/public/rails.png"
+    app_version "1.0"
+    os_version "4.1"
+    device_name "SHEV-640"
+    country "KR"
+    time_for_test ""
+    project_id 1
+  end
+
+  factory :invalid_report, parent: :report do
+  	project_id nil
   end
 end

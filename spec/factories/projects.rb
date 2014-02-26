@@ -13,5 +13,17 @@
 
 FactoryGirl.define do
   factory :project do
+  	name "Sample Project"
+  	user_id 1
+  end
+
+  factory :init_project, parent: :project do
+  	name "First Project"
+  	user_id 1
+  end
+
+  factory :invalid_project, parent: :project do
+  	name nil
+  	user_id nil
   end
 end

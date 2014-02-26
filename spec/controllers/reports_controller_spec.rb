@@ -19,4 +19,139 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe ReportsController do
+	describe "GET #index" do
+		it "populates an array of reports" do
+			report = create(:report)
+			get :index
+			assigns(:reports).should eq([report])
+		end
+
+		it "renders the :index view" do
+			get :index
+			response.should render_template :index
+		end
+	end
+
+	describe "GET #show" do
+		it "assigns the requested report to @report" do
+			report = create(:report)
+			get :show, id: report
+			assigns(:report).should eq(report)
+		end
+
+		it "renders the :show view" do
+			get :show, id: create(:report)
+			response.should render_template :show
+		end
+	end
+
+	describe "POST create" do
+		context "with valid attributes" do
+			it "create a new report" do
+				expect{
+					post :create, report: attributes_for(:report)
+				}.to change(Report, :count).by(1)
+			end
+
+			it "redirects to the new report" do
+				post :create, report: attributes_for(:report)
+				response.should redirect_to Report.last
+			end
+		end
+
+		context "with invalid attributes" do
+			it "does not save the new report" do
+				expect{
+					post :create, report: attributes_for(:invalid_report)
+				}.to_not change(Report, :count)
+			end
+
+			it "re-renders the new method" do
+				post :create, report: attributes_for(:invalid_report)
+				response.should render_template :new
+			end
+		end
+	end
+
+	describe "PUT update" do
+		before :each do 
+			@report = create(:init_report)
+		end
+
+		context "valid attributes" do
+			it "located the requested @report" do
+				patch :update, id: @report, report: attributes_for(:report)
+				assigns(:report).should eq(@report)
+			end
+
+			it "changes @report's attributes" do
+				patch :update, id: @report,
+					report: attributes_for(:report, time_for_test: 309.99)
+				@report.reload
+				@report.time_for_test.should eq(309.99)
+			end
+
+			it "redirects to the update report" do
+				patch :update, id: @report, report: attributes_for(:report)
+				response.should redirect_to @report
+			end
+		end
+	end
+
+	describe "DELETE destroy" do
+		before :each do 
+			@report = create(:report)
+		end
+
+		it "deletes the report" do
+			expect{
+				delete :destroy, id: @report
+			}.to change(Report, :count).by(-1)
+		end
+
+		it "redirects to reports#index" do
+			delete :destroy, id: @report
+			response.should redirect_to reports_url
+		end
+	end
 end
+
+# describe FoobarController do
+#   render_views # <-- You need this to test your json response!
+ 
+#   it "should render successfully" do
+#     get :input, :format => :json
+#     response.should be_success
+#   end
+ 
+#   it "should fail when code is not present" do
+#   	get 'some_endpoint', :format => :json
+#   	response.should be_success
+ 
+#   	# Parse json response
+#   	body = JSON.parse(response.body)
+ 
+#   	# Test the json structure
+#   	body.should include('status')
+#   	status = body['status']
+#   	status.should include('code')
+#   	status.should include('message')
+#   	status.should include('endpoint')
+ 
+#   	# Test the response values
+#   	status['code'].should eq(600)
+#   	status['message'].should eq('Code is required')
+#   end
+# end
+
+
+
+
+
+
+
+
+
+
+
+

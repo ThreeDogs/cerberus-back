@@ -19,142 +19,156 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe MotionEventsController do
+  describe "Get Index" do
+    context "with valid attributes" do
+      # it "index a new report" do
+      #   expect{
+      #     post :create, report: FactoryGirl.attributes_for(:report)
+      #   }.to change(Report, :count).by(1)
+      # end
 
-  # This should return the minimal set of attributes required to create a valid
-  # MotionEvent. As you add validations to MotionEvent, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) { { "seq_id" => "1" } }
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # MotionEventsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
-
-  describe "GET index" do
-    it "assigns all motion_events as @motion_events" do
-      motion_event = MotionEvent.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:motion_events).should eq([motion_event])
+      # it "redirects to the new report" do
+      #   post :create, report: FactoryGirl.attributes_for(:report)
+      #   response.should redirect_to Report.last
+      # end
     end
   end
 
-  describe "GET show" do
-    it "assigns the requested motion_event as @motion_event" do
-      motion_event = MotionEvent.create! valid_attributes
-      get :show, {:id => motion_event.to_param}, valid_session
-      assigns(:motion_event).should eq(motion_event)
-    end
-  end
+  # # This should return the minimal set of attributes required to create a valid
+  # # MotionEvent. As you add validations to MotionEvent, be sure to
+  # # adjust the attributes here as well.
+  # let(:valid_attributes) { { "seq_id" => "1" } }
 
-  describe "GET new" do
-    it "assigns a new motion_event as @motion_event" do
-      get :new, {}, valid_session
-      assigns(:motion_event).should be_a_new(MotionEvent)
-    end
-  end
+  # # This should return the minimal set of values that should be in the session
+  # # in order to pass any filters (e.g. authentication) defined in
+  # # MotionEventsController. Be sure to keep this updated too.
+  # let(:valid_session) { {} }
 
-  describe "GET edit" do
-    it "assigns the requested motion_event as @motion_event" do
-      motion_event = MotionEvent.create! valid_attributes
-      get :edit, {:id => motion_event.to_param}, valid_session
-      assigns(:motion_event).should eq(motion_event)
-    end
-  end
+  # describe "GET index" do
+  #   it "assigns all motion_events as @motion_events" do
+  #     motion_event = MotionEvent.create! valid_attributes
+  #     get :index, {}, valid_session
+  #     assigns(:motion_events).should eq([motion_event])
+  #   end
+  # end
 
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new MotionEvent" do
-        expect {
-          post :create, {:motion_event => valid_attributes}, valid_session
-        }.to change(MotionEvent, :count).by(1)
-      end
+  # describe "GET show" do
+  #   it "assigns the requested motion_event as @motion_event" do
+  #     motion_event = MotionEvent.create! valid_attributes
+  #     get :show, {:id => motion_event.to_param}, valid_session
+  #     assigns(:motion_event).should eq(motion_event)
+  #   end
+  # end
 
-      it "assigns a newly created motion_event as @motion_event" do
-        post :create, {:motion_event => valid_attributes}, valid_session
-        assigns(:motion_event).should be_a(MotionEvent)
-        assigns(:motion_event).should be_persisted
-      end
+  # describe "GET new" do
+  #   it "assigns a new motion_event as @motion_event" do
+  #     get :new, {}, valid_session
+  #     assigns(:motion_event).should be_a_new(MotionEvent)
+  #   end
+  # end
 
-      it "redirects to the created motion_event" do
-        post :create, {:motion_event => valid_attributes}, valid_session
-        response.should redirect_to(MotionEvent.last)
-      end
-    end
+  # describe "GET edit" do
+  #   it "assigns the requested motion_event as @motion_event" do
+  #     motion_event = MotionEvent.create! valid_attributes
+  #     get :edit, {:id => motion_event.to_param}, valid_session
+  #     assigns(:motion_event).should eq(motion_event)
+  #   end
+  # end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved motion_event as @motion_event" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        MotionEvent.any_instance.stub(:save).and_return(false)
-        post :create, {:motion_event => { "seq_id" => "invalid value" }}, valid_session
-        assigns(:motion_event).should be_a_new(MotionEvent)
-      end
+  # describe "POST create" do
+  #   describe "with valid params" do
+  #     it "creates a new MotionEvent" do
+  #       expect {
+  #         post :create, {:motion_event => valid_attributes}, valid_session
+  #       }.to change(MotionEvent, :count).by(1)
+  #     end
 
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        MotionEvent.any_instance.stub(:save).and_return(false)
-        post :create, {:motion_event => { "seq_id" => "invalid value" }}, valid_session
-        response.should render_template("new")
-      end
-    end
-  end
+  #     it "assigns a newly created motion_event as @motion_event" do
+  #       post :create, {:motion_event => valid_attributes}, valid_session
+  #       assigns(:motion_event).should be_a(MotionEvent)
+  #       assigns(:motion_event).should be_persisted
+  #     end
 
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested motion_event" do
-        motion_event = MotionEvent.create! valid_attributes
-        # Assuming there are no other motion_events in the database, this
-        # specifies that the MotionEvent created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        MotionEvent.any_instance.should_receive(:update).with({ "seq_id" => "1" })
-        put :update, {:id => motion_event.to_param, :motion_event => { "seq_id" => "1" }}, valid_session
-      end
+  #     it "redirects to the created motion_event" do
+  #       post :create, {:motion_event => valid_attributes}, valid_session
+  #       response.should redirect_to(MotionEvent.last)
+  #     end
+  #   end
 
-      it "assigns the requested motion_event as @motion_event" do
-        motion_event = MotionEvent.create! valid_attributes
-        put :update, {:id => motion_event.to_param, :motion_event => valid_attributes}, valid_session
-        assigns(:motion_event).should eq(motion_event)
-      end
+  #   describe "with invalid params" do
+  #     it "assigns a newly created but unsaved motion_event as @motion_event" do
+  #       # Trigger the behavior that occurs when invalid params are submitted
+  #       MotionEvent.any_instance.stub(:save).and_return(false)
+  #       post :create, {:motion_event => { "seq_id" => "invalid value" }}, valid_session
+  #       assigns(:motion_event).should be_a_new(MotionEvent)
+  #     end
 
-      it "redirects to the motion_event" do
-        motion_event = MotionEvent.create! valid_attributes
-        put :update, {:id => motion_event.to_param, :motion_event => valid_attributes}, valid_session
-        response.should redirect_to(motion_event)
-      end
-    end
+  #     it "re-renders the 'new' template" do
+  #       # Trigger the behavior that occurs when invalid params are submitted
+  #       MotionEvent.any_instance.stub(:save).and_return(false)
+  #       post :create, {:motion_event => { "seq_id" => "invalid value" }}, valid_session
+  #       response.should render_template("new")
+  #     end
+  #   end
+  # end
 
-    describe "with invalid params" do
-      it "assigns the motion_event as @motion_event" do
-        motion_event = MotionEvent.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        MotionEvent.any_instance.stub(:save).and_return(false)
-        put :update, {:id => motion_event.to_param, :motion_event => { "seq_id" => "invalid value" }}, valid_session
-        assigns(:motion_event).should eq(motion_event)
-      end
+  # describe "PUT update" do
+  #   describe "with valid params" do
+  #     it "updates the requested motion_event" do
+  #       motion_event = MotionEvent.create! valid_attributes
+  #       # Assuming there are no other motion_events in the database, this
+  #       # specifies that the MotionEvent created on the previous line
+  #       # receives the :update_attributes message with whatever params are
+  #       # submitted in the request.
+  #       MotionEvent.any_instance.should_receive(:update).with({ "seq_id" => "1" })
+  #       put :update, {:id => motion_event.to_param, :motion_event => { "seq_id" => "1" }}, valid_session
+  #     end
 
-      it "re-renders the 'edit' template" do
-        motion_event = MotionEvent.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        MotionEvent.any_instance.stub(:save).and_return(false)
-        put :update, {:id => motion_event.to_param, :motion_event => { "seq_id" => "invalid value" }}, valid_session
-        response.should render_template("edit")
-      end
-    end
-  end
+  #     it "assigns the requested motion_event as @motion_event" do
+  #       motion_event = MotionEvent.create! valid_attributes
+  #       put :update, {:id => motion_event.to_param, :motion_event => valid_attributes}, valid_session
+  #       assigns(:motion_event).should eq(motion_event)
+  #     end
 
-  describe "DELETE destroy" do
-    it "destroys the requested motion_event" do
-      motion_event = MotionEvent.create! valid_attributes
-      expect {
-        delete :destroy, {:id => motion_event.to_param}, valid_session
-      }.to change(MotionEvent, :count).by(-1)
-    end
+  #     it "redirects to the motion_event" do
+  #       motion_event = MotionEvent.create! valid_attributes
+  #       put :update, {:id => motion_event.to_param, :motion_event => valid_attributes}, valid_session
+  #       response.should redirect_to(motion_event)
+  #     end
+  #   end
 
-    it "redirects to the motion_events list" do
-      motion_event = MotionEvent.create! valid_attributes
-      delete :destroy, {:id => motion_event.to_param}, valid_session
-      response.should redirect_to(motion_events_url)
-    end
-  end
+  #   describe "with invalid params" do
+  #     it "assigns the motion_event as @motion_event" do
+  #       motion_event = MotionEvent.create! valid_attributes
+  #       # Trigger the behavior that occurs when invalid params are submitted
+  #       MotionEvent.any_instance.stub(:save).and_return(false)
+  #       put :update, {:id => motion_event.to_param, :motion_event => { "seq_id" => "invalid value" }}, valid_session
+  #       assigns(:motion_event).should eq(motion_event)
+  #     end
+
+  #     it "re-renders the 'edit' template" do
+  #       motion_event = MotionEvent.create! valid_attributes
+  #       # Trigger the behavior that occurs when invalid params are submitted
+  #       MotionEvent.any_instance.stub(:save).and_return(false)
+  #       put :update, {:id => motion_event.to_param, :motion_event => { "seq_id" => "invalid value" }}, valid_session
+  #       response.should render_template("edit")
+  #     end
+  #   end
+  # end
+
+  # describe "DELETE destroy" do
+  #   it "destroys the requested motion_event" do
+  #     motion_event = MotionEvent.create! valid_attributes
+  #     expect {
+  #       delete :destroy, {:id => motion_event.to_param}, valid_session
+  #     }.to change(MotionEvent, :count).by(-1)
+  #   end
+
+  #   it "redirects to the motion_events list" do
+  #     motion_event = MotionEvent.create! valid_attributes
+  #     delete :destroy, {:id => motion_event.to_param}, valid_session
+  #     response.should redirect_to(motion_events_url)
+  #   end
+  # end
 
 end

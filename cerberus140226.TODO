@@ -1,0 +1,23 @@
+Modeling:
+  ✔ memory_info Modeling @done (14-02-26 17:00)
+  ✔ cpu_info Modeling @done (14-02-26 17:00)
+  ✔ Relationship Validation @started(14-02-26 17:00) @done (14-02-26 17:23) @lasted(0:23:00)
+
+Controller Test?:
+  ✔ RSpec Controller Test Example @done (14-02-26 20:31)
+
+D3 Connection:
+  ☐ motion_event connection
+  ☐ memory_info connection
+  ☐ cpu_info connection
+
+Restful API Design:
+  ☐ motion_event create (client)
+  ☐ memory_info create (client)
+  ☐ cpu_info create (client)
+  ☐ motion_event show (d3)
+  ☐ memory_info show (d3)
+  ☐ cpu_info show (d3)
+
+ Issue:
+   ✔ TimeStamp -> Discuss @done (14-02-26 18:15)

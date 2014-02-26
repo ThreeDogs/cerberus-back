@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220073341) do
+ActiveRecord::Schema.define(version: 20140226054226) do
+
+  create_table "cpu_infos", force: true do |t|
+    t.integer  "cpu_usage"
+    t.integer  "motion_event_id"
+    t.integer  "report_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "memory_infos", force: true do |t|
+    t.integer  "dalvik_size"
+    t.integer  "dalvik_alloc"
+    t.integer  "native_size"
+    t.integer  "native_alloc"
+    t.integer  "motion_event_id"
+    t.integer  "report_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "motion_events", force: true do |t|
     t.integer  "seq_id"

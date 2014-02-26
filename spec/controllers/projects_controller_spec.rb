@@ -19,5 +19,101 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe ProjectsController do
-	
+	login_user
+
+	describe "GET #index" do
+		it "populates an array of projects" do
+			project = create(:project)
+			get :index
+			assigns(:projects).should eq([project])
+		end
+
+		it "renders the :index view" do
+			get :index
+			response.should render_template :index
+		end
+	end
+
+	describe "GET #show" do
+		it "assigns the requested project to @project" do
+			project = create(:project)
+			get :show, id: project
+			assigns(:project).should eq(project)
+		end
+
+		it "renders the :show view" do
+			get :show, id: create(:project)
+			response.should render_template :show
+		end
+	end
+
+	describe "POST create" do
+		context "with valid attributes" do
+			it "create a new project" do
+				expect{
+					post :create, project: attributes_for(:project)
+				}.to change(Project, :count).by(1)
+			end
+
+			it "redirects to the new project" do
+				post :create, project: attributes_for(:project)
+				response.should redirect_to Project.last
+			end
+		end
+
+		context "with invalid attributes" do
+			it "does not save the new project" do
+				expect{
+					post :create, project: attributes_for(:invalid_project)
+				}.to_not change(Project, :count)
+			end
+
+			it "re-renders the new method" do
+				post :create, project: attributes_for(:invalid_project)
+				response.should render_template :new
+			end
+		end
+	end
+
+	describe "PUT update" do
+		before :each do 
+			@project = create(:init_project)
+		end
+
+		context "valid attributes" do
+			it "located the requested @project" do
+				patch :update, id: @project, project: attributes_for(:project)
+				assigns(:project).should eq(@project)
+			end
+
+			it "changes @project's attributes" do
+				patch :update, id: @project,
+					project: attributes_for(:project, name: "Study Planner")
+				@project.reload
+				@project.name.should eq("Study Planner")
+			end
+
+			# it "redirects to the update project" do
+			# 	patch :update, id: @project, project: attributes_for(:project)
+			# 	response.should redirect_to @project
+			# end
+		end
+	end
+
+	# describe "DELETE destroy" do
+	# 	before :each do 
+	# 		@project = create(:project)
+	# 	end
+
+	# 	it "deletes the project" do
+	# 		expect{
+	# 			delete :destroy, id: @project
+	# 		}.to change(project, :count).by(-1)
+	# 	end
+
+	# 	it "redirects to projects#index" do
+	# 		delete :destroy, id: @project
+	# 		response.should redirect_to projects_url
+	# 	end
+	# end
 end

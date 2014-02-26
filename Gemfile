@@ -40,10 +40,16 @@ group :development, :test do
 	gem 'sqlite3'
 	gem 'rails-erd'
 	gem 'rspec-rails'
-	gem 'guard-rspec'
 	gem 'factory_girl_rails', '~> 4.0'
 	gem 'spork', '~>1.0rc'
 	gem 'annotate', ">=2.6.0"
+end
+
+group :test do
+	gem 'faker'
+	gem 'capybara'
+	gem 'launchy'
+	gem 'guard-rspec'
 end
 
 # Use ActiveModel has_secure_password
