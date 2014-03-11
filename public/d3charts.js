@@ -167,6 +167,11 @@ function drawCharts(data) {
 						  .attr("opacity",1)
 						  .attr("transform", "translate(0,"+(event_svg_height-20)+")")
 						  .call(d3.svg.axis().scale(t_scale));
+
+			d3.selection.prototype.moveToFront = function() {
+				return this.each(function(){this.parentNode.appendChild(this);});
+			};
+			event_group.moveToFront();
 		}
 
 		var initialize_cpu_chart = function () {
