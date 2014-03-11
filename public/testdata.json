@@ -31,14 +31,14 @@
 		{
 			"order": 4,
 			"time": 3.7,
-			"activity_name": "activity1",
+			"activity_name": "activity2",
 			"event_type": "onClick",
 			"event_name": "blah1"
 		},
 		{
 			"order": 5,
 			"time": 4.8,
-			"activity_name": "activity1",
+			"activity_name": "activity2",
 			"event_type": "swipe",
 			"event_name": "blahblahblah1"
 		},
@@ -87,21 +87,21 @@
 		{
 			"order": 12,
 			"time": 25.8,
-			"activity_name": "activity3",
+			"activity_name": "activity4",
 			"event_type": "onClick",
 			"event_name": "blahblah1"
 		},
 		{
 			"order": 13,
 			"time": 27,
-			"activity_name": "activity3",
+			"activity_name": "activity4",
 			"event_type": "swipe",
 			"event_name": "blahblah1"
 		},
 		{
 			"order": 14,
 			"time": 29.1,
-			"activity_name": "activity3",
+			"activity_name": "activity4",
 			"event_type": "etc",
 			"event_name": "blahblah1"
 		},

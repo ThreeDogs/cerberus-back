@@ -36,6 +36,9 @@
 	border-width: 1px;
 	width: 100px;
 	height: 30px;
+	font-size: 8pt;
+	font-family: sans-serif;
+	overflow: hidden;
 	background-color: rgba(200,200,200,20);
 }
 
@@ -103,4 +106,12 @@
 	border: dotted;
 	border-width: 1px;
 	margin-bottom: 10px;
+}
+
+#event_specifics {
+	float: left;
+	height: 130px;
+	width: 200px;
+	border: dotted;
+	border-width: 1px;
 }

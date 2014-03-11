@@ -18,12 +18,15 @@ function drawCharts(data) {
 	var event_svg, cpu_svg, mem_svg;
 
 	//SETUP variables necessary for manipulating transitions
-	var event_group, gtext, grect, garrow, event_axis; //for event svg
+	var event_group, gtext, grect, garrow, event_axis, activity_group, gact; //for event svg
 	var cpu_group, gcpudot, cpu_path, cpu_axis; //for cpu svg
 	var mem_group, gmemdot, mem_path, mem_axis; //for mem svg
 
 	//SETUP tooltip
 	var tooltip;
+
+	//SETUP event_specific box
+	var event_specific_box;
 
 	//SETUP toggle to toggle between form1 - form2
 	var toggle=1;
@@ -121,6 +124,26 @@ function drawCharts(data) {
 				return "translate("+t_scale(d.time)+",80)";
 			});
 
+			var activities = [];
+
+			event_group.each(function (d, i) {
+				var flag = true;
+				var currentActivity = activities[activities.length-1];
+				if (currentActivity!=null && d.activity_name == currentActivity.name){
+					flag = false;
+					currentActivity.end_time=d.time;
+					currentActivity.end_num=d.order;
+				}
+				if (flag) activities.push({
+					"name":d.activity_name,
+					"start_time":d.time,
+					"start_num":d.order,
+					"end_time":d.time,
+					"end_num":d.order
+				});
+			})
+			console.log(activities);
+
 			function getColorFromEventType(event_type) {
 				if (event_type == "onClick") {return color(1)}
 				else if (event_type == "hard_key") {return color(2)}
@@ -211,23 +234,27 @@ function drawCharts(data) {
 						.style("z-index", "10")
 						.style("visibility", "hidden");
 
-			event_group.selectAll("rect").on("mouseover", function () {
+			event_specific_box = d3.select("#event_specifics");
+
+			event_group.selectAll("rect").on("mouseover", function (d) {
+				tooltip.html("event type: "+d.event_type+"<br>event name: "+d.event_name);
+				event_specific_box.html("event type: "+d.event_type+"<br>event name: "+d.event_name);
 				return tooltip.style("visibility", "visible")
 							.style("top", (event.pageY-50)+"px")
 							.style("left",(event.pageX-50)+"px");
-				}).on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+				}).on("mouseout", function(){return tooltip.text("").style("visibility", "hidden");});
 
 			cpu_group.selectAll("circle").on("mouseover", function () {
 				return tooltip.style("visibility", "visible")
 							.style("top", (event.pageY-50)+"px")
 							.style("left",(event.pageX-50)+"px");
-				}).on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+				}).on("mouseout", function(){return tooltip.text("").style("visibility", "hidden");});
 
 			mem_group.selectAll("circle").on("mouseover", function () {
 				return tooltip.style("visibility", "visible")
 							.style("top", (event.pageY-50)+"px")
 							.style("left",(event.pageX-50)+"px");
-				}).on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+				}).on("mouseout", function(){return tooltip.text("").style("visibility", "hidden");});
 		}
 
 		initialize_scales();
