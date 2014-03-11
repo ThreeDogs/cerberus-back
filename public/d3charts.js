@@ -144,6 +144,19 @@ function drawCharts(data) {
 			})
 			console.log(activities);
 
+			gact = event_svg.selectAll("activityBox")
+						.data(activities)
+						.enter()
+						.append("rect")
+						.attr("x", function (d) {return t_scale(d.start_time)})
+						.attr("y", 20)
+						.attr("class", "activityBox")
+						.attr("width", function (d) {return t_scale(d.end_time-d.start_time)-30})
+						.attr("height", 80)
+						.attr("stroke", "black")
+						.attr("fill", "transparent")
+						.attr("title", function (d) {return d.name});
+
 			function getColorFromEventType(event_type) {
 				if (event_type == "onClick") {return color(1)}
 				else if (event_type == "hard_key") {return color(2)}
