@@ -142,7 +142,6 @@ function drawCharts(data) {
 					"end_num":d.order
 				});
 			})
-			console.log(activities);
 
 			gact = event_svg.selectAll("activityBox")
 						.data(activities)
@@ -303,6 +302,12 @@ function drawCharts(data) {
 						.attr("height",10)
 						.attr("rx",10)
 						.attr("ry",10);
+
+			gact.transition()
+				.attr("x", function (d) {return t_scale(d.start_time)})
+				.attr("y", 20)
+				.attr("width", function (d) {return t_scale(d.end_time-d.start_time)-30})
+				.attr("height", 80);
 		}
 
 		function cpu_chart_change() {
@@ -360,6 +365,12 @@ function drawCharts(data) {
 
 			event_axis.transition()
 					.attr("opacity",0);
+
+			gact.transition()
+				.attr("x", function (d) {return order_scale(d.start_num)})
+				.attr("y", 20)
+				.attr("width", function (d) {return order_scale(d.end_num-d.start_num+0.3)})
+				.attr("height", 80);
 		}
 
 		function cpu_chart_change() {
