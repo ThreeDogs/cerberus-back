@@ -2,6 +2,7 @@
 
 function drawCharts(data) {
 
+
 	//SETUP width in relation to length of events
 	var width = data.events.length*80;
 	var event_svg_height, cpu_svg_height, mem_svg_height;
@@ -20,7 +21,7 @@ function drawCharts(data) {
 	//SETUP variables necessary for manipulating transitions
 	var event_group, gtext, grect, garrow, event_axis, activity_group, gact; //for event svg
 	var cpu_group, gcpudot, cpu_path, cpu_axis; //for cpu svg
-	var mem_group, gmemdot, mem_path, mem_axis; //for mem svg
+	var mem_group, gmemdot, mem_path, mem_area, mem_axis; //for mem svg
 
 	//SETUP tooltip
 	var tooltip;
@@ -39,7 +40,7 @@ function drawCharts(data) {
 
 			//SETUP SCALES (time axis & polylinear axis)
 			//**SCALES are FUNCTIONS that map a data to its position along the axis.**
-			x_domain = d3.extent(data.cpu, function (d) {return d.time*1.1});
+			x_domain = d3.extent(data.events, function (d) {return d.time*1.1});
 			x_range = [margin,width-margin];
 			t_scale = d3.scale.linear().domain(x_domain).range(x_range);
 
@@ -220,12 +221,12 @@ function drawCharts(data) {
 						.attr("stroke","black");
 
 			mem_group.attr("transform", function (d) {
-				return "translate("+t_scale(d.time)+","+y_percent_scale(d.percentage)+")";
+				return "translate("+t_scale(d.time)+","+y_percent_scale(d.dh_alloc/d.dh_size*100)+")";
 			});
 
 			var line = d3.svg.line()
 							.x(function(d){return t_scale(d.time)})
-							.y(function(d){return y_percent_scale(d.percentage)});
+							.y(function(d){return y_percent_scale(d.dh_alloc/d.dh_size*100)});
 
 			mem_path = mem_svg.append("path")
 							.attr("d",line(data.mem))
@@ -240,6 +241,16 @@ function drawCharts(data) {
 					.attr("class", "y axis")
 					.attr("transform","translate(40,0)")
 					.call(d3.svg.axis().scale(y_percent_scale).ticks(5).orient("left"));
+
+			var areafunction = d3.svg.area()
+							.x(function(d){return t_scale(d.time)})
+							.y0(y_percent_scale(0))
+							.y1(function(d){return y_percent_scale(d.dh_alloc/d.dh_size*100)});
+
+			mem_area = mem_svg.append("path")
+							.attr("class","area")
+							.attr("d",areafunction(data.mem));
+
 		}
 
 		var initialize_tooltip = function () {
@@ -337,6 +348,14 @@ function drawCharts(data) {
 					.attr("d",line(data.mem));
 
 			mem_svg.select(".x").transition().call(d3.svg.axis().scale(t_scale));
+
+			var areafunction = d3.svg.area()
+							.x(function(d){return t_scale(d.time)})
+							.y0(y_percent_scale(0))
+							.y1(function(d){return y_percent_scale(d.percentage)});
+
+			mem_area.transition()
+					.attr("d",areafunction(data.mem));
 		}
 
 		event_chart_change();
@@ -400,6 +419,15 @@ function drawCharts(data) {
 					.attr("d",line(data.mem));
 
 			mem_svg.select(".x").transition().call(d3.svg.axis().scale(order_scale));
+
+			var areafunction = d3.svg.area()
+							.x(function(d){return order_scale(polylinear_helper(d.time))})
+							.y0(y_percent_scale(0))
+							.y1(function(d){return y_percent_scale(d.percentage)});
+
+			mem_area.transition()
+					.attr("d",areafunction(data.mem));
+
 		}
 
 		event_chart_change();

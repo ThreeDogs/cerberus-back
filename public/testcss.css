@@ -31,6 +31,11 @@
 	stroke-width: 2px;
 }
 
+.area {
+    fill: lightsteelblue;
+    stroke-width: 0;
+}
+
 .tooltip {
 	border: dotted;
 	border-width: 1px;
