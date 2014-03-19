@@ -1,0 +1,99 @@
+<html>
+
+<head>
+	<script src="jquery-2.1.0.min.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<!-- custom css-->
+	<link href="listfilter.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<div class="filter_form">
+		<div id="status">
+			<div class="attribute">Status </div>
+			<div class="row">
+				<div class="input-group input-group-sm col-sm-2">
+					<span class="input-group-addon"><input type="radio" name="status" value="all"></span>
+					<span class="form-control">All</span>
+				</div>
+				<div class="input-group input-group-sm col-sm-3">
+					<span class="input-group-addon"><input type="radio" name="status" value="potential error"></span>
+					<span class="form-control">Potential Error</span>
+				</div>
+				<div class="input-group input-group-sm col-sm-2">
+					<div class="input-group-addon"><input type="radio" name="status" value="error"></div>
+					<div class="form-control">Error</div>
+				</div>
+			</div>
+		</div>
+		<div id="rank">
+			<div class ="attribute">Rank </div>
+			<input type="checkbox" name="rank" value="all">All 
+			<input type="checkbox" name="rank" value="a">A 
+			<input type="checkbox" name="rank" value="b">B 
+			<input type="checkbox" name="rank" value="c">C 
+			<input type="checkbox" name="rank" value="d">D 
+		</div>
+		<div id="date">
+			<div class="attribute">Date </div>
+			<div class="input-group input-group-sm options">
+				<input class="form-control" type="date" name="scenario_name">
+			</div>
+		</div>
+		<div id="scenario_name">
+			<div class="attribute">Scenario Name </div>
+			<div class="options">
+				<input type="text" name="scenario_name" size="50" placeholder="blah">
+			</div>
+		</div>
+		<div id="os_version">
+			<div class="attribute">OS Version </div>
+			<div class="btn-toolbar">
+				<div class="btn-group">
+					<button type="button" class="btn btn-default">All</button>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default">1.0</button>
+					<button type="button" class="btn btn-default">2.0</button>
+					<button type="button" class="btn btn-default">3.0</button>
+					<button type="button" class="btn btn-default">4.0</button>
+				</div>
+			</div>
+		</div>
+		<div id="app_version">
+			<div class="attribute">App Version </div>
+			<div class="btn-toolbar">
+				<div class="btn-group">
+					<button type="button" class="btn btn-default">All</button>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default">1.0</button>
+					<button type="button" class="btn btn-default">1.1</button>
+				</div>
+			</div>
+		</div>
+		<div id="device">
+			<div class="attribute">Device </div>
+			<div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+				Action <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+				<li><a href="#">Action</a></li>
+				<li><a href="#">Another action</a></li>
+				<li><a href="#">Something else here</a></li>
+				<li class="divider"></li>
+				<li><a href="#">Separated link</a></li>
+				</ul>
+				</div>
+		</div>
+		<div id="buttons" style="text-align:right">
+			<button>Search</button>
+		</div>
+	</div>
+</body>
+
+</html>

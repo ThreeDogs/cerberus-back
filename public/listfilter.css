@@ -1,0 +1,35 @@
+body {
+	font-size: 12pt;
+	font-family: sans-serif;
+}
+
+
+.filter_form {
+	width: 800px;
+	border: solid;
+	border-width: 1px;
+	padding: 5px;
+}
+
+.attribute {
+	border-right: dotted;
+	border-width: 1px;
+	width: 150px;
+	text-align: right;
+	float: left;
+	padding: 0 5px 0 5px;
+	margin: 0 5px 0 0;
+}
+
+.options {
+	width: 630px;
+	float: left;
+}
+ 
+.row .input-group {
+	float: left;
+}
+
+#date .input-group {
+	float: left;
+}

@@ -1,0 +1,18 @@
+[
+	{"id":1, "time":1392747310878, "sleep":3000, "activityClass":"com.autoschedule.proto.index.TaskIndexAdapter", "type":"Click", "param":"", "view":"addtoday_iv", "reportKey":1},
+	{"id":2, "time":1392747320878, "sleep":5000, "activityClass":"com.autoschedule.proto.index.TaskIndexActivity", "type":"OptionMenu", "param":"", "view":"", "reportKey":1},
+	{"id":3, "time":1392747330878, "sleep":7000, "activityClass":"com.autoschedule.proto.index.TaskIndexActivity", "type":"Click", "param":"", "view":"addnew_btn", "reportKey":1},
+	{"id":4, "time":1392747340878, "sleep":3000, "activityClass":"com.autoschedule.proto.index.TaskNewAmountActivity", "type":"InputText", "param":"100", "view":"inputTotal_ed", "reportKey":1},
+	{"id":5, "time":1392747350878, "sleep":8000, "activityClass":"com.autoschedule.proto.index.TaskNewAmountActivity", "type":"Click", "param":"", "view":"nextmenu_btn", "reportKey":1},
+	{"id":6, "time":1392747360878, "sleep":6000, "activityClass":"com.autoschedule.proto.index.TaskNewCategoryActivity", "type":"Click", "param":"", "view":"prev_btn", "reportKey":1},
+	{"id":7, "time":1392747370878, "sleep":5000, "activityClass":"com.autoschedule.proto.index.TaskNewCategoryActivity", "type":"Click", "param":"", "view":"nextmenu_btn", "reportKey":1},
+	{"id":8, "time":1392747380878, "sleep":6000, "activityClass":"com.autoschedule.proto.index.TaskNewDateActivity", "type":"Click", "param":"", "view":"startBtn", "reportKey":1},
+	{"id":9, "time":1392747390878, "sleep":5000, "activityClass":"com.autoschedule.proto.index.TaskNewDateActivity", "type":"setDate", "param":"2014,2,17", "view":"DatePickerDialog$1", "reportKey":1},
+	{"id":8, "time":1392747400878, "sleep":7000, "activityClass":"com.autoschedule.proto.index.TaskNewDateActivity", "type":"Click", "param":"", "view":"endBtn", "reportKey":1},
+	{"id":9, "time": 1392747410878, "sleep":8000, "activityClass":"com.autoschedule.proto.index.TaskNewDateActivity", "type":"setDate", "param":"2014,2,18", "view":"DatePickerDialog$2", "reportKey":1},
+	{"id":10, "time":1392748100878, "sleep":7000, "activityClass":"com.autoschedule.proto.index.TaskNewWeekActivity", "type":"InputText", "param":"5", "view":"sunday_ed", "reportKey":1},
+	{"id":11, "time":1392748270878, "sleep":4000, "activityClass":"com.autoschedule.proto.index.TaskNewWeekActivity", "type":"Click", "param":"", "view":"nextmenu_btn", "reportKey":1}	,
+	{"id":12, "time":1392748370878, "sleep":8000, "activityClass":"com.autoschedule.proto.index.TaskNewDateActivity", "type":"Click", "param":"", "view":"nextmenu_btn", "reportKey":1},
+	{"id":13, "time":1392748470878, "sleep":4000, "activityClass":"com.autoschedule.proto.index.TaskNewDateActivity", "type":"Click", "param":"", "view":"nextmenu_btn", "reportKey":1},
+	{"id":14, "time":1392748570878, "sleep":6000, "activityClass":"com.autoschedule.proto.index.TaskNewDateActivity", "type":"Click", "param":"", "view":"nextmenu_btn", "reportKey":1}
+]
