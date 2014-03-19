@@ -8,3 +8,15 @@
 
 
 user = User.create(email:"foobar@foobar.com", password: "foobarfoo", password_confirmation: "foobarfoo")
+
+project = users.projects.create(name: "Test Android App")
+# users.projects.create(name: "KaKaoTalk")
+# users.projects.create(name: "Facebook")
+# users.projects.create(name: "What's app")
+
+report = projects.reports.create(package_name: "com.android.sample", icon: "/icon.png", app_version: "1.0", os_version: "4.1", device_name: "SHEV-401", country: "KR", time_for_test: 999.99)
+
+
+
+
+

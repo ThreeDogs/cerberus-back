@@ -110,6 +110,8 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    rabl (0.9.3)
+      activesupport (>= 2.3.14)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -212,6 +214,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   pg
+  rabl
   rails (= 4.0.2)
   rails-erd
   rails_12factor

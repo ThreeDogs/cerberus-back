@@ -1,0 +1,23 @@
+API Controller SetUp:
+  ✔ create API file @done (14-02-27 22:06)
+  ✔ change routes.rb @done (14-02-27 22:06)
+
+Restful API Design: @started(14-02-27 22:07)
+  ✘ motion_event show @cancelled (14-02-28 00:12)
+  ✘ memory_info show (d3) @cancelled (14-02-28 00:12)
+  ✘ cpu_info show (d3) @cancelled (14-02-28 00:12)
+  ✘ report create (client) @cancelled (14-02-28 00:12)
+  ✘ report update (client) @cancelled (14-02-28 00:12)
+  ✘ motion_event create (client) -> (isolation? together?) @cancelled (14-02-28 00:12)
+  ✘ memory_info create (client) -> (isolation? together?) @cancelled (14-02-28 00:12)
+  ✘ cpu_info create (client) -> (isolation? together?) @cancelled (14-02-28 00:12)
+
+Issue:
+  ✘ TimeStamp Java to Ruby Test @cancelled (14-02-28 00:13)
+
+Seed에 실데이터 입력
+Seed: 
+  ✔ write report Seed Data @done (14-02-28 00:10)
+  ✘ write motion_event Seed Data @cancelled (14-02-28 00:13)
+  ✘ write memory_info Seed Data @cancelled (14-02-28 00:13)
+  ✘ write cpu_info Seed Data @cancelled (14-02-28 00:13)

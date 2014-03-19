@@ -19,8 +19,8 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe MotionEventsController do
-  describe "Get Index" do
-    context "with valid attributes" do
+  # describe "Get Index" do
+    # context "with valid attributes" do
       # it "index a new report" do
       #   expect{
       #     post :create, report: FactoryGirl.attributes_for(:report)
@@ -31,8 +31,8 @@ describe MotionEventsController do
       #   post :create, report: FactoryGirl.attributes_for(:report)
       #   response.should redirect_to Report.last
       # end
-    end
-  end
+    # end
+  # end
 
   # # This should return the minimal set of attributes required to create a valid
   # # MotionEvent. As you add validations to MotionEvent, be sure to

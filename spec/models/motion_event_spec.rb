@@ -18,5 +18,18 @@
 require 'spec_helper'
 
 describe MotionEvent do
-  pending "add some examples to (or delete) #{__FILE__}"
+	context "is validation check" do
+		subject(:motion_event){MotionEvent.new}
+		it{should_not be_valid}
+	end
+
+	let(:user) {User.new(email: "foobar@foobar.com", password: "foobarfoo", password_confirmation: "foobarfoo")}
+	let(:project) {user.projects.new(name: "First App")}
+	let(:report) {project.reports.new(package_name: "com.android.proto", icon: "/rails.png", app_version: "1.0", os_version: "4.1", time_for_test: 6000)}
+
+	subject(:motion_event){report.motion_events.new(seq_id: 1, time_stamp: 1392748570878, sleep: 6000, activity_class: "com.autoschedule.proto.index.TaskNewDateActivity", action_type: "Click", param: "", view: "nextmenu_btn")}
+
+	it{should respond_to(:report)}
+	it{should respond_to(:memory_info)}
+	it{should respond_to(:cpu_info)}
 end

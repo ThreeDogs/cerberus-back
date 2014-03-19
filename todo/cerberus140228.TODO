@@ -1,0 +1,18 @@
+Restful API Design: 
+  ☐ motion_event show (d3)
+  ☐ memory_info show (d3)
+  ☐ cpu_info show (d3)
+  ☐ report create (client)
+  ☐ report update (client)
+  ☐ motion_event create (client) -> (isolation? together?)
+  ☐ memory_info create (client) -> (isolation? together?)
+  ☐ cpu_info create (client) -> (isolation? together?)
+
+Issue:
+  ☐ TimeStamp Java to Ruby Test
+
+Seed에 실데이터 입력
+Seed: 
+  ☐ write motion_event Seed Data
+  ☐ write memory_info Seed Data
+  ☐ write cpu_info Seed Data
