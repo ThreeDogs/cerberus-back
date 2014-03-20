@@ -14,9 +14,7 @@
 #
 
 class MemoryInfo < ActiveRecord::Base
-	belongs_to :report
-	belongs_to :motion_event
+	# belongs_to :motion_event
 
-	validates :motion_event_id, presence: true
-	validates :report_id, presence: true
+	# validates :motion_event_id, presence: true
 end

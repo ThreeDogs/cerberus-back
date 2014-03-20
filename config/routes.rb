@@ -1,20 +1,17 @@
 CerberusBack::Application.routes.draw do
   namespace :api, defaults: {format: 'json'} do 
     namespace :v1 do
-      resources :reports do
-        member do
-          
-        end
-      end
-      # resources :motion_events, only: [:show]
-      # resources :memory_infos, only: [:show]
-      # resources :cpu_infos, only: [:show]
     end
   end
 
-  resources :motion_events
-  resources :reports
-  resources :projects
+  resources :projects do
+    resources :total_reports
+    resources :test_scenarios
+  end
+
+  resources :total_reports, only: [] do
+    resources :detail_reports
+  end
 
   devise_for :users, path_names: {sign_in: 'login', sing_out: 'logout'}
 

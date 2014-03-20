@@ -1,0 +1,39 @@
+<h1>Listing detail_reports</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>App version</th>
+      <th>Test datetime</th>
+      <th>Status</th>
+      <th>Running time</th>
+      <th>Test scenario</th>
+      <th>Device</th>
+      <th>Total report</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @detail_reports.each do |detail_report| %>
+      <tr>
+        <td><%= detail_report.app_version %></td>
+        <td><%= detail_report.test_datetime %></td>
+        <td><%= detail_report.status %></td>
+        <td><%= detail_report.running_time %></td>
+        <td><%= detail_report.test_scenario %></td>
+        <td><%= detail_report.device_id %></td>
+        <td><%= detail_report.total_report %></td>
+        <td><%= link_to 'Show', detail_report %></td>
+        <td><%= link_to 'Edit', edit_detail_report_path(detail_report) %></td>
+        <td><%= link_to 'Destroy', detail_report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Detail report', new_detail_report_path %>

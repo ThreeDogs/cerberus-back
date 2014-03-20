@@ -1,0 +1,15 @@
+class CreateDetailReports < ActiveRecord::Migration
+  def change
+    create_table :detail_reports do |t|
+      t.string :app_version
+      t.string :test_datetime
+      t.integer :status
+      t.integer :running_time
+      t.references :test_scenario, index: true
+      t.integer :device_id
+      t.references :total_report, index: true
+
+      t.timestamps
+    end
+  end
+end

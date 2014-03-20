@@ -1,18 +1,18 @@
 Restful API Design: 
-  ☐ motion_event show (d3)
-  ☐ memory_info show (d3)
-  ☐ cpu_info show (d3)
-  ☐ report create (client)
-  ☐ report update (client)
-  ☐ motion_event create (client) -> (isolation? together?)
-  ☐ memory_info create (client) -> (isolation? together?)
-  ☐ cpu_info create (client) -> (isolation? together?)
+  ✘ motion_event show (d3) @cancelled (14-03-19 19:19)
+  ✘ memory_info show (d3) @cancelled (14-03-19 19:19)
+  ✘ cpu_info show (d3) @cancelled (14-03-19 19:19)
+  ✘ report create (client) @cancelled (14-03-19 19:19)
+  ✘ report update (client) @cancelled (14-03-19 19:19)
+  ✘ motion_event create @cancelled (14-03-19 19:19)
+  ✘ memory_info create @cancelled (14-03-19 19:19)
+  ✘ cpu_info create (client) -> (isolation? together?) @cancelled (14-03-19 19:19)
 
 Issue:
-  ☐ TimeStamp Java to Ruby Test
+  ✘ TimeStamp Java to Ruby Test @cancelled (14-03-19 19:19)
 
 Seed에 실데이터 입력
 Seed: 
-  ☐ write motion_event Seed Data
-  ☐ write memory_info Seed Data
-  ☐ write cpu_info Seed Data
+  ✘ write motion_event Seed Data @cancelled (14-03-19 19:19)
+  ✘ write memory_info Seed Data @cancelled (14-03-19 19:19)
+  ✘ write cpu_info Seed Data @cancelled (14-03-19 19:19)

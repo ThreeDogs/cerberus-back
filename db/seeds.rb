@@ -9,14 +9,20 @@
 
 user = User.create(email:"foobar@foobar.com", password: "foobarfoo", password_confirmation: "foobarfoo")
 
-project = users.projects.create(name: "Test Android App")
-# users.projects.create(name: "KaKaoTalk")
-# users.projects.create(name: "Facebook")
-# users.projects.create(name: "What's app")
+project = user.projects.create(name: "Test Android App")
+user.projects.create(name: "KaKaoTalk")
+user.projects.create(name: "Facebook")
+user.projects.create(name: "What's app")
 
-report = projects.reports.create(package_name: "com.android.sample", icon: "/icon.png", app_version: "1.0", os_version: "4.1", device_name: "SHEV-401", country: "KR", time_for_test: 999.99)
+total_report = project.total_reports.create(apk: "TodayBreaker.apk", test_datetime: "2013/03/03 3:00pm")
+project.total_reports.create(apk: "TodayBreaker.apk", test_datetime: "2013/03/03 3:00pm")
+project.total_reports.create(apk: "TodayBreaker.apk", test_datetime: "2013/03/03 3:00pm")
+project.total_reports.create(apk: "TodayBreaker.apk", test_datetime: "2013/03/03 3:00pm")
+
+detail_report = total_report.detail_reports.create(app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: 0)
 
 
+test_scenario = project.test_scenarios.create(name: "Login Test", description: "This is a Login Test", rank: 0)
 
 
 

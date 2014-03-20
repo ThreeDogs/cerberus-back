@@ -1,0 +1,17 @@
+WireFrame Connect Model Rails
+Screen:
+  ✔ projects#index @done (14-03-20 18:19) http://127.0.0.1:3000/projects/
+  ✔ projects#show @done (14-03-20 19:14) http://127.0.0.1:3000/projects/1
+  ✔ total_reports#index @done (14-03-20 19:22) http://127.0.0.1:3000/projects/1/total_reports
+  ✔ total_reports#show @done (14-03-20 19:29) http://127.0.0.1:3000/projects/1/total_reports/1
+  ✔ detail_report#show @done (14-03-20 19:30) http://127.0.0.1:3000/total_reports/1/detail_reports/1
+  ✔ test_scenarios#index @done (14-03-20 19:31) http://127.0.0.1:3000/projects/1/test_scenarios
+  ✔ test_scenarios#show @done (14-03-20 19:32) http://127.0.0.1:3000/projects/1/test_scenarios/1
+
+Modeling:
+  ✔ TotalReport @done (14-03-20 18:23)
+    ✔ relationship @done (14-03-20 18:34)
+  ✔ TestScenario @done (14-03-20 19:01)
+    ✔ relationship @done (14-03-20 19:01)
+  ✔ DetailReport @done (14-03-20 19:08)
+    ✔ relationship @done (14-03-20 19:08)

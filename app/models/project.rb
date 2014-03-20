@@ -11,7 +11,8 @@
 
 class Project < ActiveRecord::Base
 	belongs_to :user
-	has_many :reports
+	has_many :total_reports
+	has_many :test_scenarios
 
 	validates :name, presence: true
   validates :user_id, presence: true

@@ -1,0 +1,45 @@
+<%= form_for(@detail_report) do |f| %>
+  <% if @detail_report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@detail_report.errors.count, "error") %> prohibited this detail_report from being saved:</h2>
+
+      <ul>
+      <% @detail_report.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :app_version %><br>
+    <%= f.text_field :app_version %>
+  </div>
+  <div class="field">
+    <%= f.label :test_datetime %><br>
+    <%= f.text_field :test_datetime %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.number_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :running_time %><br>
+    <%= f.number_field :running_time %>
+  </div>
+  <div class="field">
+    <%= f.label :test_scenario_id %><br>
+    <%= f.text_field :test_scenario_id %>
+  </div>
+  <div class="field">
+    <%= f.label :device_id %><br>
+    <%= f.number_field :device_id %>
+  </div>
+  <div class="field">
+    <%= f.label :total_report_id %><br>
+    <%= f.text_field :total_report_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

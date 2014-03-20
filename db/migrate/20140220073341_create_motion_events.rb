@@ -17,7 +17,7 @@ class CreateMotionEvents < ActiveRecord::Migration
       t.string :action_type
       t.string :param
       t.string :view
-      t.integer :report_id
+      t.integer :test_scenario_id
 
       t.timestamps
     end

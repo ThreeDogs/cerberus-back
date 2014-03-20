@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140226054226) do
+ActiveRecord::Schema.define(version: 20140320100307) do
 
   create_table "cpu_infos", force: true do |t|
     t.integer  "cpu_usage"
@@ -20,6 +20,21 @@ ActiveRecord::Schema.define(version: 20140226054226) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "detail_reports", force: true do |t|
+    t.string   "app_version"
+    t.string   "test_datetime"
+    t.integer  "status"
+    t.integer  "running_time"
+    t.integer  "test_scenario_id"
+    t.integer  "device_id"
+    t.integer  "total_report_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "detail_reports", ["test_scenario_id"], name: "index_detail_reports_on_test_scenario_id"
+  add_index "detail_reports", ["total_report_id"], name: "index_detail_reports_on_total_report_id"
 
   create_table "memory_infos", force: true do |t|
     t.integer  "dalvik_size"
@@ -40,7 +55,7 @@ ActiveRecord::Schema.define(version: 20140226054226) do
     t.string   "action_type"
     t.string   "param"
     t.string   "view"
-    t.integer  "report_id"
+    t.integer  "test_scenario_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -52,18 +67,28 @@ ActiveRecord::Schema.define(version: 20140226054226) do
     t.datetime "updated_at"
   end
 
-  create_table "reports", force: true do |t|
-    t.string   "package_name"
-    t.string   "icon"
-    t.string   "app_version"
-    t.string   "os_version"
-    t.string   "device_name"
-    t.string   "country"
-    t.decimal  "time_for_test"
+  create_table "test_scenarios", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "rank"
     t.integer  "project_id"
+    t.integer  "scenarioship_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "test_scenarios", ["project_id"], name: "index_test_scenarios_on_project_id"
+
+  create_table "total_reports", force: true do |t|
+    t.string   "apk"
+    t.string   "test_datetime"
+    t.integer  "project_id"
+    t.integer  "deviceship_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "total_reports", ["project_id"], name: "index_total_reports_on_project_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
