@@ -1,0 +1,8 @@
+APK 변환 작업
+Implementing File Upload:
+ ✔ total_report apk field - upload file field (apk) , carrier wave @started(14-03-21 22:00) @done (14-03-21 22:15) @lasted(0:15:00)
+ ☐ add generate_test_apk script code  @started(14-03-21 22:15)
+ ☐ controller create method (Just Create)
+ ☐ after_create after_action / generate_test_apk
+ ☐ generate rule & naming ..
+ ☐ test_apk link update

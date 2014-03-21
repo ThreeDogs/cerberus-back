@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20140320100307) do
 
   create_table "total_reports", force: true do |t|
     t.string   "apk"
+    t.string   "test_apk"
     t.string   "test_datetime"
     t.integer  "project_id"
     t.integer  "deviceship_id"
