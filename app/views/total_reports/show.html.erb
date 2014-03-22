@@ -1,46 +1,46 @@
 <%= render "shared/header" %>
 
-<div class="container-fluid">
+<div class="container">
 	<div class="row">
 	    <%= render 'shared/side_bar' %>
 	    <div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2">
-			<div class="col-sm-8 col-md-6 outline">
+			<div class="col-md-6 outline">
 				<p><strong>App Name</strong></p>
 				<p>app version: 1.0</p>
 				<p>tested date: 14.MAR.05 10:53AM</p>
 			</div>
-			<div class="col-sm-12 col-md-12 outline">
+			<div id="test_contents" class="col-md-12 outline">
 				<ul class="nav nav-tabs">
 					<li id="select_overview"><a>Overview</a></li>
 					<li id="select_alltests"><a>All Tests</a></li>
 					<li id="select_alldevices"><a>All Devices</a></li>
 				</ul>
 				<div id="report_contents" class="outline">
-					<div id="overview">
+					<div id="overview" class="col-md-12">
 						<div id="test_failure">
-							<div class="col-sm-4 col-md-4 outline">1</div>
-							<div class="col-sm-4 col-md-4 outline">2</div>
-							<div class="col-sm-4 col-md-4 outline">3</div>
+							<div class="col-md-4 outline">1</div>
+							<div class="col-md-4 outline">2</div>
+							<div class="col-md-4 outline">3</div>
 						</div>
 						<div id="device_failure">
-							<div class="col-sm-12 col-md-12 outline">graph</div>
+							<div class="col-md-12 outline">graph</div>
 						</div>
 						<div id="performance_average" class="outline">
-							<div class="col-sm-6 col-md-6">Memory avg 20.00MB</div>
-							<div class="col-sm-6 col-md-6">CPU avg 11%</div>
+							<div class="col-md-6">Memory avg 20.00MB</div>
+							<div class="col-md-6">CPU avg 11%</div>
 
-							<div class="col-sm-6 col-md-6">Network avg 2394KB</div>
-							<div class="col-sm-6 col-md-6">Battery avg ~</div>
+							<div class="col-md-6">Network avg 2394KB</div>
+							<div class="col-md-6">Battery avg ~</div>
 
-							<div class="col-sm-6 col-md-6">Threads avg ~</div>
-							<div class="col-sm-6 col-md-6">Frame draw time avg 11.27ms</div>
+							<div class="col-md-6">Threads avg ~</div>
+							<div class="col-md-6">Frame draw time avg 11.27ms</div>
 						</div>
 					</div>
-					<div id="alltests">
+					<div id="alltests" class="col-md-12">
 						<div class="filter_form outline">
 							<div class="filter_list">
-								<div class="col-sm-4 col-md-2">Status </div>
-								<div class="col-sm-8 col-md-10">
+								<div class="col-md-2">Status </div>
+								<div class="col-md-10">
 									<input type="radio" name="status" value="all">All 
 									<input type="radio" name="status" value="failure">Failure 
 									<input type="radio" name="status" value="warning">Warning 
@@ -48,8 +48,8 @@
 								</div>
 							</div>
 							<div class="filter_list">
-								<div class="col-sm-4 col-md-2">Rank </div>
-								<div class="col-sm-8 col-md-10">
+								<div class="col-md-2">Rank </div>
+								<div class="col-md-10">
 									<input type="checkbox" name="rank" value="all">All 
 									<input type="checkbox" name="rank" value="a">A 
 									<input type="checkbox" name="rank" value="b">B 
@@ -58,20 +58,20 @@
 								</div>
 							</div>
 							<div class="filter_list">
-								<div class="col-sm-4 col-md-2">Date </div>
-								<div class="col-sm-8 col-md-10">
+								<div class="col-md-2">Date </div>
+								<div class="col-md-10">
 									<input type="date" name="scenario_name">
 								</div>
 							</div>
 							<div class="filter_list">
-								<div class="col-sm-4 col-md-2">Scenario</div>
-								<div class="col-sm-8 col-md-10">
+								<div class="col-md-2">Scenario</div>
+								<div class="col-md-10">
 									<input type="text" name="scenario" size="40" placeholder="blah">
 								</div>
 							</div>
 							<div class="filter_list">
-								<div class="col-sm-4 col-md-2">OS Version </div>
-								<div class="col-md-8 col-md-10">
+								<div class="col-md-2">OS Version </div>
+								<div class="col-md-10">
 									<div class="btn-toolbar">
 										<div class="btn-group">
 											<button type="button" class="btn btn-default">All</button>
@@ -86,8 +86,8 @@
 								</div>
 							</div>
 							<div class="filter_list">
-								<div class="col-sm-4 col-md-2">App Version </div>
-								<div class="col-sm-8 col-md-10">
+								<div class="col-md-2">App Version </div>
+								<div class="col-md-10">
 									<div class="btn-toolbar">
 										<div class="btn-group">
 											<button type="button" class="btn btn-default">All</button>
@@ -100,8 +100,8 @@
 								</div>
 							</div>
 							<div class="filter_list">
-								<div class="col-sm-4 col-md-2">Device </div>
-								<div class="col-md-8 col-md-10">
+								<div class="col-md-2">Device </div>
+								<div class="col-md-10">
 									<div class="btn-group">
 										<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 										Action <span class="caret"></span>
@@ -124,28 +124,31 @@
 						<div class="report_scenario outline">
 							<table>
 								<tr class="row">
-									<td class="col-sm-1 col-md-1">Rank</td>
-									<td class="col-sm-2 col-md-2">Test Name</td>
-									<td class="col-sm-2 col-md-2">Status</td>
-									<td class="col-sm-2 col-md-2">Error</td>
-									<td class="col-sm-5 col-md-5">Device & API version</td>
+									<td class="col-md-1">Rank</td>
+									<td class="col-md-2">Test Name</td>
+									<td class="col-md-2">Status</td>
+									<td class="col-md-2">Error</td>
+									<td class="col-md-5">Device & API version</td>
 								</tr>
+
+								<!-- LOOP -->
 								<tr class="row">
-									<td class="col-sm-1 col-md-1">A</td>
-									<td class="col-sm-2 col-md-2">Login test</td>
-									<td class="col-sm-2 col-md-2">FAIL</td>
-									<td class="col-sm-2 col-md-2">Out of memory error</td>
-									<td class="col-sm-5 col-md-5">SamsungGalaxyS2(2.3), LGOptimus(2.2) ...</td>
+									<td class="col-md-1">A</td>
+									<td class="col-md-2">Login test</td>
+									<td class="col-md-2">FAIL</td>
+									<td class="col-md-2">Out of memory error</td>
+									<td class="col-md-5">SamsungGalaxyS2(2.3), LGOptimus(2.2) ...</td>
 								</tr>
+								<!-- END LOOP -->
 							</table>
 						</div>
 
 					</div>
-					<div id="alldevices">
+					<div id="alldevices" class="col-md-12">
 						<div class="filter_form outline">
 							<div class="filter_list">
-								<div class="col-sm-4 col-md-2">Status </div>
-								<div class="col-sm-8 col-md-10">
+								<div class="col-md-2">Status </div>
+								<div class="col-md-10">
 									<input type="radio" name="status" value="all">All 
 									<input type="radio" name="status" value="failure">Failure 
 									<input type="radio" name="status" value="warning">Warning 
@@ -153,8 +156,8 @@
 								</div>
 							</div>
 							<div class="filter_list">
-								<div class="col-sm-4 col-md-2">Rank </div>
-								<div class="col-sm-8 col-md-10">
+								<div class="col-md-2">Rank </div>
+								<div class="col-md-10">
 									<input type="checkbox" name="rank" value="all">All 
 									<input type="checkbox" name="rank" value="a">A 
 									<input type="checkbox" name="rank" value="b">B 
@@ -163,20 +166,20 @@
 								</div>
 							</div>
 							<div class="filter_list">
-								<div class="col-sm-4 col-md-2">Date </div>
-								<div class="col-sm-8 col-md-10">
+								<div class="col-md-2">Date </div>
+								<div class="col-md-10">
 									<input type="date" name="scenario_name">
 								</div>
 							</div>
 							<div class="filter_list">
-								<div class="col-sm-4 col-md-2">Scenario</div>
-								<div class="col-sm-8 col-md-10">
+								<div class="col-md-2">Scenario</div>
+								<div class="col-md-10">
 									<input type="text" name="scenario" size="40" placeholder="blah">
 								</div>
 							</div>
 							<div class="filter_list">
-								<div class="col-sm-4 col-md-2">OS Version </div>
-								<div class="col-md-8 col-md-10">
+								<div class="col-md-2">OS Version </div>
+								<div class="col-md-10">
 									<div class="btn-toolbar">
 										<div class="btn-group">
 											<button type="button" class="btn btn-default">All</button>
@@ -191,8 +194,8 @@
 								</div>
 							</div>
 							<div class="filter_list">
-								<div class="col-sm-4 col-md-2">App Version </div>
-								<div class="col-sm-8 col-md-10">
+								<div class="col-md-2">App Version </div>
+								<div class="col-md-10">
 									<div class="btn-toolbar">
 										<div class="btn-group">
 											<button type="button" class="btn btn-default">All</button>
@@ -205,8 +208,8 @@
 								</div>
 							</div>
 							<div class="filter_list">
-								<div class="col-sm-4 col-md-2">Device </div>
-								<div class="col-md-8 col-md-10">
+								<div class="col-md-2">Device </div>
+								<div class="col-md-10">
 									<div class="btn-group">
 										<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 										Action <span class="caret"></span>
@@ -233,23 +236,27 @@
 							</h3>
 							<table>
 								<tr class="row">
-									<td class="col-sm-1 col-md-1">Rank</td>
-									<td class="col-sm-3 col-md-3">Test Name</td>
-									<td class="col-sm-2 col-md-2">Status</td>
-									<td class="col-sm-4 col-md-4">Error</td>
+									<td class="col-md-1">Rank</td>
+									<td class="col-md-3">Test Name</td>
+									<td class="col-md-2">Status</td>
+									<td class="col-md-6">Error</td>
 								</tr>
+								<!-- LOOP -->
 								<tr class="row">
-									<td class="col-sm-1 col-md-1">A</td>
-									<td class="col-sm-3 col-md-3">Login Test</td>
-									<td class="col-sm-2 col-md-2">Fail</td>
-									<td class="col-sm-4 col-md-4">Out of memory error</td>
+									<td class="col-md-1">A</td>
+									<td class="col-md-3">Login Test</td>
+									<td class="col-md-2">Fail</td>
+									<td class="col-md-6">Out of memory error</td>
 								</tr>
+								<!-- END LOOP -->
+								<!-- ANOTHER EXAMPLE -->
 								<tr class="row">
-									<td class="col-sm-1 col-md-1">B</td>
-									<td class="col-sm-3 col-md-3">Some test idunno</td>
-									<td class="col-sm-2 col-md-2">Error</td>
-									<td class="col-sm-4 col-md-4">Null pointer exception error</td>
+									<td class="col-md-1">B</td>
+									<td class="col-md-3">Some test idunno</td>
+									<td class="col-md-2">Error</td>
+									<td class="col-md-6">Null pointer exception error</td>
 								</tr>
+								<!-- END ANOTHER EXAMPLE -->
 							</table>
 						</div>
 					</div>

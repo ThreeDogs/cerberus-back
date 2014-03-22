@@ -29,3 +29,11 @@
 	border-width: 1px;
 	float:left;
 }
+
+.width100 {
+	width:1170px;
+}
+
+.width50 {
+	width: 585px;
+}

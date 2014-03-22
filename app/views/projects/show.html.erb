@@ -1,36 +1,53 @@
 <%= render "shared/header" %>
 
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <%= render 'shared/side_bar' %>
     <div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2">
       <h2>Dashboard</h2>
-      <div id="drag_drop_box">
-        <p>Drag&drop or click to upload APK</p>
-      </div>
       <h4>Recent Test Overview</h4>
-      <div id="overview_box" class="col-sm-12 col-md-12 outline">
-        <div id="app_info_box" class="outline">~</div>
-        <div id="test_fail_box" class="outline">~</div>
+      <div id="overview_box" class="col-md-12 outline">
+        <div class="app_info_box col-md-3 outline">
+          <h4>AppName.APK<br>14.03.05, 3:00pm<br>112 Test Scenarios<br>10 Devices</h4>
+        </div>
+        <div class="app_version_box col-md-2 outline">
+          <h4>Version: 1.0.2</h4>
+        </div>
+        <div id="test_fail_box" class="col-md-6 outline">
+          TEST_FAILURE_GRAPH_SVG
+        </div>
+        <div class="report_link col-md-1 outline">
+          FULL_REPORT
+        </div>
       </div>
-      <div id="test_fail_graph" class="col-sm-12 col-md-12 outline">
-        <div id="test_fail_bar_graph" class="outline">~</div>
-        <div id="test_fail_chart" class="outline">~</div>
+      <div id="test_fail_graph" class="col-md-12 outline">
+        <div id="test_fail_bar_graph" class="col-md-6 outline">
+          TEST_FAIL<br>VERTICAL_AXIS_BAR_GRAPH
+        </div>
+        <div id="test_fail_chart" class="col-md-6 outline">
+          TEST_FAIL<br>DETAIL_TABLE
+        </div>
       </div>
-      <div id="project_trends">
+      <div id="project_trends" class="col-md-12 outline">
 
-          <div id="test_results" class="col-sm-12 col-md-12 outline">~</div>
+          <div id="test_results" class="col-md-12 outline">
+          </div>
 
-          <div id="cpu_trend" class="col-sm-12 col-md-6 outline">~</div>
-          <div id="mem_trend" class="col-sm-12 col-md-6 outline">~</div>
+          <div id="cpu_trend" class="col-md-6 outline">~</div>
+          <div id="mem_trend" class="col-md-6 outline">~</div>
 
-          <div id="network_trend" class="col-sm-12 col-md-6 outline">~</div>
-          <div id="battery_trend" class="col-sm-12 col-md-6 outline">~</div>
+          <div id="network_trend" class="col-md-6 outline">~</div>
+          <div id="battery_trend" class="col-md-6 outline">~</div>
 
-          <div id="thread_trend" class="col-sm-12 col-md-6 outline">~</div>
-          <div id="frame_trend" class="col-sm-12 col-md-6 outline">~</div>
+          <div id="thread_trend" class="col-md-6 outline">~</div>
+          <div id="frame_trend" class="col-md-6 outline">~</div>
 
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  //requires data inserted as argument//
+  projectsShow();
+</script>
