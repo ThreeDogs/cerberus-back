@@ -1,30 +1,24 @@
 <div class="container">
-  <h1>Listing projects</h1>
+  <h1>My projects list</h1>
 
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>name</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
+  <% @projects.each do |project| %>
+  <div class="project_box">
+    <div class="color_band"></div>
+    <div class="app_icon_box"><img src="#"></div>
+    <div class="app_info_box">
+      <p><strong><%= project.name %></strong><br><small>Version: 0.0.1<br></small></p>
+      <p><small>Date: 14.MAR.20 9:20pm<br>
+        <%= link_to 'Show ', project %>
+        <%= link_to 'Edit ', edit_project_path(project) %>
+        <%= link_to 'Destroy ', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </small></p>
+    </div>
+    <div class="test_fail_box">
+      <p>Test Fail</p>
+    </div>
+  </div>
+  <% end %>
 
-    <tbody>
-      <% @projects.each do |project| %>
-        <tr>
-          <td><%= project.name %></td>
-          <td><%= link_to 'Show', project %></td>
-          <td><%= link_to 'Edit', edit_project_path(project) %></td>
-          <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <br>
-
-  <%= link_to 'New Project', new_project_path %>  
+  <%= link_to 'New Project', new_project_path %> 
 </div>
 

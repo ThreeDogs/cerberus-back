@@ -10,6 +10,9 @@
  *
  *= require bootstrap.min
  *= require_self
+ *= require projects
+ *= require dashboard
+ *= require total_reports
  */
 
 @font-face {
@@ -19,4 +22,10 @@
 	     url('../assets/glyphicons-halflings-regular.woff') format('woff'), 
 	     url('../assets/glyphicons-halflings-regular.ttf') format('truetype'), 
 	     url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+.outline {
+	border: solid;
+	border-width: 1px;
+	float:left;
 }
