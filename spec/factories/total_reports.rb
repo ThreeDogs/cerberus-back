@@ -4,6 +4,7 @@
 #
 #  id            :integer          not null, primary key
 #  apk           :string(255)
+#  test_apk      :string(255)
 #  test_datetime :string(255)
 #  project_id    :integer
 #  deviceship_id :integer

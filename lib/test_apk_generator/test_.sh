@@ -1,3 +1,5 @@
+mkdir $4
+
 chmod 777 $3
 
 chmod 777 $3/dex2jar-0.0.9.15/.
@@ -22,16 +24,30 @@ echo $PWD
 
 java -classpath $3/asm-all-4.2.jar:$3/asm.jar scenario.org.cerberus.jarasm.JarAsmTest $3/temp/newclz
 
+echo "1-----------------------------------------------------------------"
+
 cp -rf $3/src/org $3/temp/newclz
+
+echo "2-----------------------------------------------------------------"
 
 jar cvf $3/temp/newjar.jar $3/temp/newclz/.
 
+echo "3-----------------------------------------------------------------"
+
 $3/dex2jar-0.0.9.15/d2j-asm-verify.sh $3/temp/newjar.jar
+
+echo "4-----------------------------------------------------------------"
 
 $3/dex2jar-0.0.9.15/d2j-jar2dex.sh -f -o $3/classes.dex $3/temp/newjar.jar
 
+echo "5-----------------------------------------------------------------"
+
 cp -rf $1 $3/temp/mm_.apk 
 
-zip -u $3/temp/mm_.apk $3/classes.dex
+echo "6-----------------------------------------------------------------"
+
+zip -u $3/temp/mm_.apk $3/classes.dex 
+
+echo "7-----------------------------------------------------------------"
 
 $3/dex2jar-0.0.9.15/d2j-apk-sign.sh -f -o $2 $3/temp/mm_.apk

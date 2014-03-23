@@ -71,4 +71,5 @@ class TotalReportsController < ApplicationController
     def total_report_params
       params.require(:total_report).permit(:apk, :test_datetime, :project_id, :deviceship_id)
     end
+
 end
