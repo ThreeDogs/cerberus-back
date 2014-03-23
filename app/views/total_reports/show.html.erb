@@ -1,0 +1,149 @@
+<%= render "shared/header" %>
+
+<div class="container">
+	<div class="row">
+	    <%= render 'shared/side_bar' %>
+	    <div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2">
+
+	    	<h2>Test Results</h2>
+	    	<h4>Test Results > Full Report</h4>
+
+	    	<!-- TEST INFORMATION -->
+			<div class="col-md-6 outline">
+				<p><strong>App Name</strong></p>
+				<p>app version: 1.0</p>
+				<p>tested date: 14.MAR.05 10:53AM</p>
+			</div>
+			<!-- END TEST INFORMATION -->
+
+			<div id="test_contents" class="col-md-12 outline">
+				
+				<ul class="nav nav-tabs">
+					<li id="select_overview"><a>Overview</a></li>
+					<li id="select_alltests"><a>All Tests</a></li>
+					<li id="select_alldevices"><a>All Devices</a></li>
+				</ul>
+				
+				<div id="report_contents" class="outline">
+					
+					<div id="overview" class="col-md-12"><!-- OVERVIEW -->
+						
+						<div id="test_failure">
+							<div class="col-md-4 outline">1</div>
+							<div class="col-md-4 outline">2</div>
+							<div class="col-md-4 outline">3</div>
+						</div>
+						
+						<div id="device_failure">
+							<div class="col-md-12 outline">graph</div>
+						</div>
+						
+						<div id="performance_average" class="outline">
+							<div class="col-md-6">Memory avg 20.00MB</div>
+							<div class="col-md-6">CPU avg 11%</div>
+
+							<div class="col-md-6">Network avg 2394KB</div>
+							<div class="col-md-6">Battery avg ~</div>
+
+							<div class="col-md-6">Threads avg ~</div>
+							<div class="col-md-6">Frame draw time avg 11.27ms</div>
+						</div>
+					
+					</div><!-- END OVERVIEW -->
+					
+					<div id="alltests" class="col-md-12"><!-- ALL TESTS -->
+						
+						<%= render "filter" %>
+
+						<div class="report_scenario outline">
+							<table>
+								<tr class="row">
+									<td class="col-md-1">Rank</td>
+									<td class="col-md-2">Test Name</td>
+									<td class="col-md-2">Status</td>
+									<td class="col-md-2">Error</td>
+									<td class="col-md-5">Device & API version</td>
+								</tr>
+
+								<!-- LOOP -->
+								<tr class="row">
+									<td class="col-md-1">A</td>
+									<td class="col-md-2">Login test</td>
+									<td class="col-md-2">FAIL</td>
+									<td class="col-md-2">Out of memory error</td>
+									<td class="col-md-5">SamsungGalaxyS2(2.3), LGOptimus(2.2) ...</td>
+								</tr>
+								<!-- END LOOP -->
+							</table>
+						</div>
+
+					</div><!-- END ALL TESTS -->
+
+					<div id="alldevices" class="col-md-12"><!-- ALL DEVICES -->
+						
+						<%= render "filter" %>
+
+						<div class="report_device outline">
+							
+							<h3>
+								<strong>Asus Nexus 7.2</strong><br>
+								<small>Model:Nexus7, OS:4.4.2, CPU: ~~, Heap-size: 512</small>
+							</h3>
+							
+							<table>
+								<tr class="row">
+									<td class="col-md-1">Rank</td>
+									<td class="col-md-3">Test Name</td>
+									<td class="col-md-2">Status</td>
+									<td class="col-md-6">Error</td>
+								</tr>
+								<!-- LOOP -->
+								<tr class="row">
+									<td class="col-md-1">A</td>
+									<td class="col-md-3">Login Test</td>
+									<td class="col-md-2">Fail</td>
+									<td class="col-md-6">Out of memory error</td>
+								</tr>
+								<!-- END LOOP -->
+								<!-- ANOTHER EXAMPLE -->
+								<tr class="row">
+									<td class="col-md-1">B</td>
+									<td class="col-md-3">Some test idunno</td>
+									<td class="col-md-2">Error</td>
+									<td class="col-md-6">Null pointer exception error</td>
+								</tr>
+								<!-- END ANOTHER EXAMPLE -->
+							</table>
+						
+						</div><!-- END ALL DEVICES -->
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+//jqeury script to show 1 of following 3 divs: Overview, All tests, and All devices 
+
+$("#overview").css("display","true");
+$("#alltests").css("display","none");
+$("#alldevices").css("display","none");
+
+$("#select_overview").click(function(){
+	$("#overview").css("display","true");
+	$("#alltests").css("display","none");
+	$("#alldevices").css("display","none");});
+
+$("#select_alltests").click(function(){
+	$("#overview").css("display","none");
+	$("#alltests").css("display","true");
+	$("#alldevices").css("display","none");});
+
+$("#select_alldevices").click(function(){
+	$("#overview").css("display","none");
+	$("#alltests").css("display","none");
+	$("#alldevices").css("display","true");});
+
+</script>

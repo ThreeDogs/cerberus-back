@@ -1,3 +1,54 @@
 // Place all the styles related to the TotalReports controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+//** total_reports/index.html **//
+
+.test_result {
+	margin: 0px;
+	padding: 0px;
+	height: 120px;
+
+	.app_info_box {
+		margin: 0px;
+		padding: 0px;
+		height: 100%;
+	}
+
+	.app_version_box {
+		margin: 0px;
+		padding: 0px;
+		height: 100%;
+	}
+
+	.test_fail_box {
+		margin: 0px;
+		padding: 0px;
+		height: 100%;
+	}
+
+	.report_link {
+		margin: 0px;
+		padding: 0px;
+		height: 100%;
+	}
+}
+
+.filter_form {
+	width: 100%;
+	.filter_list{
+		height:34px;
+	}
+}
+
+.report_device {
+	width:100%;
+}
+
+//** total_reports/show.html **//
+
+#test_contents {
+	margin: 0px;
+	padding: 0px;
+}
