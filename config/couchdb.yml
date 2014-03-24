@@ -1,0 +1,8 @@
+development:
+  protocol: 'http'
+  host: 127.0.0.1
+  port: 5984
+  # prefix: project
+  # suffix: test
+  # username: test
+  # password: user

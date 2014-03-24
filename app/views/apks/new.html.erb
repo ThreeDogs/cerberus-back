@@ -1,0 +1,27 @@
+<%= render "shared/header" %>
+
+<div class="container">
+	<div class="row">
+  	<%= render 'shared/side_bar' %>
+  </div>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="jumbotron apk-upload-section">
+				<div class="apk-upload-header">
+					<h1>Drop Or Click Upload your APK</h1>
+				</div>
+				<div class="apk-upload-form">
+					<%= form_for [@project, @apk] do |f| %>
+						<div class="field">
+							<%= f.file_field :apk %>
+						</div>
+						<div class="pull-right">
+							<%= f.submit "Upload", class: "btn btn-large btn-primary" %>
+						</div>
+					<% end %>  		
+	  		</div>
+			</div>
+		</div>
+	</div>
+</div>
+

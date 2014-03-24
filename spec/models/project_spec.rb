@@ -21,7 +21,7 @@ describe Project do
   subject(:project) {user.projects.new(name: "First App")}
 
   it{should respond_to(:user)} # belongs_to user
-  it{should respond_to(:total_reports)}
+  it{should respond_to(:apks)}
   it{should respond_to(:test_scenarios)}
   it{should respond_to(:name)}
 end

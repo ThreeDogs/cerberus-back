@@ -1,0 +1,27 @@
+<%= render "shared/header" %>
+
+<div class="container">
+	<div class="row">
+  	<%= render 'shared/side_bar' %>
+  </div>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="jumbotron">
+				<h3><%= @apk.apk_name %></h3>
+				<p>Package Name</p>
+				<p>Activity Name</p>
+				<p>Minimum SDK</p>
+				<p>Test APK  <%= link_to @apk.test_apk_name, @apk.test_apk %></p>
+
+				<div class="total-report-form">
+					<%= form_for [@apk, @total_report] do |f| %>
+						<div class="pull-right">
+							<%= f.submit "Start Test", class: "btn btn-large btn-primary" %>
+						</div>
+					<% end %>  		
+	  		</div>
+			</div>
+		</div>
+	</div>
+</div>
+

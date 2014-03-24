@@ -1,0 +1,19 @@
+APK Upload & Total Report - CouchDB
+Uploading a APK:
+ ✔ apk Model isolation @done (14-03-23 16:47)
+ ✔ apks#new (or apks#index) @done (14-03-23 16:47)
+ ✔ apks#show -> total_reports#show @done (14-03-23 16:47)
+
+Connecting the Java Server(test-bed backend):
+ ✔ apks#show link Post Java Server @done (14-03-23 18:46)
+ ✘ total_reports#create after_create connect @cancelled (14-03-24 13:31)
+   
+require 'net/http'
+
+uri = URI("http://172.16.101.246:9000/apk_info_send?apk_url=testurl&total_report_id=1")
+res = Net::HTTP.get(uri)
+puts res.body if res.is_a?(Net::HTTPSuccess)
+
+ActiveRecord-CouchDB:
+ ✘ CouchREST - DB Architecture @cancelled (14-03-24 13:31)
+   ✘ detail-model (detail_report-) @cancelled (14-03-24 13:31)

@@ -13,7 +13,12 @@
  *= require projects
  *= require dashboard
  *= require total_reports
+ *= require apks
  */
+
+ body{
+ 	margin-top: 60px;
+ }
 
 @font-face {
 	font-family: 'Glyphicons Halflings';
