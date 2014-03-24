@@ -55,7 +55,12 @@ function drawPies() {
 	pieB.append("path")
 		.attr("d",innerarc)
 		.style("fill",function (d, i) {if (i==1) return "#8E516D"; else return "#CE91AA";});
-
+	pieB.append("text")
+		.attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+		.attr("dy","0.3em")
+		.attr("fill","white")
+		.style("text-anchor", "middle")
+		.text(function (d, i) {if (i==1) return "80"; else return "20";});
 
 	var pieC = test_fail_svg.selectAll(".arc C")
 				.data(pie(fail_data.C))
@@ -69,7 +74,12 @@ function drawPies() {
 	pieC.append("path")
 		.attr("d",innerarc)
 		.style("fill",function (d, i) {if (i==1) return "#2D7C7C"; else return "#3AA4A7";});
-
+	pieC.append("text")
+		.attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+		.attr("dy","0.3em")
+		.attr("fill","white")
+		.style("text-anchor", "middle")
+		.text(function (d, i) {if (i==1) return "80"; else return "20";});
 
 	var pieD = test_fail_svg.selectAll(".arc D")
 				.data(pie(fail_data.D))
@@ -83,5 +93,11 @@ function drawPies() {
 	pieD.append("path")
 		.attr("d",innerarc)
 		.style("fill",function (d, i) {if (i==1) return "#826CA3"; else return "#BBA3D1";});
+	pieD.append("text")
+		.attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+		.attr("dy","0.3em")
+		.attr("fill","white")
+		.style("text-anchor", "middle")
+		.text(function (d, i) {if (i==1) return "80"; else return "20";});
 
 	}
