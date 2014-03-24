@@ -100,4 +100,10 @@ function drawPies() {
 		.style("text-anchor", "middle")
 		.text(function (d, i) {if (i==1) return "80"; else return "20";});
 
+	var rank_text = test_fail_svg.append("g").attr("class","rank_label");
+	rank_text.append("text").attr("transform","translate(50,60)").attr("dy","0.3em").attr("font-size","16px").style("text-anchor", "middle").text("A");
+	rank_text.append("text").attr("transform","translate(160,60)").attr("dy","0.3em").attr("font-size","16px").style("text-anchor", "middle").text("B");
+	rank_text.append("text").attr("transform","translate(270,60)").attr("dy","0.3em").attr("font-size","16px").style("text-anchor", "middle").text("C");
+	rank_text.append("text").attr("transform","translate(380,60)").attr("dy","0.3em").attr("font-size","16px").style("text-anchor", "middle").text("D");
+
 	}
