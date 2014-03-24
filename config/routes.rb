@@ -1,6 +1,13 @@
 CerberusBack::Application.routes.draw do
   namespace :api, defaults: {format: 'json'} do 
     namespace :v1 do
+      resources :reports, only: [] do
+        member do
+          get 'get_memory_reports'
+          get 'get_cpu_reports'
+          get 'get_motion_reports'
+        end
+      end     
     end
   end
 

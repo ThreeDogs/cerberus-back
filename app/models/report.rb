@@ -3,14 +3,14 @@ require 'couchrest_model'
 class CpuReport
   include CouchRest::Model::Embeddable
 
-  property :seq_num, Integer
+  property :id, Integer
   property :usage, Integer
 end
 
 class MemoryReport
   include CouchRest::Model::Embeddable
 
-	property :seq_num, Integer
+	property :id, Integer
 	property :mem_total, Integer
 	property :dalvik_heap_alloc, Integer
 	property :native_heap_size, Integer
@@ -50,14 +50,18 @@ class Report < CouchRest::Model::Base
 	end
 
 	def self.get_all_reports
-		Report.all.collect { |report| report }
+		self.all.collect { |report| report }
 	end
 
 	def self.get_by_total_report_id_reports(total_report_id)
-		Report.all.select {|report| report.total_report_id == total_report_id}
+		self.all.select {|report| report.total_report_id == total_report_id}
 	end
 
-	def self.get_report_by_id(total_report_id, report_id)
-		self.get_by_total_report_id_reports(total_report_id).select{|report| report.detail_report_id == report_id}.first	
+	def self.get_report_by_id(report_id)
+		self.all.select {|report| report.detail_report_id == report_id}.first
 	end
+
+	# def self.get_report_by_id(total_report_id, report_id)
+	# 	self.get_by_total_report_id_reports(total_report_id).select{|report| report.detail_report_id == report_id}.first	
+	# end
 end

@@ -8,7 +8,7 @@ Specify Report Model Method Spec:
 Controller:
  ✔ total_reports#index @started(14-03-24 21:47) @done (14-03-24 21:49) @lasted(0:02:00)
  ✔ total_reports#show @done (14-03-24 22:06)
- ✔ detail_reports#show @done (14-03-24 22:06)
-   ☐ memory_reports.json -> D3js
-   ☐ motion_reports.json -> D3js
-   ☐ cpu_reports.json -> D3js
+ ✔ detail_reports#show ?? => @done (14-03-24 22:47)
+   ✔ memory_reports.json -> D3js @done (14-03-24 23:17)
+   ✔ motion_reports.json -> D3js @done (14-03-24 23:17)
+   ✔ cpu_reports.json -> D3js @done (14-03-24 23:17)

@@ -1,5 +1,5 @@
 class DetailReportsController < ApplicationController
-  before_action :set_detail_report, only: [:show, :edit, :update, :destroy]
+  # before_action :set_detail_report, only: [:show, :edit, :update, :destroy]
 
   # GET /detail_reports
   # GET /detail_reports.json
@@ -7,10 +7,12 @@ class DetailReportsController < ApplicationController
     @detail_reports = DetailReport.all
   end
 
-  # GET /detail_reports/1
+  # GET total_reports/1/detail_reports/1?detail_report_id=1
   # GET /detail_reports/1.json
   def show
     @project = set_project_id(set_detail_report.project_id)
+    @detail_report_id = params[:detail_report_id].to_i
+    @report = Report.get_report_by_id(@detail_report_id)
   end
 
   # GET /detail_reports/new
