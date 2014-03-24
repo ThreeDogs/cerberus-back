@@ -40,7 +40,7 @@ body {
     z-index: 1000;
     display: block;
     padding: 70px 20px 20px;
-    background-color: #f5f5f5;
+    background-color: rgb(219,238,225);
     border-right: 1px solid #eee;
   }
 }
@@ -50,14 +50,21 @@ body {
   margin-left: -20px;
   margin-right: -21px; /* 20px padding + 1px border */
   margin-bottom: 20px;
+  font-size: 14pt;
+  color: rgb(96,94,90);
 }
+
+.nav-sidebar > li {
+  background-color: rgb(201,230,210);
+}
+
 .nav-sidebar > li > a {
   padding-left: 20px;
   padding-right: 20px;
+  color: rgb(96,94,90);
 }
 .nav-sidebar > .active > a {
-  color: #fff;
-  background-color: #428bca;
+  color: rgb(96,94,90);
 }
 
 

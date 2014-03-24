@@ -13,16 +13,25 @@
  *= require projects
  *= require dashboard
  *= require total_reports
+ *= require detail_reports
+ *= require test_scenarios
  */
 
 @font-face {
+	font-family: 'NanumBarunGothic';
+	src: url('../assets/NanumBarunGothic.eot');
+	src: url('../assets/NanumBarunGothic.eot') format('embedded-opentype'),
+	url('../assets/NanumBarunGothic.woff') format('woff');
+}
+
+/*@font-face {
 	font-family: 'Glyphicons Halflings';
 	src: url('../assets/glyphicons-halflings-regular.eot');
 	src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), 
 	     url('../assets/glyphicons-halflings-regular.woff') format('woff'), 
 	     url('../assets/glyphicons-halflings-regular.ttf') format('truetype'), 
 	     url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-}
+}*/
 
 .outline {
 	border: solid;
@@ -30,10 +39,15 @@
 	float:left;
 }
 
-.width100 {
-	width:1170px;
+body {
+	font-family: '나눔고딕', 'NanumBarunGothic';
 }
 
-.width50 {
-	width: 585px;
+p {
+	font-family: '나눔고딕', 'NanumBarunGothic';
+
+}
+
+.navbar-header, .navbar-inverse .navbar-collapse, .navbar-inverse{
+	background-color: rgb(93,190,136);
 }

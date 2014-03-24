@@ -1,24 +1,26 @@
 <%= render "shared/header" %>
 
-<div class="container">
-	<div class="row">
-	    <%= render 'shared/side_bar' %>
-	    <div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2">
-	    	<h2>Test results</h2>
-
+<div class="row">
+	<%= render 'shared/side_bar' %>
+	<div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2">
+		<div class="container">
+	    	<div class="total_report_headline">
+	    		<p>Test results</p>
+	    	</div>
 	    	<!--LOOP-->
 	    	<div class="test_result col-md-12 outline">
-	    		<div class="app_info_box col-md-3 outline">
+	    		<div class="app_info_box col-md-3">
 					<h4>AppName.APK<br>14.03.05, 3:00pm<br>112 Test Scenarios<br>10 Devices</h4>
 				</div>
-				<div class="app_version_box col-md-2 outline">
-					<h4>Version: 1.0.2</h4>
+				<div class="app_version_box col-md-2">
+					<p>App version</p>
+					<p class="big_version">1.0.2</p>
 				</div>
-				<div id="test_fail_box_1" class="test_fail_box col-md-6 outline">
+				<div id="test_fail_box_1" class="test_fail_box col-md-6">
 					TEST_FAILURE_GRAPH_SVG<br>
 					REQUIRES UNIQUE ID
 				</div>
-				<div class="report_link col-md-1 outline">
+				<div class="report_link col-md-1">
 					FULL REPORT
 				</div>
 	    	</div>

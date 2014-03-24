@@ -1,9 +1,9 @@
 <%= render "shared/header" %>
 
-<div class="container">
-	<div class="row">
-	    <%= render 'shared/side_bar' %>
-	    <div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2">
+<div class="row">
+	<%= render 'shared/side_bar' %>
+	<div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2">
+		<div class="container">
 
 			<h3>Report Overview</h3>
 			<div id="report_overview" class="col-md-12 outline">
@@ -40,15 +40,13 @@
 				</div>
 			</div>
 			<div id="event_flow" class="outline col-md-12">
-				<div class="panel-body col-md-10">
-					<div class="well">
-						event chart will go in here
-					</div>
+				<div id="event_chart" class="col-md-10">
 				</div>
-				<div class="panel-body col-md-2">
+				<div class="col-md-2">
 					<div class="well">
 						event details will go in here
 					</div>
+					<button id="toggle">Toggle</button>
 				</div>
 			</div>
 			<div id="screenshot_view" class="outline col-md-12" style="overflow-x:scroll;">
@@ -61,14 +59,10 @@
 				<div class="screenshot well" style="width:90px;height:160px;float:left;">dummy</div>
 			</div>
 			<div id="memory" class="outline col-md-12">
-				<div class="well">
-					memory graph will go in here
-				</div>
+				
 			</div>
 			<div id="cpu" class="outline col-md-12">
-				<div class="well">
-					cpu graph will go in here
-				</div>
+				
 			</div>
 			<div id="network" class="outline col-md-12">
 				<div class="well">
@@ -83,3 +77,7 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	d3.json("http://127.0.0.1:3000/testdata.json",drawCharts);
+</script>

@@ -1,3 +1,76 @@
 // Place all the styles related to the DetailReports controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#event_flow {
+	margin: 0px;
+	padding: 0px;
+
+	#event_chart {
+		overflow-x: auto;
+		overflow-y: hidden;
+		margin: 0px;
+		padding: 0px;
+	}
+}
+
+#memory {
+	overflow-x: auto;
+	overflow-y: hidden;
+	margin: 0px;
+	padding: 0px;
+}
+
+#cpu {
+	overflow-x: auto;
+	overflow-y: hidden;
+	margin: 0px;
+	padding: 0px;
+}
+
+/* axis css */
+.axis path{
+	fill: none;
+	stroke: black;
+}
+.axis {
+	font-size: 8pt;
+	font-family: sans-serif;
+}
+.tick {
+	fill: none;
+	stroke: black;
+}
+
+.event_text {
+	font-size: 8pt;
+	font-family: sans-serif;
+}
+
+/* graph css */
+
+.cpu_path {
+	fill: none;
+	stroke: #0aa;
+	stroke-width: 2px;
+}
+
+.mem_path_dh {
+	fill: none;
+	stroke: black;
+	stroke-width: 2px;
+}
+
+.mem_path_nh {
+	fill: none;
+	stroke: blue;
+	stroke-width: 2px;
+}
+
+.tooltip {
+	border: dotted;
+	border-width: 1px;
+	width: 100px;
+	height: 30px;
+	background-color: rgba(200,200,200,0.2);
+}

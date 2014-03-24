@@ -5,14 +5,24 @@
 
 //** total_reports/index.html **//
 
+.total_report_headline {
+	margin-top: 40px;
+	p {
+		font-size: 26pt;
+		color: rgb(40,112,68);
+	}
+}
+
 .test_result {
 	margin: 0px;
 	padding: 0px;
 	height: 120px;
+	font-size: 14pt;
+	color: rgb(96,94,90);
 
 	.app_info_box {
 		margin: 0px;
-		padding: 0px;
+		padding: 0 25 0 0px;
 		height: 100%;
 	}
 
@@ -20,6 +30,9 @@
 		margin: 0px;
 		padding: 0px;
 		height: 100%;
+		.big_version {
+			font-size: 41pt;
+		}
 	}
 
 	.test_fail_box {
