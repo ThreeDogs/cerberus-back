@@ -1,8 +1,8 @@
 development:
   protocol: 'http'
-  host: 127.0.0.1
+  host: 172.16.101.163
   port: 5984
-  # prefix: project
+  prefix: cerberus
   # suffix: test
   # username: test
   # password: user

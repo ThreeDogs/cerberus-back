@@ -6,13 +6,9 @@ CerberusBack::Application.routes.draw do
 
   resources :projects do
     resources :apks
+    resources :total_reports
     resources :test_scenarios
   end
-
-  resources :apks, only: [] do
-    resources :total_reports
-  end
-
 
   resources :total_reports, only: [] do
     resources :detail_reports

@@ -19,6 +19,7 @@ describe TotalReport do
 	subject(:total_report) {apk.total_reports.new}
 
 
+	it{should respond_to(:project)}
 	it{should respond_to(:apk)}
   it{should respond_to(:detail_reports)}
 end

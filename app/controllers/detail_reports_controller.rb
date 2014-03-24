@@ -10,6 +10,7 @@ class DetailReportsController < ApplicationController
   # GET /detail_reports/1
   # GET /detail_reports/1.json
   def show
+    @project = set_project_id(set_detail_report.project_id)
   end
 
   # GET /detail_reports/new

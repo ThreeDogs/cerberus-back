@@ -4,12 +4,14 @@ class TestScenariosController < ApplicationController
   # GET /test_scenarios
   # GET /test_scenarios.json
   def index
+    @project = set_project
     @test_scenarios = TestScenario.all
   end
 
   # GET /test_scenarios/1
   # GET /test_scenarios/1.json
   def show
+    @project = set_project
   end
 
   # GET /test_scenarios/new

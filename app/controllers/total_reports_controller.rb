@@ -4,12 +4,14 @@ class TotalReportsController < ApplicationController
   # GET /total_reports
   # GET /total_reports.json
   def index
+    @project = set_project
     @total_reports = TotalReport.all
   end
 
   # GET /total_reports/1
   # GET /total_reports/1.json
   def show
+    @project = set_project
   end
 
   # GET /total_reports/new

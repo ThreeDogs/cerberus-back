@@ -5,4 +5,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   protected
+
+  	def set_project
+   		@project = Project.find(params[:project_id]) 	
+  	end
+
+  	def set_project_id(id)
+   		@project = Project.find(id) 	
+  	end
 end

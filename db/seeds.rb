@@ -16,15 +16,15 @@ user.projects.create!(name: "What's app")
 
 # apk = project.apks.create!()
 
-# total_report = apk.total_reports.create!(test_datetime: "2013/03/03 3:00pm")
-# apk.total_reports.create!(test_datetime: "2013/03/03 3:00pm")
-# apk.total_reports.create!(test_datetime: "2013/03/03 3:00pm")
-# apk.total_reports.create!(test_datetime: "2013/03/03 3:00pm")
+total_report = project.total_reports.create!(test_datetime: "2013/03/03 3:00pm")
+project.total_reports.create!(test_datetime: "2013/03/03 3:00pm")
+project.total_reports.create!(test_datetime: "2013/03/03 3:00pm")
+project.total_reports.create!(test_datetime: "2013/03/03 3:00pm")
 
-# detail_report = total_report.detail_reports.create!(app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: 0)
+detail_report = total_report.detail_reports.create!(app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: 0)
 
 
-# test_scenario = project.test_scenarios.create!(name: "Login Test", description: "This is a Login Test", rank: 0)
+test_scenario = project.test_scenarios.create!(name: "Login Test", description: "This is a Login Test", rank: 0)
 
 
 

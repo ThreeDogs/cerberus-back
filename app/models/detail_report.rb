@@ -19,4 +19,8 @@ class DetailReport < ActiveRecord::Base
   belongs_to :total_report
 
   validates :app_version, presence: true
+
+  def project_id
+  	total_report.project.id
+  end
 end

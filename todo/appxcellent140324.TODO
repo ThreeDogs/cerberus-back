@@ -1,0 +1,14 @@
+Specify Report Model Method Spec:
+ ✔ find_by_total_report_id @done (14-03-24 21:11)
+ ✔ get_report_by_id (self method) @started(14-03-24 21:19) @done (14-03-24 21:21) @lasted(0:02:00)
+ ✔ get_memory_reports (method) @done (14-03-24 21:38)
+ ✔ get_motion_reports (method) @done (14-03-24 21:38)
+ ✔ get_cpu_reports (method) @done (14-03-24 21:38)
+
+Controller:
+ ✔ total_reports#index @started(14-03-24 21:47) @done (14-03-24 21:49) @lasted(0:02:00)
+ ✔ total_reports#show @done (14-03-24 22:06)
+ ✔ detail_reports#show @done (14-03-24 22:06)
+   ☐ memory_reports.json -> D3js
+   ☐ motion_reports.json -> D3js
+   ☐ cpu_reports.json -> D3js

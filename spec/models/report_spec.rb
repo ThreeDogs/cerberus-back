@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe Report do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "couchdb connect test" do
+  	# Report.first.total_report_id.should == 1
+  end
 end

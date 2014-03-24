@@ -11,7 +11,10 @@
 #
 
 class TotalReport < ActiveRecord::Base
+	default_scope { order('created_at DESC') } 
+
   belongs_to :apk
+  belongs_to :project
   has_many :detail_reports
 
   # validates :test_datetime, presence: true

@@ -1,8 +1,8 @@
 <div class="col-sm-3 col-md-2 sidebar">
   <ul class="nav nav-sidebar">
-    <li><%= link_to "Dashboard", "#" %></li>
+    <li><%= link_to "Dashboard", project_path(@project) %></li>
     <li><%= link_to "Start Test", new_project_apk_path(@project) %></li>
-    <li><%= link_to "Test Results", "#" %></li>
+    <li><%= link_to "Test Results", project_total_reports_path(@project) %></li>
     <li><%= link_to "Test Scenarios", "#" %></li>
   </ul>  
 </div>
