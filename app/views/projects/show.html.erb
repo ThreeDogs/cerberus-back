@@ -1,9 +1,9 @@
 <%= render "shared/header" %>
 
-<div class="container">
-  <div class="row">
-    <%= render 'shared/side_bar' %>
-    <div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2">
+<div class="row">
+  <%= render 'shared/side_bar' %>
+  <div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2">
+    <div class="container">
       <h2>Dashboard</h2>
       <h4>Recent Test Overview</h4>
       <div id="overview_box" class="col-md-12 outline">
@@ -14,15 +14,14 @@
           <h4>Version: 1.0.2</h4>
         </div>
         <div id="test_fail_box" class="col-md-6 outline">
-          TEST_FAILURE_GRAPH_SVG
+          <p>Test failures</p>
         </div>
         <div class="report_link col-md-1 outline">
-          FULL_REPORT
+          <p>FULL<br>REPORT</p>
         </div>
       </div>
       <div id="test_fail_graph" class="col-md-12 outline">
         <div id="test_fail_bar_graph" class="col-md-6 outline">
-          TEST_FAIL<br>VERTICAL_AXIS_BAR_GRAPH
         </div>
         <div id="test_fail_chart" class="col-md-6 outline">
           TEST_FAIL<br>DETAIL_TABLE
@@ -31,16 +30,29 @@
       <div id="project_trends" class="col-md-12 outline">
 
           <div id="test_results" class="col-md-12 outline">
+            <p>Test results</p>
           </div>
 
-          <div id="cpu_trend" class="col-md-6 outline">~</div>
-          <div id="mem_trend" class="col-md-6 outline">~</div>
+          <div id="cpu_trend" class="col-md-6 outline">
+            <p>CPU usage trend</p>
+          </div>
+          <div id="mem_trend" class="col-md-6 outline">
+            <p>Memory usage trend</p>
+          </div>
 
-          <div id="network_trend" class="col-md-6 outline">~</div>
-          <div id="battery_trend" class="col-md-6 outline">~</div>
+          <div id="network_trend" class="col-md-6 outline">
+            <p>Network latency trend</p>
+          </div>
+          <div id="battery_trend" class="col-md-6 outline">
+            <p>Battery consumption trend</p>
+          </div>
 
-          <div id="thread_trend" class="col-md-6 outline">~</div>
-          <div id="frame_trend" class="col-md-6 outline">~</div>
+          <div id="thread_trend" class="col-md-6 outline">
+            <p>Thread trend</p>
+          </div>
+          <div id="frame_trend" class="col-md-6 outline">
+            <p>Frame draw time trend</p>
+          </div>
 
       </div>
     </div>
@@ -50,4 +62,7 @@
 <script>
   //requires data inserted as argument//
   projectsShow();
+  drawTestResults();
+  drawCPUusage();
+  drawMemUsage();
 </script>

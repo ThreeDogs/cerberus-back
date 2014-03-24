@@ -3,46 +3,104 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 //** projects/index.html.erb **//
+
+.headline {
+	margin: 40px 0 50px -62px;
+	font-size: 26px;
+	color: rgb(40,112,68);
+	img {
+		padding-right: 18px;
+	}
+}
+
 .project_box {
 
-	height: 120px;
+	height: 150px;
+	display: inline-block;
+	margin-bottom: 30px;
 
 	.color_band {
-		width: 20px;
-		height: 120px;
+		width: 25px;
+		height: 150px;
 		float: left;
-		background-color: green;
+		background-color: rgb(93,190,136);
 	}
 
 	.app_icon_box {
 		width: 120px;
-		height: 120px;
+		height: 150px;
 		float: left;
 		img {
-			margin: 10px;
+			margin-top: 25px;
+			margin-left: 10px;
 			width:100px;
 			height:100px;
 		}
+		background-color: rgb(239,239,239);
 	}
 
 	.app_info_box {
 		width: 200px;
-		height: 120px;
+		height: 150px;
 		float: left;
+		background-color: rgb(239,239,239);
+
+		font-size: 14px;
+		color: rgb(96,94,90);
+		
+		.project_title {
+			font-size: 20px;
+			color: rgb(96,94,90);
+			margin-top: 35px;
+			margin-bottom: 5px;
+		}
+
+		.date_version {
+			display: inline-block;
+			width: 40px;
+		}
+
 	}
 
 	.test_fail_box {
 		width: 800px;
-		height: 120px;
+		height: 150px;
 		float: left;
+		margin-left: 25px;
+		padding: 22px 34px 22px 34px;
+		font-size: 16px;
 
+		background-color: rgb(239,239,239);
 		.test_fail_num {
 			.test_fail_each{
-				width: 33%;
+				font-size: 19px;
+				width: 25%;
 				height: 100;
-				border: solid;
-				border-width: 1px;
 				float:left;
+				text-align: center;
+
+				.test_fail {
+					text-align: left;
+					padding-left: 5px;
+					height:28px;
+					border-top-left-radius: 14px;
+					border-bottom-left-radius: 14px;
+					background-color: rgb(229,96,60);
+					position: absolute;
+					top: 0px;
+					left: 0px;
+				}
+				.test_success{
+					text-align: right;
+					padding-right: 5px;
+					font-size: 21px;
+					color: white;
+					height: 28px;
+					width: 170px;
+					border-radius: 14px;
+					background-color: rgb(93,190,136);
+					position: relative;
+				}
 			}
 		}
 	}
@@ -84,5 +142,9 @@
 #project_trends {
 	margin: 0px;
 	padding: 0px;
+
+	p {
+		text-align: center;
+	}
 	
 }
