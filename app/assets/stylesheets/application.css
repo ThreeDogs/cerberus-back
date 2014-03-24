@@ -48,6 +48,6 @@ p {
 
 }
 
-.navbar-header, .navbar-inverse .navbar-collapse, .navbar-inverse{
-	background-color: rgb(93,190,136);
+.container {
+	padding: 0px;
 }

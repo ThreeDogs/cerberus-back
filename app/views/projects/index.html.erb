@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="headline">
-    <p>My projects list</p>
+    <img src="/assets/Project_list.png">My projects list
   </div>
 
   <% @projects.each do |project| %>
@@ -17,10 +17,30 @@
     <div class="test_fail_box">
       <p>Test Fail</p>
       <div class="test_fail_num">
-        <div class="test_fail_each">A</div>
-        <div class="test_fail_each">B</div>
-        <div class="test_fail_each">C</div>
-        <div class="test_fail_each">D</div>
+        <div class="test_fail_each">A
+          <div class="test_success">17
+            <div class="test_fail" style="width:70px">7</div>
+            <!-- width: fail percentage * 170px -->
+          </div>
+        </div>
+        <div class="test_fail_each">B
+          <div class="test_success">17
+            <div class="test_fail" style="width:70px">7</div>
+            <!-- width: fail percentage * 170px -->
+          </div>
+        </div>
+        <div class="test_fail_each">C
+          <div class="test_success">17
+            <div class="test_fail" style="width:70px">7</div>
+            <!-- width: fail percentage * 170px -->
+          </div>
+        </div>
+        <div class="test_fail_each">D
+          <div class="test_success">17
+            <div class="test_fail" style="width:70px">7</div>
+            <!-- width: fail percentage * 170px -->
+          </div>
+        </div>
       </div>
     </div>
   </div>

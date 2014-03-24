@@ -1,5 +1,4 @@
 
-
 function projectsShow (data) {
 
 	var test_fail_svg, arc, innerarc, pie, pieA, pieB, pieC, pieD;

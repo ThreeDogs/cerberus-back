@@ -5,48 +5,75 @@
 
 //** total_reports/index.html **//
 
-.total_report_headline {
+.total_report_head {
 	margin-top: 40px;
-	p {
-		font-size: 26pt;
-		color: rgb(40,112,68);
+	color: rgb(40,112,68);
+	font-size: 26px;
+	img {
+		margin-right: 16px;
 	}
 }
 
 .test_result {
 	margin: 0px;
 	padding: 0px;
+	width: 100%;
 	height: 120px;
-	font-size: 14pt;
 	color: rgb(96,94,90);
+	background-color: rgb(239,238,238);
 
 	.app_info_box {
+		font-size: 14px;
 		margin: 0px;
 		padding: 0 25 0 0px;
+		width: 250px;
 		height: 100%;
+		float: left;
+		padding: 10px 0 0 24px;
+		p {
+			margin-bottom: 5px;
+		}
 	}
 
 	.app_version_box {
 		margin: 0px;
-		padding: 0px;
+		padding: 10px 0 0 0;
+		width: 200px;
 		height: 100%;
+		float: left;
 		.big_version {
-			font-size: 41pt;
+			font-size: 41px;
 		}
 	}
 
 	.test_fail_box {
 		margin: 0px;
 		padding: 0px;
+		width: 540px;
 		height: 100%;
+		float: left;
 	}
 
 	.report_link {
 		margin: 0px;
-		padding: 0px;
+		padding: 42px 0 0 20px;
+		width: 180px;
 		height: 100%;
+		float: left;
+		.link_button {
+			text-align: center;
+			width: 140px;
+			height: 36px;
+			border: 2px solid;
+			padding-top: 7px;
+			border-radius: 18px;
+			border-color: rgb(52,119,78);
+			background-color: rgb(219,238,225);
+		}
 	}
 }
+
+//** total_reports/show.html **//
 
 .filter_form {
 	width: 100%;
@@ -58,8 +85,6 @@
 .report_device {
 	width:100%;
 }
-
-//** total_reports/show.html **//
 
 #test_contents {
 	margin: 0px;
