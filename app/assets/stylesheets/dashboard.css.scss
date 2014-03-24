@@ -19,9 +19,20 @@ body {
     bottom: 0;
     z-index: 1000;
     display: block;
-    padding: 70px 20px 20px;
+    padding: 90px 20px 20px;
     background-color: rgb(219,238,225);
-    border-right: 1px solid #eee;
+
+    .project_app {
+      text-align: center;
+      margin: 0 auto 70px auto;
+      font-size: 19px;
+      color: rgb(96,94,90);
+      img {
+        margin: 10px auto;
+        width: 150px;
+        height: 150px;
+      }
+    }
   }
 }
 
