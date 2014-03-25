@@ -108,43 +108,190 @@
 
 //** projects/show.html.erb **//
 
+.dashboard_head {
+	margin: 40px 0;
+	color: rgb(40,112,68);
+	font-size: 26px; 
+	img {
+		margin-right: 16px;
+	}
+}
+
+.dashboard_sub {
+	padding: 5px 10px 1px 10px;
+	background-color: #5DBE88;
+	color: #605E5A;
+	font-size: 17px;
+	border-bottom: solid 3px;
+	border-color: #287044;
+}
+
 #overview_box {
 	margin: 0px;
 	padding: 0px;
+	height: 120px;
+	width: 100%;
+	color: rgb(96,94,90);
+	background-color: rgb(239,238,238);
 
 	.app_info_box {
+		font-size: 14px;
 		margin: 0px;
-		padding: 0px;
-		height: 150px;
+		padding: 0 25 0 0px;
+		width: 250px;
+		height: 100%;
+		float: left;
+		padding: 10px 0 0 24px;
+		p {
+			margin-bottom: 5px;
+		}
 	}
 
 	.app_version_box {
 		margin: 0px;
-		padding: 0px;
-		height: 150px;
+		padding: 10px 0 0 0;
+		width: 200px;
+		height: 100%;
+		float: left;
+		.big_version {
+			font-size: 41px;
+		}
 	}
+
 	#test_fail_box {
-		height: 150px;
+		margin: 0px;
+		padding: 0px;
+		width: 540px;
+		height: 100%;
+		float: left;
 	}
 
 	.report_link {
 		margin: 0px;
-		padding: 0px;
+		padding: 42px 0 0 20px;
+		width: 180px;
+		height: 100%;
+		float: left;
+		.link_button {
+			text-align: center;
+			width: 140px;
+			height: 36px;
+			border: 2px solid;
+			padding-top: 7px;
+			border-radius: 18px;
+			border-color: rgb(52,119,78);
+			background-color: rgb(219,238,225);
+		}
 	}
 
 }
 
 #test_fail_graph {
-	margin: 0px;
-	padding: 0px;
+	margin: 5px 0;
+	padding: 0;
+	width: 100%;
+	height: 360px;
+	background-color: rgb(239,238,238);
+
+	#test_fail_bar_graph {
+		margin: 0;
+		padding: 0;
+		width: 50%;
+	}
+
+	#test_fail_chart {
+		margin: 0;
+		padding: 0;
+		width: 50%;
+	}
 }
 
 #project_trends {
 	margin: 0px;
 	padding: 0px;
+	background-color: rgb(239,238,238);
+	width: 100%;
+	font-size: 15px;
 
 	p {
 		text-align: center;
 	}
 	
+	.axis path{
+		stroke: #B4B4B4;
+	}
+	.axis {
+		font-size: 12px;
+		fill: #B0B0B0;
+		.domain {
+			stroke-width: 1;
+		}
+		.tick > text {
+			fill: #777;
+		}
+	}
+
+	.x > .tick > line {
+		stroke: transparent;
+	}
+	.y > .tick > line {
+		stroke: #B4B4B4;
+		stroke-width: 0.5;
+		stroke-dasharray: 2,2;
+	}
+
+	.legend {
+		font-size: 12px;
+		fill: #555;
+	}
+
+	#test_results {
+		width: 100%;
+		padding: 10px 100px;
+		float: left;
+		background-color: rgb(239,238,238);
+	}
+
+	#cpu_trend {
+		width: 50%;
+		padding: 10px 10px;
+		float: left;
+		background-color: rgb(239,238,238);
+	}
+
+	#mem_trend {
+		width: 50%;
+		padding: 10px 10px;
+		float: left;
+		background-color: rgb(239,238,238);
+	}
+
+	#network_trend {
+		width: 50%;
+		padding: 10px 10px;
+		float: left;
+		background-color: rgb(239,238,238);
+	}
+
+	#battery_trend {
+		width: 50%;
+		padding: 10px 10px;
+		float: left;
+		background-color: rgb(239,238,238);
+	}
+
+	#thread_trend {
+		width: 50%;
+		padding: 10px 10px;
+		float: left;
+		background-color: rgb(239,238,238);
+	}
+
+	#frame_trend {
+		width: 50%;
+		padding: 10px 10px;
+		float: left;
+		background-color: rgb(239,238,238);
+	}
+
 }

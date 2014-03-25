@@ -36,6 +36,22 @@ body {
   }
 }
 
+/* Header */
+
+.navbar {
+  border: none;
+}
+
+.navbar-header, .navbar-inverse .navbar-collapse, .navbar-inverse {
+  background-color: rgb(93,190,136);
+
+}
+
+.navbar-header > img {
+  padding-top: 10px;
+  padding-left: 5px;
+}
+
 /* Sidebar navigation */
 .nav-sidebar {
   margin-left: -20px;
@@ -56,14 +72,4 @@ body {
 }
 .nav-sidebar > .active > a {
   color: rgb(96,94,90);
-}
-
-.navbar-header, .navbar-inverse .navbar-collapse, .navbar-inverse {
-  background-color: rgb(93,190,136);
-
-}
-
-.navbar-header > img {
-  padding-top: 10px;
-  padding-left: 5px;
 }
