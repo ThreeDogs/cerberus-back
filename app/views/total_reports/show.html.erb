@@ -5,19 +5,25 @@
 	<div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2">
 		<div class="container">
 			<div class="total_report_head">
-				<p class="headline">Test Results</p>
+				<p>Test Results</p>
 				<p class="subline">Test Results > Full Report </p>
 			</div>
 
 	    	<!-- TEST INFORMATION -->
-			<div class="col-md-6 outline">
-				<p><strong>App Name</strong></p>
-				<p>app version: 1.0</p>
-				<p>tested date: 14.MAR.05 10:53AM</p>
+			<div class="test_information">
+				<div class="test_information_apk">
+					APP_NAME.APK<br>
+					ver <span class="ver">1.0.0</span>
+				</div>
+				<div class="test_information_others">
+					<p>Tested on 14.MAR.05 10:53AM</p>
+					<p>112 Test scenarios</p>
+					<p>10 Devices</p>
+				</div>
 			</div>
 			<!-- END TEST INFORMATION -->
 
-			<div id="test_contents" class="col-md-12 outline">
+			<div id="test_contents">
 				
 				<ul class="nav nav-tabs">
 					<li id="select_overview"><a>Overview</a></li>
@@ -25,18 +31,16 @@
 					<li id="select_alldevices"><a>All Devices</a></li>
 				</ul>
 				
-				<div id="report_contents" class="outline">
+				<div id="report_contents">
 					
-					<div id="overview" class="col-md-12"><!-- OVERVIEW -->
+					<div id="overview"><!-- OVERVIEW -->
 						
 						<div id="test_failure">
-							<div class="col-md-4 outline">1</div>
-							<div class="col-md-4 outline">2</div>
-							<div class="col-md-4 outline">3</div>
+
 						</div>
 						
 						<div id="device_failure">
-							<div class="col-md-12 outline">graph</div>
+
 						</div>
 						
 						<div id="performance_average" class="outline">
@@ -52,11 +56,11 @@
 					
 					</div><!-- END OVERVIEW -->
 					
-					<div id="alltests" class="col-md-12"><!-- ALL TESTS -->
+					<div id="alltests"><!-- ALL TESTS -->
 						
 						<%= render "filter" %>
 
-						<div class="report_scenario outline">
+						<div class="report_scenario">
 							<table>
 								<tr class="row">
 									<td class="col-md-1">Rank</td>
@@ -80,11 +84,11 @@
 
 					</div><!-- END ALL TESTS -->
 
-					<div id="alldevices" class="col-md-12"><!-- ALL DEVICES -->
+					<div id="alldevices"><!-- ALL DEVICES -->
 						
 						<%= render "filter" %>
 
-						<div class="report_device outline">
+						<div class="report_device">
 							
 							<h3>
 								<strong>Asus Nexus 7.2</strong><br>

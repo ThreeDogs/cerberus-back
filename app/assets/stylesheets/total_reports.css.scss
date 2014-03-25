@@ -75,6 +75,42 @@
 
 //** total_reports/show.html **//
 
+.test_information {
+	height: 100px;
+
+	.test_information_apk {
+		padding: 10px 20px;
+		background-color: #EFEEEE;
+		width: 200px;
+		height: 100%;
+		float: left;
+		.ver {
+			display: inline-block;
+			font-size: 41px;
+		}
+	}
+	.test_information_others {
+		padding: 10px;
+		background-color: #EFEEEE;
+		width: 300px;
+		height: 100%;
+		float: left;
+	}
+}
+
+#test_contents {
+	width: 100%;
+	#report_contents {
+		width: 100%;
+	}
+}
+
+#test_failure {
+	width: 100%;
+	height: 100px;
+}
+
+
 .filter_form {
 	width: 100%;
 	.filter_list{
@@ -87,6 +123,7 @@
 }
 
 #test_contents {
-	margin: 0px;
+	margin: 20px 0px;
 	padding: 0px;
+	width:100%;
 }
