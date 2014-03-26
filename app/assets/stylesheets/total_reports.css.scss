@@ -107,9 +107,59 @@
 
 #test_failure {
 	width: 100%;
-	height: 100px;
+
+	.axis path{
+		stroke: #B4B4B4;
+	}
+	.axis {
+		font-size: 12px;
+		fill: #B0B0B0;
+		stroke-width: 1;
+		.tick > text {
+			fill: #777;
+		}
+	}
 }
 
+#performance_average {
+	width: 100%;
+	background-color: rgb(239,238,238);
+	padding: 20px;
+	display: inline-block;
+	p {
+
+		font-size: 18px;
+		color: rgb(40,112,68);
+	}
+	.avg_section {
+		padding: 20px;
+		width: 33.33%;
+		float:left;
+		color: rgb(96,94,90);
+		background-color: rgb(239,238,238);
+		.avg_category {
+			text-align: center;
+			padding: 8px 0;
+			font-size: 18px;
+			background-color: rgb(169,216,185);
+		}
+		.max_min {
+			font-size: 14px;
+			background-color: white;
+			padding-bottom: 20px;
+			.max_min_left {
+				padding: 20px 0 0 50px;
+				display: inline-block;
+				width: 140px;
+			}
+			.max_min_right {
+				padding: 20px 0 0 30px;
+				display: inline-block;
+				width: 140px;
+			}
+		}
+	}
+}
 
 .filter_form {
 	width: 100%;
