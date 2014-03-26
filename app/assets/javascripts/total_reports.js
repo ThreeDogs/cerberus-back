@@ -106,4 +106,77 @@ function drawPies() {
 	rank_text.append("text").attr("transform","translate(270,60)").attr("dy","0.3em").attr("font-size","16px").style("text-anchor", "middle").text("C");
 	rank_text.append("text").attr("transform","translate(380,60)").attr("dy","0.3em").attr("font-size","16px").style("text-anchor", "middle").text("D");
 
+}
+
+function drawDeviceFailure () {
+
+	var data = [
+		{
+			"device_name":"Galaxy S2",
+			"os_version":"2.3",
+			"fail_data":[{"num":4,"place":0,"list":[]},{"num":3,"place":4,"list":[]},{"num":2,"place":7,"list":[]},{"num":1,"place":9,"list":[]}]
+		},
+		{
+			"device_name":"LG Optimus",
+			"os_version":"2.2",
+			"fail_data":[{"num":4,"place":0,"list":[]},{"num":3,"place":4,"list":[]},{"num":2,"place":7,"list":[]},{"num":1,"place":9,"list":[]}]
+		},
+		{
+			"device_name":"Nexus S",
+			"os_version":"2.3",
+			"fail_data":[{"num":4,"place":0,"list":[]},{"num":3,"place":4,"list":[]},{"num":2,"place":7,"list":[]},{"num":1,"place":9,"list":[]}]
+		},
+		{
+			"device_name":"Nexus 7",
+			"os_version":"4.4",
+			"fail_data":[{"num":4,"place":0,"list":[]},{"num":3,"place":4,"list":[]},{"num":2,"place":7,"list":[]},{"num":1,"place":9,"list":[]}]
+		},
+		{
+			"device_name":"Galaxy S4",
+			"os_version":"4.3",
+			"fail_data":[{"num":4,"place":0,"list":[]},{"num":3,"place":4,"list":[]},{"num":2,"place":7,"list":[]},{"num":1,"place":9,"list":[]}]
+		}
+	]
+
+	var fail_by_device_svg = d3.select("#test_fail_bar_graph").append("svg")
+								.attr("width",700).attr("height",350);
+
+	var y_domain = [];
+	for (var each in data) {
+		y_domain.push(data[each].device_name);
 	}
+
+	var x_scale = d3.scale.linear().domain([0,10]).range([120,600]);
+	var y_scale = d3.scale.ordinal().domain(y_domain).rangeRoundBands([300,30],0.3,0.3);
+
+	var x_axis = fail_by_device_svg.append("g")
+				.attr("class", "x axis")
+				.attr("transform", "translate(0,300)")
+				.call(d3.svg.axis()
+					.scale(x_scale)
+					.innerTickSize(3)
+					.outerTickSize(0));
+
+	var y_axis = fail_by_device_svg.append("g")
+				.attr("class", "y axis")
+				.attr("transform","translate(120,0)")
+				.call(d3.svg.axis()
+					.scale(y_scale)
+					.orient("left"));
+
+	var columns = fail_by_device_svg.selectAll("g column")
+		.data(data).enter().append("g")
+			.attr("class","device_row")
+			.attr("transform",function (d) {return "translate(120,"+y_scale(d.device_name)+")"})
+		.selectAll("rect")
+		.data(function (d) {return d.fail_data}).enter();
+	columns.append("rect")
+			.attr("width",function (d) {return x_scale(d.num)-x_scale(0);}).attr("height",40)
+			.attr("x",function (d) {return x_scale(d.place)-x_scale(0);}).attr("y",0)
+			.attr("fill",function (d, i) {if (i==0) return "#EA7C4B"; else if (i==1) return "#ED9FBD"; else if (i==2) return "#52C4D0"; else return "#D6B6EF";});
+	columns.append("rect")
+			.attr("width",function (d) {return x_scale(d.num)-x_scale(0);}).attr("height",8)
+			.attr("x",function (d) {return x_scale(d.place)-x_scale(0);}).attr("y",32)
+			.attr("fill",function (d, i) {if (i==0) return "#C1633E"; else if (i==1) return "#BF7593"; else if (i==2) return "#34989A"; else return "#A28BBC";});
+
+}

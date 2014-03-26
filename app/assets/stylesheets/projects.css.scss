@@ -196,13 +196,65 @@
 	#test_fail_bar_graph {
 		margin: 0;
 		padding: 0;
-		width: 50%;
+		width: 60%; //1170*0.6 =702
+		float: left;
+
+		.axis path{
+			stroke: #B4B4B4;
+		}
+		.axis {
+			font-size: 12px;
+			fill: #B0B0B0;
+			stroke-width: 1;
+			.tick > text {
+				fill: #777;
+			}
+		}
+
 	}
 
 	#test_fail_chart {
 		margin: 0;
 		padding: 0;
-		width: 50%;
+		width: 40%; //1170*0.4 = 468
+		float: left;
+
+		.table_title {
+			text-align: center;
+			font-size:18px;
+			margin: 35px auto 15px auto;
+			.rank {
+				display: inline-block;
+				margin-right: 18px;
+			}
+			.device_name {
+				display: inline-block;
+				color: #287044;
+			}
+		}
+		table {
+			text-align: center;
+			font-size: 14px;
+			background-color: white;
+			padding: 5px;
+			margin: 0 auto;
+			color: #A7A7A7;
+			.table_head {
+				color: #287044;
+				background-color: #A9D8B9;
+				.name {
+					width: 160px;
+				}
+				.error {
+					width: 240px;
+				}
+			}
+			tr td {
+				border: solid 1px;
+				border-color: #A9D8B9;
+				padding: 5px;
+			}
+		}
 	}
 }
 

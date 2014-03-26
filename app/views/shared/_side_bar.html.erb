@@ -3,11 +3,12 @@
 		<img src="#">
 		<p>PROJECT</p>
 	</div>
+	
+	<div class="nav nav-sidebar">
+		<div><span class="image_span"><img src="/assets/dashboard_sidebar.png"></span><%= link_to "Dashboard", project_path(@project) %></div>
+		<div><span class="image_span"><img src="/assets/fileupload_sidebar.png"></span><%= link_to "File Upload", new_project_apk_path(@project) %></div>
+		<div><span class="image_span"><img src="/assets/testresults_sidebar.png"></span><%= link_to "Test Results", project_total_reports_path(@project) %></div>
+		<div><span class="image_span"><img src="/assets/scenario_sidebar.png"></span><%= link_to "Test Scenarios", "#" %></div>
+	</div>  
 
-	<ul class="nav nav-sidebar">
-    <li><%= link_to "Dashboard", project_path(@project) %></li>
-    <li><%= link_to "Start Test", new_project_apk_path(@project) %></li>
-    <li><%= link_to "Test Results", project_total_reports_path(@project) %></li>
-    <li><%= link_to "Test Scenarios", "#" %></li>
-  </ul>    
 </div>

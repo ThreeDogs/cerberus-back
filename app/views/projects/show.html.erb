@@ -30,6 +30,14 @@
         <div id="test_fail_bar_graph">
         </div>
         <div id="test_fail_chart">
+          <div class="table_title">
+            <span class="rank">A</span>
+            <span class="device_name">Samsung Galaxy S2</span>
+          </div>
+          <table class="detail_table">
+            <tr class="table_head"><td class="name">Name</td><td class="error">Error</td></tr>
+            <tr><td>something</td><td>something</td></tr>
+          </table>
         </div>
       </div>
 
@@ -70,6 +78,7 @@
 <script>
   //requires data inserted as argument//
   projectsShow();
+  drawFailByDevice();
   drawTestResults();
   drawCPUusage();
   drawMemUsage();

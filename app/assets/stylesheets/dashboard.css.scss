@@ -21,7 +21,7 @@ body {
     display: block;
     padding: 90px 20px 20px;
     background-color: rgb(219,238,225);
-
+    overflow: hidden;
     .project_app {
       text-align: center;
       margin: 0 auto 70px auto;
@@ -61,15 +61,23 @@ body {
   color: rgb(96,94,90);
 }
 
-.nav-sidebar > li {
+.nav-sidebar > div {
   background-color: rgb(201,230,210);
+  height: 45px;
+  padding: 10px 0 0 0px;
+  .image_span {
+    text-align: right;
+    display: inline-block;
+    width: 70px;
+  }
 }
 
-.nav-sidebar > li > a {
-  padding-left: 20px;
-  padding-right: 20px;
+.nav-sidebar > div > a{
+  padding-left: 10px;
   color: rgb(96,94,90);
+  display: inline;
 }
-.nav-sidebar > .active > a {
-  color: rgb(96,94,90);
+
+.nav-sidebar > div:hover {
+  background-color: #A9D8B9;
 }
