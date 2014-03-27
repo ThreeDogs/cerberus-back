@@ -2,7 +2,7 @@ function drawCharts(data) {
 
 
 	//SETUP width in relation to length of events
-	var width = data.events.length*80;
+	var width = data.events.length*100;
 	var event_svg_height, cpu_svg_height, mem_svg_height;
 
 	//SETUP margin
@@ -29,6 +29,10 @@ function drawCharts(data) {
 
 	//SETUP toggle to toggle between form1 - form2
 	var toggle=1;
+
+	d3.selection.prototype.moveToFront = function() {
+		return this.each(function(){this.parentNode.appendChild(this);});
+	};
 
 	function initialize() {
 
@@ -94,8 +98,8 @@ function drawCharts(data) {
 						.attr("height",10)
 						.attr("rx",10)
 						.attr("ry",10)
-						.attr("stroke", function (d) {return getColorFromEventType(d.event_type)})
-						.attr("fill", function (d) {return getColorFromEventType(d.event_type)});
+						.attr("stroke","none")
+						.attr("fill","#DBEEE1");
 
 			gtext = event_group.append("text")
 						.attr("class", "event_text")
@@ -103,21 +107,14 @@ function drawCharts(data) {
 
 			event_svg.append("marker")
 						.attr("id","arrow")
-						.attr("viewBox","0 0 10 10")
+						.attr("viewBox","0 0 6 6")
 						.attr("refX",0)
-						.attr("refY",5)
-						.attr("markerWidth",3)
-						.attr("markerHeight",3)
-						.append("path")
-						.attr("d","M 0 0 L 10 5 L 0 10 z");
-
-			garrow = event_group.append("line")
-						.attr("x1",10).attr("y1",5)
-						.attr("x2",20).attr("y2",5)
-						.style("stroke","black")
-						.attr("stroke-width",2)
-						.attr("marker-end","url(#arrow)")
-						.attr("opacity",0);
+						.attr("refY",3)
+						.attr("markerWidth",6)
+						.attr("markerHeight",6)
+						.append("circle")
+						.attr("r",2).attr("cx",3).attr("cy",3)
+						.attr("fill","#5DBE88");
 
 			event_group.attr("transform", function (d) {
 				return "translate("+t_scale(d.time)+",80)";
@@ -150,30 +147,42 @@ function drawCharts(data) {
 						.attr("y", 20)
 						.attr("class", "activityBox")
 						.attr("width", function (d) {return t_scale(d.end_time-d.start_time)-30})
-						.attr("height", 80)
+						.attr("height", 70)
 						.attr("stroke", "black")
-						.attr("fill", "transparent")
+						.attr("fill", "#A9D8B9")
 						.attr("title", function (d) {return d.name});
-
-			function getColorFromEventType(event_type) {
-				if (event_type == "onClick") {return color(1)}
-				else if (event_type == "hard_key") {return color(2)}
-				else {return color(0)}
-			}
 
 			event_axis = event_svg.append("g")
 						  .attr("class", "x axis")
 						  .attr("opacity",1)
 						  .attr("transform", "translate(0,"+(event_svg_height-20)+")")
 						  .call(d3.svg.axis().scale(t_scale));
-
-			d3.selection.prototype.moveToFront = function() {
-				return this.each(function(){this.parentNode.appendChild(this);});
-			};
+			
 			event_group.moveToFront();
+
+			garrow = event_group.append("line")
+						.attr("x1",10).attr("y1",5)
+						.attr("x2",20).attr("y2",5)
+						.style("stroke","#5DBE88")
+						.attr("stroke-width",2)
+						.attr("marker-start","url(#arrow)")
+						.attr("marker-end","url(#arrow)")
+						.attr("opacity",0);
+
+			garrow.moveToFront();
 		}
 
 		var initialize_cpu_chart = function () {
+
+			var line = d3.svg.line()
+							.interpolate("monotone")
+							.x(function(d){return t_scale(d.time)})
+							.y(function(d){return y_percent_scale(d.percentage)});
+
+			cpu_path = cpu_svg.append("path")
+							.attr("d",line(data.cpu))
+							.attr("class","cpu_path")
+							.attr("stroke","#60BD89");
 
 			cpu_group = cpu_svg.selectAll("g cpu")
 						.data(data.cpu)
@@ -181,20 +190,14 @@ function drawCharts(data) {
 						.append("g");
 
 			gcpudot = cpu_group.append("circle")
-						.attr("r",2)
-						.attr("stroke","black");
+						.attr("r",4)
+						.attr("stroke","#60BD89")
+						.attr("stroke-width",2)
+						.attr("fill","white");
 
 			cpu_group.attr("transform", function (d) {
 				return "translate("+t_scale(d.time)+","+y_percent_scale(d.percentage)+")";
 			});
-
-			var line = d3.svg.line()
-							.x(function(d){return t_scale(d.time)})
-							.y(function(d){return y_percent_scale(d.percentage)});
-
-			cpu_path = cpu_svg.append("path")
-							.attr("d",line(data.cpu))
-							.attr("class","cpu_path");
 
 			cpu_axis = cpu_svg.append("g")
 							.attr("class", "x axis")
@@ -209,26 +212,8 @@ function drawCharts(data) {
 
 		var initialize_mem_chart = function () {
 
-			mem_group = mem_svg.selectAll("g mem")
-						.data(data.mem)
-						.enter()
-						.append("g");
-
-			gmemdot_dh = mem_group.append("circle")
-						.attr("class","gmemdot_dh")
-						.attr("r",2)
-						.attr("cx",function (d) {return t_scale(d.time)})
-						.attr("cy",function (d) {return y_percent_scale(d.dh_alloc/d.dh_size*100)})
-						.attr("stroke","black");
-
-			gmemdot_nh = mem_group.append("circle")
-						.attr("class","gmemdot_nh")
-						.attr("r",2)
-						.attr("cx",function (d) {return t_scale(d.time)})
-						.attr("cy",function (d) {return y_percent_scale(d.nh_alloc/d.nh_size*100)})
-						.attr("stroke","blue");
-
 			var line = d3.svg.line()
+							.interpolate("monotone")
 							.x(function(d){return t_scale(d.time)})
 							.y(function(d){return y_percent_scale(d.dh_alloc/d.dh_size*100)});
 
@@ -237,12 +222,36 @@ function drawCharts(data) {
 							.attr("class","mem_path_dh");
 
 			line = d3.svg.line()
+							.interpolate("monotone")
 							.x(function(d){return t_scale(d.time)})
 							.y(function(d){return y_percent_scale(d.nh_alloc/d.nh_size*100)})
 
 			mem_path_nh = mem_svg.append("path")
 							.attr("d",line(data.mem))
 							.attr("class","mem_path_nh");
+
+			mem_group = mem_svg.selectAll("g mem")
+						.data(data.mem)
+						.enter()
+						.append("g");
+
+			gmemdot_dh = mem_group.append("circle")
+						.attr("class","gmemdot_dh")
+						.attr("r",4)
+						.attr("cx",function (d) {return t_scale(d.time)})
+						.attr("cy",function (d) {return y_percent_scale(d.dh_alloc/d.dh_size*100)})
+						.attr("stroke","#5DBE88")
+						.attr("stroke-width",2)
+						.attr("fill","white");
+
+			gmemdot_nh = mem_group.append("circle")
+						.attr("class","gmemdot_nh")
+						.attr("r",4)
+						.attr("cx",function (d) {return t_scale(d.time)})
+						.attr("cy",function (d) {return y_percent_scale(d.nh_alloc/d.nh_size*100)})
+						.attr("stroke","#E7CC2F")
+						.attr("stroke-width",2)
+						.attr("fill","white");
 
 			mem_axis = mem_svg.append("g")
 							.attr("class", "x axis")
@@ -274,7 +283,7 @@ function drawCharts(data) {
 						.style("z-index", "10")
 						.style("visibility", "hidden");
 
-			event_specific_box = d3.select("#event_specifics");
+			event_specific_box = d3.select("#event_detail");
 
 			event_group.selectAll("rect").on("mouseover", function (d) {
 				tooltip.html("event type: "+d.event_type+"<br>event name: "+d.event_name);
@@ -335,7 +344,7 @@ function drawCharts(data) {
 				.attr("x", function (d) {return t_scale(d.start_time)})
 				.attr("y", 20)
 				.attr("width", function (d) {return t_scale(d.end_time-d.start_time)-30})
-				.attr("height", 80);
+				.attr("height", 70);
 		}
 
 		function cpu_chart_change() {
@@ -389,14 +398,14 @@ function drawCharts(data) {
 				});
 
 			grect.transition()
-					.attr("width",60)
+					.attr("width",80)
 					.attr("height",30)
 					.attr("rx",5)
 					.attr("ry",5);
 
 			garrow.transition()
-					.attr("x1",60).attr("y1",15)
-					.attr("x2",70).attr("y2",15)
+					.attr("x1",80).attr("y1",15)
+					.attr("x2",90).attr("y2",15)
 					.attr("opacity",1);
 
 			event_axis.transition()
@@ -405,7 +414,7 @@ function drawCharts(data) {
 			gact.transition()
 				.attr("x", function (d) {return order_scale(d.start_num)})
 				.attr("y", 20)
-				.attr("width", function (d) {return order_scale(d.end_num-d.start_num+0.3)})
+				.attr("width", function (d) {return order_scale(d.end_num-d.start_num)+40})
 				.attr("height", 80);
 		}
 
