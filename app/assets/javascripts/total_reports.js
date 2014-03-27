@@ -1,10 +1,10 @@
 function drawPies() {
 
 	var fail_data = {
-			"A":[20,80],
-			"B":[20,80],
-			"C":[20,80],
-			"D":[20,80]
+			"A":[7,17],
+			"B":[34,23],
+			"C":[5,10],
+			"D":[2,19]
 			};
 
 	var test_fail_svg = d3.select("#test_fail_box_1")
@@ -41,7 +41,7 @@ function drawPies() {
 		.attr("dy","0.3em")
 		.attr("fill","white")
 		.style("text-anchor", "middle")
-		.text(function (d, i) {if (i==1) return "80"; else return "20";});
+		.text(function (d, i) {return d.value;});
 
 	var pieB = test_fail_svg.selectAll(".arc B")
 				.data(pie(fail_data.B))
@@ -60,7 +60,7 @@ function drawPies() {
 		.attr("dy","0.3em")
 		.attr("fill","white")
 		.style("text-anchor", "middle")
-		.text(function (d, i) {if (i==1) return "80"; else return "20";});
+		.text(function (d, i) {return d.value;});
 
 	var pieC = test_fail_svg.selectAll(".arc C")
 				.data(pie(fail_data.C))
@@ -79,7 +79,7 @@ function drawPies() {
 		.attr("dy","0.3em")
 		.attr("fill","white")
 		.style("text-anchor", "middle")
-		.text(function (d, i) {if (i==1) return "80"; else return "20";});
+		.text(function (d, i) {return d.value;});
 
 	var pieD = test_fail_svg.selectAll(".arc D")
 				.data(pie(fail_data.D))
@@ -98,7 +98,117 @@ function drawPies() {
 		.attr("dy","0.3em")
 		.attr("fill","white")
 		.style("text-anchor", "middle")
-		.text(function (d, i) {if (i==1) return "80"; else return "20";});
+		.text(function (d, i) {return d.value;});
+
+	var rank_text = test_fail_svg.append("g").attr("class","rank_label");
+	rank_text.append("text").attr("transform","translate(50,60)").attr("dy","0.3em").attr("font-size","16px").style("text-anchor", "middle").text("A");
+	rank_text.append("text").attr("transform","translate(160,60)").attr("dy","0.3em").attr("font-size","16px").style("text-anchor", "middle").text("B");
+	rank_text.append("text").attr("transform","translate(270,60)").attr("dy","0.3em").attr("font-size","16px").style("text-anchor", "middle").text("C");
+	rank_text.append("text").attr("transform","translate(380,60)").attr("dy","0.3em").attr("font-size","16px").style("text-anchor", "middle").text("D");
+
+}
+
+function drawPiesTemp() {
+
+	var fail_data = {
+			"A":[7,17],
+			"B":[34,23],
+			"C":[5,10],
+			"D":[2,19]
+			};
+
+	var test_fail_svg = d3.select("#test_fail_box_2")
+						.append("svg")
+						.attr("width",540)
+						.attr("height",120);
+
+	var arc = d3.svg.arc()
+			.outerRadius(45)
+			.innerRadius(22);
+
+	var innerarc = d3.svg.arc()
+				.outerRadius(29)
+				.innerRadius(22);
+
+	var pie = d3.layout.pie()
+				.sort(null)
+				.value(function (d) {return d});
+
+	var pieA = test_fail_svg.selectAll(".arc A")
+				.data(pie(fail_data.A))
+				.enter()
+				.append("g")
+				.attr("transform", "translate(50,60)")
+				.attr("class","arc");
+	pieA.append("path")
+		.attr("d",arc)
+		.style("fill",function (d, i) {if (i==1) return "#C1633E"; else return "#EA7C4B";});
+	pieA.append("path")
+		.attr("d",innerarc)
+		.style("fill",function (d, i) {if (i==1) return "#A35338"; else return "#CE6C46";});
+	pieA.append("text")
+		.attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+		.attr("dy","0.3em")
+		.attr("fill","white")
+		.style("text-anchor", "middle")
+		.text(function (d, i) {return d.value;});
+
+	var pieB = test_fail_svg.selectAll(".arc B")
+				.data(pie(fail_data.B))
+				.enter()
+				.append("g")
+				.attr("transform", "translate(160,60)")
+				.attr("class","arc");
+	pieB.append("path")
+		.attr("d",arc)
+		.style("fill",function (d, i) {if (i==1) return "#BF7593"; else return "#ED9FBD";});
+	pieB.append("path")
+		.attr("d",innerarc)
+		.style("fill",function (d, i) {if (i==1) return "#8E516D"; else return "#CE91AA";});
+	pieB.append("text")
+		.attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+		.attr("dy","0.3em")
+		.attr("fill","white")
+		.style("text-anchor", "middle")
+		.text(function (d, i) {return d.value;});
+
+	var pieC = test_fail_svg.selectAll(".arc C")
+				.data(pie(fail_data.C))
+				.enter()
+				.append("g")
+				.attr("transform", "translate(270,60)")
+				.attr("class","arc");
+	pieC.append("path")
+		.attr("d",arc)
+		.style("fill",function (d, i) {if (i==1) return "#34989A"; else return "#52C4D0";});
+	pieC.append("path")
+		.attr("d",innerarc)
+		.style("fill",function (d, i) {if (i==1) return "#2D7C7C"; else return "#3AA4A7";});
+	pieC.append("text")
+		.attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+		.attr("dy","0.3em")
+		.attr("fill","white")
+		.style("text-anchor", "middle")
+		.text(function (d, i) {return d.value;});
+
+	var pieD = test_fail_svg.selectAll(".arc D")
+				.data(pie(fail_data.D))
+				.enter()
+				.append("g")
+				.attr("transform", "translate(380,60)")
+				.attr("class","arc");
+	pieD.append("path")
+		.attr("d",arc)
+		.style("fill",function (d, i) {if (i==1) return "#A28BBC"; else return "#D6B6EF";});
+	pieD.append("path")
+		.attr("d",innerarc)
+		.style("fill",function (d, i) {if (i==1) return "#826CA3"; else return "#BBA3D1";});
+	pieD.append("text")
+		.attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+		.attr("dy","0.3em")
+		.attr("fill","white")
+		.style("text-anchor", "middle")
+		.text(function (d, i) {return d.value;});
 
 	var rank_text = test_fail_svg.append("g").attr("class","rank_label");
 	rank_text.append("text").attr("transform","translate(50,60)").attr("dy","0.3em").attr("font-size","16px").style("text-anchor", "middle").text("A");
@@ -111,10 +221,10 @@ function drawPies() {
 function drawTestFailPies() {
 
 	var fail_data = {
-			"A":[20,80],
-			"B":[20,80],
-			"C":[20,80],
-			"D":[20,80]
+			"A":[7,17],
+			"B":[34,23],
+			"C":[5,10],
+			"D":[2,19]
 			};
 
 	var test_fail_svg = d3.select("#test_failure")
@@ -151,7 +261,7 @@ function drawTestFailPies() {
 		.attr("dy","0.3em")
 		.attr("fill","white").attr("font-size","25px")
 		.style("text-anchor", "middle")
-		.text(function (d, i) {if (i==1) return "80"; else return "20";});
+		.text(function (d, i) {return d.value});
 
 	var pieB = test_fail_svg.selectAll(".arc B")
 				.data(pie(fail_data.B))
@@ -170,7 +280,7 @@ function drawTestFailPies() {
 		.attr("dy","0.3em")
 		.attr("fill","white").attr("font-size","25px")
 		.style("text-anchor", "middle")
-		.text(function (d, i) {if (i==1) return "80"; else return "20";});
+		.text(function (d, i) {return d.value});
 
 	var pieC = test_fail_svg.selectAll(".arc C")
 				.data(pie(fail_data.C))
@@ -189,7 +299,7 @@ function drawTestFailPies() {
 		.attr("dy","0.3em")
 		.attr("fill","white").attr("font-size","25px")
 		.style("text-anchor", "middle")
-		.text(function (d, i) {if (i==1) return "80"; else return "20";});
+		.text(function (d, i) {return d.value});
 
 	var pieD = test_fail_svg.selectAll(".arc D")
 				.data(pie(fail_data.D))
@@ -208,7 +318,7 @@ function drawTestFailPies() {
 		.attr("dy","0.3em")
 		.attr("fill","white").attr("font-size","25px")
 		.style("text-anchor", "middle")
-		.text(function (d, i) {if (i==1) return "80"; else return "20";});
+		.text(function (d, i) {return d.value});
 
 	var rank_text = test_fail_svg.append("g").attr("class","rank_label");
 	rank_text.append("text").attr("transform","translate(150,115)").attr("dy","0.3em").attr("font-size","30px").style("text-anchor", "middle").text("A");
@@ -234,32 +344,32 @@ function drawDeviceFailure () {
 		{
 			"device_name":"Nexus S",
 			"os_version":"2.3",
-			"fail_data":[{"num":4,"place":4,"list":[]},{"num":3,"place":7,"list":[]},{"num":2,"place":9,"list":[]},{"num":1,"place":10,"list":[]}]
+			"fail_data":[{"num":3,"place":3,"list":[]},{"num":3,"place":6,"list":[]},{"num":2,"place":8,"list":[]},{"num":1,"place":9,"list":[]}]
 		},
 		{
 			"device_name":"Nexus 7",
 			"os_version":"4.4",
-			"fail_data":[{"num":4,"place":4,"list":[]},{"num":3,"place":7,"list":[]},{"num":2,"place":9,"list":[]},{"num":1,"place":10,"list":[]}]
+			"fail_data":[{"num":3,"place":3,"list":[]},{"num":3,"place":6,"list":[]},{"num":2,"place":8,"list":[]},{"num":1,"place":9,"list":[]}]
 		},
 		{
 			"device_name":"Galaxy S4",
 			"os_version":"4.3",
-			"fail_data":[{"num":4,"place":4,"list":[]},{"num":3,"place":7,"list":[]},{"num":2,"place":9,"list":[]},{"num":1,"place":10,"list":[]}]
+			"fail_data":[{"num":3,"place":3,"list":[]},{"num":1,"place":4,"list":[]},{"num":2,"place":6,"list":[]},{"num":1,"place":7,"list":[]}]
 		},
 		{
 			"device_name":"Vega Secret Note",
 			"os_version":"4.3",
-			"fail_data":[{"num":4,"place":4,"list":[]},{"num":3,"place":7,"list":[]},{"num":2,"place":9,"list":[]},{"num":1,"place":10,"list":[]}]
+			"fail_data":[{"num":1,"place":1,"list":[]},{"num":3,"place":4,"list":[]},{"num":0,"place":4,"list":[]},{"num":1,"place":5,"list":[]}]
 		},
 		{
 			"device_name":"LG G Pro 2",
 			"os_version":"4.4",
-			"fail_data":[{"num":4,"place":4,"list":[]},{"num":3,"place":7,"list":[]},{"num":2,"place":9,"list":[]},{"num":1,"place":10,"list":[]}]
+			"fail_data":[{"num":1,"place":1,"list":[]},{"num":2,"place":3,"list":[]},{"num":2,"place":5,"list":[]},{"num":1,"place":6,"list":[]}]
 		},
 		{
 			"device_name":"Galaxy Note 2",
 			"os_version":"4.0",
-			"fail_data":[{"num":4,"place":4,"list":[]},{"num":3,"place":7,"list":[]},{"num":2,"place":9,"list":[]},{"num":1,"place":10,"list":[]}]
+			"fail_data":[{"num":0,"place":0,"list":[]},{"num":2,"place":2,"list":[]},{"num":1,"place":3,"list":[]},{"num":1,"place":4,"list":[]}]
 		}
 	]
 

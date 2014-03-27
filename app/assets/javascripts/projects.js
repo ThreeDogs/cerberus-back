@@ -8,10 +8,10 @@ function projectsShow (data) {
 
 	/** TEMPORARY DATA **/
 	var fail_data = {
-			"A":[20,80],
-			"B":[20,80],
-			"C":[20,80],
-			"D":[20,80]
+			"A":[7,17],
+			"B":[34,23],
+			"C":[5,10],
+			"D":[2,19]
 			};
 	
 	function initialize() {
@@ -50,7 +50,7 @@ function projectsShow (data) {
 			.attr("dy","0.3em")
 			.attr("fill","white")
 			.style("text-anchor", "middle")
-			.text(function (d, i) {if (i==1) return "80"; else return "20";});
+			.text(function (d) {return d.value});
 
 
 		pieB = test_fail_svg.selectAll(".arc B")
@@ -70,7 +70,7 @@ function projectsShow (data) {
 			.attr("dy","0.3em")
 			.attr("fill","white")
 			.style("text-anchor", "middle")
-			.text(function (d, i) {if (i==1) return "80"; else return "20";});
+			.text(function (d) {return d.value});
 
 
 		pieC = test_fail_svg.selectAll(".arc C")
@@ -90,7 +90,7 @@ function projectsShow (data) {
 			.attr("dy","0.3em")
 			.attr("fill","white")
 			.style("text-anchor", "middle")
-			.text(function (d, i) {if (i==1) return "80"; else return "20";});
+			.text(function (d) {return d.value});
 
 		pieD = test_fail_svg.selectAll(".arc D")
 				.data(pie(fail_data.D))
@@ -109,7 +109,7 @@ function projectsShow (data) {
 			.attr("dy","0.3em")
 			.attr("fill","white")
 			.style("text-anchor", "middle")
-			.text(function (d, i) {if (i==1) return "80"; else return "20";});
+			.text(function (d) {return d.value});
 
 		var rank_text = test_fail_svg.append("g").attr("class","rank_label");
 		rank_text.append("text").attr("transform","translate(60,60)").attr("dy","0.3em").attr("font-size","16px").style("text-anchor", "middle").text("A");
@@ -129,22 +129,22 @@ function drawFailByDevice () {
 		{
 			"device_name":"Galaxy S2",
 			"os_version":"2.3",
-			"fail_data":[{"num":4,"place":0,"list":[]},{"num":3,"place":4,"list":[]},{"num":2,"place":7,"list":[]},{"num":1,"place":9,"list":[]}]
+			"fail_data":[{"num":0,"place":0,"list":[]},{"num":0,"place":0,"list":[]},{"num":2,"place":0,"list":[]},{"num":1,"place":2,"list":[]}]
 		},
 		{
 			"device_name":"LG Optimus",
 			"os_version":"2.2",
-			"fail_data":[{"num":4,"place":0,"list":[]},{"num":3,"place":4,"list":[]},{"num":2,"place":7,"list":[]},{"num":1,"place":9,"list":[]}]
+			"fail_data":[{"num":2,"place":0,"list":[]},{"num":3,"place":2,"list":[]},{"num":1,"place":5,"list":[]},{"num":1,"place":6,"list":[]}]
 		},
 		{
 			"device_name":"Nexus S",
 			"os_version":"2.3",
-			"fail_data":[{"num":4,"place":0,"list":[]},{"num":3,"place":4,"list":[]},{"num":2,"place":7,"list":[]},{"num":1,"place":9,"list":[]}]
+			"fail_data":[{"num":3,"place":0,"list":[]},{"num":4,"place":3,"list":[]},{"num":1,"place":7,"list":[]},{"num":1,"place":8,"list":[]}]
 		},
 		{
 			"device_name":"Nexus 7",
 			"os_version":"4.4",
-			"fail_data":[{"num":4,"place":0,"list":[]},{"num":3,"place":4,"list":[]},{"num":2,"place":7,"list":[]},{"num":1,"place":9,"list":[]}]
+			"fail_data":[{"num":4,"place":0,"list":[]},{"num":1,"place":4,"list":[]},{"num":2,"place":5,"list":[]},{"num":1,"place":7,"list":[]}]
 		},
 		{
 			"device_name":"Galaxy S4",
@@ -197,11 +197,6 @@ function drawFailByDevice () {
 }
 
 
-
-
-
-
-
 function drawTestResults() {
 
 	var test_results_data = [
@@ -246,14 +241,14 @@ function drawTestResults() {
 			"failure":2
 		},
 		{
-			"pass":7,
-			"warning":3,
-			"failure":2
+			"pass":9,
+			"warning":2,
+			"failure":1
 		},
 		{
-			"pass":8,
+			"pass":9,
 			"warning":2,
-			"failure":2
+			"failure":1
 		}
 	]
 
@@ -373,15 +368,15 @@ function drawCPUusage() {
 
 	var cpu_trend_data = [
 		{"max": 90,"avg": 30,"min": 10},
+		{"max": 100,"avg": 35,"min": 10},
+		{"max": 85,"avg": 25,"min": 10},
 		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 50,"avg": 70,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10}
+		{"max": 85,"avg": 30,"min": 10},
+		{"max": 90,"avg": 40,"min": 5},
+		{"max": 90,"avg": 30,"min": 5},
+		{"max": 80,"avg": 20,"min": 10},
+		{"max": 80,"avg": 20,"min": 10},
+		{"max": 80,"avg": 20,"min": 10}
 	]
 
 	var cpu_trend_svg = d3.select("#cpu_trend")
@@ -500,16 +495,16 @@ function drawCPUusage() {
 function drawMemUsage() {
 
 	var mem_trend_data = [
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10}
+		{"max": 510,"avg": 100,"min": 50},
+		{"max": 510,"avg": 120,"min": 40},
+		{"max": 510,"avg": 130,"min": 40},
+		{"max": 510,"avg": 110,"min": 50},
+		{"max": 300,"avg": 90,"min": 40},
+		{"max": 480,"avg": 110,"min": 50},
+		{"max": 240,"avg": 130,"min": 50},
+		{"max": 400,"avg": 100,"min": 40},
+		{"max": 500,"avg": 120,"min": 40},
+		{"max": 200,"avg": 90,"min": 50}
 	]
 
 	var mem_trend_svg = d3.select("#mem_trend")
@@ -518,7 +513,7 @@ function drawMemUsage() {
 								.attr("height",200);
 
 	var run_scale = d3.scale.linear().domain([0.7,10.3]).range([40,440]);
-	var y_scale = d3.scale.linear().domain([0,100]).range([130,20]);
+	var y_scale = d3.scale.linear().domain([0,512]).range([130,20]);
 
 	x_axis = mem_trend_svg.append("g")
 				.attr("class", "x axis")
@@ -625,16 +620,16 @@ function drawMemUsage() {
 function drawNetworkTrend() {
 
 	var net_trend_data = [
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10}
+		{"max": 300,"avg": 100,"min": 50},
+		{"max": 300,"avg": 100,"min": 50},
+		{"max": 700,"avg": 80,"min": 50},
+		{"max": 200,"avg": 100,"min": 50},
+		{"max": 300,"avg": 120,"min": 50},
+		{"max": 400,"avg": 80,"min": 50},
+		{"max": 200,"avg": 100,"min": 50},
+		{"max": 400,"avg": 100,"min": 50},
+		{"max": 350,"avg": 100,"min": 50},
+		{"max": 300,"avg": 100,"min": 50}
 	]
 
 	var net_trend_svg = d3.select("#network_trend")
@@ -643,7 +638,7 @@ function drawNetworkTrend() {
 								.attr("height",200);
 
 	var run_scale = d3.scale.linear().domain([0.7,10.3]).range([40,440]);
-	var y_scale = d3.scale.linear().domain([0,100]).range([130,20]);
+	var y_scale = d3.scale.linear().domain([0,800]).range([130,20]);
 
 	x_axis = net_trend_svg.append("g")
 				.attr("class", "x axis")
@@ -823,7 +818,7 @@ function drawBatteryTrend() {
 					.append("g");
 
 	g_run.append("circle")
-			.attr("class","circle_max")
+			.attr("class","circle_display")
 			.attr("r",6)
 			.attr("cx", function (d, i) {return run_scale(i+1)})
 			.attr("cy", function (d, i) {return y_scale(d.max)})
@@ -832,7 +827,7 @@ function drawBatteryTrend() {
 			.attr("fill","white");
 
 	g_run.append("circle")
-			.attr("class","circle_avg")
+			.attr("class","circle_sound")
 			.attr("r",6)
 			.attr("cx", function (d, i) {return run_scale(i+1)})
 			.attr("cy", function (d, i) {return y_scale(d.avg)})
@@ -841,7 +836,7 @@ function drawBatteryTrend() {
 			.attr("fill","white");
 
 	g_run.append("circle")
-			.attr("class","circle_min")
+			.attr("class","circle_network")
 			.attr("r",6)
 			.attr("cx", function (d, i) {return run_scale(i+1)})
 			.attr("cy", function (d, i) {return y_scale(d.min)})
@@ -856,19 +851,19 @@ function drawBatteryTrend() {
 	legend.append("circle").attr("r",6).attr("cx",12).attr("cy",15)
 		.attr("stroke-width",2.5).attr("stroke","#E4603C").attr("fill","white");
 	legend.append("text").attr("transform","translate(30,18)")
-		.text("MAX");
+		.text("Display");
 	legend.append("line").attr("x1",0).attr("x2",24).attr("y1",30).attr("y2",30)
 		.attr("stroke-width",2.5).attr("stroke","#F7CE25");
 	legend.append("circle").attr("r",6).attr("cx",12).attr("cy",30)
 		.attr("stroke-width",2.5).attr("stroke","#F7CE25").attr("fill","white");
 	legend.append("text").attr("transform","translate(30,33)")
-		.text("AVG");
+		.text("Sound");
 	legend.append("line").attr("x1",0).attr("x2",24).attr("y1",45).attr("y2",45)
 		.attr("stroke-width",2.5).attr("stroke","#5DBE88");
 	legend.append("circle").attr("r",6).attr("cx",12).attr("cy",45)
 		.attr("stroke-width",2.5).attr("stroke","#5DBE88").attr("fill","white");
 	legend.append("text").attr("transform","translate(30,48)")
-		.text("MIN");
+		.text("Metwprl");
 
 }
 
