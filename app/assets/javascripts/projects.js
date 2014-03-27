@@ -745,16 +745,16 @@ function drawNetworkTrend() {
 function drawBatteryTrend() {
 
 	var battery_trend_data = [
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10}
+		{"max": 100,"avg": 30,"min": 10},
+		{"max": 100,"avg": 35,"min": 11},
+		{"max": 100,"avg": 34,"min": 12},
+		{"max": 100,"avg": 38,"min": 14},
+		{"max": 100,"avg": 25,"min": 13},
+		{"max": 100,"avg": 29,"min": 9},
+		{"max": 100,"avg": 33,"min": 12},
+		{"max": 100,"avg": 27,"min": 14},
+		{"max": 100,"avg": 33,"min": 11},
+		{"max": 100,"avg": 36,"min": 11}
 	]
 
 	var battery_trend_svg = d3.select("#battery_trend")
@@ -863,23 +863,23 @@ function drawBatteryTrend() {
 	legend.append("circle").attr("r",6).attr("cx",12).attr("cy",45)
 		.attr("stroke-width",2.5).attr("stroke","#5DBE88").attr("fill","white");
 	legend.append("text").attr("transform","translate(30,48)")
-		.text("Metwprl");
+		.text("Network");
 
 }
 
 function drawThreadTrend() {
 
 	var thread_trend_data = [
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10}
+		{"max": 18,"avg": 14,"min": 7},
+		{"max": 19,"avg": 14,"min": 8},
+		{"max": 17,"avg": 13,"min": 7},
+		{"max": 20,"avg": 13,"min": 8},
+		{"max": 23,"avg": 14,"min": 8},
+		{"max": 19,"avg": 13,"min": 8},
+		{"max": 22,"avg": 14,"min": 7},
+		{"max": 21,"avg": 15,"min": 8},
+		{"max": 22,"avg": 14,"min": 8},
+		{"max": 20,"avg": 14,"min": 7}
 	]
 
 	var thread_trend_svg = d3.select("#thread_trend")
@@ -888,7 +888,7 @@ function drawThreadTrend() {
 								.attr("height",200);
 
 	var run_scale = d3.scale.linear().domain([0.7,10.3]).range([40,440]);
-	var y_scale = d3.scale.linear().domain([0,100]).range([130,20]);
+	var y_scale = d3.scale.linear().domain([0,25]).range([130,20]);
 
 	x_axis = thread_trend_svg.append("g")
 				.attr("class", "x axis")
@@ -995,16 +995,16 @@ function drawThreadTrend() {
 function drawFrameTrend() {
 
 	var frame_trend_data = [
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10},
-		{"max": 90,"avg": 30,"min": 10}
+		{"max": 35,"avg": 4,"min": 1},
+		{"max": 37,"avg": 5,"min": 1},
+		{"max": 34,"avg": 4.5,"min": 1},
+		{"max": 35,"avg": 4,"min": 1},
+		{"max": 25,"avg": 6,"min": 1},
+		{"max": 26,"avg": 5,"min": 1},
+		{"max": 22,"avg": 4.5,"min": 1},
+		{"max": 18,"avg": 4.5,"min": 1},
+		{"max": 19,"avg": 4,"min": 1},
+		{"max": 18,"avg": 4.5,"min": 1}
 	]
 
 	var frame_trend_svg = d3.select("#frame_trend")
@@ -1013,7 +1013,7 @@ function drawFrameTrend() {
 								.attr("height",200);
 
 	var run_scale = d3.scale.linear().domain([0.7,10.3]).range([40,440]);
-	var y_scale = d3.scale.linear().domain([0,100]).range([130,20]);
+	var y_scale = d3.scale.linear().domain([0,40]).range([130,20]);
 
 	x_axis = frame_trend_svg.append("g")
 				.attr("class", "x axis")

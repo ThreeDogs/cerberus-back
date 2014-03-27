@@ -26,6 +26,20 @@
 		background-color: rgb(93,190,136);
 	}
 
+	.color_band_fail {
+		width: 25px;
+		height: 150px;
+		float: left;
+		background-color: rgb(229,96,60);
+	}
+
+	.color_band_warning {
+		width: 25px;
+		height: 150px;
+		float: left;
+		background-color: rgb(248,207,36);
+	}
+
 	.app_icon_box {
 		width: 120px;
 		height: 150px;
@@ -53,6 +67,10 @@
 			color: rgb(96,94,90);
 			margin-top: 35px;
 			margin-bottom: 5px;
+			a {
+				font-size: 20px;
+				color: rgb(96,94,90);
+			}
 		}
 
 		.date_version {
