@@ -4,52 +4,46 @@
 	<%= render 'shared/side_bar' %>
 	<div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2">
 		<div class="container">
+			<div class="total_report_head">
+				<p><img src="/assets/Result.png">Test Result</p>
+				<p class="subline">Test Results > Full Report > Detail Report</p>
+			</div>
 
-			<h3>Report Overview</h3>
-			<div id="report_overview" class="col-md-12 outline">
-				<div class="row">
-					<div class="col-md-4 col-md-offset-2">Scenario Name: Login test</div>
-					<div class="col-md-4">App Version: 1.0</div>
+			<span class="dashboard_sub">Report Overview</span>
+			<div id="report_overview">
+				<div class="report_overview_left">
+
+					<div class="thingy">Scenario Name: Login test</div>
+					<div class="thingy">App Version: 1.0</div>
+					<div class="thingy">Device: Samsung Galaxy Note 3</div>
+
+					<div class="thingy">Running time: 73.8s (1:13)</div>
+					<div class="thingy">Date/Time: 14.MAR.05 </div>
+					<div class="thingy">Status: PASS</div>
+
 				</div>
-				<div class="row">
-					<div class="col-md-4 col-md-offset-2">Device: Samsung Galaxy Note 3</div>
-					<div class="col-md-4">Running time: 73.8s (1:13)</div>
-				</div>
-				<div class="row">
-					<div class="col-md-4 col-md-offset-2">Date/Time: 14.MAR.05 </div>
-					<div class="col-md-4">Status: PASS</div>
-				</div>
-			</div>
-			<div id="stats" class="outline col-md-12">
-				<div class="row">
-					<div class="col-md-6">Memory avg 20.00MB</div>
-					<div class="col-md-6">CPU avg 11%</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">Network avg 2394KB</div>
-					<div class="col-md-6">Battery avg ~</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">Threads avg ~</div>
-					<div class="col-md-6">Frame draw time avg 11.27ms</div>
+				<div class="report_overview_right">
+					<div class="thingy">Memory avg 20.00MB</div>
+					<div class="thingy">CPU avg 11%</div>
+
+					<div class="thingy">Network avg 2394KB</div>
+					<div class="thingy">Battery avg ~</div>
+
+					<div class="thingy">Threads avg ~</div>
+					<div class="thingy">Frame draw time avg 11.27ms</div>
 				</div>
 			</div>
-			<div id="stack_trace" class="outline col-md-12">
-				<div class="well">
-					stack trace will go in here
-				</div>
-			</div>
-			<div id="event_flow" class="outline col-md-12">
-				<div id="event_chart" class="col-md-10">
-				</div>
-				<div class="col-md-2">
-					<div class="well">
-						event details will go in here
-					</div>
+
+			<br><br><span class="dashboard_sub">Event Path</span>
+			<div id="event_flow" class="">
+				<div id="event_chart"></div>
+				<div id="event_detail">
 					<button id="toggle">Toggle</button>
 				</div>
 			</div>
-			<div id="screenshot_view" class="outline col-md-12" style="overflow-x:scroll;">
+
+			<br><br><span class="dashboard_sub">Screenshot</span>
+			<div id="screenshot_view" style="overflow-x:scroll;">
 				<div class="screenshot well" style="width:90px;height:160px;float:left;">dummy</div>
 				<div class="screenshot well" style="width:90px;height:160px;float:left;">dummy</div>
 				<div class="screenshot well" style="width:90px;height:160px;float:left;">dummy</div>
@@ -58,22 +52,14 @@
 				<div class="screenshot well" style="width:90px;height:160px;float:left;">dummy</div>
 				<div class="screenshot well" style="width:90px;height:160px;float:left;">dummy</div>
 			</div>
-			<div id="memory" class="outline col-md-12">
-				
+			<div class="graph_wrapper">
+				<div id="memory"></div>			
 			</div>
-			<div id="cpu" class="outline col-md-12">
-				
+			<div class="graph_wrapper">
+				<div id="cpu" class=""></div>
 			</div>
-			<div id="network" class="outline col-md-12">
-				<div class="well">
-					network graph will go in here
-				</div>
-			</div>
-			<div id="battery" class="outline col-md-12">
-				<div class="well">
-					battery graph will go in here
-				</div>
-			</div>
+
+			<!-- OTHER GRAPHS WILL GO IN HERE -->
 		</div>
 	</div>
 </div>

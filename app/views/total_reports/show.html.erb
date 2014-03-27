@@ -5,18 +5,22 @@
 	<div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2">
 		<div class="container">
 			<div class="total_report_head">
-				<p>Test Results</p>
+				<p><img src="/assets/Result.png">Test Results</p>
 				<p class="subline">Test Results > Full Report </p>
 			</div>
 
 	    	<!-- TEST INFORMATION -->
 			<div class="test_information">
+				<div class="test_app_icon">
+					<img src="/assets/todaybreaker.png">
+				</div>
 				<div class="test_information_apk">
-					APP_NAME.APK<br>
-					ver <span class="ver">1.0.0</span>
+					<span class="app_name">APP_NAME.APK</span>
+					<p>App version</p>
+					<span class="ver">1.0.0</span>
 				</div>
 				<div class="test_information_others">
-					<p>Tested on 14.MAR.05 10:53AM</p>
+					<p>14.03.05 10:53AM</p>
 					<p>112 Test scenarios</p>
 					<p>10 Devices</p>
 				</div>
@@ -36,15 +40,16 @@
 					<div id="overview"><!-- OVERVIEW -->
 						
 						<div id="test_failure">
-
+							<div class="overview_head">Test Failure</div>
 						</div>
 						
+
 						<div id="device_failure">
-
+							<div class="overview_head">Device Failure</div>
 						</div>
-						
+
+						<div class="overview_head">Performance Average</div>
 						<div id="performance_average">
-							<p>Performance Average</p>
 							<div class="avg_section">
 								<div class="avg_category">Memory avg 20.00MB</div>
 								<div class="max_min">
@@ -199,6 +204,7 @@ $("#select_alldevices").click(function(){
 	$("#alltests").css("display","none");
 	$("#alldevices").css("display","true");});
 
-drawTestFailure();
+drawTestFailPies();
+drawDeviceFailure();
 
 </script>
