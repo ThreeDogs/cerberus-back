@@ -11,8 +11,10 @@ class DetailReportsController < ApplicationController
   # GET /detail_reports/1.json
   def show
     @project = set_project_id(set_detail_report.project_id)
-    @detail_report_id = params[:detail_report_id].to_i
-    @report = Report.get_report_by_id(@detail_report_id)
+
+    # @detail_report_id = params[:detail_report_id].to_i
+    # @report = Report.get_report_by_id(@detail_report_id)
+    @report = nil
   end
 
   # GET /detail_reports/new

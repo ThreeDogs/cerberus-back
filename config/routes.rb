@@ -17,6 +17,10 @@ CerberusBack::Application.routes.draw do
     resources :test_scenarios
   end
 
+  resources :apks do
+    resources :total_reports
+  end
+
   resources :total_reports, only: [] do
     resources :detail_reports
   end

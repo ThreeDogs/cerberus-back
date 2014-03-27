@@ -209,7 +209,7 @@
 			font-size: 15px;
 		}
 		.filter_value {
-			padding: 5px 0;
+			padding: 5px 0px;
 			width: 800px;
 			color: rgb(96,94,90);
 			font-size: 15px;
@@ -217,8 +217,104 @@
 	}
 }
 
+.report_scenario {
+	width:100%;
+	background-color: rgb(239,238,238);
+	padding: 10px 25px;
+	.report_scenario_table {
+		background-color: rgb(239,238,238);
+		td {
+			border: solid 1px;
+			border-color: #A9D8B9;
+		}
+		.column_label {
+			background-color: #A9D8B9;
+			text-align: center;
+			font-size: 16px;
+			color: rgb(40,112,68);
+		}
+		.rank {
+			width: 80px;
+			text-align: center;
+			padding: 8px 0;
+		}
+		.test_name {
+			width: 150px;
+			text-align: center;
+			padding: 8px 0;
+		}
+		.status {
+			width: 150px;
+			text-align: center;
+			padding: 8px 0;
+		}
+		.error {
+			width: 200px;
+			padding: 8px 0 8px 10px;
+		}
+		.device {
+			width: 530px;
+			padding: 8px 0 8px 10px;
+		}
+	}
+}
+
 .report_device {
 	width:100%;
+	display: inline-block;
+	background-color: rgb(239,238,238);
+
+	.device_info {
+		width: 300px;
+		padding-left: 50px;
+		background-color: rgb(239,238,238);
+		float: left;
+		.device_name {
+			color: #287044;
+			font-size: 18px;
+			text-decoration: underline;
+		}
+		.info {
+
+		}
+	}
+
+	.report_device_table {
+		display: inline-block;
+		float: left;
+		width: 870px;
+		background-color: rgb(239,238,238);
+		padding: 10px 0;
+		td {
+			border: solid 1px;
+			border-color: #A9D8B9;
+		}
+		.column_label {
+			background-color: #A9D8B9;
+			text-align: center;
+			font-size: 16px;
+			color: rgb(40,112,68);
+		}
+		.rank {
+			width: 80px;
+			text-align: center;
+			padding: 8px 0;
+		}
+		.test_name {
+			width: 150px;
+			text-align: center;
+			padding: 8px 0;
+		}
+		.status {
+			width: 150px;
+			text-align: center;
+			padding: 8px 0;
+		}
+		.error {
+			width: 440px;
+			padding: 8px 0 8px 10px;
+		}
+	}
 }
 
 #test_contents {

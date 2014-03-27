@@ -114,24 +114,38 @@
 						<%= render "filter" %>
 
 						<div class="report_scenario">
-							<table>
-								<tr class="row">
-									<td class="col-md-1">Rank</td>
-									<td class="col-md-2">Test Name</td>
-									<td class="col-md-2">Status</td>
-									<td class="col-md-2">Error</td>
-									<td class="col-md-5">Device & API version</td>
+							<table class="report_scenario_table">
+								<tr class="column_label">
+									<td class="rank">Rank</td>
+									<td class="test_name">Test Name</td>
+									<td class="status">Status</td>
+									<td class="error">Error</td>
+									<td class="device">Device & API version</td>
 								</tr>
 
 								<!-- LOOP -->
-								<tr class="row">
-									<td class="col-md-1">A</td>
-									<td class="col-md-2">Login test</td>
-									<td class="col-md-2">FAIL</td>
-									<td class="col-md-2">Out of memory error</td>
-									<td class="col-md-5">SamsungGalaxyS2(2.3), LGOptimus(2.2) ...</td>
+								<tr>
+									<td class="rank">A</td>
+									<td class="test_name">Login test</td>
+									<td class="status">FAIL</td>
+									<td class="error">Out of memory error</td>
+									<td class="device">SamsungGalaxyS2(2.3)<br> LGOptimus(2.2) ...</td>
 								</tr>
 								<!-- END LOOP -->
+								<tr>
+									<td class="rank">A</td>
+									<td class="test_name">Register test</td>
+									<td class="status">FAIL</td>
+									<td class="error">Format Exception error</td>
+									<td class="device">SamsungGalaxyS2(2.3)<br> LGOptimus(2.2) ...</td>
+								</tr>
+								<tr>
+									<td class="rank">B</td>
+									<td class="test_name">Setup test</td>
+									<td class="status">FAIL</td>
+									<td class="error">Out of memory error</td>
+									<td class="device">SamsungGalaxyS2(2.3)<br> LGOptimus(2.2) ...</td>
+								</tr>
 							</table>
 						</div>
 
@@ -143,36 +157,78 @@
 
 						<div class="report_device">
 							
-							<h3>
-								<strong>Asus Nexus 7.2</strong><br>
-								<small>Model:Nexus7, OS:4.4.2, CPU: ~~, Heap-size: 512</small>
-							</h3>
-							
-							<table>
-								<tr class="row">
-									<td class="col-md-1">Rank</td>
-									<td class="col-md-3">Test Name</td>
-									<td class="col-md-2">Status</td>
-									<td class="col-md-6">Error</td>
-								</tr>
-								<!-- LOOP -->
-								<tr class="row">
-									<td class="col-md-1">A</td>
-									<td class="col-md-3">Login Test</td>
-									<td class="col-md-2">Fail</td>
-									<td class="col-md-6">Out of memory error</td>
-								</tr>
-								<!-- END LOOP -->
-								<!-- ANOTHER EXAMPLE -->
-								<tr class="row">
-									<td class="col-md-1">B</td>
-									<td class="col-md-3">Some test idunno</td>
-									<td class="col-md-2">Error</td>
-									<td class="col-md-6">Null pointer exception error</td>
-								</tr>
-								<!-- END ANOTHER EXAMPLE -->
-							</table>
-						
+							<div><!-- LOOP -->
+								<div class="device_info">
+									<div class="device_name">Asus Nexus 7.2</div>
+									<div class="info">
+										Model:Nexus7
+										<br>OS:4.4.2
+										<br>CPU: 1.5GHz ARMv7
+										<br>Memory: 1Gb
+									</div>
+								</div>
+								
+								<table class="report_device_table">
+									<tr class="column_label">
+										<td class="rank">Rank</td>
+										<td class="test_name">Test Name</td>
+										<td class="status">Status</td>
+										<td class="error">Error</td>
+									</tr>
+									<!-- LOOP -->
+									<tr>
+										<td class="rank">A</td>
+										<td class="test_name">Login Test</td>
+										<td class="status">Fail</td>
+										<td class="error">Out of memory error</td>
+									</tr>
+									<!-- END LOOP -->
+									<!-- ANOTHER EXAMPLE -->
+									<tr>
+										<td class="rank">B</td>
+										<td class="test_name">Some test idunno</td>
+										<td class="status">Error</td>
+										<td class="error">Null pointer exception error</td>
+									</tr>
+									<!-- END ANOTHER EXAMPLE -->
+								</table>
+							</div> <!-- END LOOP -->
+							<div><!-- LOOP -->
+								<div class="device_info">
+									<div class="device_name">Asus Nexus 7.2</div>
+									<div class="info">
+										Model:Galaxy Note 3
+										<br>OS:4.4.2
+										<br>CPU: 1.5GHz ARMv7
+										<br>Memory: 1Gb
+									</div>
+								</div>
+								
+								<table class="report_device_table">
+									<tr class="column_label">
+										<td class="rank">Rank</td>
+										<td class="test_name">Test Name</td>
+										<td class="status">Status</td>
+										<td class="error">Error</td>
+									</tr>
+									<!-- LOOP -->
+									<tr>
+										<td class="rank">A</td>
+										<td class="test_name">Login Test</td>
+										<td class="status">Fail</td>
+										<td class="error">Out of memory error</td>
+									</tr>
+									<!-- END LOOP -->
+									<!-- ANOTHER EXAMPLE -->
+									<tr>
+										<td class="rank">B</td>
+										<td class="test_name">Some test idunno</td>
+										<td class="status">Error</td>
+										<td class="error">Null pointer exception error</td>
+									</tr>
+									<!-- END ANOTHER EXAMPLE -->
+								</table>
+							</div> <!-- END LOOP -->
 						</div><!-- END ALL DEVICES -->
 
 					</div>

@@ -26,17 +26,12 @@ class TotalReportsController < ApplicationController
   # POST /total_reports
   # POST /total_reports.json
   def create
-    @total_report = TotalReport.new(total_report_params)
-
-    respond_to do |format|
-      if @total_report.save
-        format.html { redirect_to @total_report, notice: 'Total report was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @total_report }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @total_report.errors, status: :unprocessable_entity }
-      end
-    end
+    # @project = set_project
+    # if @total_report = @project.total_reports.create(total_report_params)
+    #   redirect_to [@project, @total_report]
+    # else
+    #   render project
+    # end
   end
 
   # PATCH/PUT /total_reports/1
