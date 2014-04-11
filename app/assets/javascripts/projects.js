@@ -129,27 +129,132 @@ function drawFailByDevice () {
 		{
 			"device_name":"Galaxy S2",
 			"os_version":"2.3",
-			"fail_data":[{"num":0,"place":0,"list":[]},{"num":0,"place":0,"list":[]},{"num":2,"place":0,"list":[]},{"num":1,"place":2,"list":[]}]
+			"fail_data": {
+				"A": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"B": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"C": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"D": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}]
+			}
 		},
 		{
 			"device_name":"LG Optimus",
 			"os_version":"2.2",
-			"fail_data":[{"num":2,"place":0,"list":[]},{"num":3,"place":2,"list":[]},{"num":1,"place":5,"list":[]},{"num":1,"place":6,"list":[]}]
+			"fail_data":{
+				"A": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"B": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"C": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"D": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}]
+			}
 		},
 		{
 			"device_name":"Nexus S",
 			"os_version":"2.3",
-			"fail_data":[{"num":3,"place":0,"list":[]},{"num":4,"place":3,"list":[]},{"num":1,"place":7,"list":[]},{"num":1,"place":8,"list":[]}]
+			"fail_data":{
+				"A": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"B": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"C": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"D": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}]
+			}
 		},
 		{
 			"device_name":"Nexus 7",
 			"os_version":"4.4",
-			"fail_data":[{"num":4,"place":0,"list":[]},{"num":1,"place":4,"list":[]},{"num":2,"place":5,"list":[]},{"num":1,"place":7,"list":[]}]
+			"fail_data":{
+				"A": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"B": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"C": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"D": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}]
+			}
 		},
 		{
 			"device_name":"Galaxy S4",
 			"os_version":"4.3",
-			"fail_data":[{"num":4,"place":0,"list":[]},{"num":3,"place":4,"list":[]},{"num":2,"place":7,"list":[]},{"num":1,"place":9,"list":[]}]
+			"fail_data":{
+				"A": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"B": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"C": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"D": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}]
+			}
 		}
 	]
 
@@ -161,7 +266,9 @@ function drawFailByDevice () {
 		y_domain.push(data[each].device_name);
 	}
 
-	var x_scale = d3.scale.linear().domain([0,10]).range([120,600]);
+	var x_extent = [0,data[0].fail_data.A.length+data[0].fail_data.B.length+data[0].fail_data.C.length+data[0].fail_data.D.length];
+
+	var x_scale = d3.scale.linear().domain(x_extent).range([120,600]);
 	var y_scale = d3.scale.ordinal().domain(y_domain).rangeRoundBands([300,30],0.3,0.3);
 
 	var x_axis = fail_by_device_svg.append("g")
@@ -182,17 +289,70 @@ function drawFailByDevice () {
 	var columns = fail_by_device_svg.selectAll("g column")
 		.data(data).enter().append("g")
 			.attr("class","device_row")
-			.attr("transform",function (d) {return "translate(120,"+y_scale(d.device_name)+")"})
-		.selectAll("rect")
-		.data(function (d) {return d.fail_data}).enter();
+			.attr("transform",function (d) {return "translate(120,"+y_scale(d.device_name)+")"});
+	
 	columns.append("rect")
-			.attr("width",function (d) {return x_scale(d.num)-x_scale(0);}).attr("height",40)
-			.attr("x",function (d) {return x_scale(d.place)-x_scale(0);}).attr("y",0)
-			.attr("fill",function (d, i) {if (i==0) return "#EA7C4B"; else if (i==1) return "#ED9FBD"; else if (i==2) return "#52C4D0"; else return "#D6B6EF";});
+			.attr("width",function (d) {return x_scale(d.fail_data.A.length)-x_scale(0);}).attr("height",40)
+			.attr("x",function (d) {return x_scale(0)-x_scale(0);}).attr("y",0)
+			.attr("fill","#EA7C4B")
+			.on("click",function (d) {renewDetailTable("A", d.device_name, d.fail_data.A)});
+
 	columns.append("rect")
-			.attr("width",function (d) {return x_scale(d.num)-x_scale(0);}).attr("height",8)
-			.attr("x",function (d) {return x_scale(d.place)-x_scale(0);}).attr("y",32)
-			.attr("fill",function (d, i) {if (i==0) return "#C1633E"; else if (i==1) return "#BF7593"; else if (i==2) return "#34989A"; else return "#A28BBC";});
+			.attr("width",function (d) {return x_scale(d.fail_data.B.length)-x_scale(0);}).attr("height",40)
+			.attr("x",function (d) {return x_scale(d.fail_data.A.length)-x_scale(0);}).attr("y",0)
+			.attr("fill","#ED9FBD");
+
+	columns.append("rect")
+			.attr("width",function (d) {return x_scale(d.fail_data.C.length)-x_scale(0);}).attr("height",40)
+			.attr("x",function (d) {return x_scale(d.fail_data.A.length+d.fail_data.B.length)-x_scale(0);}).attr("y",0)
+			.attr("fill","#52C4D0");
+
+	columns.append("rect")
+			.attr("width",function (d) {return x_scale(d.fail_data.D.length)-x_scale(0);}).attr("height",40)
+			.attr("x",function (d) {return x_scale(d.fail_data.A.length+d.fail_data.B.length+d.fail_data.C.length)-x_scale(0);}).attr("y",0)
+			.attr("fill","#D6B6EF");
+
+
+	columns.append("rect")
+			.attr("width",function (d) {return x_scale(d.fail_data.A.length)-x_scale(0);}).attr("height",8)
+			.attr("x",function (d) {return x_scale(0)-x_scale(0);}).attr("y",32)
+			.attr("fill","#C1633E");
+
+	columns.append("rect")
+			.attr("width",function (d) {return x_scale(d.fail_data.B.length)-x_scale(0);}).attr("height",8)
+			.attr("x",function (d) {return x_scale(d.fail_data.A.length)-x_scale(0);}).attr("y",32)
+			.attr("fill","#BF7593");
+
+	columns.append("rect")
+			.attr("width",function (d) {return x_scale(d.fail_data.C.length)-x_scale(0);}).attr("height",8)
+			.attr("x",function (d) {return x_scale(d.fail_data.A.length+d.fail_data.B.length)-x_scale(0);}).attr("y",32)
+			.attr("fill","#34989A");
+
+	columns.append("rect")
+			.attr("width",function (d) {return x_scale(d.fail_data.D.length)-x_scale(0);}).attr("height",8)
+			.attr("x",function (d) {return x_scale(d.fail_data.A.length+d.fail_data.B.length+d.fail_data.C.length)-x_scale(0);}).attr("y",32)
+			.attr("fill","#A28BBC");
+
+	function renewDetailTable (rank, device_name, error_array) {
+
+		d3.select("#table_title_rank").text(rank);
+		d3.select("#table_title_device_name").text(device_name);
+
+		//TODO: hyperlink to specific report page
+
+
+		d3.select("#detail_table").remove();
+		var detail_table = d3.select("#test_fail_chart").append("table").attr("id","detail_table");
+		var table_label = detail_table.append("tr").attr("class","table_head");
+		table_label.append("td").attr("class","name").text("Name");
+		table_label.append("td").attr("class","error").text("Error");
+
+		for (var row in error_array) {
+			var row_tr = detail_table.append("tr");
+			row_tr.append("td").text(error_array[row].scenario_name);
+			row_tr.append("td").text(error_array[row].error_message);
+		}
+	}
 
 }
 
@@ -200,56 +360,16 @@ function drawFailByDevice () {
 function drawTestResults() {
 
 	var test_results_data = [
-		{
-			"pass":5,
-			"warning":4,
-			"failure":3
-		},
-		{
-			"pass":5,
-			"warning":4,
-			"failure":3
-		},
-		{
-			"pass":5,
-			"warning":4,
-			"failure":3
-		},
-		{
-			"pass":6,
-			"warning":4,
-			"failure":2
-		},
-		{
-			"pass":6,
-			"warning":4,
-			"failure":2
-		},
-		{
-			"pass":6,
-			"warning":4,
-			"failure":2
-		},
-		{
-			"pass":7,
-			"warning":3,
-			"failure":2
-		},
-		{
-			"pass":7,
-			"warning":3,
-			"failure":2
-		},
-		{
-			"pass":9,
-			"warning":2,
-			"failure":1
-		},
-		{
-			"pass":9,
-			"warning":2,
-			"failure":1
-		}
+		{"pass":5,"warning":4,"failure":3},
+		{"pass":5,"warning":4,"failure":3},
+		{"pass":5,"warning":4,"failure":3},
+		{"pass":6,"warning":4,"failure":2},
+		{"pass":6,"warning":4,"failure":2},
+		{"pass":6,"warning":4,"failure":2},
+		{"pass":7,"warning":3,"failure":2},
+		{"pass":7,"warning":3,"failure":2},
+		{"pass":9,"warning":2,"failure":1},
+		{"pass":9,"warning":2,"failure":1}
 	]
 
 
