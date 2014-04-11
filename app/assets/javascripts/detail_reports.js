@@ -2,7 +2,7 @@ function drawCharts(data) {
 
 
 	//SETUP width in relation to length of events
-	var width = data.events.length*100;
+	var width = data.events.length*140;
 	var event_svg_height, cpu_svg_height, mem_svg_height;
 
 	//SETUP margin
@@ -47,6 +47,7 @@ function drawCharts(data) {
 			t_scale = d3.scale.linear().domain(x_domain).range(x_range);
 
 			x_domain = [0,data.events.length+1];
+			x_range = [0,width+100];
 			order_scale = d3.scale.linear().domain(x_domain).range(x_range);
 
 			x_domain = [];
@@ -65,7 +66,7 @@ function drawCharts(data) {
 		var initialize_svg = function () {
 
 			event_svg_height = 110;
-			event_svg = d3.select("#event_chart")
+			event_svg = d3.select("#event_flow")
 						.append("svg")
 						.attr("width", width)
 						.attr("height", event_svg_height);
@@ -103,7 +104,8 @@ function drawCharts(data) {
 
 			gtext = event_group.append("text")
 						.attr("class", "event_text")
-						.text(function (d) {return d.event_name});
+						.attr("dy",20)
+						.text(function (d) {return d.event_type});
 
 			event_svg.append("marker")
 						.attr("id","arrow")
@@ -165,11 +167,10 @@ function drawCharts(data) {
 						.attr("x2",20).attr("y2",5)
 						.style("stroke","#5DBE88")
 						.attr("stroke-width",2)
-						.attr("marker-start","url(#arrow)")
-						.attr("marker-end","url(#arrow)")
 						.attr("opacity",0);
 
 			garrow.moveToFront();
+
 		}
 
 		var initialize_cpu_chart = function () {
@@ -212,10 +213,12 @@ function drawCharts(data) {
 
 		var initialize_mem_chart = function () {
 
+			y_percent_scale = d3.scale.linear().domain([0,64]).range([170, 20]);
+
 			var line = d3.svg.line()
 							.interpolate("monotone")
 							.x(function(d){return t_scale(d.time)})
-							.y(function(d){return y_percent_scale(d.dh_alloc/d.dh_size*100)});
+							.y(function(d){return y_percent_scale(d.dh_alloc)});
 
 			mem_path_dh = mem_svg.append("path")
 							.attr("d",line(data.mem))
@@ -224,7 +227,7 @@ function drawCharts(data) {
 			line = d3.svg.line()
 							.interpolate("monotone")
 							.x(function(d){return t_scale(d.time)})
-							.y(function(d){return y_percent_scale(d.nh_alloc/d.nh_size*100)})
+							.y(function(d){return y_percent_scale(d.nh_alloc)})
 
 			mem_path_nh = mem_svg.append("path")
 							.attr("d",line(data.mem))
@@ -239,7 +242,7 @@ function drawCharts(data) {
 						.attr("class","gmemdot_dh")
 						.attr("r",4)
 						.attr("cx",function (d) {return t_scale(d.time)})
-						.attr("cy",function (d) {return y_percent_scale(d.dh_alloc/d.dh_size*100)})
+						.attr("cy",function (d) {return y_percent_scale(d.dh_alloc)})
 						.attr("stroke","#5DBE88")
 						.attr("stroke-width",2)
 						.attr("fill","white");
@@ -248,7 +251,7 @@ function drawCharts(data) {
 						.attr("class","gmemdot_nh")
 						.attr("r",4)
 						.attr("cx",function (d) {return t_scale(d.time)})
-						.attr("cy",function (d) {return y_percent_scale(d.nh_alloc/d.nh_size*100)})
+						.attr("cy",function (d) {return y_percent_scale(d.nh_alloc)})
 						.attr("stroke","#E7CC2F")
 						.attr("stroke-width",2)
 						.attr("fill","white");
@@ -274,193 +277,49 @@ function drawCharts(data) {
 
 		}
 
-		var initialize_tooltip = function () {
-
-			tooltip = d3.select("body")
-						.append("div")
-						.attr("class","tooltip")
-						.style("position", "absolute")
-						.style("z-index", "10")
-						.style("visibility", "hidden");
-
-			event_specific_box = d3.select("#event_detail");
-
-			event_group.selectAll("rect").on("mouseover", function (d) {
-				tooltip.html("event type: "+d.event_type+"<br>event name: "+d.event_name);
-				event_specific_box.html("event type: "+d.event_type+"<br>event name: "+d.event_name);
-				return tooltip.style("visibility", "visible")
-							.style("top", (event.pageY-50)+"px")
-							.style("left",(event.pageX-50)+"px");
-				}).on("mouseout", function(){return tooltip.text("").style("visibility", "hidden");});
-
-			cpu_group.selectAll("circle").on("mouseover", function () {
-				return tooltip.style("visibility", "visible")
-							.style("top", (event.pageY-50)+"px")
-							.style("left",(event.pageX-50)+"px");
-				}).on("mouseout", function(){return tooltip.text("").style("visibility", "hidden");});
-
-			mem_group.selectAll("circle").on("mouseover", function () {
-				return tooltip.style("visibility", "visible")
-							.style("top", (event.pageY-50)+"px")
-							.style("left",(event.pageX-50)+"px");
-				}).on("mouseout", function(){return tooltip.text("").style("visibility", "hidden");});
-		}
-
+		
 		initialize_scales();
 		initialize_svg();
 		initialize_event_chart();
 		initialize_cpu_chart();
 		initialize_mem_chart();
-		initialize_tooltip();
 
 	}
-
-	function form1() {
-
-		var line = d3.svg.line()
-						.x(function(d){return t_scale(d.time)})
-						.y(function(d){return y_percent_scale(d.percentage)});
-
-		function event_chart_change() {
-			event_group.transition()
-						.attr("transform", function (d) {
-							return "translate("+t_scale(d.time)+",80)";
-						});
-			event_axis.transition()
-						.attr("opacity",1);
-
-			garrow.transition()
-					.attr("x1",10).attr("y1",5)
-					.attr("x2",20).attr("y2",5)
-					.attr("opacity",0);
-
-			grect.transition()
-						.attr("width",10)
-						.attr("height",10)
-						.attr("rx",10)
-						.attr("ry",10);
-
-			gact.transition()
-				.attr("x", function (d) {return t_scale(d.start_time)})
-				.attr("y", 20)
-				.attr("width", function (d) {return t_scale(d.end_time-d.start_time)-30})
-				.attr("height", 70);
-		}
-
-		function cpu_chart_change() {
-			cpu_group.transition()
-					.attr("transform", function (d) {
-						return "translate("+t_scale(d.time)+","+y_percent_scale(d.percentage)+")";
-					});
-
-			cpu_path.transition()
-					.attr("d",line(data.cpu));
-
-			cpu_svg.select(".x").transition().call(d3.svg.axis().scale(t_scale));
-		}
-
-		function mem_chart_change() {
-			mem_group.transition()
-					.attr("transform", function (d) {
-						return "translate("+t_scale(d.time)+","+y_percent_scale(d.percentage)+")";
-					});
-
-			mem_path.transition()
-					.attr("d",line(data.mem));
-
-			mem_svg.select(".x").transition().call(d3.svg.axis().scale(t_scale));
-
-			var areafunction = d3.svg.area()
-							.x(function(d){return t_scale(d.time)})
-							.y0(y_percent_scale(0))
-							.y1(function(d){return y_percent_scale(d.percentage)});
-
-			mem_area.transition()
-					.attr("d",areafunction(data.mem));
-		}
-
-		event_chart_change();
-		cpu_chart_change();
-		mem_chart_change();
-	}
-
 
 	function form2() {
+
+		y_percent_scale = d3.scale.linear().domain([0,100]).range([170, 20]);
 
 		var line = d3.svg.line()
 						.x(function(d){return order_scale(polylinear_helper(d.time))})
 						.y(function(d){return y_percent_scale(d.percentage)});
 
 		function event_chart_change() {
-			event_group.transition()
-				.attr("transform", function (d) {
+			event_group.attr("transform", function (d) {
 					return "translate("+order_scale(d.order)+",40)";
 				});
 
-			grect.transition()
-					.attr("width",80)
+			grect.attr("width",120)
 					.attr("height",30)
 					.attr("rx",5)
 					.attr("ry",5);
 
-			garrow.transition()
-					.attr("x1",80).attr("y1",15)
-					.attr("x2",90).attr("y2",15)
+			garrow.attr("x1",120).attr("y1",15)
+					.attr("x2",140).attr("y2",15)
 					.attr("opacity",1);
 
-			event_axis.transition()
-					.attr("opacity",0);
+			event_axis.attr("opacity",0);
 
-			gact.transition()
-				.attr("x", function (d) {return order_scale(d.start_num)})
+			gact.attr("x", function (d) {return order_scale(d.start_num)})
 				.attr("y", 20)
-				.attr("width", function (d) {return order_scale(d.end_num-d.start_num)+40})
+				.attr("width", function (d) {return order_scale(d.end_num-d.start_num)+120})
 				.attr("height", 80);
 		}
 
-		function cpu_chart_change() {
-			cpu_group.transition()
-				.attr("transform", function (d) {
-					return "translate("+order_scale(polylinear_helper(d.time))+","+y_percent_scale(d.percentage)+")";
-				});
-		
-			cpu_path.transition()
-					.attr("d",line(data.cpu));
-
-			cpu_svg.select(".x").transition().call(d3.svg.axis().scale(order_scale));
-		}
-		
-		function mem_chart_change() {
-			mem_group.transition()
-					.attr("transform", function (d) {
-						return "translate("+order_scale(polylinear_helper(d.time))+","+y_percent_scale(d.percentage)+")";
-					});
-
-			mem_path.transition()
-					.attr("d",line(data.mem));
-
-			mem_svg.select(".x").transition().call(d3.svg.axis().scale(order_scale));
-
-			var areafunction = d3.svg.area()
-							.x(function(d){return order_scale(polylinear_helper(d.time))})
-							.y0(y_percent_scale(0))
-							.y1(function(d){return y_percent_scale(d.percentage)});
-
-			mem_area.transition()
-					.attr("d",areafunction(data.mem));
-
-		}
-
 		event_chart_change();
-		cpu_chart_change();
-		mem_chart_change();
 	}
 
-	//attach function to the button
-	document.getElementById("toggle").onclick = function(){
-		if (toggle==1) {toggle=2; form2();}
-		else {toggle=1; form1();}
-	}
 
 	initialize();
+	form2();
 }
