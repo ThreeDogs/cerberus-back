@@ -45,13 +45,10 @@
 			</div>
 
 			<br><br><span class="dashboard_sub">Event Path</span>
-			<button id="toggle">Toggle</button>
 			<div id="event_flow">
-				<div id="event_chart"></div>
-				<div id="event_detail"></div>
 			</div>
 
-			<br><br><span class="dashboard_sub">Screenshot</span>
+			<br><span class="dashboard_sub">Screenshot</span>
 			<div id="screenshot_view">
 				<div id="screenshot_row">
 					<img src="/assets/screenshots/ss1.png">
@@ -63,13 +60,31 @@
 					<img src="/assets/screenshots/ss7.png">
 					<img src="/assets/screenshots/ss8.png">
 					<img src="/assets/screenshots/ss9.png">
+					<img src="/assets/screenshots/ss6.png">
+					<img src="/assets/screenshots/ss7.png">
+					<img src="/assets/screenshots/ss8.png">
+					<img src="/assets/screenshots/ss9.png">
+					<img src="/assets/screenshots/ss4.png">
+					<img src="/assets/screenshots/ss5.png">
 				</div>
 			</div>
+			<span class="dashboard_sub">Memory Usage</span>
 			<div id="mem_chart" class="graph_wrapper">
-				<div id="memory"></div>			
+				<div class="legend">
+					<img src="/assets/mem_legend.png">
+				</div>
+				<div id="memory">
+					
+				</div>			
 			</div>
+			<span class="dashboard_sub">CPU Usage</span>
 			<div id="cpu_chart" class="graph_wrapper">
-				<div id="cpu" class=""></div>
+				<div class="legend">
+					<img src="/assets/cpu_legend.png">
+				</div>
+				<div id="cpu">
+					
+				</div>
 			</div>
 
 			<!-- OTHER GRAPHS WILL GO IN HERE -->
@@ -79,4 +94,25 @@
 
 <script>
 	d3.json("http://127.0.0.1:3000/testdata.json",drawCharts);
+
+	$('#event_flow').scroll(function () {
+		$('#cpu').scrollLeft($(this).scrollLeft());
+		$('#memory').scrollLeft($(this).scrollLeft());
+		$('#screenshot_view').scrollLeft($(this).scrollLeft());
+	});
+	$('#cpu').scroll(function () {
+		$('#event_flow').scrollLeft($(this).scrollLeft());
+		$('#memory').scrollLeft($(this).scrollLeft());
+		$('#screenshot_view').scrollLeft($(this).scrollLeft());
+	});
+	$('#memory').scroll(function () {
+		$('#cpu').scrollLeft($(this).scrollLeft());
+		$('#event_flow').scrollLeft($(this).scrollLeft());
+		$('#screenshot_view').scrollLeft($(this).scrollLeft());
+	});
+	$('#screenshot_view').scroll(function () {
+		$('#cpu').scrollLeft($(this).scrollLeft());
+		$('#event_flow').scrollLeft($(this).scrollLeft());
+		$('#memory').scrollLeft($(this).scrollLeft());
+	});
 </script>
