@@ -260,7 +260,148 @@ $("#select_alldevices").click(function(){
 	$("#alltests").css("display","none");
 	$("#alldevices").css("display","true");});
 
-drawTestFailPies();
-drawDeviceFailure();
+var total_reports_show_data = {
+	"device_failure":{
+			"A":[7,17],
+			"B":[34,23],
+			"C":[5,10],
+			"D":[2,19]
+	},
+	"device_failure_detail": [
+		{
+			"device_name":"Galaxy S2",
+			"os_version":"2.3",
+			"fail_data": {
+				"A": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"B": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"C": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"D": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}]
+			}
+		},
+		{
+			"device_name":"LG Optimus",
+			"os_version":"2.2",
+			"fail_data":{
+				"A": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"B": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"C": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"D": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}]
+			}
+		},
+		{
+			"device_name":"Nexus S",
+			"os_version":"2.3",
+			"fail_data":{
+				"A": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"B": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"C": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"D": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}]
+			}
+		},
+		{
+			"device_name":"Nexus 7",
+			"os_version":"4.4",
+			"fail_data":{
+				"A": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"B": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"C": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"D": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}]
+			}
+		},
+		{
+			"device_name":"Galaxy S4",
+			"os_version":"4.3",
+			"fail_data":{
+				"A": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"B": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"C": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"D": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}]
+			}
+		}
+	]
+}
+
+drawTestFailPies(total_reports_show_data.device_failure);
+drawDeviceFailure(total_reports_show_data.device_failure_detail);
 
 </script>
