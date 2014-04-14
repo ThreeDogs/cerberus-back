@@ -65,3 +65,70 @@ class Report < CouchRest::Model::Base
 	# 	self.get_by_total_report_id_reports(total_report_id).select{|report| report.detail_report_id == report_id}.first	
 	# end
 end
+
+# {
+#     "app_version":"1.0",
+# 	"detail_report_id":1,
+# 	"device_id":"galaxy",
+# 	"running_time":"1200",
+# 	"status":"complete",
+# 	"test_scenario_id":1,
+# 	"total_report_id":1,
+#     "type": "Report",
+# 	"memory_reports":[
+#         {
+#             "id" : 1,
+#             "mem_total" : 10,
+#             "dalvik_heap_alloc": 10,
+#             "native_heap_size": 10,
+#             "mem_alloc": 10,
+#             "dalvik_heap_size": 10,
+#             "native_heap_alloc": 10,
+#             "type": "MemoryReport"
+#         },
+#         {
+#             "id" : 2,
+#             "mem_total" : 10,
+#             "dalvik_heap_alloc": 10,
+#             "native_heap_size": 10,
+#             "mem_alloc": 10,
+#             "dalvik_heap_size": 10,
+#             "native_heap_alloc": 10,
+#             "type": "MemoryReport"
+#         }
+#         ],
+# 	"cpu_reports":[
+#         {
+#             "id" : 1,
+#             "usage" : 10,
+#             "type" : "CpuReport"
+#         },
+#         {
+#             "id" : 2,
+#             "usage" : 20,
+#             "type" : "CpuReport"
+#         }
+#         ],
+# 	"motion_reports":[
+#         {
+#             "id" : 1,
+#             "activity_class" : "asd",
+#             "time_stamp" : 1,
+#             "param" : "123",
+#             "view" : "view",
+#             "sleep" : 3000,
+#             "action_type" : "Click",
+#             "type" : "MotionReport"
+#         },
+#         {
+#             "id" : 2,
+#             "activity_class" : "asd",
+#             "time_stamp" : 1,
+#             "param" : "123",
+#             "view" : "view",
+#             "sleep" : 3000,
+#             "action_type" : "Click",
+#             "type" : "MotionReport"
+#         }
+#         ]
+# }

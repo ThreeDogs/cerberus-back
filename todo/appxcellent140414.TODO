@@ -4,9 +4,9 @@ test scenarios api:
    post "/api/v1/test_scenarios", id: 1, motion_events: motion_events_json_array
  
 graph bind api:
- ☐ memory json
- ☐ cpu json
- ☐ motion event json
+ ✔ memory json @done (14-04-14 22:26)
+ ✔ cpu json @done (14-04-14 22:26)
+ ✔ motion event json @done (14-04-14 22:26)
 
 total information view:
  ☐ arragne total information
