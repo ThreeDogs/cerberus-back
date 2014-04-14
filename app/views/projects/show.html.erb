@@ -80,13 +80,243 @@
 
 <script>
   //requires data inserted as argument//
-  projectsShow();
-  drawFailByDevice();
-  drawTestResults();
-  drawCPUusage();
-  drawMemUsage();
-  drawNetworkTrend();
-  drawBatteryTrend();
-  drawThreadTrend();
-  drawFrameTrend();
+
+var data = {
+	
+	"fail_data": {"A":[7,17],"B":[34,23],"C":[5,10],"D":[2,19]},
+	
+	"fail_data_detail" : [
+		{
+			"device_name":"Galaxy S2",
+			"os_version":"2.3",
+			"fail_data": {
+				"A": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"B": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"C": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"D": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}]
+			}
+		},
+		{
+			"device_name":"LG Optimus",
+			"os_version":"2.2",
+			"fail_data":{
+				"A": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"B": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"C": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"D": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}]
+			}
+		},
+		{
+			"device_name":"Nexus S",
+			"os_version":"2.3",
+			"fail_data":{
+				"A": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"B": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"C": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"D": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}]
+			}
+		},
+		{
+			"device_name":"Nexus 7",
+			"os_version":"4.4",
+			"fail_data":{
+				"A": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"B": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"C": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"D": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}]
+			}
+		},
+		{
+			"device_name":"Galaxy S4",
+			"os_version":"4.3",
+			"fail_data":{
+				"A": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"B": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"C": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}],
+				"D": [{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"},
+					{"scenario_name":"login test","error_message":"out of memory error","link":"#"}]
+			}
+		}
+	],
+
+	"test_results_data": [
+		{"pass":5,"warning":4,"failure":3},
+		{"pass":5,"warning":4,"failure":3},
+		{"pass":5,"warning":4,"failure":3},
+		{"pass":6,"warning":4,"failure":2},
+		{"pass":6,"warning":4,"failure":2},
+		{"pass":6,"warning":4,"failure":2},
+		{"pass":7,"warning":3,"failure":2},
+		{"pass":7,"warning":3,"failure":2},
+		{"pass":9,"warning":2,"failure":1},
+		{"pass":9,"warning":2,"failure":1}
+	],
+
+	"cpu_trend_data": [
+		{"max": 90,"avg": 30,"min": 10},
+		{"max": 100,"avg": 35,"min": 10},
+		{"max": 85,"avg": 25,"min": 10},
+		{"max": 90,"avg": 30,"min": 10},
+		{"max": 85,"avg": 30,"min": 10},
+		{"max": 90,"avg": 40,"min": 5},
+		{"max": 90,"avg": 30,"min": 5},
+		{"max": 80,"avg": 20,"min": 10},
+		{"max": 80,"avg": 20,"min": 10},
+		{"max": 80,"avg": 20,"min": 10}
+	],
+
+	"mem_trend_data": [
+		{"max": 510,"avg": 100,"min": 50},
+		{"max": 510,"avg": 120,"min": 40},
+		{"max": 510,"avg": 130,"min": 40},
+		{"max": 510,"avg": 110,"min": 50},
+		{"max": 300,"avg": 90,"min": 40},
+		{"max": 480,"avg": 110,"min": 50},
+		{"max": 240,"avg": 130,"min": 50},
+		{"max": 400,"avg": 100,"min": 40},
+		{"max": 500,"avg": 120,"min": 40},
+		{"max": 200,"avg": 90,"min": 50}
+	],
+
+	"net_trend_data": [
+		{"max": 300,"avg": 100,"min": 50},
+		{"max": 300,"avg": 100,"min": 50},
+		{"max": 700,"avg": 80,"min": 50},
+		{"max": 200,"avg": 100,"min": 50},
+		{"max": 300,"avg": 120,"min": 50},
+		{"max": 400,"avg": 80,"min": 50},
+		{"max": 200,"avg": 100,"min": 50},
+		{"max": 400,"avg": 100,"min": 50},
+		{"max": 350,"avg": 100,"min": 50},
+		{"max": 300,"avg": 100,"min": 50}
+	],
+
+	"battery_trend_data": [
+		{"max": 100,"avg": 30,"min": 10},
+		{"max": 100,"avg": 35,"min": 11},
+		{"max": 100,"avg": 34,"min": 12},
+		{"max": 100,"avg": 38,"min": 14},
+		{"max": 100,"avg": 25,"min": 13},
+		{"max": 100,"avg": 29,"min": 9},
+		{"max": 100,"avg": 33,"min": 12},
+		{"max": 100,"avg": 27,"min": 14},
+		{"max": 100,"avg": 33,"min": 11},
+		{"max": 100,"avg": 36,"min": 11}
+	],
+
+	"thread_trend_data": [
+		{"max": 18,"avg": 14,"min": 7},
+		{"max": 19,"avg": 14,"min": 8},
+		{"max": 17,"avg": 13,"min": 7},
+		{"max": 20,"avg": 13,"min": 8},
+		{"max": 23,"avg": 14,"min": 8},
+		{"max": 19,"avg": 13,"min": 8},
+		{"max": 22,"avg": 14,"min": 7},
+		{"max": 21,"avg": 15,"min": 8},
+		{"max": 22,"avg": 14,"min": 8},
+		{"max": 20,"avg": 14,"min": 7}
+	],
+
+	"frame_trend_data": [
+		{"max": 35,"avg": 4,"min": 1},
+		{"max": 37,"avg": 5,"min": 1},
+		{"max": 34,"avg": 4.5,"min": 1},
+		{"max": 35,"avg": 4,"min": 1},
+		{"max": 25,"avg": 6,"min": 1},
+		{"max": 26,"avg": 5,"min": 1},
+		{"max": 22,"avg": 4.5,"min": 1},
+		{"max": 18,"avg": 4.5,"min": 1},
+		{"max": 19,"avg": 4,"min": 1},
+		{"max": 18,"avg": 4.5,"min": 1}
+	]
+}
+
+  projectsShow(data.fail_data);
+  drawFailByDevice(data.fail_data_detail);
+  drawTestResults(data.test_results_data);
+  drawCPUusage(data.cpu_trend_data);
+  drawMemUsage(data.mem_trend_data);
+  drawNetworkTrend(data.net_trend_data);
+  drawBatteryTrend(data.battery_trend_data);
+  drawThreadTrend(data.thread_trend_data);
+  drawFrameTrend(data.frame_trend_data);
 </script>
