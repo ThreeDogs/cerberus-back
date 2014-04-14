@@ -18,7 +18,9 @@ class TestScenario < ActiveRecord::Base
   has_many :motion_events
   has_many :detail_reports
 
+  accepts_nested_attributes_for :motion_events, :allow_destroy => true
+
   validates :name, presence: true
-  validates :description, presence: true
+  # validates :description, presence: true
   # validates :rank, presence: true
 end

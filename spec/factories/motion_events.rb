@@ -26,6 +26,5 @@ FactoryGirl.define do
     action_type "MyString"
     param "MyString"
     view "MyString"
-    report_id 1
   end
 end

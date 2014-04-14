@@ -30,7 +30,11 @@ gem 'rabl'
 
 gem 'carrierwave'
 
+# CouchDB connect
 gem 'couchrest_model'
+
+# Query Customizing
+gem 'activerecord-import'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

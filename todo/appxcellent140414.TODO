@@ -1,0 +1,12 @@
+Collect Test Scenarios & API
+test scenarios api:
+ ✔ post test scenarios @done (14-04-14 21:26)
+   post "/api/v1/test_scenarios", id: 1, motion_events: motion_events_json_array
+ 
+graph bind api:
+ ☐ memory json
+ ☐ cpu json
+ ☐ motion event json
+
+total information view:
+ ☐ arragne total information
