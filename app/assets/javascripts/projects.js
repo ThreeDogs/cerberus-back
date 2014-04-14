@@ -300,17 +300,20 @@ function drawFailByDevice () {
 	columns.append("rect")
 			.attr("width",function (d) {return x_scale(d.fail_data.B.length)-x_scale(0);}).attr("height",40)
 			.attr("x",function (d) {return x_scale(d.fail_data.A.length)-x_scale(0);}).attr("y",0)
-			.attr("fill","#ED9FBD");
+			.attr("fill","#ED9FBD")
+			.on("click",function (d) {renewDetailTable("B", d.device_name, d.fail_data.B)});
 
 	columns.append("rect")
 			.attr("width",function (d) {return x_scale(d.fail_data.C.length)-x_scale(0);}).attr("height",40)
 			.attr("x",function (d) {return x_scale(d.fail_data.A.length+d.fail_data.B.length)-x_scale(0);}).attr("y",0)
-			.attr("fill","#52C4D0");
+			.attr("fill","#52C4D0")
+			.on("click",function (d) {renewDetailTable("C", d.device_name, d.fail_data.C)});
 
 	columns.append("rect")
 			.attr("width",function (d) {return x_scale(d.fail_data.D.length)-x_scale(0);}).attr("height",40)
 			.attr("x",function (d) {return x_scale(d.fail_data.A.length+d.fail_data.B.length+d.fail_data.C.length)-x_scale(0);}).attr("y",0)
-			.attr("fill","#D6B6EF");
+			.attr("fill","#D6B6EF")
+			.on("click",function (d) {renewDetailTable("D", d.device_name, d.fail_data.D)});
 
 
 	columns.append("rect")
