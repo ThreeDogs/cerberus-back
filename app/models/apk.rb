@@ -5,6 +5,7 @@
 #  id         :integer          not null, primary key
 #  apk        :string(255)
 #  test_apk   :string(255)
+#  project_id :integer
 #  created_at :datetime
 #  updated_at :datetime
 #

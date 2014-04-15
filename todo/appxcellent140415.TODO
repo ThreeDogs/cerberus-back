@@ -1,0 +1,18 @@
+FrontEnd Connection
+View:
+ ☐ Project#Show Controller View
+   ☐ Recent Test OverView
+        ☐ Recent Test apk_name
+        ☐ Recent Test Date
+        ☐ Recent Test scenarios number
+        ☐ Recent Test Device number
+        ☐ Recent Test app_version
+ ☐ Project#Show API
+ ☐ Total_report
+
+
+note:
+  APK -> total_report
+  have to get the recent total_report. add attributes complete STATUS to total_report.
+  status of total_report is set false by default.
+  recent total_report is total_report of status true report latest.

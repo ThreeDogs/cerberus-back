@@ -4,6 +4,8 @@
 #
 #  id            :integer          not null, primary key
 #  test_datetime :string(255)
+#  status        :boolean          default(FALSE)
+#  apk_id        :integer
 #  project_id    :integer
 #  deviceship_id :integer
 #  created_at    :datetime
@@ -13,15 +15,20 @@
 require 'spec_helper'
 
 describe TotalReport do
-	let(:user) {User.new(email: "foobar@foobar.com", password: "foobarfoo", password_confirmation: "foobarfoo")}
-	let(:project) {user.projects.new(name: "First App")}
-	let(:apk) {project.apks.new}
-	subject(:total_report) {apk.total_reports.new}
-
+	# let(:user) {User.new(email: "foobar@foobar.com", password: "foobarfoo", password_confirmation: "foobarfoo")}
+	# let(:project) {user.projects.new(name: "First App")}
+	# let(:apk) {project.apks.new}
+	subject(:total_report) {create(:total_report_true)}
+	
 
 	it{should respond_to(:project)}
 	it{should respond_to(:apk)}
   it{should respond_to(:detail_reports)}
+  it{should respond_to(:status)}
+
+  # it "complete_total_reports scope test" do
+  # 	TotalReport.all.size.should == 1
+  # end
 end
 
 
