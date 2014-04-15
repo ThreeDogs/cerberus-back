@@ -2,7 +2,7 @@ function drawCharts(data) {
 
 
 	//SETUP width in relation to length of events
-	var width = data.events.length*140;
+	var width = data.motion_reports.length*140;
 	var event_svg_height, cpu_svg_height, mem_svg_height;
 
 	//SETUP margin
@@ -38,24 +38,30 @@ function drawCharts(data) {
 
 		var initialize_scales = function () {
 
+			// var sum = 0;
+			// for (var i in data.motion_reports) {
+			// 	sum = i.sleep
+			// }
+
+
 			var x_domain, x_range;
 
 			//SETUP SCALES (time axis & polylinear axis)
 			//**SCALES are FUNCTIONS that map a data to its position along the axis.**
-			x_domain = d3.extent(data.events, function (d) {return d.time*1.1});
+			x_domain = d3.extent(data.motion_reports, function (d) {return d.time_stamp*1.1});
 			x_range = [margin,width-margin];
 			t_scale = d3.scale.linear().domain(x_domain).range(x_range);
 
-			x_domain = [0,data.events.length+1];
+			x_domain = [0,data.motion_reports.length+1];
 			x_range = [0,width+100];
 			order_scale = d3.scale.linear().domain(x_domain).range(x_range);
 
 			x_domain = [];
 			x_range = [];
 			
-			for(var i=0; i<data.events.length; i++){
-				x_domain.push(data.events[i].time);
-				x_range.push(data.events[i].order);
+			for(var i=0; i<data.motion_reports.length; i++){
+				x_domain.push(data.motion_reports[i].time_stamp);
+				x_range.push(data.motion_reports[i].id);
 			}
 
 			polylinear_helper = d3.scale.linear().domain(x_domain).range(x_range);
@@ -89,7 +95,7 @@ function drawCharts(data) {
 			var color = d3.scale.category10();
 
 			event_group = event_svg.selectAll("g event")
-						.data(data.events)
+						.data(data.motion_reports)
 						.enter()
 						.append("g");
 
@@ -105,7 +111,7 @@ function drawCharts(data) {
 			gtext = event_group.append("text")
 						.attr("class", "event_text")
 						.attr("dy",20)
-						.text(function (d) {return d.event_type});
+						.text(function (d) {return d.action_type});
 
 			event_svg.append("marker")
 						.attr("id","arrow")
@@ -119,7 +125,7 @@ function drawCharts(data) {
 						.attr("fill","#5DBE88");
 
 			event_group.attr("transform", function (d) {
-				return "translate("+t_scale(d.time)+",80)";
+				return "translate("+t_scale(d.time_stamp)+",80)";
 			});
 
 			var activities = [];
@@ -127,17 +133,17 @@ function drawCharts(data) {
 			event_group.each(function (d, i) {
 				var flag = true;
 				var currentActivity = activities[activities.length-1];
-				if (currentActivity!=null && d.activity_name == currentActivity.name){
+				if (currentActivity!=null && d.activity_class == currentActivity.name){
 					flag = false;
-					currentActivity.end_time=d.time;
-					currentActivity.end_num=d.order;
+					currentActivity.end_time=d.time_stamp;
+					currentActivity.end_num=d.id;
 				}
 				if (flag) activities.push({
-					"name":d.activity_name,
-					"start_time":d.time,
-					"start_num":d.order,
-					"end_time":d.time,
-					"end_num":d.order
+					"name":d.activity_class,
+					"start_time":d.time_stamp,
+					"start_num":d.id,
+					"end_time":d.time_stamp,
+					"end_num":d.id
 				});
 			})
 
