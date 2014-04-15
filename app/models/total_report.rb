@@ -21,5 +21,7 @@ class TotalReport < ActiveRecord::Base
   has_many :detail_reports
 
   # validates :test_datetime, presence: true
-  
+  def apk_name
+  	apk.apk_name
+  end
 end

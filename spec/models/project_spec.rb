@@ -60,7 +60,9 @@ describe Project do
 	  end
 
 	  it "recent_total_report" do
-	  	project.recent_total_report.test_datetime.should == "recent"
+	  	recent_report = project.recent_total_report
+	  	recent_report.test_datetime.should == "recent"
+	  	recent_report.apk_name.should == "TestAndroid.apk"
 	  end
 	end
 end
