@@ -4,6 +4,7 @@
 #
 #  id            :integer          not null, primary key
 #  test_datetime :string(255)
+#  app_version   :string(255)
 #  status        :boolean          default(FALSE)
 #  apk_id        :integer
 #  project_id    :integer

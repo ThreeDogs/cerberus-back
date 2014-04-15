@@ -1,0 +1,12 @@
+FrontEnd Connection
+View:
+ ☐ Project#Show Controller View
+   ☐ Recent Test OverView
+        ✔ get Recent total report @done (14-04-16 00:47)
+        ✔ Recent Test apk_name @done (14-04-16 00:53)
+        ✔ Recent Test Date @done (14-04-16 00:58)
+        ✘ Recent Test scenarios number @cancelled (14-04-16 00:59)
+        ✘ Recent Test Device number @cancelled (14-04-16 00:59)
+        ✔ Recent Test app_version @done (14-04-16 01:01)
+ ☐ Project#Show API
+ ☐ Total_report

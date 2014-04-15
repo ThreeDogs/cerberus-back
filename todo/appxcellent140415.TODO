@@ -1,15 +1,15 @@
 FrontEnd Connection
 View:
- ☐ Project#Show Controller View
-   ☐ Recent Test OverView
+ ✘ Project#Show Controller View @cancelled (14-04-16 01:02)
+   ✘ Recent Test OverView @cancelled (14-04-16 01:02)
         ✔ get Recent total report @done (14-04-16 00:47)
         ✔ Recent Test apk_name @done (14-04-16 00:53)
-        ☐ Recent Test Date
-        ☐ Recent Test scenarios number
-        ☐ Recent Test Device number
-        ☐ Recent Test app_version
- ☐ Project#Show API
- ☐ Total_report
+        ✔ Recent Test Date @done (14-04-16 00:58)
+        ✘ Recent Test scenarios number @cancelled (14-04-16 00:59)
+        ✘ Recent Test Device number @cancelled (14-04-16 00:59)
+        ✔ Recent Test app_version @done (14-04-16 01:01)
+ ✘ Project#Show API @cancelled (14-04-16 01:02)
+ ✘ Total_report @cancelled (14-04-16 01:02)
 
 
 note:

@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20140323032853) do
 
   create_table "total_reports", force: true do |t|
     t.string   "test_datetime"
+    t.string   "app_version"
     t.boolean  "status",        default: false
     t.integer  "apk_id"
     t.integer  "project_id"

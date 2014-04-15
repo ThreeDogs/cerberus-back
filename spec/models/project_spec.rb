@@ -63,6 +63,7 @@ describe Project do
 	  	recent_report = project.recent_total_report
 	  	recent_report.test_datetime.should == "recent"
 	  	recent_report.apk_name.should == "TestAndroid.apk"
+	  	# puts recent_report.test_date
 	  end
 	end
 end

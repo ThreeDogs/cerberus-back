@@ -4,6 +4,7 @@
 #
 #  id            :integer          not null, primary key
 #  test_datetime :string(255)
+#  app_version   :string(255)
 #  status        :boolean          default(FALSE)
 #  apk_id        :integer
 #  project_id    :integer
@@ -23,5 +24,9 @@ class TotalReport < ActiveRecord::Base
   # validates :test_datetime, presence: true
   def apk_name
   	apk.apk_name
+  end
+
+  def test_date
+  	created_at.strftime("%Y/%m/%d %I:%M %p")
   end
 end

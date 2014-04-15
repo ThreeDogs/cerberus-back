@@ -4,6 +4,7 @@
 #
 #  id            :integer          not null, primary key
 #  test_datetime :string(255)
+#  app_version   :string(255)
 #  status        :boolean          default(FALSE)
 #  apk_id        :integer
 #  project_id    :integer
@@ -25,6 +26,7 @@ describe TotalReport do
 	it{should respond_to(:apk)}
   it{should respond_to(:detail_reports)}
   it{should respond_to(:status)}
+  it{should respond_to(:app_version)}
 
   # it "complete_total_reports scope test" do
   # 	TotalReport.all.size.should == 1
