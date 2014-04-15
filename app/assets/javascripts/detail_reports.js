@@ -1,5 +1,6 @@
 function drawCharts(data) {
 
+	//working
 
 	//SETUP width in relation to length of events
 	var width = data.motion_reports.length*140;
