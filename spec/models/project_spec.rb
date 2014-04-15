@@ -22,39 +22,47 @@ describe Project do
 
 
 	before do
-		@user = User.create(email: "foobar@foobar.com", password: "foobarfoo", password_confirmation: "foobarfoo")
-		@project = @user.projects.create(name: "First App")
+		@user = User.create!(email: "foobar@foobar.com", password: "foobarfoo", password_confirmation: "foobarfoo")
+		@project = @user.projects.create!(name: "First App")
 
 		@apk = project.apks.new
 		@uploader = ApkUploader.new(@apk, :apk)
 		@uploader.store!(File.open(path_to_file))
+		@apk.apk = @uploader
+		@apk.save!
 
-		@total_reports = []
-		@total_reports << @apk.total_reports.create(status: true)
+		(1..10).each do |i|
+			if i % 2 == 0			
+				@apk.total_reports.create(status: true, created_at: i.minutes.ago, project_id: @project.id)
+			else
+				@apk.total_reports.create(created_at: i.minutes.ago, project_id: @project.id)
+			end
+		end
+		@apk.total_reports.create(status: true, created_at: 1.seconds.ago, project_id: @project.id, test_datetime: "recent")
 	end
 
-	
- #  subject(:project) {user.projects.new(name: "First App")}
- #  let(:apk) {project.apks.new}
-	# let(:total_report) {apk.total_reports.new(status: true, project_id: project.id)}
-	# let(:total_report) {apk.total_reports.new(status: true, project_id: project.id)}
-	# let(:total_report) {apk.total_reports.new(status: true, project_id: project.id)}
-	# let(:total_report) {apk.total_reports.new(status: true, project_id: project.id)}
-	# let(:total_report) {apk.total_reports.new(project_id: project.id)}
-	# let(:total_report) {apk.total_reports.new(project_id: project.id)}
-	# let(:total_report) {apk.total_reports.new(project_id: project.id)}
+	after do
+		@uploader.remove!
+	end
 
-  # it{should respond_to(:user)} # belongs_to user
-  # it{should respond_to(:apks)}
-  # it{should respond_to(:total_reports)}
-  # it{should respond_to(:test_scenarios)}
-  # it{should respond_to(:name)}
+	subject(:project){@project}
 
-  # describe "RecentTestOverView" do
-  # it "status test sort" do
-  	# project.apks.size.should == 0
-  # end
-  
+  it{should respond_to(:user)} # belongs_to user
+  it{should respond_to(:apks)}
+  it{should respond_to(:total_reports)}
+  it{should respond_to(:test_scenarios)}
+  it{should respond_to(:name)}
+
+  describe "RecentTestOverView" do
+	  it "complete_total_reports" do
+	  	project.total_reports.size.should == 11
+	  	project.complete_total_reports.size.should == 6
+	  end
+
+	  it "recent_total_report" do
+	  	project.recent_total_report.test_datetime.should == "recent"
+	  end
+	end
 end
 
 describe User do

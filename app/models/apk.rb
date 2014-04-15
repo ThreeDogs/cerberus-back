@@ -11,8 +11,8 @@
 #
 
 class Apk < ActiveRecord::Base
-	before_create :make_test_apk_folder
-	after_create :generate_test_apk
+	# before_create :make_test_apk_folder
+	# after_create :generate_test_apk
 
 	belongs_to :project
 	has_many :total_reports

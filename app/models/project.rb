@@ -21,4 +21,8 @@ class Project < ActiveRecord::Base
   def complete_total_reports
   	total_reports.complete_total_reports
   end
+
+  def recent_total_report
+  	complete_total_reports.first
+  end
 end
