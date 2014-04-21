@@ -1,13 +1,11 @@
 function drawCharts(data) {
 
-	//something
-
 	//SETUP width in relation to length of events
-	var width = data.motion_reports.length*140;
+	var width = data.motion_reports.length*100;
 	var event_svg_height, cpu_svg_height, mem_svg_height;
 
 	//SETUP margin
-	var margin = 40;
+	var margin = 50;
 
 	//SETUP SCALES (time axis & polylinear axis)
 	//**SCALES are FUNCTIONS that map a data to its position along the axis.**
@@ -31,6 +29,7 @@ function drawCharts(data) {
 	//SETUP toggle to toggle between form1 - form2
 	var toggle=1;
 
+	//function to control which svg element shows on top
 	d3.selection.prototype.moveToFront = function() {
 		return this.each(function(){this.parentNode.appendChild(this);});
 	};
@@ -39,24 +38,19 @@ function drawCharts(data) {
 
 		var initialize_scales = function () {
 
-			// var sum = 0;
-			// for (var i in data.motion_reports) {
-			// 	sum = i.sleep
-			// }
-
-
 			var x_domain, x_range;
 
 			//SETUP SCALES (time axis & polylinear axis)
 			//**SCALES are FUNCTIONS that map a data to its position along the axis.**
-			x_domain = d3.extent(data.motion_reports, function (d) {return d.time_stamp*1.1});
+			x_domain = [0,data.motion_reports.length+1];
 			x_range = [margin,width-margin];
 			t_scale = d3.scale.linear().domain(x_domain).range(x_range);
 
 			x_domain = [0,data.motion_reports.length+1];
-			x_range = [0,width+100];
+			x_range = [margin,width+100];
 			order_scale = d3.scale.linear().domain(x_domain).range(x_range);
 
+			//polylinear hepler의 첫 값이 0이 아니면 깨짐
 			x_domain = [];
 			x_range = [];
 			
@@ -126,7 +120,7 @@ function drawCharts(data) {
 						.attr("fill","#5DBE88");
 
 			event_group.attr("transform", function (d) {
-				return "translate("+t_scale(d.time_stamp)+",80)";
+				return "translate("+t_scale(d.id)+",80)";
 			});
 
 			var activities = [];
@@ -184,16 +178,16 @@ function drawCharts(data) {
 
 			var line = d3.svg.line()
 							.interpolate("monotone")
-							.x(function(d){return t_scale(d.time)})
-							.y(function(d){return y_percent_scale(d.percentage)});
+							.x(function(d){return t_scale(d.id)})
+							.y(function(d){return y_percent_scale(d.usage)});
 
 			cpu_path = cpu_svg.append("path")
-							.attr("d",line(data.cpu))
+							.attr("d",line(data.cpu_reports))
 							.attr("class","cpu_path")
 							.attr("stroke","#60BD89");
 
 			cpu_group = cpu_svg.selectAll("g cpu")
-						.data(data.cpu)
+						.data(data.cpu_reports)
 						.enter()
 						.append("g");
 
@@ -204,7 +198,7 @@ function drawCharts(data) {
 						.attr("fill","white");
 
 			cpu_group.attr("transform", function (d) {
-				return "translate("+t_scale(d.time)+","+y_percent_scale(d.percentage)+")";
+				return "translate("+t_scale(d.id)+","+y_percent_scale(d.usage)+")";
 			});
 
 			cpu_axis = cpu_svg.append("g")
@@ -214,42 +208,42 @@ function drawCharts(data) {
 
 			cpu_svg.append("g")
 					.attr("class", "y axis")
-					.attr("transform","translate(40,0)")
+					.attr("transform","translate("+margin+",0)")
 					.call(d3.svg.axis().scale(y_percent_scale).ticks(5).orient("left"));
 		}
 
 		var initialize_mem_chart = function () {
 
-			y_percent_scale = d3.scale.linear().domain([0,64]).range([170, 20]);
+			var y_mem_scale = d3.scale.linear().domain([0,20000]).range([170, 20]);
 
 			var line = d3.svg.line()
 							.interpolate("monotone")
-							.x(function(d){return t_scale(d.time)})
-							.y(function(d){return y_percent_scale(d.dh_alloc)});
+							.x(function(d){return t_scale(d.id)})
+							.y(function(d){return y_mem_scale(d.dalvik_heap_alloc)});
 
 			mem_path_dh = mem_svg.append("path")
-							.attr("d",line(data.mem))
+							.attr("d",line(data.memory_reports))
 							.attr("class","mem_path_dh");
 
 			line = d3.svg.line()
 							.interpolate("monotone")
-							.x(function(d){return t_scale(d.time)})
-							.y(function(d){return y_percent_scale(d.nh_alloc)})
+							.x(function(d){return t_scale(d.id)})
+							.y(function(d){return y_mem_scale(d.native_heap_alloc)})
 
 			mem_path_nh = mem_svg.append("path")
-							.attr("d",line(data.mem))
+							.attr("d",line(data.memory_reports))
 							.attr("class","mem_path_nh");
 
 			mem_group = mem_svg.selectAll("g mem")
-						.data(data.mem)
+						.data(data.memory_reports)
 						.enter()
 						.append("g");
 
 			gmemdot_dh = mem_group.append("circle")
 						.attr("class","gmemdot_dh")
 						.attr("r",4)
-						.attr("cx",function (d) {return t_scale(d.time)})
-						.attr("cy",function (d) {return y_percent_scale(d.dh_alloc)})
+						.attr("cx",function (d) {return t_scale(d.id)})
+						.attr("cy",function (d) {return y_mem_scale(d.dalvik_heap_alloc)})
 						.attr("stroke","#5DBE88")
 						.attr("stroke-width",2)
 						.attr("fill","white");
@@ -257,8 +251,8 @@ function drawCharts(data) {
 			gmemdot_nh = mem_group.append("circle")
 						.attr("class","gmemdot_nh")
 						.attr("r",4)
-						.attr("cx",function (d) {return t_scale(d.time)})
-						.attr("cy",function (d) {return y_percent_scale(d.nh_alloc)})
+						.attr("cx",function (d) {return t_scale(d.id)})
+						.attr("cy",function (d) {return y_mem_scale(d.native_heap_alloc)})
 						.attr("stroke","#E7CC2F")
 						.attr("stroke-width",2)
 						.attr("fill","white");
@@ -270,13 +264,13 @@ function drawCharts(data) {
 
 			mem_svg.append("g")
 					.attr("class", "y axis")
-					.attr("transform","translate(40,0)")
-					.call(d3.svg.axis().scale(y_percent_scale).ticks(5).orient("left"));
+					.attr("transform","translate("+margin+",0)")
+					.call(d3.svg.axis().scale(y_mem_scale).ticks(5).orient("left"));
 
-			var areafunction = d3.svg.area()
-							.x(function(d){return t_scale(d.time)})
-							.y0(y_percent_scale(0))
-							.y1(function(d){return y_percent_scale(d.dh_alloc/d.dh_size*100)});
+			// var areafunction = d3.svg.area()
+			// 				.x(function(d){return t_scale(d.time)})
+			// 				.y0(y_percent_scale(0))
+			// 				.y1(function(d){return y_percent_scale(d.dh_alloc/d.dh_size*100)});
 
 			// mem_area = mem_svg.append("path")
 			// 				.attr("class","area")
@@ -293,13 +287,7 @@ function drawCharts(data) {
 
 	}
 
-	function form2() {
-
-		y_percent_scale = d3.scale.linear().domain([0,100]).range([170, 20]);
-
-		var line = d3.svg.line()
-						.x(function(d){return order_scale(polylinear_helper(d.time))})
-						.y(function(d){return y_percent_scale(d.percentage)});
+	function toggle_event_axis() {
 
 		function event_chart_change() {
 			event_group.attr("transform", function (d) {
@@ -323,10 +311,36 @@ function drawCharts(data) {
 				.attr("height", 80);
 		}
 
+		function cpu_chart_change () {
+			var line = d3.svg.line()
+					.interpolate("monotone")
+					.x(function(d){return order_scale(polylinear_helper(d.id))})
+					.y(function(d){return y_percent_scale(d.usage)});
+
+			cpu_axis.remove();
+			cpu_axis = cpu_svg.append("g")
+							.attr("class", "x axis")
+							.attr("transform", "translate(0,"+(cpu_svg_height-30)+")")
+							.call(d3.svg.axis().scale(order_scale));
+
+			cpu_group.transition().attr("transform", function (d) {
+				return "translate("+order_scale(polylinear_helper(d.id))+","+y_percent_scale(d.usage)+")";
+			});
+
+			cpu_path.transition().attr("d",line(data.cpu_reports));
+
+		}
+
+		function mem_chart_change () {
+			var y_mem_scale = d3.scale.linear().domain([0,20000]).range([170, 20]);
+
+
+		}
+
 		event_chart_change();
+		cpu_chart_change();
 	}
 
-
 	initialize();
-	form2();
+	d3.select("#time_axis_button").on("click",toggle_event_axis);
 }

@@ -17,10 +17,6 @@
  *= require test_scenarios
  */
 
- body{
- 	margin-top: 60px;
- }
-
 @font-face {
 	font-family: 'NanumBarunGothic';
 	src: url('../assets/NanumBarunGothic.eot');
@@ -45,11 +41,11 @@
 
 body {
 	font-family: '나눔고딕', 'NanumBarunGothic';
+	padding: 0px;
 }
 
 p {
 	font-family: '나눔고딕', 'NanumBarunGothic';
-	margin: 0;
 }
 
 .container {

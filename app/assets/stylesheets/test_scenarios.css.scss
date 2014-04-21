@@ -1,3 +1,135 @@
 // Place all the styles related to the TestScenarios controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+//**index**//
+#scenario_list {
+
+	#event_detail_scheme {
+		font-size: 22px;
+		color: rgb(40,112,68);
+		background-color: rgb(169,216,185);
+		text-align: center;
+		height: 35px;
+		padding: 0px;
+		border: none;
+	}
+
+	.event_list {
+		font-size: 21px;
+		color: rgb(96,94,90);
+		text-align: center;
+		padding: 0px;
+		border: none;
+	}
+
+	.row_rank {
+		width: 40px;
+		text-align: center;
+		border: 2pt solid rgb(169,216,185);
+	}
+	.row_name {
+		width: 150px;
+		text-align: center;
+		border: 2pt solid rgb(169,216,185);
+	}
+	.row_description {
+		width: 490px;
+		border: 2pt solid rgb(169,216,185);
+	}
+	.row_recent {
+		width: 310px;
+		text-align: center;
+		border: 2pt solid rgb(169,216,185);
+	}
+	.row_show {
+		width: 180px;
+		text-align: center;
+		border: 2pt solid rgb(169,216,185);
+		.link_button {
+			text-align: center;
+			width: 140px;
+			height: 36px;
+			margin: 0 auto;
+			border: 2px solid;
+			padding-top: 2px;
+			border-radius: 18px;
+			border-color: rgb(52,119,78);
+			background-color: rgb(219,238,225);
+		}
+	}
+}
+
+.filter {
+	padding: 10px;
+	width: 100%;
+	background-color: rgb(239,239,239);
+	margin-bottom: 20px;
+	.filter_row {
+		display: inline-block;
+		.key {
+			width: 100px;
+			float: left;
+			font-size: 23px;
+			color: rgb(40,112,68);
+		}
+		.value {
+			width: 1050px;
+			float: left;
+			font-size: 21px;
+			color: rgb(96,94,90);
+		}
+	}
+}
+
+
+//**show**//
+
+#scenario_info_detail {
+	padding: 20px 40px;
+	background-color: rgb(239,239,239);
+	.scenario_info_title {
+		display: inline-block;
+		position: relative;
+		width: 100%;
+		height: 50px;
+		.rank {
+			position: absolute;
+			bottom: -6px;
+			left: 0px;
+			float: left;
+			font-size: 42px;
+			color: rgb(40,112,68);
+		}
+		.test_name {
+			position: absolute;
+			bottom: 0px;
+			left: 40px;
+			float: left;
+			font-size: 24px;
+			color: rgb(93,190,136);
+		}
+		.edit_button {
+			position: absolute;
+			bottom: 0px;
+			right: 0px;
+			float: right;
+		}
+	}
+	.detail_content {
+		font-size: 21px;
+		color: rgb(96,94,90);
+	}
+	.recently_tested {
+		margin-top: 10px;
+		font-size: 21px;
+		color: rgb(96,94,90);
+	}
+}
+
+#scenario_event_path {
+	width: 100%;
+	padding: 10px 10px 0 10px;
+	background-color: rgb(239,239,239);
+	overflow-x: scroll;
+}

@@ -4,35 +4,49 @@
 	<%= render 'shared/side_bar' %>
 	<div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2">
 		<div class="container">
+			<div class="total_report_head">
+	    		<p><img src="/assets/scenario_sidebar.png">Test Scenarios</p>
+	    	</div>
 
-			<h2>Test Scenario</h2>
-			<div id="filter" class="outline col-md-12">
-				<div>
-					<strong>Rank</strong>
-					<input name="rank" type="checkbox" value="a">A
-					<input name="rank" type="checkbox" value="b">B
-					<input name="rank" type="checkbox" value="c">C
+	    	<br>
+			<div class="filter">
+				<div class="filter_row">
+					<div class="key">Rank</div>
+					<div class="value">
+						<input type="checkbox" name="rank" value="all">All 
+						<input type="checkbox" name="rank" value="a">A 
+						<input type="checkbox" name="rank" value="b">B 
+						<input type="checkbox" name="rank" value="c">C 
+						<input type="checkbox" name="rank" value="d">D 
+					</div>
 				</div>
-				<div>
-					<strong>Scenario Name</strong>
-					<input name="title" type="text">
+				<div class="filter_row">
+					<div class="key">Name</div>
+					<div class="value">
+						<select id = "myList">
+						<option value = "1">one</option>
+						<option value = "2">two</option>
+						<option value = "3">three</option>
+						<option value = "4">four</option>
+						</select>
+					</div>
 				</div>
 			</div>
-			<table id="scenario_list" class="table table-bordered table-condensed">
+			<table id="scenario_list">
 				<tr id="event_detail_scheme" class="row">
-					<td class="col-md-1">Rank</td>
-					<td class="col-md-2">Name</td>
-					<td class="col-md-4">Description</td>
-					<td class="col-md-3">Recently tested on</td>
-					<td class="col-md-2">Show</td>
+					<td class="row_rank"></td>
+					<td class="row_name">Name</td>
+					<td class="row_description">Description</td>
+					<td class="row_recent">Recently tested on</td>
+					<td class="row_show"></td>
 				</tr>
 				<!-- LOOP -->
-				<tr class="row">
-					<td>A</td>
-					<td>Login test</td>
-					<td>login test description blahblahblah</td>
-					<td>14.MAR.03 3:00pm</td>
-					<td>Show</td>
+				<tr class="row event_list">
+					<td class="row_rank">A</td>
+					<td class="row_name">Login test</td>
+					<td class="row_description">login test description blahblahblah</td>
+					<td class="row_recent">14.MAR.03 3:00pm</td>
+					<td class="row_show"><div class="link_button">Show</div></td>
 				</tr>
 				<!-- END LOOP -->
 			</table>

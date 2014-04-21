@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 20140421114559) do
   add_index "test_scenarios", ["project_id"], name: "index_test_scenarios_on_project_id"
 
   create_table "total_reports", force: true do |t|
+    t.string   "apk"
     t.string   "test_datetime"
     t.string   "app_version"
     t.boolean  "status",        default: false
@@ -114,7 +115,6 @@ ActiveRecord::Schema.define(version: 20140421114559) do
     t.datetime "updated_at"
   end
 
-  add_index "total_reports", ["apk_id"], name: "index_total_reports_on_apk_id"
   add_index "total_reports", ["project_id"], name: "index_total_reports_on_project_id"
 
   create_table "users", force: true do |t|
