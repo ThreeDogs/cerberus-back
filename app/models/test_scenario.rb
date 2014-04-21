@@ -20,6 +20,8 @@ class TestScenario < ActiveRecord::Base
 
   accepts_nested_attributes_for :motion_events, :allow_destroy => true
 
+  # rank 0,1,2,3 A,B,C,D
+
   validates :name, presence: true
   # validates :description, presence: true
   # validates :rank, presence: true

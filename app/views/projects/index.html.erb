@@ -5,164 +5,30 @@
     <img src="/assets/Project_list.png">My projects list
   </div>
 
-
   <% @projects.each do |project| %>
-
-  <div class="project_box">
-    <div class="<%= project.get_color_band %>"></div>
-    <div class="app_icon_box"><%= image_tag project.get_icon %></div>
-    <div class="app_info_box">
-      <p class="project_title"><%= link_to project.name, project_path(project) %></p>
-      <span class="date_version">Ver</span><%= project.recent_report_app_version %><br>
-      <span class="date_version">Date</span><%= project.recent_report_test_date %>
-    </div>
-    <div class="test_fail_box">
-      <p>Test Fail</p>
-      <div class="test_fail_num">
-        <div class="test_fail_each">A
-          <div class="test_success">17
-            <div class="test_fail" style="width:70px">7</div>
-            <!-- width: fail percentage * 170px -->
-          </div>
-        </div>
-        <div class="test_fail_each">B
-          <div class="test_success">23
-            <div class="test_fail" style="width:105px">34</div>
-            <!-- width: fail percentage * 170px -->
-          </div>
-        </div>
-        <div class="test_fail_each">C
-          <div class="test_success">10
-            <div class="test_fail" style="width:60px">5</div>
-            <!-- width: fail percentage * 170px -->
-          </div>
-        </div>
-        <div class="test_fail_each">D
-          <div class="test_success">19
-            <div class="test_fail" style="width:20px">2</div>
-            <!-- width: fail percentage * 170px -->
-          </div>
+    <div class="project_box">
+      <div class="<%= project.get_color_band %>"></div>
+      <div class="app_icon_box"><%= image_tag project.get_icon %></div>
+      <div class="app_info_box">
+        <p class="project_title"><%= link_to project.name, project_path(project) %></p>
+        <span class="date_version">Ver</span><%= project.recent_report_app_version %><br>
+        <span class="date_version">Date</span><%= project.recent_report_test_date %>
+      </div>
+      <div class="test_fail_box">
+        <p>Test Fail</p>
+        <div class="test_fail_num">
+          <% project.recent_report_rank_status.each do |key, array| %>
+            <div class="test_fail_each"><%= key %> 
+              <div class="test_success"><%= array[0] %>
+                <div class="test_fail" style="width:70px"><%= array[1] %></div>
+                <!-- width: fail percentage * 170px -->
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
-
-  </div>
-
   <% end %>
-
-  <!-- APP#2 -->
-  <div class="project_box">
-    <div class="color_band"></div>
-    <div class="app_icon_box"><img src="/assets/facebook.png"></div>
-    <div class="app_info_box">
-      <p class="project_title">Facebook</p>
-      <span class="date_version">Ver</span>2.7.13<br>
-      <span class="date_version">Date</span>14.MAR.20 4:19pm
-    </div>
-    <div class="test_fail_box">
-      <p>Test Fail</p>
-      <div class="test_fail_num">
-        <div class="test_fail_each">A
-          <div class="test_success">22
-          </div>
-        </div>
-        <div class="test_fail_each">B
-          <div class="test_success">39
-            <!-- width: fail percentage * 170px -->
-          </div>
-        </div>
-        <div class="test_fail_each">C
-          <div class="test_success">19
-            <div class="test_fail" style="width:33px">3</div>
-            <!-- width: fail percentage * 170px -->
-          </div>
-        </div>
-        <div class="test_fail_each">D
-          <div class="test_success">3
-            <div class="test_fail" style="width:143px">13</div>
-            <!-- width: fail percentage * 170px -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- APP#3 -->
-  <div class="project_box">
-    <div class="color_band_warning"></div>
-    <div class="app_icon_box"><img src="/assets/whatsapp.png"></div>
-    <div class="app_info_box">
-      <p class="project_title">What's App</p>
-      <span class="date_version">Ver</span>1.5.2<br>
-      <span class="date_version">Date</span>14.MAR.18 9:18pm
-    </div>
-    <div class="test_fail_box">
-      <p>Test Fail</p>
-      <div class="test_fail_num">
-        <div class="test_fail_each">A
-          <div class="test_success">12
-            <!-- width: fail percentage * 170px -->
-          </div>
-        </div>
-        <div class="test_fail_each">B
-          <div class="test_success">13
-            <div class="test_fail" style="width:20px">2</div>
-            <!-- width: fail percentage * 170px -->
-          </div>
-        </div>
-        <div class="test_fail_each">C
-          <div class="test_success">10
-            <div class="test_fail" style="width:60px">5</div>
-            <!-- width: fail percentage * 170px -->
-          </div>
-        </div>
-        <div class="test_fail_each">D
-          <div class="test_success">
-            <!-- width: fail percentage * 170px -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- APP#4 -->
-  <div class="project_box">
-    <div class="color_band_warning"></div>
-    <div class="app_icon_box"><img src="/assets/kakaotalk.png"></div>
-    <div class="app_info_box">
-      <p class="project_title">Kakaotalk</p>
-      <span class="date_version">Ver</span>3.0.11<br>
-      <span class="date_version">Date</span>14.MAR.28 7:28am
-    </div>
-    <div class="test_fail_box">
-      <p>Test Fail</p>
-      <div class="test_fail_num">
-        <div class="test_fail_each">A
-          <div class="test_success">8
-            <!-- width: fail percentage * 170px -->
-          </div>
-        </div>
-        <div class="test_fail_each">B
-          <div class="test_success">34
-            <div class="test_fail" style="width:45px">8</div>
-            <!-- width: fail percentage * 170px -->
-          </div>
-        </div>
-        <div class="test_fail_each">C
-          <div class="test_success">14
-            <div class="test_fail" style="width:95px">17</div>
-            <!-- width: fail percentage * 170px -->
-          </div>
-        </div>
-        <div class="test_fail_each">D
-          <div class="test_success">21
-            <div class="test_fail" style="width:43px">6</div>
-            <!-- width: fail percentage * 170px -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <%= link_to 'New Project', new_project_path %> 
 </div>

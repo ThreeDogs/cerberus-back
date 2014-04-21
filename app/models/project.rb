@@ -11,7 +11,7 @@
 #
 
 class Project < ActiveRecord::Base
-
+  default_scope { joins(:total_reports).order('total_reports.created_at DESC') } 
   mount_uploader :icon, IconUploader
 
 	belongs_to :user
@@ -36,6 +36,14 @@ class Project < ActiveRecord::Base
 
   def recent_report_test_date
     recent_total_report.test_date
+  end
+
+  def recent_report_created_at
+    recent_total_report.created_at
+  end
+
+  def recent_report_rank_status
+    recent_total_report.test_rank_status
   end
 
   def get_icon

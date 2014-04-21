@@ -20,12 +20,12 @@ test_path_to_file = "#{Rails.root}/lib/test_apk_generator/NewTestTestAndroid.apk
 
 (1..10).each do |i|
 	if i % 2 == 0			
-		@apk.total_reports.create(status: true, created_at: i.minutes.ago, project_id: @project.id, app_version: "1.0")
+		@apk.total_reports.create(status: true, created_at: i.minutes.ago, project_id: 1, app_version: "1.0")
 	else
-		@apk.total_reports.create(created_at: i.minutes.ago, project_id: @project.id, app_version: "1.0")
+		@apk.total_reports.create(created_at: i.minutes.ago, project_id: 1, app_version: "1.0")
 	end
 end
-@apk.total_reports.create(status: true, created_at: 1.seconds.ago, project_id: @project.id, test_datetime: "recent", app_version: "1.0")
+@apk.total_reports.create(status: true, created_at: 1.seconds.ago, project_id: 1, test_datetime: "recent", app_version: "1.0")
 
 # @detail_report = @total_report.detail_reports.create!(app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: 0)
 

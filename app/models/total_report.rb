@@ -31,10 +31,17 @@ class TotalReport < ActiveRecord::Base
   end
 
   def number_of_scenarios
+    # implement
     112
   end
 
   def number_of_devices
+    # implement
     10
+  end
+
+  def test_rank_status
+    # implement
+    {A:[17,7],B:[23,34], C:[10,5], D:[19,2]}
   end
 end
