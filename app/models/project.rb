@@ -4,12 +4,16 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string(255)
+#  icon       :string(255)
 #  user_id    :integer
 #  created_at :datetime
 #  updated_at :datetime
 #
 
 class Project < ActiveRecord::Base
+
+  mount_uploader :icon, IconUploader
+
 	belongs_to :user
 	has_many :apks
 	has_many :total_reports
@@ -24,5 +28,23 @@ class Project < ActiveRecord::Base
 
   def recent_total_report
   	complete_total_reports.first
+  end
+
+  def recent_report_app_version
+    recent_total_report.app_version    
+  end
+
+  def recent_report_test_date
+    recent_total_report.test_date
+  end
+
+  def get_icon
+    # icon.
+    icon.blank? ? "/assets/default_app_icon.png" : icon.to_s
+  end
+
+  def get_color_band
+    result = "color_band"
+    # state _fail, _warning
   end
 end

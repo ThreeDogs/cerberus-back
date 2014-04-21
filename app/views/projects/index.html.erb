@@ -6,13 +6,15 @@
   </div>
 
 
+  <% @projects.each do |project| %>
+
   <div class="project_box">
-    <div class="color_band_fail"></div>
-    <div class="app_icon_box"><img src="/assets/todaybreaker.png"></div>
+    <div class="<%= project.get_color_band %>"></div>
+    <div class="app_icon_box"><%= image_tag project.get_icon %></div>
     <div class="app_info_box">
-      <p class="project_title"><a href="http://127.0.0.1:3000/projects/1/">Today Breaker</a></p>
-      <span class="date_version">Ver</span>0.9.3<br>
-      <span class="date_version">Date</span>14.MAR.20 9:20pm
+      <p class="project_title"><%= link_to project.name, project_path(project) %></p>
+      <span class="date_version">Ver</span><%= project.recent_report_app_version %><br>
+      <span class="date_version">Date</span><%= project.recent_report_test_date %>
     </div>
     <div class="test_fail_box">
       <p>Test Fail</p>
@@ -45,6 +47,8 @@
     </div>
 
   </div>
+
+  <% end %>
 
   <!-- APP#2 -->
   <div class="project_box">
@@ -161,5 +165,4 @@
   </div>
 
   <%= link_to 'New Project', new_project_path %> 
->>>>>>> 673ce114a4957466b813117c9721b41eb3ca1439
 </div>

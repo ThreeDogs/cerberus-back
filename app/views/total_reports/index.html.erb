@@ -7,67 +7,31 @@
 	    	<div class="total_report_head">
 	    		<p><img src="/assets/Result.png">Test results</p>
 	    	</div>
+	    	<% @total_reports.each do |total_report| %>
 	    	<!--LOOP-->
 	    	<div class="test_result">
 	    		<div class="app_info_box">
-	    			<p>TodayBreaker.APK</p>
-	    			<p>14.03.29, 9:40am</p>
-	    			<p>112 Test Scenarios</p>
-	    			<p>10 Devices</p>
+	    			<p><%= total_report.apk_name %></p>
+	    			<p><%= total_report.test_date %></p>
+	    			<p><%= total_report.number_of_scenarios %> Test Scenarios</p>
+	    			<p><%= total_report.number_of_devices %> Devices</p>
 				</div>
 				<div class="app_version_box">
 					<p>App version</p>
-					<p class="big_version">3.6.12</p>
+					<p class="big_version"><%= total_report.app_version %></p>
 				</div>
-				<div id="test_fail_box_1" class="test_fail_box">
+				<div id="test_fail_box_<%= total_report.id %>" class="test_fail_box">
 					<!-- TEST_FAILURE_GRAPH_SVG<br>
 					REQUIRES UNIQUE ID -->
 				</div>
-				<a href="http://127.0.0.1:3000/projects/1/total_reports/1/">
+				<%= link_to project_total_report_path(@project, total_report) do %>
 				<div class="report_link">
 					<div class="link_button">FULL REPORT</div>
 				</div>
-				</a>
+				<% end %>
 	    	</div>
+	    	<% end %>
 	    	<!--END LOOP-->
-	    	<div class="test_result">
-	    		<div class="app_info_box">
-	    			<p>TodayBreaker.APK</p>
-	    			<p>14.03.28, 12:38am</p>
-	    			<p>83 Test Scenarios</p>
-	    			<p>16 Devices</p>
-				</div>
-				<div class="app_version_box">
-					<p>App version</p>
-					<p class="big_version">3.6.11</p>
-				</div>
-				<div id="test_fail_box_2" class="test_fail_box">
-					<!-- TEST_FAILURE_GRAPH_SVG<br>
-					REQUIRES UNIQUE ID -->
-				</div>
-				<div class="report_link">
-					<div class="link_button">FULL REPORT</div>
-				</div>
-	    	</div>
-	    	<div class="test_result">
-	    		<div class="app_info_box">
-	    			<p>TodayBreaker.APK</p>
-	    			<p>14.03.27, 5:59pm</p>
-	    			<p>83 Test Scenarios</p>
-	    			<p>16 Devices</p>
-				</div>
-				<div class="app_version_box">
-					<p>App version</p>
-					<p class="big_version">3.6.10</p>
-				</div>
-				<div id="test_fail_box_3" class="test_fail_box">
-					<!-- TEST_FAILURE_GRAPH_SVG<br>
-					REQUIRES UNIQUE ID -->
-				</div>
-				<div class="report_link">
-					<div class="link_button">FULL REPORT</div>
-				</div>
-	    	</div>
 
 	    </div>
 	</div>

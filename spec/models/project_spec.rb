@@ -4,6 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string(255)
+#  icon       :string(255)
 #  user_id    :integer
 #  created_at :datetime
 #  updated_at :datetime
@@ -52,6 +53,10 @@ describe Project do
   it{should respond_to(:total_reports)}
   it{should respond_to(:test_scenarios)}
   it{should respond_to(:name)}
+  
+  it "project icon" do
+  	project.get_icon.should == "/assets/default_app_icon.png"
+  end
 
   describe "RecentTestOverView" do
 	  it "complete_total_reports" do

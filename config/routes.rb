@@ -5,9 +5,6 @@ CerberusBack::Application.routes.draw do
       resources :reports, only: [] do
         member do
           get 'get_report_infos'
-          # get 'get_memory_reports'
-          # get 'get_cpu_reports'
-          # get 'get_motion_reports'
         end
       end     
     end

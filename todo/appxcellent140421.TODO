@@ -1,5 +1,10 @@
 FrontEnd Connection
 View:
- ☐ Project#Show Controller View
+ ✔ Project#Show Controller View @done (14-04-21 19:02)
  ☐ Project#Show API
- ☐ Total_report
+ ✔ total_report#index @done (14-04-21 19:10)
+ ☐ total_report#index API
+ ☐ Project#Index
+   ✔ Color band fail @done (14-04-21 19:28)
+   ✔ App Icon @done (14-04-21 19:27)
+   ☐ Rank mapping
