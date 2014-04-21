@@ -1,608 +1,688 @@
 {
-	"events":[
+	"motion_reports":[
 		{
-			"time": 0,
-			"order": 0,
-			"activity_name": "activity4",
-			"event_name": "uDLdbXgx",
-			"event_type": "click",
-			"view": "gsbfCCse"
+			"time_stamp": 0,
+			"id": 0,
+			"activity_class": "activity1",
+			"param": "MUyMX690",
+			"action_type": "setdate",
+			"view": "vaYY1LTE"
 		},
 		{
-			"time": 5.5,
-			"order": 1,
-			"activity_name": "activity1",
-			"event_name": "QoBBlL44",
-			"event_type": "hardkey",
-			"view": "XYHkE8Ec"
+			"time_stamp": 4.2,
+			"id": 1,
+			"activity_class": "activity1",
+			"param": "1LTYLiwf",
+			"action_type": "optionmenu",
+			"view": "klaHASBI"
 		},
 		{
-			"time": 7.3,
-			"order": 2,
-			"activity_name": "activity1",
-			"event_name": "tMBR9mmG",
-			"event_type": "hardkey",
-			"view": "ZvNy4Dga"
+			"time_stamp": 5.9,
+			"id": 2,
+			"activity_class": "activity3",
+			"param": "inDXO4eD",
+			"action_type": "optionmenu",
+			"view": "iaQTrGCE"
 		},
 		{
-			"time": 8.4,
-			"order": 3,
-			"activity_name": "activity5",
-			"event_name": "87Ji3KZ2",
-			"event_type": "setdate",
-			"view": "nnl7h9Jj"
+			"time_stamp": 9.0,
+			"id": 3,
+			"activity_class": "activity3",
+			"param": "aOCbhWEZ",
+			"action_type": "hardkey",
+			"view": "HJEO2Og4"
 		},
 		{
-			"time": 10.8,
-			"order": 4,
-			"activity_name": "activity5",
-			"event_name": "LV9tzmYC",
-			"event_type": "setdate",
-			"view": "YfHhRVEm"
+			"time_stamp": 12.5,
+			"id": 4,
+			"activity_class": "activity3",
+			"param": "0MUzD9k7",
+			"action_type": "click",
+			"view": "aBF9tYwZ"
 		},
 		{
-			"time": 12.5,
-			"order": 5,
-			"activity_name": "activity5",
-			"event_name": "IPmm6EWE",
-			"event_type": "click",
-			"view": "egR31dim"
+			"time_stamp": 16.1,
+			"id": 5,
+			"activity_class": "activity3",
+			"param": "ye0AD9mI",
+			"action_type": "optionmenu",
+			"view": "ru2VShAg"
 		},
 		{
-			"time": 14.7,
-			"order": 6,
-			"activity_name": "activity5",
-			"event_name": "VeTGi8N5",
-			"event_type": "setdate",
-			"view": "aQFWjupv"
+			"time_stamp": 18.6,
+			"id": 6,
+			"activity_class": "activity3",
+			"param": "cS62Wanx",
+			"action_type": "click",
+			"view": "ddmD9dm4"
 		},
 		{
-			"time": 17.9,
-			"order": 7,
-			"activity_name": "activity5",
-			"event_name": "ixvSDGIz",
-			"event_type": "optionmenu",
-			"view": "sZqwUHPX"
+			"time_stamp": 21.5,
+			"id": 7,
+			"activity_class": "activity3",
+			"param": "DZqn3rJP",
+			"action_type": "click",
+			"view": "kQi2PcTl"
 		},
 		{
-			"time": 21.6,
-			"order": 8,
-			"activity_name": "activity5",
-			"event_name": "dpgbDPys",
-			"event_type": "optionmenu",
-			"view": "i37RA30G"
+			"time_stamp": 24.6,
+			"id": 8,
+			"activity_class": "activity4",
+			"param": "c390ZaQ8",
+			"action_type": "setdate",
+			"view": "E2yvfI2s"
 		},
 		{
-			"time": 23.6,
-			"order": 9,
-			"activity_name": "activity5",
-			"event_name": "nCInAvXC",
-			"event_type": "setdate",
-			"view": "uOE7HNsM"
+			"time_stamp": 27.7,
+			"id": 9,
+			"activity_class": "activity2",
+			"param": "0DpOA21y",
+			"action_type": "optionmenu",
+			"view": "8DqMN64l"
 		},
 		{
-			"time": 26.3,
-			"order": 10,
-			"activity_name": "activity2",
-			"event_name": "9UGn88gc",
-			"event_type": "click",
-			"view": "wNcxAxbe"
+			"time_stamp": 29.1,
+			"id": 10,
+			"activity_class": "activity2",
+			"param": "r1eGVJip",
+			"action_type": "setdate",
+			"view": "QsZWha1M"
 		},
 		{
-			"time": 29.9,
-			"order": 11,
-			"activity_name": "activity1",
-			"event_name": "Elh2BmXR",
-			"event_type": "optionmenu",
-			"view": "skogon95"
+			"time_stamp": 30.9,
+			"id": 11,
+			"activity_class": "activity2",
+			"param": "v2coXoWC",
+			"action_type": "setdate",
+			"view": "cpxHiSdi"
 		},
 		{
-			"time": 32.0,
-			"order": 12,
-			"activity_name": "activity1",
-			"event_name": "dgqy4o6q",
-			"event_type": "click",
-			"view": "4tKJrw7b"
+			"time_stamp": 33.0,
+			"id": 12,
+			"activity_class": "activity2",
+			"param": "oUj2FoJa",
+			"action_type": "hardkey",
+			"view": "WwZaW1bH"
 		},
 		{
-			"time": 33.4,
-			"order": 13,
-			"activity_name": "activity3",
-			"event_name": "zOdXl5Ub",
-			"event_type": "setdate",
-			"view": "sdPmiefv"
+			"time_stamp": 36.1,
+			"id": 13,
+			"activity_class": "activity2",
+			"param": "wMfDsL18",
+			"action_type": "click",
+			"view": "a6sOHBAT"
 		},
 		{
-			"time": 36.1,
-			"order": 14,
-			"activity_name": "activity3",
-			"event_name": "9IzGrdNH",
-			"event_type": "optionmenu",
-			"view": "GGOrrIis"
+			"time_stamp": 37.6,
+			"id": 14,
+			"activity_class": "activity1",
+			"param": "kppJDuYs",
+			"action_type": "click",
+			"view": "M95qVlBM"
 		},
 		{
-			"time": 37.4,
-			"order": 15,
-			"activity_name": "activity5",
-			"event_name": "7WQHRPA3",
-			"event_type": "hardkey",
-			"view": "sR7H0DZ0"
+			"time_stamp": 40.6,
+			"id": 15,
+			"activity_class": "activity1",
+			"param": "JmhWr3QZ",
+			"action_type": "optionmenu",
+			"view": "xBfxmxcc"
 		},
 		{
-			"time": 41.3,
-			"order": 16,
-			"activity_name": "activity5",
-			"event_name": "8HjYJPPL",
-			"event_type": "hardkey",
-			"view": "PVE0txi0"
+			"time_stamp": 44.4,
+			"id": 16,
+			"activity_class": "activity1",
+			"param": "nfBTCBAw",
+			"action_type": "setdate",
+			"view": "6FEuSArk"
 		},
 		{
-			"time": 44.4,
-			"order": 17,
-			"activity_name": "activity5",
-			"event_name": "Q0mrUsQ9",
-			"event_type": "optionmenu",
-			"view": "fEf65SVv"
+			"time_stamp": 46.2,
+			"id": 17,
+			"activity_class": "activity1",
+			"param": "kl8jlOmZ",
+			"action_type": "setdate",
+			"view": "5GtjiwAU"
 		},
 		{
-			"time": 46.9,
-			"order": 18,
-			"activity_name": "activity5",
-			"event_name": "LaBLu860",
-			"event_type": "hardkey",
-			"view": "mC75zcHj"
+			"time_stamp": 48.5,
+			"id": 18,
+			"activity_class": "activity3",
+			"param": "xZ7wdfh0",
+			"action_type": "setdate",
+			"view": "AMOaVEzh"
 		},
 		{
-			"time": 48.0,
-			"order": 19,
-			"activity_name": "activity5",
-			"event_name": "zmP0A1qg",
-			"event_type": "setdate",
-			"view": "TLXk76yZ"
+			"time_stamp": 50.2,
+			"id": 19,
+			"activity_class": "activity3",
+			"param": "vPqzDtqL",
+			"action_type": "click",
+			"view": "GDuMnCKb"
 		}
 	],
-	"cpu":[
+	"cpu_reports":[
 		{
-			"time": 0,
-			"percentage": 3
+			"id": 0,
+			"usage": 13
 		},
 		{
-			"time": 1,
-			"percentage": 4
+			"id": 1,
+			"usage": 80
 		},
 		{
-			"time": 2,
-			"percentage": 3
+			"id": 2,
+			"usage": 34
 		},
 		{
-			"time": 3,
-			"percentage": 3.5
+			"id": 3,
+			"usage": 37
 		},
 		{
-			"time": 4,
-			"percentage": 4
+			"id": 4,
+			"usage": 38
 		},
 		{
-			"time": 5,
-			"percentage": 5
+			"id": 5,
+			"usage": 70
 		},
 		{
-			"time": 6,
-			"percentage": 4
+			"id": 6,
+			"usage": 79
 		},
 		{
-			"time": 7,
-			"percentage": 3.5
+			"id": 7,
+			"usage": 26
 		},
 		{
-			"time": 8,
-			"percentage": 4.5
+			"id": 8,
+			"usage": 3
 		},
 		{
-			"time": 9,
-			"percentage": 3
+			"id": 9,
+			"usage": 6
 		},
 		{
-			"time": 10,
-			"percentage": 5
+			"id": 10,
+			"usage": 6
 		},
 		{
-			"time": 11,
-			"percentage": 4.5
+			"id": 11,
+			"usage": 68
 		},
 		{
-			"time": 12,
-			"percentage": 4.5
+			"id": 12,
+			"usage": 39
 		},
 		{
-			"time": 13,
-			"percentage": 4
+			"id": 13,
+			"usage": 29
 		},
 		{
-			"time": 14,
-			"percentage": 3.5
+			"id": 14,
+			"usage": 99
 		},
 		{
-			"time": 15,
-			"percentage": 4
+			"id": 15,
+			"usage": 6
 		},
 		{
-			"time": 16,
-			"percentage": 3.5
+			"id": 16,
+			"usage": 16
 		},
 		{
-			"time": 17,
-			"percentage": 4
+			"id": 17,
+			"usage": 58
 		},
 		{
-			"time": 18,
-			"percentage": 5
+			"id": 18,
+			"usage": 74
 		},
 		{
-			"time": 19,
-			"percentage": 3.5
+			"id": 19,
+			"usage": 59
 		},
 		{
-			"time": 20,
-			"percentage": 4
+			"id": 20,
+			"usage": 54
 		},
 		{
-			"time": 21,
-			"percentage": 5
+			"id": 21,
+			"usage": 47
 		},
 		{
-			"time": 22,
-			"percentage": 6
+			"id": 22,
+			"usage": 27
 		},
 		{
-			"time": 23,
-			"percentage": 4.5
+			"id": 23,
+			"usage": 64
 		},
 		{
-			"time": 24,
-			"percentage": 3.5
+			"id": 24,
+			"usage": 24
 		},
 		{
-			"time": 25,
-			"percentage": 4
+			"id": 25,
+			"usage": 65
 		},
 		{
-			"time": 26,
-			"percentage": 5
+			"id": 26,
+			"usage": 50
 		},
 		{
-			"time": 27,
-			"percentage": 5
+			"id": 27,
+			"usage": 76
 		},
 		{
-			"time": 28,
-			"percentage": 4
+			"id": 28,
+			"usage": 89
 		},
 		{
-			"time": 29,
-			"percentage": 5
+			"id": 29,
+			"usage": 53
 		},
 		{
-			"time": 30,
-			"percentage": 5.5
+			"id": 30,
+			"usage": 30
 		},
 		{
-			"time": 31,
-			"percentage": 5
+			"id": 31,
+			"usage": 20
 		},
 		{
-			"time": 32,
-			"percentage": 6
+			"id": 32,
+			"usage": 84
 		},
 		{
-			"time": 33,
-			"percentage": 7
+			"id": 33,
+			"usage": 51
 		},
 		{
-			"time": 34,
-			"percentage": 4
+			"id": 34,
+			"usage": 2
 		},
 		{
-			"time": 35,
-			"percentage": 5
+			"id": 35,
+			"usage": 2
 		},
 		{
-			"time": 36,
-			"percentage": 4
+			"id": 36,
+			"usage": 29
 		},
 		{
-			"time": 37,
-			"percentage": 4
+			"id": 37,
+			"usage": 13
 		},
 		{
-			"time": 38,
-			"percentage": 5
+			"id": 38,
+			"usage": 3
 		},
 		{
-			"time": 39,
-			"percentage": 6
+			"id": 39,
+			"usage": 57
 		}
 	],
-	"mem":[
+	"memory_reports":[
 		{
-			"time": 0,
-			"nh_size": 100,
-			"nh_alloc": 15,
-			"dh_size": 100,
-			"dh_alloc": 5
+			"id": 0,
+			"native_heap_size": 3224,
+			"native_heap_alloc": 2442,
+			"dalvik_heap_size": 16912,
+			"dalvik_heap_alloc": 15285,
+			"mem_total": 20136,
+			"mem_alloc": 17727
 		},
 		{
-			"time": 1,
-			"nh_size": 100,
-			"nh_alloc": 16,
-			"dh_size": 100,
-			"dh_alloc": 6
+			"id": 1,
+			"native_heap_size": 7354,
+			"native_heap_alloc": 4593,
+			"dalvik_heap_size": 16141,
+			"dalvik_heap_alloc": 2657,
+			"mem_total": 23495,
+			"mem_alloc": 7250
 		},
 		{
-			"time": 2,
-			"nh_size": 100,
-			"nh_alloc": 16,
-			"dh_size": 100,
-			"dh_alloc": 8
+			"id": 2,
+			"native_heap_size": 3769,
+			"native_heap_alloc": 1999,
+			"dalvik_heap_size": 18527,
+			"dalvik_heap_alloc": 5666,
+			"mem_total": 22296,
+			"mem_alloc": 7665
 		},
 		{
-			"time": 3,
-			"nh_size": 100,
-			"nh_alloc": 15,
-			"dh_size": 100,
-			"dh_alloc": 7
+			"id": 3,
+			"native_heap_size": 7288,
+			"native_heap_alloc": 5567,
+			"dalvik_heap_size": 18650,
+			"dalvik_heap_alloc": 11810,
+			"mem_total": 25938,
+			"mem_alloc": 17377
 		},
 		{
-			"time": 4,
-			"nh_size": 100,
-			"nh_alloc": 17,
-			"dh_size": 100,
-			"dh_alloc": 7
+			"id": 4,
+			"native_heap_size": 4954,
+			"native_heap_alloc": 10,
+			"dalvik_heap_size": 6455,
+			"dalvik_heap_alloc": 1930,
+			"mem_total": 11409,
+			"mem_alloc": 1940
 		},
 		{
-			"time": 5,
-			"nh_size": 100,
-			"nh_alloc": 18,
-			"dh_size": 100,
-			"dh_alloc": 8
+			"id": 5,
+			"native_heap_size": 9859,
+			"native_heap_alloc": 6373,
+			"dalvik_heap_size": 17365,
+			"dalvik_heap_alloc": 14770,
+			"mem_total": 27224,
+			"mem_alloc": 21143
 		},
 		{
-			"time": 6,
-			"nh_size": 100,
-			"nh_alloc": 17,
-			"dh_size": 100,
-			"dh_alloc": 9
+			"id": 6,
+			"native_heap_size": 9325,
+			"native_heap_alloc": 9050,
+			"dalvik_heap_size": 6750,
+			"dalvik_heap_alloc": 5298,
+			"mem_total": 16075,
+			"mem_alloc": 14348
 		},
 		{
-			"time": 7,
-			"nh_size": 100,
-			"nh_alloc": 18,
-			"dh_size": 100,
-			"dh_alloc": 7
+			"id": 7,
+			"native_heap_size": 3821,
+			"native_heap_alloc": 841,
+			"dalvik_heap_size": 1693,
+			"dalvik_heap_alloc": 758,
+			"mem_total": 5514,
+			"mem_alloc": 1599
 		},
 		{
-			"time": 8,
-			"nh_size": 100,
-			"nh_alloc": 18,
-			"dh_size": 100,
-			"dh_alloc": 9
+			"id": 8,
+			"native_heap_size": 3156,
+			"native_heap_alloc": 2864,
+			"dalvik_heap_size": 7754,
+			"dalvik_heap_alloc": 5737,
+			"mem_total": 10910,
+			"mem_alloc": 8601
 		},
 		{
-			"time": 9,
-			"nh_size": 100,
-			"nh_alloc": 20,
-			"dh_size": 100,
-			"dh_alloc": 8
+			"id": 9,
+			"native_heap_size": 3533,
+			"native_heap_alloc": 1380,
+			"dalvik_heap_size": 12161,
+			"dalvik_heap_alloc": 3911,
+			"mem_total": 15694,
+			"mem_alloc": 5291
 		},
 		{
-			"time": 10,
-			"nh_size": 100,
-			"nh_alloc": 19,
-			"dh_size": 100,
-			"dh_alloc": 8.5
+			"id": 10,
+			"native_heap_size": 2042,
+			"native_heap_alloc": 1512,
+			"dalvik_heap_size": 17219,
+			"dalvik_heap_alloc": 9214,
+			"mem_total": 19261,
+			"mem_alloc": 10726
 		},
 		{
-			"time": 11,
-			"nh_size": 100,
-			"nh_alloc": 18,
-			"dh_size": 100,
-			"dh_alloc": 8
+			"id": 11,
+			"native_heap_size": 242,
+			"native_heap_alloc": 46,
+			"dalvik_heap_size": 14303,
+			"dalvik_heap_alloc": 10510,
+			"mem_total": 14545,
+			"mem_alloc": 10556
 		},
 		{
-			"time": 12,
-			"nh_size": 100,
-			"nh_alloc": 18,
-			"dh_size": 100,
-			"dh_alloc": 9
+			"id": 12,
+			"native_heap_size": 5182,
+			"native_heap_alloc": 1165,
+			"dalvik_heap_size": 8553,
+			"dalvik_heap_alloc": 5101,
+			"mem_total": 13735,
+			"mem_alloc": 6266
 		},
 		{
-			"time": 13,
-			"nh_size": 100,
-			"nh_alloc": 17,
-			"dh_size": 100,
-			"dh_alloc": 7
+			"id": 13,
+			"native_heap_size": 4877,
+			"native_heap_alloc": 3629,
+			"dalvik_heap_size": 7640,
+			"dalvik_heap_alloc": 4490,
+			"mem_total": 12517,
+			"mem_alloc": 8119
 		},
 		{
-			"time": 14,
-			"nh_size": 100,
-			"nh_alloc": 18,
-			"dh_size": 100,
-			"dh_alloc": 8
+			"id": 14,
+			"native_heap_size": 2477,
+			"native_heap_alloc": 2399,
+			"dalvik_heap_size": 10453,
+			"dalvik_heap_alloc": 1591,
+			"mem_total": 12930,
+			"mem_alloc": 3990
 		},
 		{
-			"time": 15,
-			"nh_size": 100,
-			"nh_alloc": 19,
-			"dh_size": 100,
-			"dh_alloc": 9
+			"id": 15,
+			"native_heap_size": 1193,
+			"native_heap_alloc": 587,
+			"dalvik_heap_size": 16917,
+			"dalvik_heap_alloc": 14722,
+			"mem_total": 18110,
+			"mem_alloc": 15309
 		},
 		{
-			"time": 16,
-			"nh_size": 100,
-			"nh_alloc": 18,
-			"dh_size": 100,
-			"dh_alloc": 8
+			"id": 16,
+			"native_heap_size": 6376,
+			"native_heap_alloc": 2417,
+			"dalvik_heap_size": 13833,
+			"dalvik_heap_alloc": 5790,
+			"mem_total": 20209,
+			"mem_alloc": 8207
 		},
 		{
-			"time": 17,
-			"nh_size": 100,
-			"nh_alloc": 20,
-			"dh_size": 100,
-			"dh_alloc": 9
+			"id": 17,
+			"native_heap_size": 8504,
+			"native_heap_alloc": 1569,
+			"dalvik_heap_size": 18167,
+			"dalvik_heap_alloc": 4095,
+			"mem_total": 26671,
+			"mem_alloc": 5664
 		},
 		{
-			"time": 18,
-			"nh_size": 100,
-			"nh_alloc": 19.5,
-			"dh_size": 100,
-			"dh_alloc": 9.5
+			"id": 18,
+			"native_heap_size": 252,
+			"native_heap_alloc": 140,
+			"dalvik_heap_size": 1367,
+			"dalvik_heap_alloc": 1200,
+			"mem_total": 1619,
+			"mem_alloc": 1340
 		},
 		{
-			"time": 19,
-			"nh_size": 100,
-			"nh_alloc": 19,
-			"dh_size": 100,
-			"dh_alloc": 9
+			"id": 19,
+			"native_heap_size": 8342,
+			"native_heap_alloc": 193,
+			"dalvik_heap_size": 7326,
+			"dalvik_heap_alloc": 321,
+			"mem_total": 15668,
+			"mem_alloc": 514
 		},
 		{
-			"time": 20,
-			"nh_size": 100,
-			"nh_alloc": 18,
-			"dh_size": 100,
-			"dh_alloc": 9.5
+			"id": 20,
+			"native_heap_size": 3096,
+			"native_heap_alloc": 1884,
+			"dalvik_heap_size": 640,
+			"dalvik_heap_alloc": 166,
+			"mem_total": 3736,
+			"mem_alloc": 2050
 		},
 		{
-			"time": 21,
-			"nh_size": 100,
-			"nh_alloc": 15,
-			"dh_size": 100,
-			"dh_alloc": 5
+			"id": 21,
+			"native_heap_size": 4710,
+			"native_heap_alloc": 2475,
+			"dalvik_heap_size": 10674,
+			"dalvik_heap_alloc": 667,
+			"mem_total": 15384,
+			"mem_alloc": 3142
 		},
 		{
-			"time": 22,
-			"nh_size": 100,
-			"nh_alloc": 16,
-			"dh_size": 100,
-			"dh_alloc": 6
+			"id": 22,
+			"native_heap_size": 2211,
+			"native_heap_alloc": 360,
+			"dalvik_heap_size": 8131,
+			"dalvik_heap_alloc": 2035,
+			"mem_total": 10342,
+			"mem_alloc": 2395
 		},
 		{
-			"time": 23,
-			"nh_size": 100,
-			"nh_alloc": 16,
-			"dh_size": 100,
-			"dh_alloc": 8
+			"id": 23,
+			"native_heap_size": 6081,
+			"native_heap_alloc": 5451,
+			"dalvik_heap_size": 18938,
+			"dalvik_heap_alloc": 12719,
+			"mem_total": 25019,
+			"mem_alloc": 18170
 		},
 		{
-			"time": 24,
-			"nh_size": 100,
-			"nh_alloc": 15,
-			"dh_size": 100,
-			"dh_alloc": 7
+			"id": 24,
+			"native_heap_size": 34,
+			"native_heap_alloc": 1,
+			"dalvik_heap_size": 7765,
+			"dalvik_heap_alloc": 5007,
+			"mem_total": 7799,
+			"mem_alloc": 5008
 		},
 		{
-			"time": 25,
-			"nh_size": 100,
-			"nh_alloc": 17,
-			"dh_size": 100,
-			"dh_alloc": 7
+			"id": 25,
+			"native_heap_size": 6518,
+			"native_heap_alloc": 765,
+			"dalvik_heap_size": 8475,
+			"dalvik_heap_alloc": 6349,
+			"mem_total": 14993,
+			"mem_alloc": 7114
 		},
 		{
-			"time": 26,
-			"nh_size": 100,
-			"nh_alloc": 18,
-			"dh_size": 100,
-			"dh_alloc": 8
+			"id": 26,
+			"native_heap_size": 5189,
+			"native_heap_alloc": 144,
+			"dalvik_heap_size": 170,
+			"dalvik_heap_alloc": 79,
+			"mem_total": 5359,
+			"mem_alloc": 223
 		},
 		{
-			"time": 27,
-			"nh_size": 100,
-			"nh_alloc": 17,
-			"dh_size": 100,
-			"dh_alloc": 9
+			"id": 27,
+			"native_heap_size": 1152,
+			"native_heap_alloc": 166,
+			"dalvik_heap_size": 6228,
+			"dalvik_heap_alloc": 2918,
+			"mem_total": 7380,
+			"mem_alloc": 3084
 		},
 		{
-			"time": 28,
-			"nh_size": 100,
-			"nh_alloc": 18,
-			"dh_size": 100,
-			"dh_alloc": 7
+			"id": 28,
+			"native_heap_size": 2616,
+			"native_heap_alloc": 892,
+			"dalvik_heap_size": 12167,
+			"dalvik_heap_alloc": 9799,
+			"mem_total": 14783,
+			"mem_alloc": 10691
 		},
 		{
-			"time": 29,
-			"nh_size": 100,
-			"nh_alloc": 18,
-			"dh_size": 100,
-			"dh_alloc": 9
+			"id": 29,
+			"native_heap_size": 5635,
+			"native_heap_alloc": 1536,
+			"dalvik_heap_size": 6177,
+			"dalvik_heap_alloc": 4868,
+			"mem_total": 11812,
+			"mem_alloc": 6404
 		},
 		{
-			"time": 30,
-			"nh_size": 100,
-			"nh_alloc": 20,
-			"dh_size": 100,
-			"dh_alloc": 8
+			"id": 30,
+			"native_heap_size": 4327,
+			"native_heap_alloc": 4053,
+			"dalvik_heap_size": 10718,
+			"dalvik_heap_alloc": 8117,
+			"mem_total": 15045,
+			"mem_alloc": 12170
 		},
 		{
-			"time": 31,
-			"nh_size": 100,
-			"nh_alloc": 19,
-			"dh_size": 100,
-			"dh_alloc": 8.5
+			"id": 31,
+			"native_heap_size": 9541,
+			"native_heap_alloc": 4446,
+			"dalvik_heap_size": 8085,
+			"dalvik_heap_alloc": 593,
+			"mem_total": 17626,
+			"mem_alloc": 5039
 		},
 		{
-			"time": 32,
-			"nh_size": 100,
-			"nh_alloc": 18,
-			"dh_size": 100,
-			"dh_alloc": 8
+			"id": 32,
+			"native_heap_size": 7607,
+			"native_heap_alloc": 1123,
+			"dalvik_heap_size": 4231,
+			"dalvik_heap_alloc": 75,
+			"mem_total": 11838,
+			"mem_alloc": 1198
 		},
 		{
-			"time": 33,
-			"nh_size": 100,
-			"nh_alloc": 18,
-			"dh_size": 100,
-			"dh_alloc": 9
+			"id": 33,
+			"native_heap_size": 3541,
+			"native_heap_alloc": 301,
+			"dalvik_heap_size": 18235,
+			"dalvik_heap_alloc": 10857,
+			"mem_total": 21776,
+			"mem_alloc": 11158
 		},
 		{
-			"time": 34,
-			"nh_size": 100,
-			"nh_alloc": 17,
-			"dh_size": 100,
-			"dh_alloc": 7
+			"id": 34,
+			"native_heap_size": 1264,
+			"native_heap_alloc": 1019,
+			"dalvik_heap_size": 17464,
+			"dalvik_heap_alloc": 10428,
+			"mem_total": 18728,
+			"mem_alloc": 11447
 		},
 		{
-			"time": 35,
-			"nh_size": 100,
-			"nh_alloc": 18,
-			"dh_size": 100,
-			"dh_alloc": 8
+			"id": 35,
+			"native_heap_size": 5805,
+			"native_heap_alloc": 1328,
+			"dalvik_heap_size": 11096,
+			"dalvik_heap_alloc": 5696,
+			"mem_total": 16901,
+			"mem_alloc": 7024
 		},
 		{
-			"time": 36,
-			"nh_size": 100,
-			"nh_alloc": 19,
-			"dh_size": 100,
-			"dh_alloc": 9
+			"id": 36,
+			"native_heap_size": 6925,
+			"native_heap_alloc": 327,
+			"dalvik_heap_size": 4622,
+			"dalvik_heap_alloc": 2493,
+			"mem_total": 11547,
+			"mem_alloc": 2820
 		},
 		{
-			"time": 37,
-			"nh_size": 100,
-			"nh_alloc": 18,
-			"dh_size": 100,
-			"dh_alloc": 8
+			"id": 37,
+			"native_heap_size": 254,
+			"native_heap_alloc": 89,
+			"dalvik_heap_size": 19636,
+			"dalvik_heap_alloc": 8504,
+			"mem_total": 19890,
+			"mem_alloc": 8593
 		},
 		{
-			"time": 38,
-			"nh_size": 100,
-			"nh_alloc": 20,
-			"dh_size": 100,
-			"dh_alloc": 9
+			"id": 38,
+			"native_heap_size": 5075,
+			"native_heap_alloc": 901,
+			"dalvik_heap_size": 12516,
+			"dalvik_heap_alloc": 7674,
+			"mem_total": 17591,
+			"mem_alloc": 8575
 		},
 		{
-			"time": 39,
-			"nh_size": 100,
-			"nh_alloc": 19.5,
-			"dh_size": 100,
-			"dh_alloc": 9.5
+			"id": 39,
+			"native_heap_size": 484,
+			"native_heap_alloc": 228,
+			"dalvik_heap_size": 17521,
+			"dalvik_heap_alloc": 4657,
+			"mem_total": 18005,
+			"mem_alloc": 4885
 		}
 	]
 }

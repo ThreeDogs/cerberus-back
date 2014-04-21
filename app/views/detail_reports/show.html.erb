@@ -44,10 +44,6 @@
 				</div>
 			</div>
 
-			<br><br><span class="dashboard_sub">Event Path</span>
-			<div id="event_flow">
-			</div>
-
 			<br><span class="dashboard_sub">Screenshot</span>
 			<div id="screenshot_view">
 				<div id="screenshot_row">
@@ -68,7 +64,19 @@
 					<img src="/assets/screenshots/ss5.png">
 				</div>
 			</div>
-			<span class="dashboard_sub">Memory Usage</span>
+
+			<br><span class="dashboard_sub">Controls</span>
+			<div id="controls">
+				<button id="time_axis_button">Time Axis</button>
+				<button id="event_axis_button">Event Axis</button>
+			</div>
+
+			<br><span class="dashboard_sub">Event Path</span>
+			<div id="event_flow">
+			</div>
+
+			
+			<br><span class="dashboard_sub">Memory Usage</span>
 			<div id="mem_chart" class="graph_wrapper">
 				<div class="legend">
 					<img src="/assets/mem_legend.png">
@@ -77,7 +85,8 @@
 					
 				</div>			
 			</div>
-			<span class="dashboard_sub">CPU Usage</span>
+			
+			<br><span class="dashboard_sub">CPU Usage</span>
 			<div id="cpu_chart" class="graph_wrapper">
 				<div class="legend">
 					<img src="/assets/cpu_legend.png">
@@ -98,21 +107,14 @@
 	$('#event_flow').scroll(function () {
 		$('#cpu').scrollLeft($(this).scrollLeft());
 		$('#memory').scrollLeft($(this).scrollLeft());
-		$('#screenshot_view').scrollLeft($(this).scrollLeft());
 	});
 	$('#cpu').scroll(function () {
 		$('#event_flow').scrollLeft($(this).scrollLeft());
 		$('#memory').scrollLeft($(this).scrollLeft());
-		$('#screenshot_view').scrollLeft($(this).scrollLeft());
 	});
 	$('#memory').scroll(function () {
 		$('#cpu').scrollLeft($(this).scrollLeft());
 		$('#event_flow').scrollLeft($(this).scrollLeft());
-		$('#screenshot_view').scrollLeft($(this).scrollLeft());
 	});
-	$('#screenshot_view').scroll(function () {
-		$('#cpu').scrollLeft($(this).scrollLeft());
-		$('#event_flow').scrollLeft($(this).scrollLeft());
-		$('#memory').scrollLeft($(this).scrollLeft());
-	});
+
 </script>
