@@ -38,7 +38,7 @@ describe Project do
 				@apk.total_reports.create(created_at: i.minutes.ago, project_id: @project.id)
 			end
 		end
-		@apk.total_reports.create(status: true, created_at: 1.seconds.ago, project_id: @project.id, test_datetime: "recent")
+		@apk.total_reports.create(status: true, created_at: 1.seconds.ago, project_id: @project.id, test_datetime: "recent", app_version: "1.0")
 	end
 
 	after do
@@ -63,7 +63,9 @@ describe Project do
 	  	recent_report = project.recent_total_report
 	  	recent_report.test_datetime.should == "recent"
 	  	recent_report.apk_name.should == "TestAndroid.apk"
-	  	# puts recent_report.test_date
+	  	recent_report.number_of_devices.should == 10
+	  	recent_report.number_of_scenarios.should == 112
+	  	recent_report.app_version.should == "1.0"
 	  end
 	end
 end

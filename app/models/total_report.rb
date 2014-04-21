@@ -29,4 +29,12 @@ class TotalReport < ActiveRecord::Base
   def test_date
   	created_at.strftime("%Y/%m/%d %I:%M %p")
   end
+
+  def number_of_scenarios
+    112
+  end
+
+  def number_of_devices
+    10
+  end
 end

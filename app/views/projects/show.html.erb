@@ -10,19 +10,23 @@
       <span class="dashboard_sub">Recent Test Overview</span>
       <div id="overview_box">
         <div class="app_info_box">
-          <p>AppName.APK</p>
-          <p>14.03.05, 3:00pm</p>
-          <p>112 Test Scenarios</p>
-          <p>10 Devices</p>
+          <p><%= @recent_report.apk_name %></p>
+          <p><%= @recent_report.test_date %></p>
+          <p><%= @recent_report.number_of_scenarios %> Test Scenarios</p>
+          <p><%= @recent_report.number_of_devices %> Devices</p>
         </div>
         <div class="app_version_box">
           <p>App version</p>
-          <p class="big_version">1.0.2</p>
+          <p class="big_version"><%= @recent_report.app_version %></p>
         </div>
         <div id="test_fail_box">
         </div>
         <div class="report_link">
-          <div class="link_button">FULL REPORT</div>
+          <%= link_to project_total_report_path(@project, @recent_report)  do %>
+          	<div class="link_button">
+          		FULL REPORT
+          	</div>
+          <% end %>
         </div>
       </div>
 

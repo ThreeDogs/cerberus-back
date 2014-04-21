@@ -6,25 +6,30 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+path_to_file = "#{Rails.root}/lib/test_apk_generator/TestAndroid.apk"
+test_path_to_file = "#{Rails.root}/lib/test_apk_generator/NewTestTestAndroid.apk"
 
-user = User.create!(email:"foobar@foobar.com", password: "foobarfoo", password_confirmation: "foobarfoo")
+@user = User.create!(email: "foobar@foobar.com", password: "foobarfoo", password_confirmation: "foobarfoo")
+@project = @user.projects.create!(name: "First App")
 
-project = user.projects.create!(name: "Test Android App")
-user.projects.create!(name: "KaKaoTalk")
-user.projects.create!(name: "Facebook")
-user.projects.create!(name: "What's app")
+@apk = @project.apks.new
+@uploader = ApkUploader.new(@apk, :apk)
+@uploader.store!(File.open(path_to_file))
+@apk.apk = @uploader
+@apk.save!
 
-# apk = project.apks.create!()
+(1..10).each do |i|
+	if i % 2 == 0			
+		@apk.total_reports.create(status: true, created_at: i.minutes.ago, project_id: @project.id)
+	else
+		@apk.total_reports.create(created_at: i.minutes.ago, project_id: @project.id)
+	end
+end
+@apk.total_reports.create(status: true, created_at: 1.seconds.ago, project_id: @project.id, test_datetime: "recent", app_version: "1.0")
 
-total_report = project.total_reports.create!(test_datetime: "2013/03/03 3:00pm")
-project.total_reports.create!(test_datetime: "2013/03/03 3:00pm")
-project.total_reports.create!(test_datetime: "2013/03/03 3:00pm")
-project.total_reports.create!(test_datetime: "2013/03/03 3:00pm")
+# @detail_report = @total_report.detail_reports.create!(app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: 0)
 
-detail_report = total_report.detail_reports.create!(app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: 0)
-
-
-test_scenario = project.test_scenarios.create!(name: "Login Test", description: "This is a Login Test", rank: 0)
+# @test_scenario = @project.test_scenarios.create!(name: "Login Test", description: "This is a Login Test", rank: 0)
 
 
 
