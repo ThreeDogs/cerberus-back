@@ -27,6 +27,13 @@ describe TestScenario do
   it{should respond_to(:project)}
   it{should respond_to(:motion_events)}
   it{should respond_to(:detail_reports)}
+
+  it "#index" do
+  	test_scenario.name.should == "Login Test"
+  	test_scenario.description.should == "This is a Login Test"
+  	test_scenario.get_rank.should == "A"
+  	test_scenario.recent_test_date == "14.MAR.03 3:00pm"
+  end
 end
 
 describe MotionEvent do

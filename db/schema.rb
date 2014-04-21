@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140323032853) do
+ActiveRecord::Schema.define(version: 20140421114559) do
 
   create_table "apks", force: true do |t|
     t.string   "apk"
@@ -45,6 +45,19 @@ ActiveRecord::Schema.define(version: 20140323032853) do
 
   add_index "detail_reports", ["test_scenario_id"], name: "index_detail_reports_on_test_scenario_id"
   add_index "detail_reports", ["total_report_id"], name: "index_detail_reports_on_total_report_id"
+
+  create_table "devices", force: true do |t|
+    t.string   "name"
+    t.string   "os_version"
+    t.string   "model_name"
+    t.string   "cpu_info"
+    t.integer  "deviceship_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "devices", ["project_id"], name: "index_devices_on_project_id"
 
   create_table "memory_infos", force: true do |t|
     t.integer  "dalvik_size"

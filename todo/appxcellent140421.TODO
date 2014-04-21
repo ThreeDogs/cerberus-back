@@ -7,7 +7,13 @@ View:
    ✔ App Icon @done (14-04-21 19:27)
    ✔ Rank mapping @done (14-04-21 20:38)
      recent_report -> ranks
+ ✔ TestScenarios#index @done (14-04-21 21:14)
+ ✔ TestScenarios#show @done (14-04-21 21:14)
 
 API:
- ☐ Project#Show API 
- ☐ total_report#index API
+ ✘ Project#Show API @cancelled (14-04-21 20:58)
+ ✘ total_report#index API @cancelled (14-04-21 20:58)
+
+Device Model?:
+ ☐ CouchDB?
+ ☐ Rails Model?
