@@ -16,6 +16,7 @@ test_path_to_file = "#{Rails.root}/lib/test_apk_generator/NewTestTestAndroid.apk
 @uploader = ApkUploader.new(@apk, :apk)
 @uploader.store!(File.open(path_to_file))
 @apk.apk = @uploader
+@apk.project_id = @project.id
 @apk.save!
 
 (1..10).each do |i|
@@ -29,7 +30,7 @@ end
 
 @detail_report = @total_report.detail_reports.create!(app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: 0)
 
-# @test_scenario = @project.test_scenarios.create!(name: "Login Test", description: "This is a Login Test", rank: 0)
+@test_scenario = @project.test_scenarios.create!(name: "Login Test", description: "This is a Login Test", rank: 0)
 
 
 

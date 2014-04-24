@@ -15,7 +15,7 @@
 require 'net/http'
 
 class TotalReport < ActiveRecord::Base
-  after_create :start_test
+  # after_create :start_test
 	default_scope { order('created_at DESC') } 
 	scope :complete_total_reports, -> {where(status: true)}
 
@@ -51,15 +51,10 @@ class TotalReport < ActiveRecord::Base
     apk_url = self.apk.apk.to_s
     total_report_id = self.id
     test_scenarios = project.test_scenarios
-    test_scenario_ids = []
-
-    test_scenarios.each do |t|
-      test_scenario_ids << t.id      
-    end
 
     uri = URI("#{test_bed_url}/apk_info_send")
     req = Net::HTTP::Post.new(uri, initheader = {'Content-Type' =>'application/json'})
-    req.body = {apk_url: apk_url, total_report_id: total_report_id, test_scenario_ids: test_scenario_ids}.to_json
+    req.body = {apk_url: apk_url, total_report_id: total_report_id, test_scenarios: test_scenarios}.to_json
     res = Net::HTTP.start(uri.hostname, uri.port) do |http|
       http.request(req)
     end

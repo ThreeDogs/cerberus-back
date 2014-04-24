@@ -12,4 +12,9 @@ class Api::V1::TestScenariosController < ApplicationController
 			render status: :unprocessable_entity, json: {response: "error"}
 		end
 	end
+
+	def show
+		@test_scenarios = TestScenario.all
+		render 'test_scenarios/api/show'
+	end
 end

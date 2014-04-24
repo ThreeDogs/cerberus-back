@@ -25,13 +25,12 @@ describe Project do
 	before do
 		@user = User.create!(email: "foobar@foobar.com", password: "foobarfoo", password_confirmation: "foobarfoo")
 		@project = @user.projects.create!(name: "First App")
+		@apk = @project.apks.build
 
-		@apk = @project.apks.new
-
-		puts @apk.project
 		@uploader = ApkUploader.new(@apk, :apk)
 		@uploader.store!(File.open(path_to_file))
 		@apk.apk = @uploader
+		@apk.project_id = @project.id
 		@apk.save!
 
 		(1..10).each do |i|

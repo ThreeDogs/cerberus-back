@@ -11,8 +11,8 @@
 #
 
 class Apk < ActiveRecord::Base
-	before_create :make_test_apk_folder
-	after_create :generate_test_apk
+	# before_create :make_test_apk_folder
+	# after_create :generate_test_apk
 
 	belongs_to :project
 	has_many :total_reports
@@ -37,7 +37,7 @@ class Apk < ActiveRecord::Base
   	test_sh = "#{shell_path}/test_.sh"
   	apk_url = "#{Rails.root}/public/#{apk.to_s}" # apk address
   	apk_name = apk_url.split("/").last
-  	project_id = project.id
+  	project_id = project_id
 
   	target_path = "/uploads/#{self.class.to_s.underscore}/test_apk/#{self.id}/"
   	target_folder_full_path = "#{Rails.root}/public#{target_path}"

@@ -4,9 +4,9 @@ Connection:
  ✔ test_scenarios create test (<- client request) @started(14-04-24 15:28) @done (14-04-24 17:03) @lasted(1:35:00)
    ✔ before_validation name default generate @done (14-04-24 16:50)
  ✔ start test connection @done (14-04-24 18:15)
- ☐ Response Test Scenarios
+ ✔ Response Test Scenarios @done (14-04-25 00:23)
    ✔ start test post update @done (14-04-24 21:03)
-   ☐ get test_scenario id (JSON)
+   ✔ get test_scenario id (JSON) @done (14-04-25 00:23)
  ☐ Device Modeling
    ☐ model create
    ☐ relationship

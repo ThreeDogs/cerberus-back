@@ -14,27 +14,28 @@ describe "TestScenarios" do
     @uploader.store!(File.open(path_to_file))
     @apk.apk = @uploader
     @apk.save!
-    test_scenario = @project.test_scenarios.create!(name: "Login Test", description: "This is a Login Test", rank: 0)
+
+    @test_scenario = @project.test_scenarios.create!(name: "Login Test", description: "This is a Login Test", rank: 0, project_id: @project.id)
   end
 
   after do
     @uploader.remove!
   end
-  
-  # describe "GET /api/v1/test_scenarios/:id" do
-  #   it "show @test_scenario" do
-  #     get "/api/v1/test_scenarios/1"
-  #     response.status.should be(200)
-  #     response.body.should include("Login Test")
-  #     response.body.should include("This is a Login Test")
-  #   end
-  # end
+
+  describe "GET /api/v1/test_scenarios/:id" do
+    it "show @test_scenario" do
+      get "/api/v1/test_scenarios/1", format: :json
+      response.status.should be(200)
+      response.body.should include("Login Test")
+      response.body.should include("This is a Login Test")
+    end
+  end
 
   describe "POST /api/v1/test_scenarios" do
-  	it "create @test_scenario" do
-  		post "/api/v1/test_scenarios", project_id: 1
-  		response.status.should be(201)
-  	end
+  	# it "create @test_scenario" do
+  	# 	post "/api/v1/test_scenarios", project_id: 1
+  	# 	response.status.should be(201)
+  	# end
   end
 
   describe "POST /api/v1/motion_events" do
