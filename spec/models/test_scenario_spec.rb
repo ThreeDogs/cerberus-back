@@ -15,10 +15,10 @@
 require 'spec_helper'
 
 describe TestScenario do
-  context "is validation check" do
-		subject(:test_scenarios){TestScenario.new}
-		it{should_not be_valid}
-	end
+ #  context "is validation check" do
+	# 	subject(:test_scenarios){TestScenario.new}
+	# 	it{should_not be_valid}
+	# end
 
 	let(:user) {User.new(email: "foobar@foobar.com", password: "foobarfoo", password_confirmation: "foobarfoo")}
 	let(:project) {user.projects.new(name: "First App")}

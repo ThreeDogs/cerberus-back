@@ -22,7 +22,6 @@ describe "TestScenarios" do
 
   describe "POST /api/v1/test_scenarios" do
   	it "create @test_scenario" do
-
   		post "/api/v1/test_scenarios", project_id: 1
   		response.status.should be(201)
   	end

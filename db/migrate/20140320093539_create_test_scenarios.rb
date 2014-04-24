@@ -1,3 +1,4 @@
+
 class CreateTestScenarios < ActiveRecord::Migration
   def change
     create_table :test_scenarios do |t|

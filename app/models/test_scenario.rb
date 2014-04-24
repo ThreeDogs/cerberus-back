@@ -20,7 +20,7 @@ class TestScenario < ActiveRecord::Base
   has_many :motion_events
   has_many :detail_reports
 
-  validates :name, presence: true
+  # validates :name, presence: true
   # validates :description, presence: true
   # validates :rank, presence: true
 
