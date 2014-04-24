@@ -15,5 +15,5 @@ API:
  ✘ total_report#index API @cancelled (14-04-21 20:58)
 
 Device Model?:
- ☐ CouchDB
- ☐ Rails Model
+ ✘ CouchDB @cancelled (14-04-24 14:36)
+ ✘ Rails Model @cancelled (14-04-24 14:36)

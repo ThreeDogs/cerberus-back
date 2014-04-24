@@ -18,4 +18,3 @@ class Api::V1::TestScenariosController < ApplicationController
 		end
 	end
 end
-

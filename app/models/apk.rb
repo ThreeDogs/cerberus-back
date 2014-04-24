@@ -37,11 +37,12 @@ class Apk < ActiveRecord::Base
   	test_sh = "#{shell_path}/test_.sh"
   	apk_url = "#{Rails.root}/public/#{apk.to_s}" # apk address
   	apk_name = apk_url.split("/").last
+  	project_id = project.id
 
   	target_path = "/uploads/#{self.class.to_s.underscore}/test_apk/#{self.id}/"
   	target_folder_full_path = "#{Rails.root}/public#{target_path}"
 		test_apk_target = "#{target_folder_full_path}NewTest#{apk_name}"
-		result = `echo #{secret_password} | sudo -S sh #{test_sh} #{apk_url} #{test_apk_target} #{shell_path} #{target_folder_full_path}`
+		result = `echo #{secret_password} | sudo -S sh #{test_sh} #{apk_url} #{test_apk_target} #{shell_path} #{target_folder_full_path} #{project_id}`
 
 		# if succeed 
 		test_apk_url = "#{target_path}NewTest#{apk_name}"
