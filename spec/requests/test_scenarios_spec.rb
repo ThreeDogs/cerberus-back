@@ -22,15 +22,6 @@ describe "TestScenarios" do
     @uploader.remove!
   end
 
-  describe "GET /api/v1/test_scenarios/:id" do
-    it "show @test_scenario" do
-      get "/api/v1/test_scenarios/1", format: :json
-      response.status.should be(200)
-      response.body.should include("Login Test")
-      response.body.should include("This is a Login Test")
-    end
-  end
-
   describe "POST /api/v1/test_scenarios" do
   	# it "create @test_scenario" do
   	# 	post "/api/v1/test_scenarios", project_id: 1
