@@ -2,6 +2,7 @@ CerberusBack::Application.routes.draw do
   namespace :api, defaults: {format: 'json'} do 
     namespace :v1 do
       resources :test_scenarios, only: [:create]
+      resources :motion_events, only: [:create]
       resources :reports, only: [] do
         member do
           get 'get_report_infos'

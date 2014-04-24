@@ -14,34 +14,15 @@ JSON, API:
 
 
 <<Git commit Convention>>
-Each commit message consists of a header, a body and a footer. The header has a special format that includes a type, a scope and a subject:
-<type>(<scope>): <subject>
-<BLANK LINE>
-<body>
-<BLANK LINE>
-<footer>
+Commit format:
+<type>: <subject>
 
 Type Must be one of the following:
-feat: A new feature
-fix: A bug fix
-docs: Documentation only changes
-style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
-refactor: A code change that neither fixes a bug or adds a feature
-perf: A code change that improves performance
-test: Adding missing tests
-chore: Changes to the build process or auxiliary tools and libraries such as documentation generation
-
-Scope:
-The scope could be anything specifying place of the commit change. For exa1mple $location, $browser, $compile, $rootScope, ngHref, ngClick, ngView, etc...
-
-Subject The subject contains succinct description of the change:
-use the imperative, present tense: "change" not "changed" nor "changes"
-don't capitalize first letter
-no dot (.) at the end
-
-
-Body:
-Just as in the subject, use the imperative, present tense: "change" not "changed" nor "changes" The body should include the motivation for the change and contrast this with previous behavior.
-
-Footer:
-The footer should contain any information about Breaking Changes and is also the place to reference GitHub issues that this commit Closes.
+feat: A new feature (새로운 기능 추가)
+fix: A bug fix (버그 수정)
+docs: Documentation only changes (문서만 바꼈을때)
+style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc) (코드의 로직이 아닌 모양, 스타일만 바꼈을때)
+refactor: A code change that neither fixes a bug or adds a feature (리팩토링)
+perf: A code change that improves performance (성능 개선)
+test: Adding missing tests (테스트 추가)
+chore: Changes to the build process or auxiliary tools and libraries such as documentation generation (빌드 프로세스나, 라이브러리, 툴들이 바꼈을때)
