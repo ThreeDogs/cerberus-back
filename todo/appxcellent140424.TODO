@@ -7,11 +7,11 @@ Connection:
  ✔ Response Test Scenarios @done (14-04-25 00:23)
    ✔ start test post update @done (14-04-24 21:03)
    ✔ get test_scenario id (JSON) @done (14-04-25 00:23)
- ☐ Device Modeling
-   ☐ model create
-   ☐ relationship
-   ☐ Start Test Module
- ☐ Total Device Modeling
+ ✘ Device Modeling @cancelled (14-04-25 01:27)
+   ✘ model create @cancelled (14-04-25 01:27)
+   ✘ relationship @cancelled (14-04-25 01:27)
+   ✘ Start Test Module @cancelled (14-04-25 01:27)
+ ✘ Total Device Modeling @cancelled (14-04-25 01:27)
  
 
 JSON, API:

@@ -37,7 +37,7 @@ class Apk < ActiveRecord::Base
   	test_sh = "#{shell_path}/test_.sh"
   	apk_url = "#{Rails.root}/public/#{apk.to_s}" # apk address
   	apk_name = apk_url.split("/").last
-  	project_id = project_id
+  	project_id = project.id
 
   	target_path = "/uploads/#{self.class.to_s.underscore}/test_apk/#{self.id}/"
   	target_folder_full_path = "#{Rails.root}/public#{target_path}"
