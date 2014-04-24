@@ -18,11 +18,6 @@ class Api::V1::MotionEventsController < ApplicationController
 		end
 	end
 
-	# convention
-	def show
-		render 'motion_events/api/show'
-	end
-
 	private
 		def set_motion_event
 			@motion_event = MotionEvent.find(params[:id])
