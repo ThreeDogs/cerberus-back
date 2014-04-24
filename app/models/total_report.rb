@@ -47,15 +47,24 @@ class TotalReport < ActiveRecord::Base
     {A:[17,7],B:[23,34], C:[10,5], D:[19,2]}
   end
 
-  private
-
   def start_test(test_bed_url = "http://172.16.101.175:9000")
     apk_url = self.apk.apk.to_s
     total_report_id = self.id
-    uri = URI("#{test_bed_url}/apk_info_send?apk_url=#{apk_url}&total_report_id=#{total_report_id}")
-    res = Net::HTTP.get(uri)
-    res
-    # puts res.body if res.is_a?(Net::HTTPSuccess)
+    test_scenarios = project.test_scenarios
+    test_scenario_ids = []
+
+    test_scenarios.each do |t|
+      test_scenario_ids << t.id      
+    end
+
+    uri = URI("#{test_bed_url}/apk_info_send")
+    req = Net::HTTP::Post.new(uri, initheader = {'Content-Type' =>'application/json'})
+    req.body = {apk_url: apk_url, total_report_id: total_report_id, test_scenario_ids: test_scenario_ids}.to_json
+    res = Net::HTTP.start(uri.hostname, uri.port) do |http|
+      http.request(req)
+    end
+
+    puts res.is_a?(Net::HTTPSuccess) ? "Success" : "Error"
   end
 
 end

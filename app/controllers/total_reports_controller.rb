@@ -28,12 +28,12 @@ class TotalReportsController < ApplicationController
   def create
     @apk = Apk.find(params[:apk_id])
     @project = Project.find(@apk.project.id)
-    @total_report = @apk.total_reports.build
+    @total_report = @apk.total_reports.build(project_id: @project.id)
 
     if @total_report.save
       redirect_to [@project, @total_report]
     else
-      render "/projects/#{@project.is}/apks/#{@apk.id}"
+      render "/projects/#{@project.id}/apks/#{@apk.id}"
     end
   end
 

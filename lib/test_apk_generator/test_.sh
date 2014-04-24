@@ -22,7 +22,7 @@ tar xvf $3/temp/jarfile.jar -C $3/temp/newclz
 
 echo $PWD
 
-java -classpath $3/asm-all-4.2.jar:$3/asm.jar scenario.org.cerberus.jarasm.JarAsmTest $3/temp/newclz
+java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/asm.jar scenario.org.cerberus.jarasm.JarAsmTest $3/temp/newclz $5
 
 echo "1-----------------------------------------------------------------"
 
@@ -38,7 +38,7 @@ $3/dex2jar-0.0.9.15/d2j-asm-verify.sh $3/temp/newjar.jar
 
 echo "4-----------------------------------------------------------------"
 
-$3/dex2jar-0.0.9.15/d2j-jar2dex.sh -f -o $3/classes.dex $3/temp/newjar.jar
+$3/dex2jar-0.0.9.15/d2j-jar2dex.sh -f -o /classes.dex $3/temp/newjar.jar
 
 echo "5-----------------------------------------------------------------"
 
@@ -46,7 +46,7 @@ cp -rf $1 $3/temp/mm_.apk
 
 echo "6-----------------------------------------------------------------"
 
-zip -u $3/temp/mm_.apk $3/classes.dex 
+zip -u $3/temp/mm_.apk /classes.dex 
 
 echo "7-----------------------------------------------------------------"
 

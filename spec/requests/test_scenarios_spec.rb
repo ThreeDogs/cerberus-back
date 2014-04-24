@@ -1,24 +1,34 @@
 require 'spec_helper'
 
 describe "TestScenarios" do
-	before do
-		user = User.create!(email:"foobar@foobar.com", password: "foobarfoo", password_confirmation: "foobarfoo")
-
-		project = user.projects.create!(name: "Test Android App")
-		user.projects.create!(name: "KaKaoTalk")
-		user.projects.create!(name: "Facebook")
-		user.projects.create!(name: "What's app")
-
-		total_report = project.total_reports.create!(test_datetime: "2013/03/03 3:00pm")
-		project.total_reports.create!(test_datetime: "2013/03/03 3:00pm")
-		project.total_reports.create!(test_datetime: "2013/03/03 3:00pm")
-		project.total_reports.create!(test_datetime: "2013/03/03 3:00pm")
-
-		detail_report = total_report.detail_reports.create!(app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: 0)
+  path_to_file = "#{Rails.root}/lib/test_apk_generator/TestAndroid.apk"
+  test_path_to_file = "#{Rails.root}/lib/test_apk_generator/NewTestTestAndroid.apk"
 
 
-		test_scenario = project.test_scenarios.create!(name: "Login Test", description: "This is a Login Test", rank: 0)
-	end
+  before do
+    @user = User.create!(email: "foobar@foobar.com", password: "foobarfoo", password_confirmation: "foobarfoo")
+    @project = @user.projects.create!(name: "First App")
+
+    @apk = @project.apks.new
+    @uploader = ApkUploader.new(@apk, :apk)
+    @uploader.store!(File.open(path_to_file))
+    @apk.apk = @uploader
+    @apk.save!
+    test_scenario = @project.test_scenarios.create!(name: "Login Test", description: "This is a Login Test", rank: 0)
+  end
+
+  after do
+    @uploader.remove!
+  end
+  
+  # describe "GET /api/v1/test_scenarios/:id" do
+  #   it "show @test_scenario" do
+  #     get "/api/v1/test_scenarios/1"
+  #     response.status.should be(200)
+  #     response.body.should include("Login Test")
+  #     response.body.should include("This is a Login Test")
+  #   end
+  # end
 
   describe "POST /api/v1/test_scenarios" do
   	it "create @test_scenario" do

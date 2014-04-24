@@ -5,7 +5,8 @@ Connection:
    ✔ before_validation name default generate @done (14-04-24 16:50)
  ✔ start test connection @done (14-04-24 18:15)
  ☐ Response Test Scenarios
-   ☐ get test_scenario id
+   ✔ start test post update @done (14-04-24 21:03)
+   ☐ get test_scenario id (JSON)
  ☐ Device Modeling
    ☐ model create
    ☐ relationship
