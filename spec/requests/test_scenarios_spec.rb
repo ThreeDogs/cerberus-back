@@ -25,21 +25,13 @@ describe "TestScenarios" do
   		post "/api/v1/test_scenarios", project_id: 1
   		response.status.should be(201)
   	end
-
-  	it "to_json test" do
-  		20.times do
-  			motion_events = []
-  			motion_events << build(:motion_event)
-  			motion_events.to_json.should include("MyString")
-  		end
-  	end
   end
 
   describe "POST /api/v1/motion_events" do
-    it "create @test_scenario" do
+    it "create @motion_events" do
       motion_events_json_array = '[{"seq_id":1,"time_stamp": "2014-02-20 16:33:41", "sleep": 1000, "activity_class": "MainActivity", "action_type": "Click","param": "parameter", "view": "R.id.button"},{"seq_id":1,"time_stamp": "2014-02-20 16:33:41", "sleep": 1000, "activity_class": "MainActivity", "action_type": "Click","param": "parameter", "view": "R.id.button"}]'
 
-      post "/api/v1/test_scenarios", test_scenario_id: 1
+      post "/api/v1/motion_events", test_scenario_id: 1, motion_events: motion_events_json_array
       response.status.should be(201)
       response.body.should include("success_created")
       MotionEvent.all.size.should == 2
