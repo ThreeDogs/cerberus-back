@@ -26,12 +26,15 @@ class TotalReportsController < ApplicationController
   # POST /total_reports
   # POST /total_reports.json
   def create
-    # @project = set_project
-    # if @total_report = @project.total_reports.create(total_report_params)
-    #   redirect_to [@project, @total_report]
-    # else
-    #   render project
-    # end
+    @apk = Apk.find(params[:apk_id])
+    @project = Project.find(@apk.project.id)
+    @total_report = @apk.total_reports.build
+
+    if @total_report.save
+      redirect_to [@project, @total_report]
+    else
+      render "/projects/#{@project.is}/apks/#{@apk.id}"
+    end
   end
 
   # PATCH/PUT /total_reports/1

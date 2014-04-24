@@ -12,6 +12,7 @@
 #  created_at    :datetime
 #  updated_at    :datetime
 #
+require 'net/http'
 
 class TotalReport < ActiveRecord::Base
 	default_scope { order('created_at DESC') } 
@@ -20,6 +21,12 @@ class TotalReport < ActiveRecord::Base
   belongs_to :apk
   belongs_to :project
   has_many :detail_reports
+
+  def start_test
+    uri = URI("http://172.16.101.246:9000/apk_info_send?apk_url=testurl&total_report_id=1")
+    res = Net::HTTP.get(uri)
+    puts res.body if res.is_a?(Net::HTTPSuccess)
+  end
 
   # validates :test_datetime, presence: true
   def apk_name

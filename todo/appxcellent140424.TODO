@@ -1,14 +1,16 @@
 Server-Client Connect Work
 Connection:
  ✔ Test APK -> put project_id @done (14-04-24 15:28)
- ☐ test_scenarios create test (<- client request) @started(14-04-24 15:28)
+ ✔ test_scenarios create test (<- client request) @started(14-04-24 15:28) @done (14-04-24 17:03) @lasted(1:35:00)
    ✔ before_validation name default generate @done (14-04-24 16:50)
  ☐ start test connection
+ ☐ Response Test Scenarios
  ☐ Device Modeling
    ☐ model create
    ☐ relationship
    ☐ Start Test Module
  ☐ Total Device Modeling
+ 
 
 JSON, API:
  
