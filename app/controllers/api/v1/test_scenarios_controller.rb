@@ -9,7 +9,7 @@ class Api::V1::TestScenariosController < ApplicationController
 		if @test_scenario.save
 			render status: :created, json: {response: "test_scenario_id: #{@test_scenario.id}"}
 		else
-			render status: :unprocessable_entity, json: {response: "error #{e}"}
+			render status: :unprocessable_entity, json: {response: "error"}
 		end
 	end
 end

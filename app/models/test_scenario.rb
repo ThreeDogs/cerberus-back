@@ -13,13 +13,12 @@
 #
 
 class TestScenario < ActiveRecord::Base
+  before_validation :name_generate
 	default_scope {order('created_at DESC')}
   belongs_to :project
 
   has_many :motion_events
   has_many :detail_reports
-
-  accepts_nested_attributes_for :motion_events, :allow_destroy => true
 
   validates :name, presence: true
   # validates :description, presence: true
@@ -42,5 +41,11 @@ class TestScenario < ActiveRecord::Base
   def recent_test_date
   	# implement
   	"14.MAR.03 3:00pm"
+  end
+
+  private 
+
+  def name_generate
+    self.name = "TestScenario #{DateTime.now.to_s}"
   end
 end

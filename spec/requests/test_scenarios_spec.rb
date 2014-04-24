@@ -22,12 +22,12 @@ describe "TestScenarios" do
 
   describe "POST /api/v1/test_scenarios" do
   	it "create @test_scenario" do
-  		motion_events_json_array = '[{"seq_id":1,"time_stamp": "2014-02-20 16:33:41", "sleep": 1000, "activity_class": "MainActivity", "action_type": "Click","param": "parameter", "view": "R.id.button"},{"seq_id":1,"time_stamp": "2014-02-20 16:33:41", "sleep": 1000, "activity_class": "MainActivity", "action_type": "Click","param": "parameter", "view": "R.id.button"}]'
+  		# motion_events_json_array = '[{"seq_id":1,"time_stamp": "2014-02-20 16:33:41", "sleep": 1000, "activity_class": "MainActivity", "action_type": "Click","param": "parameter", "view": "R.id.button"},{"seq_id":1,"time_stamp": "2014-02-20 16:33:41", "sleep": 1000, "activity_class": "MainActivity", "action_type": "Click","param": "parameter", "view": "R.id.button"}]'
 
-  		post "/api/v1/test_scenarios", id: 1, motion_events: motion_events_json_array
+  		post "/api/v1/test_scenarios", project_id: 1
   		response.status.should be(201)
-  		response.body.should include("success_created")
-  		MotionEvent.all.size.should == 2
+  		# response.body.should include("success_created")
+  		# MotionEvent.all.size.should == 2
   	end
 
   	it "to_json test" do
@@ -37,6 +37,9 @@ describe "TestScenarios" do
   			motion_events.to_json.should include("MyString")
   		end
   	end
+  end
+
+  describe "POST /api/v1/motion_events" do
   end
 end
 

@@ -7,7 +7,7 @@ class Api::V1::MotionEventsController < ApplicationController
 		@test_scenario = TestScenario.find(params[:test_scenario_id])
 		@motion_events = @test_scenario.motion_events.build(JSON.parse(params[:motion_events]))
 
-		TestScenario.transaction do
+		MotionEvent.transaction do
 			begin
 				MotionEvent.import @motion_events
 				render status: :created, json: {response: "success_created"}
