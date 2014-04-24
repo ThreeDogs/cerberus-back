@@ -19,17 +19,17 @@ describe TotalReport do
 	# let(:user) {User.new(email: "foobar@foobar.com", password: "foobarfoo", password_confirmation: "foobarfoo")}
 	# let(:project) {user.projects.new(name: "First App")}
 	# let(:apk) {project.apks.new}
-	subject(:total_report) {create(:total_report_true)}
+	# subject(:total_report) {create(:total_report_true)}
 	
 
-	it{should respond_to(:project)}
-	it{should respond_to(:apk)}
-  it{should respond_to(:detail_reports)}
-  it{should respond_to(:status)}
-  it{should respond_to(:app_version)}
+	# it{should respond_to(:project)}
+	# it{should respond_to(:apk)}
+ #  it{should respond_to(:detail_reports)}
+ #  it{should respond_to(:status)}
+ #  it{should respond_to(:app_version)}
 
-  # it "complete_total_reports scope test" do
-  # 	TotalReport.all.size.should == 1
+  # it "start test action" do
+  	# total_report.start_test.should == "success"
   # end
 end
 

@@ -15,18 +15,13 @@
 require 'net/http'
 
 class TotalReport < ActiveRecord::Base
+  after_create :start_test
 	default_scope { order('created_at DESC') } 
 	scope :complete_total_reports, -> {where(status: true)}
 
   belongs_to :apk
   belongs_to :project
   has_many :detail_reports
-
-  def start_test
-    uri = URI("http://172.16.101.246:9000/apk_info_send?apk_url=testurl&total_report_id=1")
-    res = Net::HTTP.get(uri)
-    puts res.body if res.is_a?(Net::HTTPSuccess)
-  end
 
   # validates :test_datetime, presence: true
   def apk_name
@@ -51,4 +46,16 @@ class TotalReport < ActiveRecord::Base
     # implement
     {A:[17,7],B:[23,34], C:[10,5], D:[19,2]}
   end
+
+  private
+
+  def start_test(test_bed_url = "http://172.16.101.175:9000")
+    apk_url = self.apk.apk.to_s
+    total_report_id = self.id
+    uri = URI("#{test_bed_url}/apk_info_send?apk_url=#{apk_url}&total_report_id=#{total_report_id}")
+    res = Net::HTTP.get(uri)
+    res
+    # puts res.body if res.is_a?(Net::HTTPSuccess)
+  end
+
 end
