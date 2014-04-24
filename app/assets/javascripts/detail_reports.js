@@ -1,15 +1,17 @@
 function drawCharts(data) {
 
-	//SETUP width in relation to length of events
-	var width = data.motion_reports.length*100;
-	var event_svg_height, cpu_svg_height, mem_svg_height;
+	//SETUP margin and width in relation to length of events
 
-	//SETUP margin
+	var unit_length = 100;
 	var margin = 50;
+	var width = data.motion_reports.length*unit_length + margin * 2;
+	var event_svg_height, cpu_svg_height, mem_svg_height;
 
 	//SETUP SCALES (time axis & polylinear axis)
 	//**SCALES are FUNCTIONS that map a data to its position along the axis.**
-	var t_scale, polylinear_helper, order_scale;
+	var t_scale;
+	var polylinear_helper;
+	var order_scale;
 	var y_percent_scale;
 
 	//SETUP one SVG for each chart
@@ -26,8 +28,8 @@ function drawCharts(data) {
 	//SETUP event_specific box
 	var event_specific_box;
 
-	//SETUP toggle to toggle between form1 - form2
-	var toggle=1;
+	//SETUP toggle to toggle between "event_axis" and "time_axis"
+	var toggle="time_axis";
 
 	//function to control which svg element shows on top
 	d3.selection.prototype.moveToFront = function() {
@@ -42,12 +44,13 @@ function drawCharts(data) {
 
 			//SETUP SCALES (time axis & polylinear axis)
 			//**SCALES are FUNCTIONS that map a data to its position along the axis.**
-			x_domain = [0,data.motion_reports.length+1];
+
+			x_domain = [0,data.motion_reports[data.motion_reports.length-1].time_stamp];
 			x_range = [margin,width-margin];
 			t_scale = d3.scale.linear().domain(x_domain).range(x_range);
 
 			x_domain = [0,data.motion_reports.length+1];
-			x_range = [margin,width+100];
+			x_range = [margin,width-margin];
 			order_scale = d3.scale.linear().domain(x_domain).range(x_range);
 
 			//polylinear hepler의 첫 값이 0이 아니면 깨짐
@@ -66,7 +69,7 @@ function drawCharts(data) {
 
 		var initialize_svg = function () {
 
-			event_svg_height = 110;
+			event_svg_height = 100;
 			event_svg = d3.select("#event_flow")
 						.append("svg")
 						.attr("width", width)
@@ -103,11 +106,6 @@ function drawCharts(data) {
 						.attr("stroke","none")
 						.attr("fill","#DBEEE1");
 
-			gtext = event_group.append("text")
-						.attr("class", "event_text")
-						.attr("dy",20)
-						.text(function (d) {return d.action_type});
-
 			event_svg.append("marker")
 						.attr("id","arrow")
 						.attr("viewBox","0 0 6 6")
@@ -120,7 +118,7 @@ function drawCharts(data) {
 						.attr("fill","#5DBE88");
 
 			event_group.attr("transform", function (d) {
-				return "translate("+t_scale(d.id)+",80)";
+				return "translate("+t_scale(d.time_stamp)+",60)";
 			});
 
 			var activities = [];
@@ -149,28 +147,17 @@ function drawCharts(data) {
 						.attr("x", function (d) {return t_scale(d.start_time)})
 						.attr("y", 20)
 						.attr("class", "activityBox")
-						.attr("width", function (d) {return t_scale(d.end_time-d.start_time)-30})
-						.attr("height", 70)
+						.attr("width", function (d) {return t_scale(d.end_time-d.start_time)-margin+10})
+						.attr("height", 50)
 						.attr("stroke", "black")
 						.attr("fill", "#A9D8B9")
 						.attr("title", function (d) {return d.name});
 
-			event_axis = event_svg.append("g")
-						  .attr("class", "x axis")
-						  .attr("opacity",1)
-						  .attr("transform", "translate(0,"+(event_svg_height-20)+")")
-						  .call(d3.svg.axis().scale(t_scale));
-			
+			event_axis = event_svg.append("g").attr("class", "x axis")
+						.attr("transform", "translate(0,"+(event_svg_height-20)+")")
+						.call(d3.svg.axis().scale(t_scale));
+
 			event_group.moveToFront();
-
-			garrow = event_group.append("line")
-						.attr("x1",10).attr("y1",5)
-						.attr("x2",20).attr("y2",5)
-						.style("stroke","#5DBE88")
-						.attr("stroke-width",2)
-						.attr("opacity",0);
-
-			garrow.moveToFront();
 
 		}
 
@@ -277,8 +264,7 @@ function drawCharts(data) {
 			// 				.attr("d",areafunction(data.mem));
 
 		}
-
-		
+	
 		initialize_scales();
 		initialize_svg();
 		initialize_event_chart();
@@ -287,28 +273,51 @@ function drawCharts(data) {
 
 	}
 
-	function toggle_event_axis() {
+	function toggle_time_axis() {
 
-		function event_chart_change() {
-			event_group.attr("transform", function (d) {
-					return "translate("+order_scale(d.order)+",40)";
-				});
+		if (toggle=="time_axis") {
+			return;
+		}
 
-			grect.attr("width",120)
-					.attr("height",30)
-					.attr("rx",5)
-					.attr("ry",5);
+		function event_chart_change () {
 
-			garrow.attr("x1",120).attr("y1",15)
-					.attr("x2",140).attr("y2",15)
-					.attr("opacity",1);
+			event_axis.remove();
+			event_axis = event_svg.append("g").attr("class", "x axis")
+							.attr("transform", "translate(0,"+(event_svg_height-20)+")")
+							.call(d3.svg.axis().scale(order_scale));
 
-			event_axis.attr("opacity",0);
+			grect.transition()
+					.attr("width",unit_length-20).attr("height",40)
+					.attr("rx",0).attr("ry",0);
 
-			gact.attr("x", function (d) {return order_scale(d.start_num)})
-				.attr("y", 20)
-				.attr("width", function (d) {return order_scale(d.end_num-d.start_num)+120})
-				.attr("height", 80);
+			event_group.transition().attr("transform", function (d) {
+				return "translate("+order_scale(d.id)+",20)";
+			});
+
+			garrow = event_group.append("line")
+						.attr("x1",unit_length-20).attr("y1",20)
+						.attr("x2",unit_length).attr("y2",20)
+						.style("stroke","#5DBE88")
+						.attr("stroke-width",2);
+
+			garrow.moveToFront();
+
+			gtext = event_group.append("text")
+						.attr("class", "event_text")
+						.attr("dy",20)
+						.text(function (d) {return d.action_type});
+
+			gact.transition()
+				.attr("x", function (d) {return order_scale(d.start_num)})
+				.attr("y", 10)
+				.attr("class", "activityBox")
+				.attr("width", function (d) {return order_scale(d.end_num-d.start_num)-margin+unit_length-20})
+				.attr("height", 60)
+				.attr("stroke", "black")
+				.attr("fill", "#A9D8B9")
+				.attr("title", function (d) {return d.name});
+
+			event_group.moveToFront();
 		}
 
 		function cpu_chart_change () {
@@ -333,14 +342,76 @@ function drawCharts(data) {
 
 		function mem_chart_change () {
 			var y_mem_scale = d3.scale.linear().domain([0,20000]).range([170, 20]);
-
-
 		}
 
 		event_chart_change();
 		cpu_chart_change();
+		toggle="time_axis";
+	}
+
+	function toggle_event_axis() {
+
+		if (toggle=="event_axis") {
+			return;
+		}
+
+		function event_chart_change () {
+
+			event_axis.remove();
+			event_axis = event_svg.append("g").attr("class", "x axis")
+							.attr("transform", "translate(0,"+(event_svg_height-20)+")")
+							.call(d3.svg.axis().scale(t_scale));
+
+			grect.transition()
+					.attr("width",10).attr("height",10)
+					.attr("rx",10).attr("ry",10);
+
+			event_group.transition().attr("transform", function (d) {
+				return "translate("+t_scale(d.time_stamp)+",60)";
+			});
+
+			if (garrow) {garrow.remove()};
+
+			gact.transition()
+				.attr("x", function (d) {return t_scale(d.start_time)})
+				.attr("y", 20)
+				.attr("width", function (d) {return t_scale(d.end_time-d.start_time)-margin+10})
+				.attr("height", 50);
+
+			if (gtext) {gtext.remove()};
+
+		}
+
+		function cpu_chart_change () {
+			var line = d3.svg.line()
+					.interpolate("monotone")
+					.x(function(d){return order_scale(polylinear_helper(d.id))})
+					.y(function(d){return y_percent_scale(d.usage)});
+
+			cpu_axis.remove();
+			cpu_axis = cpu_svg.append("g")
+							.attr("class", "x axis")
+							.attr("transform", "translate(0,"+(cpu_svg_height-30)+")")
+							.call(d3.svg.axis().scale(order_scale));
+
+			cpu_group.transition().attr("transform", function (d) {
+				return "translate("+order_scale(polylinear_helper(d.id))+","+y_percent_scale(d.usage)+")";
+			});
+
+			cpu_path.transition().attr("d",line(data.cpu_reports));
+
+		}
+
+		function mem_chart_change () {π
+			var y_mem_scale = d3.scale.linear().domain([0,20000]).range([170, 20]);
+		}
+
+		event_chart_change();
+		cpu_chart_change();
+		toggle="event_axis";
 	}
 
 	initialize();
-	d3.select("#time_axis_button").on("click",toggle_event_axis);
+	d3.select("#time_axis_button").on("click",toggle_time_axis);
+	d3.select("#event_axis_button").on("click",toggle_event_axis);
 }
