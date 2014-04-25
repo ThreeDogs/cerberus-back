@@ -17,8 +17,8 @@ API detail_report:
  ✔ test @done (14-04-25 19:44)
 
 Time stamp conversion Issue:
- ☐ 
-
+ ✔ Java Timestamp Check @done (14-04-25 20:07)
+ ✔ Ruby Timestamp Check @done (14-04-25 20:12)
 
 #  app_version      :string(255)
 #  test_datetime    :string(255)
