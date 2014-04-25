@@ -61,8 +61,7 @@ class TotalReport < ActiveRecord::Base
 
     uri = URI("#{test_bed_url}/apk_info_send")
     req = Net::HTTP::Post.new(uri, initheader = {'Content-Type' =>'application/json'})
-    req.body = {apk_url: apk_url, total_report_id: total_report_id, test_scenarios: test_scenario_motion_event
-      s}.to_json
+    req.body = {apk_url: apk_url, total_report_id: total_report_id, test_scenarios: test_scenario_motion_events}.to_json
     puts req.body
     res = Net::HTTP.start(uri.hostname, uri.port) do |http|
       http.request(req)

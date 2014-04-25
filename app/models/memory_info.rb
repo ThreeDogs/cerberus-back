@@ -2,19 +2,19 @@
 #
 # Table name: memory_infos
 #
-#  id              :integer          not null, primary key
-#  dalvik_size     :integer
-#  dalvik_alloc    :integer
-#  native_size     :integer
-#  native_alloc    :integer
-#  motion_event_id :integer
-#  report_id       :integer
-#  created_at      :datetime
-#  updated_at      :datetime
+#  id                :integer          not null, primary key
+#  mem_total         :integer
+#  dalvik_heap_alloc :integer
+#  native_heap_size  :integer
+#  dalvik_heap_size  :integer
+#  native_heap_alloc :integer
+#  mem_alloc         :integer
+#  client_timestamp  :string(255)
+#  detail_report_id  :integer
+#  created_at        :datetime
+#  updated_at        :datetime
 #
 
 class MemoryInfo < ActiveRecord::Base
-	# belongs_to :motion_event
-
-	# validates :motion_event_id, presence: true
+  belongs_to :detail_report
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140425064506) do
+ActiveRecord::Schema.define(version: 20140425081514) do
 
   create_table "apks", force: true do |t|
     t.string   "apk"
@@ -24,20 +24,22 @@ ActiveRecord::Schema.define(version: 20140425064506) do
   add_index "apks", ["project_id"], name: "index_apks_on_project_id"
 
   create_table "cpu_infos", force: true do |t|
-    t.integer  "cpu_usage"
-    t.integer  "motion_event_id"
-    t.integer  "report_id"
+    t.integer  "usage"
+    t.string   "client_timestamp"
+    t.integer  "detail_report_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "cpu_infos", ["detail_report_id"], name: "index_cpu_infos_on_detail_report_id"
 
   create_table "detail_reports", force: true do |t|
     t.string   "app_version"
     t.string   "test_datetime"
     t.integer  "status"
     t.integer  "running_time"
+    t.string   "device_key"
     t.integer  "test_scenario_id"
-    t.integer  "device_id"
     t.integer  "total_report_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -61,15 +63,33 @@ ActiveRecord::Schema.define(version: 20140425064506) do
   add_index "devices", ["total_report_id"], name: "index_devices_on_total_report_id"
 
   create_table "memory_infos", force: true do |t|
-    t.integer  "dalvik_size"
-    t.integer  "dalvik_alloc"
-    t.integer  "native_size"
-    t.integer  "native_alloc"
-    t.integer  "motion_event_id"
-    t.integer  "report_id"
+    t.integer  "mem_total"
+    t.integer  "dalvik_heap_alloc"
+    t.integer  "native_heap_size"
+    t.integer  "dalvik_heap_size"
+    t.integer  "native_heap_alloc"
+    t.integer  "mem_alloc"
+    t.string   "client_timestamp"
+    t.integer  "detail_report_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "memory_infos", ["detail_report_id"], name: "index_memory_infos_on_detail_report_id"
+
+  create_table "motion_event_infos", force: true do |t|
+    t.string   "activity_class"
+    t.string   "param"
+    t.string   "view"
+    t.string   "action_type"
+    t.integer  "sleep"
+    t.string   "client_timestamp"
+    t.integer  "detail_report_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "motion_event_infos", ["detail_report_id"], name: "index_motion_event_infos_on_detail_report_id"
 
   create_table "motion_events", force: true do |t|
     t.integer  "seq_id"

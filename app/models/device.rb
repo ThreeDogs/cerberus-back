@@ -16,4 +16,5 @@
 
 class Device < ActiveRecord::Base
   belongs_to :total_report
+  has_many :detail_reports, foreign_key: 'device_key', primary_key: 'device_key'
 end

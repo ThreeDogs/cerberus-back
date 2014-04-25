@@ -7,12 +7,44 @@ Connection:
    ✔ Start Test Module @done (14-04-25 16:52)
 
 CouchDB -> ActiveRecord:
- ☐ report -> detail_report
- ☐ MemoryReport
- ☐ MotionReport
- ☐ CpuReport
+ ✔ report -> detail_report @done (14-04-25 17:20)
+ ✔ MemoryReport -> memory_infos @done (14-04-25 17:20)
+ ✔ MotionReport -> motion_event_infos @done (14-04-25 17:20)
+ ✔ CpuReport -> cpu_infos @done (14-04-25 17:20)
+
+API detail_report:
+ ✔ create @done (14-04-25 19:44)
+ ✔ test @done (14-04-25 19:44)
+
+Time stamp conversion Issue:
+ ☐ 
 
 
+#  app_version      :string(255)
+#  test_datetime    :string(255)
+#  status           :integer
+#  running_time     :integer
+#  device_key       :string(255)
+#  test_scenario_id :integer
+#  total_report_id  :integer
+
+# cpu_infos
+# usage            :integer
+
+# memory_infos
+#  mem_total         :integer
+#  dalvik_heap_alloc :integer
+#  native_heap_size  :integer
+#  dalvik_heap_size  :integer
+#  native_heap_alloc :integer
+#  mem_alloc         :integer
+
+# memory_event_infos
+#  activity_class   :string(255)
+#  param            :string(255)
+#  view             :string(255)
+#  action_type      :string(255)
+#  sleep            :integer
 
 Report:
   # require 'couchrest_model'
