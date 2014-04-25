@@ -7,7 +7,7 @@ class CreateMemoryInfos < ActiveRecord::Migration
       t.integer :dalvik_heap_size
       t.integer :native_heap_alloc
       t.integer :mem_alloc
-      t.string :client_timestamp
+      t.integer :client_timestamp
       t.references :detail_report, index: true
 
       t.timestamps
