@@ -1,11 +1,10 @@
 Server-Client Connect Work
 Connection:
- ☐ Device Modeling
+ ✔ Device Modeling @done (14-04-25 16:52)
    brand:string cpu_info:string model:string os_version:string country:string device_key:string
    ✔ model create @done (14-04-25 15:46)
    ✔ relationship @done (14-04-25 15:46)
-   ☐ Start Test Module
- ☐ Total Device Modeling
+   ✔ Start Test Module @done (14-04-25 16:52)
 
 CouchDB -> ActiveRecord:
  ☐ report -> detail_report

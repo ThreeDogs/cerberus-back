@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20140425064506) do
 
   create_table "devices", force: true do |t|
     t.string   "brand"
-    t.string   "cpu_info"
+    t.string   "cpu"
     t.string   "model"
     t.string   "os_version"
     t.string   "country"

@@ -6,7 +6,7 @@ class CreateDetailReports < ActiveRecord::Migration
       t.integer :status
       t.integer :running_time
       t.references :test_scenario, index: true
-      t.integer :device_id
+      t.integer :device_key, index: true
       t.references :total_report, index: true
 
       t.timestamps
