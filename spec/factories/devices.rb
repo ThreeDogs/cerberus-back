@@ -17,11 +17,12 @@
 
 FactoryGirl.define do
   factory :device do
-    name "MyString"
-    os_version "MyString"
-    model_name "MyString"
+    brand "MyString"
     cpu_info "MyString"
-    deviceship_id 1
-    project nil
+    model "MyString"
+    os_version "MyString"
+    country "MyString"
+    device_key "MyString"
+    total_report nil
   end
 end

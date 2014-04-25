@@ -14,5 +14,5 @@
 #
 
 class Device < ActiveRecord::Base
-  belongs_to :project
+  belongs_to :total_report
 end
