@@ -15,7 +15,7 @@
 require 'net/http'
 
 class TotalReport < ActiveRecord::Base
-  # after_create :start_test
+  after_create :start_test
 	default_scope { order('created_at DESC') } 
 	scope :complete_total_reports, -> {where(status: true)}
 
@@ -50,7 +50,7 @@ class TotalReport < ActiveRecord::Base
 
   private
 
-  def start_test(test_bed_url = "http://172.16.101.143:9000")
+  def start_test(test_bed_url = TEST_BED_URL_START)
     apk_url = self.apk.apk.to_s
     total_report_id = self.id
     test_scenario_motion_events = []
