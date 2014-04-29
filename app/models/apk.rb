@@ -41,11 +41,14 @@ class Apk < ActiveRecord::Base
 
   	target_path = "/uploads/#{self.class.to_s.underscore}/test_apk/#{self.id}/"
   	target_folder_full_path = "#{Rails.root}/public#{target_path}"
-		test_apk_target = "#{target_folder_full_path}NewTest#{apk_name}"
+
+  	time_suffix = DateTime.now.strftime("%y%m%d%H%M")
+		
+		test_apk_target = "#{target_folder_full_path}#{apk_name}_test#{time_suffix}"
 		result = `echo #{secret_password} | sudo -S sh #{test_sh} #{apk_url} #{test_apk_target} #{shell_path} #{target_folder_full_path} #{project_id}`
 
 		# if succeed 
-		test_apk_url = "#{target_path}NewTest#{apk_name}"
+		test_apk_url = "#{target_path}#{apk_name}_test#{time_suffix}"
 		update!(test_apk: test_apk_url)
   end
 
