@@ -10,6 +10,7 @@
  *
  *= require bootstrap.min
  *= require_self
+ *= require common
  *= require projects
  *= require dashboard
  *= require total_reports
@@ -33,21 +34,10 @@
 	     url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }*/
 
-.outline {
-	border: solid;
-	border-width: 1px;
-	float:left;
-}
-
 body {
 	font-family: '나눔고딕', 'NanumBarunGothic';
-	padding: 0px;
 }
 
 p {
 	font-family: '나눔고딕', 'NanumBarunGothic';
-}
-
-.container {
-	padding: 0px;
 }
