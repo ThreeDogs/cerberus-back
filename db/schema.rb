@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140425081514) do
+ActiveRecord::Schema.define(version: 20140429113707) do
 
   create_table "apks", force: true do |t|
     t.string   "apk"
@@ -108,6 +108,13 @@ ActiveRecord::Schema.define(version: 20140425081514) do
     t.string   "name"
     t.string   "icon"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "screens", force: true do |t|
+    t.string   "url"
+    t.integer  "client_timestamp"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

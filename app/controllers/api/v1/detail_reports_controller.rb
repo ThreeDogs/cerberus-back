@@ -11,5 +11,9 @@ class Api::V1::DetailReportsController < ApplicationController
 			render status: :unprocessable_entity, json: {response: "error #{e}"}
 		end
 	end
+
+	def upload_screenshot
+		# @screen = Screen.new()
+	end
 end
 

@@ -29,6 +29,7 @@ describe TestScenario do
   it{should respond_to(:detail_reports)}
 
   it "#index" do
+  	test_scenario.project.name.should == "First App"
   	test_scenario.name.should == "Login Test"
   	test_scenario.description.should == "This is a Login Test"
   	test_scenario.get_rank.should == "A"
