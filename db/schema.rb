@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 20140429113707) do
   end
 
   create_table "screens", force: true do |t|
-    t.string   "url"
+    t.string   "image"
     t.integer  "client_timestamp"
     t.datetime "created_at"
     t.datetime "updated_at"

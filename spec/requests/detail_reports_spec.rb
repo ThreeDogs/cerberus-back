@@ -1,6 +1,18 @@
 require 'spec_helper'
 
 describe 'DetailReports' do
+ describe 'POST /api/v1/detail_reports/upload_screenshot' do
+  it "create @screen" do
+    image_path = "#{Rails.root}/app/assets/images/screenshots/ss1.png"
+    screen_json = {image: Rack::Test::UploadedFile.new(image_path, 'image/png'), client_timestamp: 1234}
+    # image_path.should == "#{Rails.root}/assets/screenshots/ss1.png"
+    post '/api/v1/detail_reports/upload_screenshot', screen: screen_json
+    response.status.should be(201)
+    response.body.should include("1234")
+    response.body.should include("ss1.png")
+  end  
+ end
+
  describe 'POST /api/v1/detail_reports' do
  	detail_report_json = {app_version: '1.0', device_key: 'asd2asda', running_time:1200, status:1, test_scenario_id:1,total_report_id:1,
   	memory_infos_attributes:[

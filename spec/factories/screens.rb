@@ -3,7 +3,7 @@
 # Table name: screens
 #
 #  id               :integer          not null, primary key
-#  url              :string(255)
+#  image            :string(255)
 #  client_timestamp :integer
 #  created_at       :datetime
 #  updated_at       :datetime
@@ -13,7 +13,7 @@
 
 FactoryGirl.define do
   factory :screen do
-    url "MyString"
+    url "sasd"
     client_timestamp 1
   end
 end

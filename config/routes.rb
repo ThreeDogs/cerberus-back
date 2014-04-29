@@ -1,7 +1,11 @@
 CerberusBack::Application.routes.draw do
   namespace :api, defaults: {format: 'json'} do 
     namespace :v1 do
-      resources :detail_reports, only: [:create]
+      resources :detail_reports, only: [:create] do
+        collection do
+          post 'upload_screenshot'
+        end
+      end
       resources :test_scenarios, only: [:create]
       resources :motion_events, only: [:create]
       resources :reports, only: [] do

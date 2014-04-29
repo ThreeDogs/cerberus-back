@@ -13,7 +13,19 @@ class Api::V1::DetailReportsController < ApplicationController
 	end
 
 	def upload_screenshot
-		# @screen = Screen.new()
+		@screen = Screen.new(screen_params)
+
+		if @screen.save
+			render status: :created, json: {response: "success_created", client_timestamp: @screen.client_timestamp, url: @screen.image}
+		else
+			render status: :unprocessable_entity, json: {response: "error #{e}"}
+		end
+	end
+
+	private 
+
+	def screen_params
+		params.require(:screen).permit(:image, :client_timestamp)		
 	end
 end
 

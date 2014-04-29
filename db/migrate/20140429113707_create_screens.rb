@@ -1,7 +1,7 @@
 class CreateScreens < ActiveRecord::Migration
   def change
     create_table :screens do |t|
-      t.string :url
+      t.string :image
       t.integer :client_timestamp
 
       t.timestamps
