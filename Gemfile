@@ -48,7 +48,7 @@ end
 
 group :development, :test do
 	gem 'sqlite3'
-	gem 'rails-erd'
+	gem 'rails-erd', github: 'paulwittmann/rails-erd', branch: 'mavericks'
 	gem 'rspec-rails'
 	gem 'factory_girl_rails', '~> 4.0'
 	gem 'spork', '~>1.0rc'
