@@ -1,7 +1,7 @@
 class Api::V1::DetailReportsController < ApplicationController
 	skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
 	respond_to :json
-	
+
 	def create
 		@detail_report = DetailReport.new(JSON.parse(params[:detail_report]))
 
@@ -22,10 +22,13 @@ class Api::V1::DetailReportsController < ApplicationController
 		end
 	end
 
+	def get_report_infos
+		
+	end
+
 	private 
 
 	def screen_params
 		params.require(:screen).permit(:image, :client_timestamp)		
 	end
 end
-

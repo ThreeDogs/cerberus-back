@@ -6,7 +6,7 @@
 #  app_version      :string(255)
 #  test_datetime    :string(255)
 #  status           :integer
-#  running_time     :integer
+#  running_time     :float
 #  device_key       :string(255)
 #  test_scenario_id :integer
 #  total_report_id  :integer
@@ -28,6 +28,55 @@ class DetailReport < ActiveRecord::Base
   accepts_nested_attributes_for :motion_event_infos
 
   validates :app_version, presence: true
+
+  def test_scenario_name
+    test_scenario.name
+  end
+
+  def device_name
+    device.model
+  end
+
+  def get_running_time
+    minutes = running_time / 60
+    seconds = running_time % 60
+    "#{running_time}s (#{minutes.to_i}:#{seconds.to_i})"
+  end
+
+  # status -1 : Fail, 1: Pass
+  def get_status
+    status == 1 ? "Pass" : "Fail"
+  end
+
+  def memory_average
+    # implement..
+    "20.00mb"
+  end
+
+  def cpu_average
+    # implement..
+    "11%"
+  end
+
+  def network_average
+    # implement..
+    "2394 kb/s"
+  end
+
+  def battery_consumption
+    # implement..
+    "normal"
+  end
+
+  def threads_average
+    # implement..
+    "34"
+  end
+
+  def frame_draw_time_average
+    # implement..
+    "11.27ms"
+  end
 
   def project_id
   	total_report.project.id

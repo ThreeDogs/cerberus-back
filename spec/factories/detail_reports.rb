@@ -6,7 +6,7 @@
 #  app_version      :string(255)
 #  test_datetime    :string(255)
 #  status           :integer
-#  running_time     :integer
+#  running_time     :float
 #  device_key       :string(255)
 #  test_scenario_id :integer
 #  total_report_id  :integer

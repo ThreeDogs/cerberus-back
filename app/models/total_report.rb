@@ -15,7 +15,7 @@
 require 'net/http'
 
 class TotalReport < ActiveRecord::Base
-  after_create :start_test
+  # after_create :start_test
 	default_scope { order('created_at DESC') } 
 	scope :complete_total_reports, -> {where(status: true)}
 

@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20140429113707) do
     t.string   "app_version"
     t.string   "test_datetime"
     t.integer  "status"
-    t.integer  "running_time"
+    t.float    "running_time"
     t.string   "device_key"
     t.integer  "test_scenario_id"
     t.integer  "total_report_id"
