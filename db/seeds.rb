@@ -26,11 +26,46 @@ test_path_to_file = "#{Rails.root}/lib/test_apk_generator/NewTestTestAndroid.apk
 		@apk.total_reports.create(created_at: i.minutes.ago, project_id: 1, app_version: "1.0")
 	end
 end
+
 @total_report = @apk.total_reports.create(status: true, created_at: 1.seconds.ago, project_id: 1, test_datetime: "recent", app_version: "1.0")
 
 @detail_report = @total_report.detail_reports.create!(app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: 0)
 
 @test_scenario = @project.test_scenarios.create!(name: "Login Test", description: "This is a Login Test", rank: 0)
 
+@detail_report.memory_infos.create!(
+          mem_total: 10,
+          dalvik_heap_alloc: 10,
+          native_heap_size: 10,
+          mem_alloc: 10,
+          dalvik_heap_size: 10,
+          native_heap_alloc: 10,
+          client_timestamp: 1234
+      )
 
+@detail_report.memory_infos.create!(
+          mem_total: 10,
+          dalvik_heap_alloc: 10,
+          native_heap_size: 10,
+          mem_alloc: 10,
+          dalvik_heap_size: 10,
+          native_heap_alloc: 10,
+          client_timestamp: 1235
+      )
+
+@detail_report.cpu_infos.create!(usage: 10,client_timestamp: 1234)
+@detail_report.cpu_infos.create!(usage: 20,client_timestamp: 1235)
+@detail_report.cpu_infos.create!(usage: 30,client_timestamp: 1236)
+
+@detail_report.motion_event_infos.create!(activity_class: 'asd',
+          param:  '123',
+          view: 'view',
+          sleep: 3000,
+          action_type: 'Click',client_timestamp: 1234)
+
+@detail_report.motion_event_infos.create!(activity_class: 'asd',
+          param:  '123',
+          view: 'view',
+          sleep: 3000,
+          action_type: 'Click',client_timestamp: 1237)
 

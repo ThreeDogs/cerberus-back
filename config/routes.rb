@@ -5,14 +5,12 @@ CerberusBack::Application.routes.draw do
         collection do
           post 'upload_screenshot'
         end
-      end
-      resources :test_scenarios, only: [:create]
-      resources :motion_events, only: [:create]
-      resources :reports, only: [] do
         member do
           get 'get_report_infos'
         end
-      end     
+      end
+      resources :test_scenarios, only: [:create]
+      resources :motion_events, only: [:create]
     end
   end
 
