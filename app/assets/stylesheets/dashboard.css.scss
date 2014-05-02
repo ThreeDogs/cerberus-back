@@ -53,6 +53,7 @@ body {
 /* Header */
 .header {
   height: 50px;
+  min-width: 870px;
   width: 100%;
   position: absolute;
   top: 0px;
@@ -70,10 +71,7 @@ body {
 /* Container */
 
 .container {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  margin-top: 50px;
+  min-width: 600px;
   margin-left: 240px;
   padding: 10px;
 }

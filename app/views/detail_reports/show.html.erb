@@ -3,9 +3,84 @@
 <div>
 	<%= render 'shared/side_bar' %>
 	<div class="container">
-		<div class="total_report_head">
-			<p><img src="/assets/Result.png">Test Result</p>
-			<p class="subline">Test Results > Full Report > Detail Report</p>
+		<div class="page_title">
+			<div class="image_box">
+				<img src="/assets/Result.png">
+			</div>
+			<div class="text_box">
+				<p class="title">Test Result</p>
+				<p class="subtitle">Test Results > Full Report > Detail Report</p>
+			</div>
+		</div>
+
+
+		<div id="test_results">
+
+			<div id="test_stats" class="half_width_block">
+			sth
+			</div>
+
+			<div id="test_avg" class="half_width_block">
+			sth
+			</div>
+
+			<div id="screenshots" class="full_width_block">
+			screenshots
+			</div>
+
+			<div id="event_div" class="full_width_block">
+				<div id="event_flow" class="graph">
+					<div class="test"></div>
+				</div>
+				<div class="graph_details">
+					<div class="test"></div>
+				</div>
+				<div class="graph_updown">
+					<div class="test"></div>
+				</div>
+			</div>
+
+			<div id="mem_div" class="full_width_block">
+				<div id="mem_graph" class="graph">
+				</div>
+				<div class="graph_details">
+					<div class="detail_filter">
+						<input type="checkbox" id="checkbox_memory_total">memory total
+					</div>
+					<div class="detail_filter">
+						<input type="checkbox" id="checkbox_memory_allocated">memory allocated
+					</div>
+					<div class="detail_filter">
+						<input type="checkbox" id="checkbox_dalvik_heap_size">dalvik heap size
+					</div>
+					<div class="detail_filter">
+						<input type="checkbox" id="checkbox_dalvik_heap_allocated">dalvik heap allocated
+					</div>
+					<div class="detail_filter">
+						<input type="checkbox" id="checkbox_native_heap_size">native heap size
+					</div>
+					<div class="detail_filter">
+						<input type="checkbox" id="checkbox_native_heap_allocated">native heap allocated
+					</div>
+				</div>
+				<div class="graph_updown">
+					<div class="test"></div>
+				</div>
+			</div>
+
+			<div id="cpu_div" class="full_width_block">
+				<div id="cpu_graph" class="graph">
+				</div>
+				<div class="graph_details">
+					<div class="detail_filter">
+						<input type="checkbox" id="checkbox_memory_total">memory total
+					</div>
+				</div>
+				<div class="graph_updown">
+					<div class="test"></div>
+				</div>
+			</div>
+
 		</div>
 
 	</div>
