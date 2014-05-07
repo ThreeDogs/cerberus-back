@@ -1,38 +1,36 @@
 <%= render "shared/header" %>
-<div class="container-fluid">
-	<div class="row-fluid">
-		<%= render 'shared/side_bar' %>	
-
-		<div class="col-md-12 contents">
-			<div class="dashboard_head">
+<%= render 'shared/side_bar' %>
+<div class="row">
+  
+  <div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2">
+    <div class="container">
+      <div class="dashboard_head">
         <img src="/assets/Dashboard.png">Dashboard
       </div>
-			
-			<span class="dashboard_sub">Recent Test Overview</span>
-
-			<div id="overview-box">
-        <div class="col-md-2" id="app-info-box">
+      <span class="dashboard_sub">Recent Test Overview</span>
+      <div id="overview_box">
+        <div class="app_info_box">
           <p><%= @recent_report.apk_name %></p>
           <p><%= @recent_report.test_date %></p>
           <p><%= @recent_report.number_of_scenarios %> Test Scenarios</p>
           <p><%= @recent_report.number_of_devices %> Devices</p>
         </div>
-        <div class="col-md-2" id="app-version-box">
+        <div class="app_version_box">
           <p>App version</p>
-          <p class="big-version"><%= @recent_report.app_version %></p>
+          <p class="big_version"><%= @recent_report.app_version %></p>
         </div>
-        <div class="col-md-6">
+        <div id="test_fail_box">
         </div>
-        <div class="col-md-2 report-link">
+        <div class="report_link">
           <%= link_to project_total_report_path(@project, @recent_report)  do %>
-          	<div class="link-button">
+          	<div class="link_button">
           		FULL REPORT
           	</div>
           <% end %>
         </div>
       </div>
 
-			<div id="test_fail_graph">
+      <div id="test_fail_graph">
         <div id="test_fail_bar_graph">
         </div>
         <div id="test_fail_chart">
@@ -50,38 +48,38 @@
         </div>
       </div>
 
+      <br>
       <span class="dashboard_sub">Project Trends</span>
-	      <div id="project_trends">
+      <div id="project_trends">
 
-	          <div id="test_results">
-	            <p>Test results</p>
-	          </div>
+          <div id="test_results">
+            <p>Test results</p>
+          </div>
 
-	          <div id="cpu_trend">
-	            <p>CPU usage trend</p>
-	          </div>
-	          <div id="mem_trend">
-	            <p>Memory usage trend</p>
-	          </div>
+          <div id="cpu_trend">
+            <p>CPU usage trend</p>
+          </div>
+          <div id="mem_trend">
+            <p>Memory usage trend</p>
+          </div>
 
-	          <div id="network_trend">
-	            <p>Network response time trend</p>
-	          </div>
-	          <div id="battery_trend">
-	            <p>Battery consumption trend</p>
-	          </div>
+          <div id="network_trend">
+            <p>Network response time trend</p>
+          </div>
+          <div id="battery_trend">
+            <p>Battery consumption trend</p>
+          </div>
 
-	          <div id="thread_trend">
-	            <p>Thread trend</p>
-	          </div>
-	          <div id="frame_trend">
-	            <p>Frame draw time trend</p>
-	          </div>
+          <div id="thread_trend">
+            <p>Thread trend</p>
+          </div>
+          <div id="frame_trend">
+            <p>Frame draw time trend</p>
+          </div>
 
-	      </div>
-
-		</div>
-	</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>

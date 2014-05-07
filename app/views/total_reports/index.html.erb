@@ -1,39 +1,39 @@
 <%= render "shared/header" %>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<%= render 'shared/side_bar' %>
 
-<div class="row">
-	<%= render 'shared/side_bar' %>
-	<div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2">
-		<div class="container">
-	    	<div class="total_report_head">
+		<div class="col-md-12 contents">
+			<div class="total-report-head">
 	    		<p><img src="/assets/Result.png">Test results</p>
-	    	</div>
-	    	<% @total_reports.each do |total_report| %>
-	    	<!--LOOP-->
-	    	<div class="test_result">
-	    		<div class="app_info_box">
-	    			<p><%= total_report.apk_name %></p>
-	    			<p><%= total_report.test_date %></p>
-	    			<p><%= total_report.number_of_scenarios %> Test Scenarios</p>
-	    			<p><%= total_report.number_of_devices %> Devices</p>
-				</div>
-				<div class="app_version_box">
-					<p>App version</p>
-					<p class="big_version"><%= total_report.app_version %></p>
-				</div>
-				<div id="test_fail_box_<%= total_report.id %>" class="test_fail_box">
-					<!-- TEST_FAILURE_GRAPH_SVG<br>
-					REQUIRES UNIQUE ID -->
-				</div>
-				<%= link_to total_report_detail_reports_path(total_report) do %>
-				<div class="report_link">
-					<div class="link_button">FULL REPORT</div>
-				</div>
-				<% end %>
-	    	</div>
+	    </div>
+			<% @total_reports.each do |total_report| %>
+		    	<!--LOOP-->
+		    	<div class="test-result">
+		    		<div class="col-md-2" id="app-info-box">
+		    			<p><%= total_report.apk_name %></p>
+		    			<p><%= total_report.test_date %></p>
+		    			<p><%= total_report.number_of_scenarios %> Test Scenarios</p>
+		    			<p><%= total_report.number_of_devices %> Devices</p>
+		    		</div>
+		    		<div class="col-md-2" id="app-version-box">
+		    			<p>App version</p>
+							<p class="big_version"><%= total_report.app_version %></p>	
+		    		</div>
+		    		<div class="col-md-6">
+		    			
+		    		</div>
+		    		<div class="col-md-2">
+		    			<%= link_to total_report_detail_reports_path(total_report) do %>
+								<div class="report-link">
+									<div class="link-button">FULL REPORT</div>
+								</div>
+							<% end %>
+		    		</div>
+		    	</div>
 	    	<% end %>
 	    	<!--END LOOP-->
-
-	    </div>
+		</div>	
 	</div>
 </div>
 

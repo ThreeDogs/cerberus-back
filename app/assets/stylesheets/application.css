@@ -8,14 +8,16 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
  *= require bootstrap.min
+ *= require_self
  *= require common
  *= require projects
- *= require dashboard
+ *= require sidebar
  *= require total_reports
  *= require detail_reports
  *= require test_scenarios
+ *= require apk
+
  */
 
 @font-face {
@@ -36,9 +38,15 @@
 
 body {
 	font-family: '나눔고딕', 'NanumBarunGothic';
+	padding-top: 40px;
 }
 
 p {
 	font-family: '나눔고딕', 'NanumBarunGothic';
 	margin: 0px;
+}
+
+/* Header */
+.header {
+  background-color: #5DBE88; 
 }

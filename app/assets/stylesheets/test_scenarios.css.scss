@@ -2,6 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.test-scenario-head {
+	margin: 40px 0;
+	color: rgb(40,112,68);
+	font-size: 26px; 
+	img {
+		margin-right: 16px;
+	}
+}
+
 //**index**//
 #scenario_list {
 
@@ -24,26 +33,21 @@
 	}
 
 	.row_rank {
-		width: 40px;
 		text-align: center;
 		border: 2pt solid rgb(169,216,185);
 	}
 	.row_name {
-		width: 150px;
 		text-align: center;
 		border: 2pt solid rgb(169,216,185);
 	}
 	.row_description {
-		width: 490px;
 		border: 2pt solid rgb(169,216,185);
 	}
 	.row_recent {
-		width: 310px;
 		text-align: center;
 		border: 2pt solid rgb(169,216,185);
 	}
 	.row_show {
-		width: 180px;
 		text-align: center;
 		border: 2pt solid rgb(169,216,185);
 		.link_button {

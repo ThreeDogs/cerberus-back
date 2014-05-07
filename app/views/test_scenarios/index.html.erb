@@ -1,14 +1,13 @@
 <%= render "shared/header" %>
 
-<div class="row">
-	<%= render 'shared/side_bar' %>
-	<div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2">
-		<div class="container">
-			<div class="total_report_head">
-	    		<p><img src="/assets/scenario_sidebar.png">Test Scenarios</p>
-	    	</div>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<%= render 'shared/side_bar' %>	
+		<div class="col-md-12 contents">
+			<div class="test-scenario-head">
+				<img src="/assets/scenario_sidebar.png">Test Scenarios
+			</div>
 
-	    	<br>
 			<div class="filter">
 				<div class="filter_row">
 					<div class="key">Rank</div>
@@ -32,9 +31,10 @@
 					</div>
 				</div>
 			</div>
-			<table id="scenario_list">
+
+			<table class="table table-hover" id="scenario_list">
 				<tr id="event_detail_scheme" class="row">
-					<td class="row_rank"></td>
+					<td class="row_rank">Rank</td>
 					<td class="row_name">Name</td>
 					<td class="row_description">Description</td>
 					<td class="row_recent">Recently tested on</td>
