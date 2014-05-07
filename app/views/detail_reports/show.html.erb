@@ -1,120 +1,91 @@
 <%= render "shared/header" %>
 
-<div class="row">
+<div>
 	<%= render 'shared/side_bar' %>
-	<div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2">
-		<div class="container">
-			<div class="total_report_head">
-				<p><img src="/assets/Result.png">Test Result</p>
-				<p class="subline">Test Results > Full Report > Detail Report</p>
+	<div class="container">
+		<div class="page_title">
+			<div class="image_box">
+				<img src="/assets/Result.png">
 			</div>
-
-			<span class="dashboard_sub">Report Overview</span>
-			<div id="report_overview">
-				<div class="report_overview_left">
-
-					<div class="thingy">
-						<div class="thingy_sub">Scenario Name</div>
-						Login test</div>
-					<div class="thingy">
-						<div class="thingy_sub">App Version</div>
-						1.0</div>
-					<div class="thingy">
-						<div class="thingy_sub">Device</div>
-						Samsung Galaxy Note 3</div>
-					<div class="thingy">
-						<div class="thingy_sub">Running time</div>
-						73.8s (1:13)</div>
-					<div class="thingy">
-						<div class="thingy_sub">Date/Time</div>
-						14.MAR.05 </div>
-					<div class="thingy"><div class="thingy_sub">Status</div>
-						PASS</div>
-
-				</div>
-				<div class="report_overview_right">
-					<div class="thingy">Memory avg 20.00MB</div>
-					<div class="thingy">CPU avg 11%</div>
-
-					<div class="thingy">Network avg 2394KB</div>
-					<div class="thingy">Battery consumption normal</div>
-
-					<div class="thingy">Threads avg 34.12</div>
-					<div class="thingy">Frame draw time avg 11.27ms</div>
-				</div>
+			<div class="text_box">
+				<p class="title">Test Result</p>
+				<p class="subtitle">Test Results > Full Report > Detail Report</p>
 			</div>
-
-			<br><span class="dashboard_sub">Screenshot</span>
-			<div id="screenshot_view">
-				<div id="screenshot_row">
-					<img src="/assets/screenshots/ss1.png">
-					<img src="/assets/screenshots/ss2.png">
-					<img src="/assets/screenshots/ss3.png">
-					<img src="/assets/screenshots/ss4.png">
-					<img src="/assets/screenshots/ss5.png">
-					<img src="/assets/screenshots/ss6.png">
-					<img src="/assets/screenshots/ss7.png">
-					<img src="/assets/screenshots/ss8.png">
-					<img src="/assets/screenshots/ss9.png">
-					<img src="/assets/screenshots/ss6.png">
-					<img src="/assets/screenshots/ss7.png">
-					<img src="/assets/screenshots/ss8.png">
-					<img src="/assets/screenshots/ss9.png">
-					<img src="/assets/screenshots/ss4.png">
-					<img src="/assets/screenshots/ss5.png">
-				</div>
-			</div>
-
-			<br><span class="dashboard_sub">Controls</span>
-			<div id="controls">
-				<button id="time_axis_button">Time Axis</button>
-				<button id="event_axis_button">Event Axis</button>
-			</div>
-
-			<br><span class="dashboard_sub">Event Path</span>
-			<div id="event_flow">
-			</div>
-
-			
-			<br><span class="dashboard_sub">Memory Usage</span>
-			<div id="mem_chart" class="graph_wrapper">
-				<div class="legend">
-					<img src="/assets/mem_legend.png">
-				</div>
-				<div id="memory">
-					
-				</div>			
-			</div>
-			
-			<br><span class="dashboard_sub">CPU Usage</span>
-			<div id="cpu_chart" class="graph_wrapper">
-				<div class="legend">
-					<img src="/assets/cpu_legend.png">
-				</div>
-				<div id="cpu">
-					
-				</div>
-			</div>
-
-			<!-- OTHER GRAPHS WILL GO IN HERE -->
 		</div>
+
+
+		<div id="test_results">
+
+			<div id="test_stats" class="half_width_block">
+			sth
+			</div>
+
+			<div id="test_avg" class="half_width_block">
+			sth
+			</div>
+
+			<div id="screenshots" class="full_width_block">
+			screenshots
+			</div>
+
+			<div id="event_div" class="full_width_block">
+				<div id="event_flow" class="graph">
+					<div class="test"></div>
+				</div>
+				<div class="graph_details">
+					<div class="test"></div>
+				</div>
+				<div class="graph_updown">
+					<div class="test"></div>
+				</div>
+			</div>
+
+			<div id="mem_div" class="full_width_block">
+				<div id="mem_graph" class="graph">
+				</div>
+				<div class="graph_details">
+					<div class="detail_filter">
+						<input type="checkbox" id="checkbox_memory_total">memory total
+					</div>
+					<div class="detail_filter">
+						<input type="checkbox" id="checkbox_memory_allocated">memory allocated
+					</div>
+					<div class="detail_filter">
+						<input type="checkbox" id="checkbox_dalvik_heap_size">dalvik heap size
+					</div>
+					<div class="detail_filter">
+						<input type="checkbox" id="checkbox_dalvik_heap_allocated">dalvik heap allocated
+					</div>
+					<div class="detail_filter">
+						<input type="checkbox" id="checkbox_native_heap_size">native heap size
+					</div>
+					<div class="detail_filter">
+						<input type="checkbox" id="checkbox_native_heap_allocated">native heap allocated
+					</div>
+				</div>
+				<div class="graph_updown">
+					<div class="test"></div>
+				</div>
+			</div>
+
+			<div id="cpu_div" class="full_width_block">
+				<div id="cpu_graph" class="graph">
+				</div>
+				<div class="graph_details">
+					<div class="detail_filter">
+						<input type="checkbox" id="checkbox_memory_total">memory total
+					</div>
+				</div>
+				<div class="graph_updown">
+					<div class="test"></div>
+				</div>
+			</div>
+
+		</div>
+
 	</div>
 </div>
 
 <script>
-	d3.json("http://127.0.0.1:3000/testdata.json",drawCharts);
-
-	$('#event_flow').scroll(function () {
-		$('#cpu').scrollLeft($(this).scrollLeft());
-		$('#memory').scrollLeft($(this).scrollLeft());
-	});
-	$('#cpu').scroll(function () {
-		$('#event_flow').scrollLeft($(this).scrollLeft());
-		$('#memory').scrollLeft($(this).scrollLeft());
-	});
-	$('#memory').scroll(function () {
-		$('#cpu').scrollLeft($(this).scrollLeft());
-		$('#event_flow').scrollLeft($(this).scrollLeft());
-	});
-
+	d3.json("http://127.0.0.1:3000/testdata.json",drawDetailReports);
 </script>
