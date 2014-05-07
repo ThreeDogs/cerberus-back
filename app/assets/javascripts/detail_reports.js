@@ -5,17 +5,20 @@ function drawDetailReports(data) {
 	function drawEventPath(eventdata) {
 
 		var margin = {top: 10, right: 10, bottom: 10, left: 10};
-		var width = 680;
+		var width = window_x-600;
 		var height = 100;
 
 	}
 
+	var mem_graph_resize;
+
 	function drawMemUsage(memdata) {
 		var margin = {top: 10, right: 10, bottom: 30, left: 50};
-		var width = 640;
+		var width = window_x-600;
 		var height = 300;
 
 		var mem_svg = d3.select("#mem_graph").append("svg")
+						.attr("id","mem_svg")
 						.attr("height",height+margin.top+margin.bottom)
 						.attr("width",width+margin.left+margin.right)
 						.append("g")
@@ -44,6 +47,7 @@ function drawDetailReports(data) {
 		mem_svg.append("clipPath")
 				.attr("id", "clip")
 				.append("rect")
+				.attr("class","clip_rect")
 				.attr("width",width)
 				.attr("height",height);
 
@@ -59,7 +63,7 @@ function drawDetailReports(data) {
 		    .attr("class", "x axis")
 		    .attr("transform", "translate(0,"+height+")");
 
-		mem_svg.append("rect")
+		var pane = mem_svg.append("rect")
 		    .attr("class", "pane")
 		    .attr("width", width)
 		    .attr("height", height)
@@ -176,24 +180,40 @@ function drawDetailReports(data) {
 				field_list_num = 0;
 			}
 
+			function transform () {
+				legend.attr("transform", "translate("+(width-legend_width-legend_margin.right)+","+legend_margin.top+")");
+			}
+
 			var returnObj = new Object();
 			returnObj.appendToLegend = appendToLegend;
 			returnObj.clearLegend = clearLegend;
+			returnObj.transform = transform;
 			return returnObj;
 		}
 
 		var legend = new Legend();
 		legend.appendToLegend("something","#111111");
+
+		mem_graph_resize = function onResize() {
+			width = window_x-600;
+			d3.select("#mem_svg").attr("width",width+margin.left+margin.right);
+			pane.attr("width",width);
+			d3.select(".clip_rect").attr("width",width);
+			x.range([0,width]);
+			onZoom();
+			legend.transform();
+		}
 	}
 
-
+	var cpu_graph_resize;
 
 	function drawCPUUsage(cpudata) {
 		var margin = {top: 10, right: 10, bottom: 30, left: 50};
-		var width = 640;
+		var width = window_x-600;
 		var height = 300;
 
 		var cpu_svg = d3.select("#cpu_graph").append("svg")
+						.attr("id","cpu_svg")
 						.attr("height",height+margin.top+margin.bottom)
 						.attr("width",width+margin.left+margin.right)
 						.append("g")
@@ -220,10 +240,21 @@ function drawDetailReports(data) {
 					    .tickPadding(6);
 
 		cpu_svg.append("clipPath")
-				.attr("id", "clip")
+				.attr("id","clip")
 				.append("rect")
+				.attr("class","clip_rect")
 				.attr("width",width)
 				.attr("height",height);
+
+		var zoom = d3.behavior.zoom().on("zoom", onZoom)
+					.scaleExtent([0.1,4])
+					.x(x);
+
+		var pane = cpu_svg.append("rect")
+		    .attr("class", "pane")
+		    .attr("width", width)
+		    .attr("height", height)
+		    .call(zoom);
 
 		var line = d3.svg.line().interpolate("monotone")
 						.x(function(d){return x(d.id)})
@@ -248,22 +279,12 @@ function drawDetailReports(data) {
 									return "translate("+x(d.id)+","+y(d.usage)+")";
 								});
 
-		var zoom = d3.behavior.zoom().on("zoom", onZoom)
-					.scaleExtent([0.1,4])
-					.x(x);
-
 		cpu_svg.append("g")
 			.attr("class", "y axis")
 
 		cpu_svg.append("g")
 		    .attr("class", "x axis")
 		    .attr("transform", "translate(0,"+height+")");
-
-		cpu_svg.append("rect")
-		    .attr("class", "pane")
-		    .attr("width", width)
-		    .attr("height", height)
-		    .call(zoom);
 
 		onZoom();
 
@@ -276,7 +297,52 @@ function drawDetailReports(data) {
 			});
 		}
 
+		var legend_width = 80;
+		var legend_height = 30;
+		var legend_margin = {top: 10, bottom: 10, left: 10, right: 10};
+		
+		var legend = cpu_svg.append("g")
+				.attr("class", "legend")
+				.attr("transform", "translate("+(width-legend_width-legend_margin.right)+","+legend_margin.top+")");
+
+		legend.append("rect")
+				.attr("class", "legend_bg")
+				.attr("width",legend_width)
+				.attr("height",legend_height)
+				.attr("stroke","none")
+				.attr("fill","#eeeeee");
+
+		var field_list = legend.append("g").attr("class","field_list");
+
+		field_list.append("rect").attr("width",5).attr("height",5)
+					.attr("x",5).attr("y",5)
+					.attr("stroke","none")
+					.attr("fill","#111111");
+
+		field_list.append("text")
+					.attr("x",15).attr("y",10)
+					.text("cpu usage");
+
+		cpu_graph_resize = function onResize() {
+			width = window_x-600;
+			d3.select("#cpu_svg").attr("width",width+margin.left+margin.right);
+			pane.attr("width",width);
+			d3.select(".clip_rect").attr("width",width);
+			x.range([0,width]);
+			onZoom();
+			legend.attr("transform", "translate("+(width-legend_width-legend_margin.right)+","+legend_margin.top+")");
+		}
+
 	}
+
+	function resize() {
+		$("#event_flow").css("width",window_x-540);
+		$("#mem_graph").css("width",window_x-540);
+		$("#cpu_graph").css("width",window_x-540);
+		cpu_graph_resize();
+		mem_graph_resize();
+	}
+	d3.select(window).on("resize",resize);
 
 	drawMemUsage(data.memory_reports);
 	drawCPUUsage(data.cpu_reports);
