@@ -27,11 +27,30 @@ test_path_to_file = "#{Rails.root}/lib/test_apk_generator/NewTestTestAndroid.apk
 	end
 end
 
+@test_scenario = @project.test_scenarios.create!(description: "This is a Login Test", rank: 0)
+@project.test_scenarios.create!(description: "This is a Login Test", rank: 0)
+@project.test_scenarios.create!(description: "This is a Login Test", rank: 0)
+@project.test_scenarios.create!(description: "This is a Login Test", rank: 0)
+@project.test_scenarios.create!(description: "This is a Login Test", rank: 0)
+@project.test_scenarios.create!(description: "This is a Login Test", rank: 0)
+@project.test_scenarios.create!(description: "This is a Login Test", rank: 0)
+
 @total_report = @apk.total_reports.create(status: true, created_at: 1.seconds.ago, project_id: 1, test_datetime: "recent", app_version: "1.0")
 
-@detail_report = @total_report.detail_reports.create!(app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: 0)
+@device = Device.create(brand: "Samsung", cpu: "ARM", model:"Galaxy", os_version: "4.3", country: "KR", device_key: "A2BVDWE")
 
-@test_scenario = @project.test_scenarios.create!(name: "Login Test", description: "This is a Login Test", rank: 0)
+@detail_report = @total_report.detail_reports.create!(app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: 0, running_time: 1200, test_scenario_id: @test_scenario.id, device_key: "A2BVDWE")
+
+@total_report.detail_reports.create!(app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: 0, running_time: 1200, test_scenario_id: @test_scenario.id, device_key: "A2BVDWE")
+
+@total_report.detail_reports.create!(app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: 0, running_time: 1200, test_scenario_id: @test_scenario.id, device_key: "A2BVDWE")
+
+@total_report.detail_reports.create!(app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: 0, running_time: 1200, test_scenario_id: @test_scenario.id, device_key: "A2BVDWE")
+
+@total_report.detail_reports.create!(app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: 0, running_time: 1200, test_scenario_id: @test_scenario.id, device_key: "A2BVDWE")
+
+
+
 
 @detail_report.memory_infos.create!(
           mem_total: 10,

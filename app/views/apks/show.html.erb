@@ -8,19 +8,32 @@
 		<div class="col-md-12 column">
 			<div class="jumbotron">
 				<h3><%= @apk.apk_name %></h3>
-				<p>Package Name</p>
-				<p>Activity Name</p>
-				<p>Minimum SDK</p>
+				<p>Package Name  <%= @apk.package_name %></p>
+				<p>Activity Name  <%= @apk.activity_name %></p>
+				<p>Minimum SDK  <%= @apk.min_sdk %></p>
 				<p>Test APK  <%= link_to @apk.test_apk_name, @apk.test_apk %></p>
-
-				<div class="total-report-form">
-					<%= form_for [@apk, @total_report] do |f| %>
-						<div class="pull-right">
-							<%= f.submit "Start Test", class: "btn btn-large btn-primary" %>
-						</div>
-					<% end %>  		
-	  		</div>
 			</div>
+		</div>
+	</div>
+
+	<div class="row clearfix">
+		<div class="total-report-form">
+			<%= form_for [@apk, @total_report] do |f| %>
+				<div class="col-md-6 column">
+					<%= f.fields_for :scenarioships,  %>
+					<div class="field">
+					    <%= f.label :test_scenario_id %><br />
+					    <%= collection_check_boxes(:assignment, :test_scenario_id, @project.test_scenarios, :id, :name) %>
+					</div>
+				</div>		
+				<div class="col-md-6 column">
+
+				</div>
+				<div class="pull-right">
+					<%= f.submit "Start Test", class: "btn btn-large btn-primary" %>
+				</div>
+			<% end %>  		
+			
 		</div>
 	</div>
 </div>

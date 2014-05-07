@@ -21,8 +21,15 @@ class TotalReport < ActiveRecord::Base
 
   belongs_to :apk
   belongs_to :project
+
   has_many :detail_reports
-  has_many :devices
+
+  has_many :devices, through: :deviceship
+  has_many :deviceships
+
+  has_many :test_scenarios, through: :scenarioship
+  has_many :scenarioships
+  accepts_nested_attributes_for :scenarioships, allow_destroy: true
 
   # validates :test_datetime, presence: true
   def apk_name

@@ -16,36 +16,34 @@
 require 'spec_helper'
 
 describe TotalReport do
-	# let(:user) {User.new(email: "foobar@foobar.com", password: "foobarfoo", password_confirmation: "foobarfoo")}
-	# let(:project) {user.projects.new(name: "First App")}
-	# let(:apk) {project.apks.new}
-	# subject(:total_report) {create(:total_report_true)}
-	
+	path_to_file = "#{Rails.root}/lib/test_apk_generator/TestAndroid.apk"
+	test_path_to_file = "#{Rails.root}/lib/test_apk_generator/NewTestTestAndroid.apk"
 
-	# it{should respond_to(:project)}
-	# it{should respond_to(:apk)}
- #  it{should respond_to(:detail_reports)}
- #  it{should respond_to(:status)}
- #  it{should respond_to(:app_version)}
+	before do
+		@apk = Apk.new
+		@uploader = ApkUploader.new(@apk, :apk)
+		@uploader.store!(File.open(path_to_file))
+		@apk.apk = @uploader
+		@apk.save!
 
-  # it "start test action" do
-  	# total_report.start_test.should == "success"
-  # end
-end
+		@total_report = @apk.total_reports.create!(app_version: "1.0", status: true)
 
+		# 10.times do 
+		# 	@total_report.devices.create!(brand: "samsung", cpu:"123-core", model:"Galaxy",os_version:"4.2", country: "KR",device_key: "p1po2")
+		end
+	end
 
-describe DetailReport do
- #  context "is validation check" do
-	# 	subject(:detail_report){DetailReport.new}
-	# 	it{should_not be_valid}
-	# end
+	after do
+		@uploader.remove!
+	end
 
-	# let(:user) {User.new(email: "foobar@foobar.com", password: "foobarfoo", password_confirmation: "foobarfoo")}
-	# let(:project) {user.projects.new(name: "First App")}
-	# let(:apk) {project.apks.new}
-	# let(:total_report) {apk.total_reports.new}
-	# subject(:detail_report){total_report.detail_reports.new(app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: 0)}
+	subject(:total_report){@total_report}
 
-	# it{should respond_to(:test_scenario)}
-	# it{should respond_to(:total_report)} 
+	it "total_report show" do
+		total_report.apk_name.should == "TestAndroid.apk"
+		total_report.test_date.should include("14.")
+		total_report.number_of_devices.should == 10
+		total_report.number_of_scenarios.should == 112
+	end
+
 end

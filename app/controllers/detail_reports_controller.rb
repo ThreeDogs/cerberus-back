@@ -4,6 +4,8 @@ class DetailReportsController < ApplicationController
   # GET /detail_reports
   # GET /detail_reports.json
   def index
+    @total_report = TotalReport.find(params[:total_report_id])
+    @project = @total_report.project
     @detail_reports = DetailReport.all
   end
 

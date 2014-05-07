@@ -20,6 +20,9 @@ class TestScenario < ActiveRecord::Base
   has_many :motion_events
   has_many :detail_reports
 
+  has_many :total_reports, through: :scenarioship
+  has_many :scenarioships
+
   # validates :name, presence: true
   # validates :description, presence: true
   # validates :rank, presence: true

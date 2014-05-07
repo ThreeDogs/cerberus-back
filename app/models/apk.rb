@@ -2,17 +2,20 @@
 #
 # Table name: apks
 #
-#  id         :integer          not null, primary key
-#  apk        :string(255)
-#  test_apk   :string(255)
-#  project_id :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id            :integer          not null, primary key
+#  apk           :string(255)
+#  test_apk      :string(255)
+#  package_name  :string(255)
+#  activity_name :string(255)
+#  min_sdk       :string(255)
+#  project_id    :integer
+#  created_at    :datetime
+#  updated_at    :datetime
 #
 
 class Apk < ActiveRecord::Base
-	# before_create :make_test_apk_folder
-	# after_create :generate_test_apk
+	before_create :make_test_apk_folder
+	after_create :generate_test_apk
 
 	belongs_to :project
 	has_many :total_reports
@@ -28,6 +31,21 @@ class Apk < ActiveRecord::Base
 	def apk_name(apk_url = apk.to_s)
 		apk_url.split("/").last
 	end
+
+	# remove
+	def package_name
+		"com.test"
+	end
+
+	# remove
+	def activity_name
+		"MainActivity"
+	end
+
+	# remove
+	def min_sdk
+		"8"
+	end	
 
   private
 

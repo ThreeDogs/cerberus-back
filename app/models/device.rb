@@ -15,6 +15,11 @@
 #
 
 class Device < ActiveRecord::Base
-  belongs_to :total_report
+  has_many :total_report, through: :deviceship
+  has_many :deviceships
   has_many :detail_reports, foreign_key: 'device_key', primary_key: 'device_key'
 end
+
+
+
+

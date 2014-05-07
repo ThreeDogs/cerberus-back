@@ -29,12 +29,20 @@ class DetailReport < ActiveRecord::Base
 
   validates :app_version, presence: true
 
+  def rank
+    test_scenario.get_rank
+  end
+
   def test_scenario_name
     test_scenario.name
   end
 
   def device_name
     device.model
+  end
+
+  def os_version
+    device.os_version
   end
 
   def get_running_time

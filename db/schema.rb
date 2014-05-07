@@ -11,11 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140429113707) do
+ActiveRecord::Schema.define(version: 20140502130559) do
 
   create_table "apks", force: true do |t|
     t.string   "apk"
     t.string   "test_apk"
+    t.string   "package_name"
+    t.string   "activity_name"
+    t.string   "min_sdk"
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -61,6 +64,16 @@ ActiveRecord::Schema.define(version: 20140429113707) do
   end
 
   add_index "devices", ["total_report_id"], name: "index_devices_on_total_report_id"
+
+  create_table "deviceships", force: true do |t|
+    t.integer  "total_report_id"
+    t.integer  "device_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "deviceships", ["device_id"], name: "index_deviceships_on_device_id"
+  add_index "deviceships", ["total_report_id"], name: "index_deviceships_on_total_report_id"
 
   create_table "memory_infos", force: true do |t|
     t.integer  "mem_total"
@@ -111,6 +124,16 @@ ActiveRecord::Schema.define(version: 20140429113707) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "scenarioships", force: true do |t|
+    t.integer  "total_report_id"
+    t.integer  "test_scenario_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "scenarioships", ["test_scenario_id"], name: "index_scenarioships_on_test_scenario_id"
+  add_index "scenarioships", ["total_report_id"], name: "index_scenarioships_on_total_report_id"
 
   create_table "screens", force: true do |t|
     t.string   "image"
