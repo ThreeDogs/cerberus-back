@@ -1,10 +1,14 @@
 // Place all the styles related to the DetailReports controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+$event_div_height: 150px;
+$mem_div_height: 340px;
+$cpu_div_height: 340px;
 
 #test_results {
 	margin-top: 80px;
+	min-width: 600px;
+	width: 100%;
 
 	.half_width_block {
 		min-width: 300px;
@@ -20,7 +24,6 @@
 		.graph {
 			height: 100%;
 			min-width: 370px;
-			width: 700px;
 			float: left;
 		}
 
@@ -48,54 +51,59 @@
 }
 
 #event_div {
-	height: 150px;
+	height: $event_div_height;
 }
 
 #mem_div {
-	height: 340px;
+	height: $mem_div_height;
 }
 
 #cpu_div {
-	height: 340px;
+	height: $cpu_div_height;
 }
 
 
 svg {
     font: 10px sans-serif;
-  }
+}
 
-  .axis path, .axis line {
-    fill: none;
-    stroke-width: 1px;
-  }
+.axis path, .axis line {
+	fill: none;
+	stroke-width: 1px;
+}
 
-  .x.axis path {
-    stroke: black;
-  }
+.x.axis path {
+	stroke: black;
+}
 
-  .x.axis line {
-    stroke: black;
-    stroke-opacity: .5;
-  }
+.x.axis line {
+	stroke: black;
+	stroke-opacity: .5;
+}
 
-  .y.axis line {
-    stroke: #ddd;
-  }
+.y.axis line {
+	stroke: #ddd;
+}
 
-  path.line {
-    fill: none;
-    stroke: black;
-    stroke-width: .5px;
-  }
+path.line {
+	fill: none;
+	stroke: black;
+	stroke-width: .5px;
+}
 
-  rect.pane {
-    cursor: move;
-    fill: none;
-    pointer-events: all;
-  }
+rect.pane {
+	cursor: move;
+	fill: none;
+	pointer-events: all;
+}
 
-  .dot {
-  	stroke: black;
-  	stroke-width: 2;
-  	fill: white;
-  }
+.dot {
+	stroke: black;
+	stroke-width: 2;
+	fill: white;
+	cursor: help; //possible alternatives: pointer
+}
+
+.legend {
+	font: 12px sans-serif;
+}
