@@ -31,6 +31,16 @@ $cpu_div_height: 340px;
 			height: 100%;
 			width: 200px;
 			float: left;
+
+			.graph_detail_info {
+				height: 50%;
+				width: 200px;
+			}
+
+			.graph_detail_control {
+				width: 200px;
+				height: 50%;
+			}
 		}
 
 		.graph_updown {
