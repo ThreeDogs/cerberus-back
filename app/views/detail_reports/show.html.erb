@@ -2,7 +2,7 @@
 
 <div>
 	<%= render 'shared/side_bar' %>
-	<div class="container">
+	<div class="my_container">
 		<div class="page_title">
 			<div class="image_box">
 				<img src="/assets/Result.png">
@@ -42,13 +42,17 @@
 
 			<div id="mem_div" class="full_width_block">
 				<div id="mem_graph" class="graph">
-
+					<div class="graph_label">Memory Usage</div>
 				</div>
 				<div class="graph_details">
-					<div class="graph_detail_info">
+					<div id="mem_graph_detail_info" class="graph_detail_info">
 						
 					</div>
-					<div class="graph_detail_control">blah</div>
+					<div class="graph_detail_control">
+						<div class="control field"><input type="checkbox">Dalvik heap</div>
+						<div class="control field"><input type="checkbox">Native heap</div>
+						<div class="control field"><input type="checkbox">Total</div>
+					</div>
 				</div>
 				<div class="graph_updown">
 				s
@@ -57,12 +61,14 @@
 
 			<div id="cpu_div" class="full_width_block">
 				<div id="cpu_graph" class="graph">
-
+				<div class="graph_label">CPU Usage</div>
 				</div>
 				<div class="graph_details">
-				something
-					<div class="detail_filter">
-						<input type="checkbox" id="checkbox_memory_total">memory total
+					<div id="cpu_graph_detail_info" class="graph_detail_info">
+						
+					</div>
+					<div class="graph_detail_control">
+						
 					</div>
 				</div>
 				<div class="graph_updown">

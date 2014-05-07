@@ -1,7 +1,8 @@
 
 function drawDetailReports(data) {
 
-	
+	console.dir(data);
+
 	function drawEventPath(eventdata) {
 
 		var margin = {top: 10, right: 10, bottom: 10, left: 10};
@@ -70,6 +71,9 @@ function drawDetailReports(data) {
 		    .call(zoom);
 
 		function MemGraph (value_name) {
+
+			var detail_box = d3.select("#mem_graph_detail_info");
+
 			var line = d3.svg.line().interpolate("monotone")
 						.x(function(d){return x(d.id)})
 						.y(function(d){return y(d[value_name])});
@@ -87,10 +91,15 @@ function drawDetailReports(data) {
 						.data(memdata)
 						.enter()
 						.append("circle")
-						.attr("class",value_name+"dot")
+						.attr("class",value_name+"dot dot")
 						.attr("r",2)
 						.attr("transform",function (d) {
 							return "translate("+x(d.id)+","+y(d[value_name])+")";
+						})
+						.on("click",function (d) {
+							detail_box.selectAll("div").remove();
+							detail_box.append("div")
+								.text(value_name+" "+d[value_name]);
 						});
 
 			function transparent() {
@@ -106,8 +115,8 @@ function drawDetailReports(data) {
 			function renew() {
 				path.attr("d",line(memdata));
 				mem_svg.selectAll("."+value_name+"dot").attr("transform",function (d) {
-				return "translate("+x(d.id)+","+y(d[value_name])+")";
-			});
+					return "translate("+x(d.id)+","+y(d[value_name])+")";
+				});
 			}
 
 			var returnObj = new Object();
@@ -126,6 +135,7 @@ function drawDetailReports(data) {
 		var mem_alloc = new MemGraph('mem_alloc');
 
 		function onZoom() {
+			yAxis.tickSize(-width);
 			mem_svg.select("g.x.axis").call(xAxis);
 			mem_svg.select("g.y.axis").call(yAxis);
 			native_heap_size.renew();
@@ -246,6 +256,8 @@ function drawDetailReports(data) {
 				.attr("width",width)
 				.attr("height",height);
 
+		var detail_box = d3.select("#cpu_graph_detail_info");
+
 		var zoom = d3.behavior.zoom().on("zoom", onZoom)
 					.scaleExtent([0.1,4])
 					.x(x);
@@ -277,6 +289,11 @@ function drawDetailReports(data) {
 								.attr("r",2)
 								.attr("transform",function (d) {
 									return "translate("+x(d.id)+","+y(d.usage)+")";
+								})
+								.on("click",function (d) {
+									detail_box.selectAll("div").remove();
+									detail_box.append("div")
+										.text("cpu usage: "+d.usage);
 								});
 
 		cpu_svg.append("g")
@@ -289,6 +306,7 @@ function drawDetailReports(data) {
 		onZoom();
 
 		function onZoom() {
+			yAxis.tickSize(-width);
 			cpu_svg.select("g.x.axis").call(xAxis);
 			cpu_svg.select("g.y.axis").call(yAxis);
 			cpu_svg.select("#cpu_usage").attr("d",line(cpudata));
