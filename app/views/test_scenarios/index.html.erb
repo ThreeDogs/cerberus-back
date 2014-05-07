@@ -34,20 +34,26 @@
 
 			<table class="table table-hover" id="scenario_list">
 				<tr id="event_detail_scheme" class="row">
-					<td class="row_rank">Rank</td>
-					<td class="row_name">Name</td>
-					<td class="row_description">Description</td>
-					<td class="row_recent">Recently tested on</td>
-					<td class="row_show"></td>
+					<th class="row_rank">Rank</th>
+					<th class="row_name">Name</th>
+					<th class="row_description">Description</th>
+					<th class="row_recent">Recently tested on</th>
+					<th class="row_show"></th>
 				</tr>
 				<!-- LOOP -->
-				<tr class="row event_list">
-					<td class="row_rank">A</td>
-					<td class="row_name">Login test</td>
-					<td class="row_description">login test description blahblahblah</td>
-					<td class="row_recent">14.MAR.03 3:00pm</td>
-					<td class="row_show"><div class="link_button">Show</div></td>
-				</tr>
+				<% @test_scenarios.each do |test_scenario| %>
+					<tr class="row event_list">
+						<td class="row_rank"><%= test_scenario.get_rank %></td>
+						<td class="row_name"><%= test_scenario.name %></td>
+						<td class="row_description"><%= test_scenario.description %></td>
+						<td class="row_recent"><%= test_scenario.recent_test_date %></td>
+						<td class="row_show">
+							<%= link_to project_test_scenario_path(@project, test_scenario) do %>
+								<div class="link_button">Show</div>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
 				<!-- END LOOP -->
 			</table>
 		</div>

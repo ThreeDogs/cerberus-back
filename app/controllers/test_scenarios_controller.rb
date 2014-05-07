@@ -6,20 +6,14 @@ class TestScenariosController < ApplicationController
   def index
     @project = set_project
     @test_scenarios = TestScenario.all
-    # test_scenario.name
-    # test_scenario.description
-    # test_scenario.get_rank
-    # test_scenario.recent_test_date
   end
 
   # GET /test_scenarios/1
   # GET /test_scenarios/1.json
   def show
     @project = set_project
-    # @test_scenario.name
-    # @test_scenario.description
-    # @test_scenario.get_rank
-    # @test_scenario.recent_test_date
+    @test_scenario = TestScenario.find(params[:id])
+    @motion_events = @test_scenario.motion_events
   end
 
   # GET /test_scenarios/new

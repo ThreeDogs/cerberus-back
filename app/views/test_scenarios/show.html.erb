@@ -1,20 +1,22 @@
 <%= render "shared/header" %>
-<div class="row">
-	<%= render 'shared/side_bar' %>
-	<div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2">
-		<div class="container">
 
-			<div class="total_report_head">
-	    		<p><img src="/assets/scenario_sidebar.png">Test Scenarios</p>
-	    	</div>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<%= render 'shared/side_bar' %>
+		
+		<div class="col-md-12 contents">
+			<div class="test-scenario-head">
+				<img src="/assets/scenario_sidebar.png">Test Scenarios
+			</div>
+
 			<div id="scenario_info_detail" >
 				<div class="scenario_info_title">
-					<div class="rank">A</div>
-					<div class="test_name">Login test</div>
+					<div class="rank"><%= @test_scenario.get_rank %></div>
+					<div class="test_name"><%= @test_scenario.name %></div>
 					<div class="edit_button">edit</div>
 				</div>
-				<div class="detail_content">content content content</div>
-				<div class="recently_tested">recently tested on: blahblah</div>
+				<div class="detail_content"><%= @test_scenario.description %></div>
+				<div class="recently_tested">recently tested on: <%= @test_scenario.recent_test_date %></div>
 			</div>
 
 			<span class="dashboard_sub">Event Path</span>
@@ -32,17 +34,19 @@
 					<td class="col-md-2">Parameter</td>
 				</tr>
 				<!-- LOOP -->
-				<tr class="row">
-					<td>1</td>
-					<td>com.android.play.google.indexActivity</td>
-					<td>R.id.view</td>
-					<td>Scroll</td>
-					<td>NULL</td>
-				</tr>
+				<% @motion_events.each do |motion_event| %>
+					<tr class="row">
+						<td><%= motion_event.seq_id %></td>
+						<td><%= motion_event.activity_class %></td>
+						<td><%= motion_event.view %></td>
+						<td><%= motion_event.action_type %></td>
+						<td><%= motion_event.param %></td>
+					</tr>
+				<% end  %>
 				<!-- END LOOP -->
-			</table>
 		</div>
 	</div>
+	
 </div>
 
 <script>
