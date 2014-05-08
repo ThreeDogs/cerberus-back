@@ -29,13 +29,6 @@ function drawDetailReports(data) {
 					    .tickSize(0,0)
 					    .tickPadding(6);
 
-		event_svg.append("clipPath")
-				.attr("id","clip")
-				.append("rect")
-				.attr("id","#event_clip_rect")
-				.attr("width",width)
-				.attr("height",height);
-
 		var event_group = event_svg.selectAll("g event")
 					.data(eventdata)
 					.enter()
@@ -148,7 +141,6 @@ function drawDetailReports(data) {
 			width = window_x-600;
 			d3.select("#event_svg").attr("width",width+margin.left+margin.right);
 			pane.attr("width",width);
-			d3.select("#event_clip_rect").attr("width",width);
 			x.range([0,width]);
 			onZoom();
 		}
@@ -207,7 +199,7 @@ function drawDetailReports(data) {
 					    .tickPadding(6);
 
 		var clip = mem_svg.append("clipPath")
-				.attr("id", "clip")
+				.attr("id", "mem_lip")
 				.append("rect")
 				.attr("id","#mem_clip_rect")
 				.attr("width",width)
@@ -241,12 +233,12 @@ function drawDetailReports(data) {
 
 			var path = mem_svg.append("path")
 						.attr("class","line")
-						.attr("clip-path","url(#clip)")
+						.attr("clip-path","url(#mem_clip)")
 						.attr("id",value_name)
 						.attr("d",line(memdata));
 
 			var dots = mem_svg.append("g")
-						.attr("clip-path", "url(#clip)")
+						.attr("clip-path", "url(#mem_clip)")
 						.attr("id",value_name+"dots")
 						.selectAll(value_name+"dots")
 						.data(memdata)
@@ -477,7 +469,7 @@ function drawDetailReports(data) {
 					    .tickPadding(6);
 
 		cpu_svg.append("clipPath")
-				.attr("id","clip")
+				.attr("id","cpu_clip")
 				.append("rect")
 				.attr("id","cpu_clip_rect")
 				.attr("width",width)
@@ -501,12 +493,12 @@ function drawDetailReports(data) {
 
 		var cpu_usage = cpu_svg.append("path")
 								.attr("class","line")
-								.attr("clip-path", "url(#clip)")
+								.attr("clip-path", "url(#cpu_clip)")
 								.attr("id","cpu_usage")
 								.attr("d", line(cpudata));
 
 		var cpu_usage_dots = cpu_svg.append("g")
-								.attr("clip-path", "url(#clip)")
+								.attr("clip-path", "url(#cpu_clip)")
 								.attr("id","dots")
 								.selectAll("dots")
 								.data(cpudata)
