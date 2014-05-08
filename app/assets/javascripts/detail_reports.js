@@ -68,7 +68,6 @@ function drawDetailReports(data) {
 			return "translate("+x(d.time_stamp)+",60)";
 		});
 
-
 		event_group.each(function (d, i) {
 			var flag = true;
 			var currentActivity = activities[activities.length-1];
@@ -369,49 +368,78 @@ function drawDetailReports(data) {
 			width = window_x-600;
 			d3.select("#mem_svg").attr("width",width+margin.left+margin.right);
 			pane.attr("width",width);
-			console.dir(clip);
 			clip.attr("width",width);
 			x.range([0,width]);
 			onZoom();
 			legend.transform();
 		}
 
-		function onCheck (nativebool, dalvikbool, totalbool) {
-			if (nativebool==true) {
-				native_heap_size.visible();
-				native_heap_alloc.visible();
-			} else {
-				native_heap_size.transparent();
-				native_heap_alloc.transparent();
-			}
-			if (dalvikbool==true) {
-				dalvik_heap_size.visible();
-				dalvik_heap_alloc.visible();
-			} else {
-				dalvik_heap_size.transparent();
-				dalvik_heap_alloc.transparent();
-			}
-			if (totalbool==true) {
-				mem_total.visible();
-				mem_alloc.visible();
-			} else {
-				mem_total.transparent();
-				mem_alloc.transparent();
-			}
-		}
+		var Controls = (function() {
 
-		d3.select("#dalvik_heap_checkbox").on("click",function () {
-			if(this.checked==true) {
-				onCheck(false, true, false);
+			var dalvik_bool = true;
+			var native_bool = true;
+			var total_bool = true;
+
+			function check() {
 				legend.clearLegend();
-				legend.appendToLegend("Dalvik Heap Allocated","#001111");
-				legend.appendToLegend("Dalvik Heap Total","#111100");
+				console.log("running check function");
+				console.log("dalvik bool"+dalvik_bool);
+				if (native_bool==true) {
+					native_heap_size.visible();
+					native_heap_alloc.visible();
+					legend.appendToLegend("Native Heap Allocated","#111111");
+					legend.appendToLegend("Native Heap Total","#111111");
+				} else {
+					native_heap_size.transparent();
+					native_heap_alloc.transparent();
+				}
+				if (dalvik_bool==true) {
+					dalvik_heap_size.visible();
+					dalvik_heap_alloc.visible();
+					legend.appendToLegend("Dalvik Heap Allocated","#111111");
+					legend.appendToLegend("Dalvik Heap Total","#111111");
+				} else {
+					dalvik_heap_size.transparent();
+					dalvik_heap_alloc.transparent();
+				}
+				if (total_bool==true) {
+					mem_total.visible();
+					mem_alloc.visible();
+					legend.appendToLegend("Memory Allocated","#111111");
+					legend.appendToLegend("Memory Total","#111111");
+				} else {
+					mem_total.transparent();
+					mem_alloc.transparent();
+				}
 			}
-			if(this.checked==false) {
-				onCheck(false, false, false);
-				legend.clearLegend();
-			}
-		})
+
+			$(".mem_control").change(function(){
+				console.log($("#dalvik_heap_checkbox").attr("checked"));
+				if ($("#dalvik_heap_checkbox").prop("checked")==true) {
+					dalvik_bool = true;
+				} else {
+					dalvik_bool = false;
+				}
+				if ($("#native_heap_checkbox").prop("checked")==true) {
+					native_bool = true;
+				} else {
+					native_bool = false;
+				}
+				if ($("#total_checkbox").prop("checked")==true) {
+					total_bool = true;
+				} else {
+					total_bool = false;
+				}
+				check();
+			})
+
+			check();
+		})();
+
+		$("#dalvik_heap_checkbox").attr("checked",true);
+		$("#native_heap_checkbox").attr("checked",true);
+		$("#total_checkbox").attr("checked",true);
+
 	}
 
 	var cpu_graph_resize;
