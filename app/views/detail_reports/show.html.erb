@@ -2,7 +2,7 @@
 
 <div>
 	<%= render 'shared/side_bar' %>
-	<div class="container">
+	<div class="my_container">
 		<div class="page_title">
 			<div class="image_box">
 				<img src="/assets/Result.png">
@@ -16,60 +16,97 @@
 
 		<div id="test_results">
 
-			<div id="test_stats" class="half_width_block">
-			sth
-			</div>
+			<div style="display:inline-block;width:100%;">
+				<div id="test_stats" class="half_width_block">
+					<div class="test_stat_entry">
+						<div class="test_stat_key">App Version</div>
+						<div class="test_stat_value">1.0.1</div>
+					</div>
+					<div class="test_stat_entry">
+						<div class="test_stat_key">Test Scenario</div>
+						<div class="test_stat_value">Login Test</div>
+					</div>
+					<div class="test_stat_entry">
+						<div class="test_stat_key">Tested on</div>
+						<div class="test_stat_value">{device_name} on testbed {testbed_id}</div>
+					</div>
+				</div>
 
-			<div id="test_avg" class="half_width_block">
-			sth
+				<div id="test_avg" class="half_width_block">
+					<div class="average_block">something</div>
+					<div class="average_block">something</div>
+					<div class="average_block">something</div>
+					<div class="average_block">something</div>
+					<div class="average_block">something</div>
+					<div class="average_block">something</div>
+				</div>
 			</div>
 
 			<div id="screenshots" class="full_width_block">
 			screenshots
 			</div>
 
+			<div>
 			<div id="event_div" class="full_width_block">
 				<div id="event_flow" class="graph">
-				something
 				</div>
 				<div class="graph_details">
-				something
+					<div id="event_graph_detail_info" class="graph_detail_info">
+						
+					</div>
+					<div class="graph_detail_control">
+						<div class="control_field">
+							X-axis:
+							<button id="event_x_time">Time</button>
+							<button id="event_x_order">Order</button>
+						</div>
+					</div>
 				</div>
 				<div class="graph_updown">
-				s
+					<br><i class="fa fa-arrow-up" onclick="divMove('event','up')"></i>
+					<br><i class="fa fa-arrow-down" onclick="divMove('event','down')"></i>
 				</div>
 			</div>
 
 			<div id="mem_div" class="full_width_block">
 				<div id="mem_graph" class="graph">
-
+					<div class="graph_label">Memory Usage</div>
 				</div>
 				<div class="graph_details">
-					<div class="graph_detail_info">
+					<div id="mem_graph_detail_info" class="graph_detail_info">
 						
 					</div>
-					<div class="graph_detail_control">blah</div>
+					<div class="graph_detail_control">
+						<div class="control_field"><input type="checkbox" class="mem_control" id="dalvik_heap_checkbox">Dalvik heap</div>
+						<div class="control_field"><input type="checkbox" class="mem_control" id="native_heap_checkbox">Native heap</div>
+						<div class="control_field"><input type="checkbox" class="mem_control" id="total_checkbox">Total</div>
+					</div>
 				</div>
 				<div class="graph_updown">
-				s
+					<br><i class="fa fa-arrow-up" onclick="divMove('mem','up')"></i>
+					<br><i class="fa fa-arrow-down" onclick="divMove('mem','down')"></i>
 				</div>
 			</div>
 
 			<div id="cpu_div" class="full_width_block">
 				<div id="cpu_graph" class="graph">
-
+				<div class="graph_label">CPU Usage</div>
 				</div>
 				<div class="graph_details">
-				something
-					<div class="detail_filter">
-						<input type="checkbox" id="checkbox_memory_total">memory total
+					<div id="cpu_graph_detail_info" class="graph_detail_info">
+						
+					</div>
+					<div class="graph_detail_control">
+						
 					</div>
 				</div>
 				<div class="graph_updown">
-				s
+					<br><i class="fa fa-arrow-up" onclick="divMove('cpu','up')"></i>
+					<br><i class="fa fa-arrow-down" onclick="divMove('cpu','down')"></i>
 				</div>
 			</div>
 
+			</div>
 		</div>
 
 	</div>
@@ -78,3 +115,4 @@
 <script>
 	d3.json("http://127.0.0.1:3000/testdata.json",drawDetailReports);
 </script>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
