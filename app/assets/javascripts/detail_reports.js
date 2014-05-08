@@ -95,20 +95,19 @@ function drawDetailReports(data) {
 					.enter()
 					.append("rect");
 
-		gact.attr("clip-path", "url(#clip)")
-					.attr("x", function (d) {return x(d.start_time)})
-					.attr("y", 20)
-					.attr("class", "activityBox")
-					.attr("width", function (d) {return x(d.end_time)-x(d.start_time)+10})
-					.attr("height", 50)
-					.attr("stroke", "black")
-					.attr("fill", "#A9D8B9")
-					.attr("title", function (d) {return d.name})
-					.on("click",function (d) {
-						detail_box.selectAll("div").remove();
-						detail_box.append("div")
-							.text("Activity: "+d.name);
-					});
+		gact.attr("x", function (d) {return x(d.start_time)})
+			.attr("y", 20)
+			.attr("class", "activityBox")
+			.attr("width", function (d) {return x(d.end_time)-x(d.start_time)+10})
+			.attr("height", 50)
+			.attr("stroke", "black")
+			.attr("fill", "#A9D8B9")
+			.attr("title", function (d) {return d.name})
+			.on("click",function (d) {
+				detail_box.selectAll("div").remove();
+				detail_box.append("div")
+					.text("Activity: "+d.name);
+			});
 
 		event_svg.append("g")
 		    .attr("class", "x axis")
@@ -208,7 +207,7 @@ function drawDetailReports(data) {
 					    .tickSize(-width)
 					    .tickPadding(6);
 
-		mem_svg.append("clipPath")
+		var clip = mem_svg.append("clipPath")
 				.attr("id", "clip")
 				.append("rect")
 				.attr("id","#mem_clip_rect")
@@ -370,8 +369,8 @@ function drawDetailReports(data) {
 			width = window_x-600;
 			d3.select("#mem_svg").attr("width",width+margin.left+margin.right);
 			pane.attr("width",width);
-			console.dir(d3.select("#mem_clip_rect"));
-			d3.select("#mem_clip_rect").attr("width",width);
+			console.dir(clip);
+			clip.attr("width",width);
 			x.range([0,width]);
 			onZoom();
 			legend.transform();
