@@ -6,9 +6,9 @@ $mem_div_height: 340px;
 $cpu_div_height: 340px;
 
 #test_results {
-	margin-top: 80px;
 	min-width: 600px;
 	width: 100%;
+	display: inline-block;
 
 	.half_width_block {
 		min-width: 300px;
@@ -51,11 +51,37 @@ $cpu_div_height: 340px;
 	}
 
 	#test_stats {
-		
+		width: 600px;
+		float: left;
+		.test_stat_entry {
+			width: 100%;
+			.test_stat_key {
+				width: 33%;
+				float: left;
+			}
+			.test_stat_value {
+				width: 67%;
+				float: left;
+			}
+		}
 	}
 
 	#test_avg {
+		width: 600px;
+		float: left;
+		.average_block {
+			width: 33%;
+			float: left;
+		}
+	}
 
+	@media(min-width: 1240px) {
+		#test_stats {
+			width: 50%;
+		}
+		#test_avg {
+			width: 50%;
+		}
 	}
 
 }

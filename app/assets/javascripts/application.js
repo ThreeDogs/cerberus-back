@@ -30,3 +30,8 @@ function updateWindow(){
 }
 
 window.onresize = updateWindow;
+
+//a helper function to move SVG element to front (as html element would using z-index)
+d3.selection.prototype.moveToFront = function() {
+	return this.each(function(){this.parentNode.appendChild(this);});
+};
