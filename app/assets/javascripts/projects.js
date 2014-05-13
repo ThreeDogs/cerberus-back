@@ -8,7 +8,7 @@ function projectsShow (fail_data) {
 
 	function initialize() {
 
-		test_fail_svg = d3.select("#test_fail_box")
+		test_fail_svg = d3.select("#test-fail-box")
 							.append("svg")
 							.attr("width",540)
 							.attr("height",120);
