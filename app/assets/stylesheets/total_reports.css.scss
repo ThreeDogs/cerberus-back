@@ -5,20 +5,6 @@
 
 //** total_reports/index.html **//
 
-.total-report-head {
-	margin-top: 40px;
-	color: rgb(40,112,68);
-	font-size: 26px;
-	img {
-		margin-right: 16px;
-	}
-	.subline {
-		color: rgb(93,196,136);
-		font-size: 16px;
-		margin: 0 0 30px 50px;
-	}
-}
-
 .test-result{
 	height: 120px;
 	color: rgb(96,94,90);
@@ -39,6 +25,64 @@
 		float: left;
 		.big_version {
 			font-size: 41px;
+		}
+	}
+
+	.band-chart-segment {
+		width: 25%;
+		height: 100%;
+		float: left;
+		.band-chart-label {
+			width: 24px;
+			height: 24px;
+			border-radius: 12px;
+			border: solid 1px;
+			margin: 0 auto;
+			text-align: center;
+			background-color: #FFF;
+		}
+		.A {
+			border-color: rgb(244,86,86);
+		}
+		.B {
+			border-color: rgb(239,134,164);
+		}
+		.C {
+			border-color: rgb(255,130,30);
+		}
+		.D {
+			border-color: rgb(255,186,80);
+		}
+		.band-chart {
+			width: 80%;
+			height: 20px;
+			margin: 0 auto;
+			.band-chart-success {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				border-radius: 10px;
+				overflow: hidden;
+			}
+			.band-chart-fail {
+				position: absolute;
+				height: 100%;
+				top: 0;
+				right: 0;
+				background-color: rgb(93,190,136);
+			}
+			.A {
+				background-color: rgb(244,86,86);
+			}
+			.B {
+				background-color: rgb(239,134,164);
+			}
+			.C {
+				background-color: rgb(255,130,30);
+			}
+			.D {
+				background-color: rgb(255,186,80);
+			}
 		}
 	}
 
