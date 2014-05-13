@@ -4,82 +4,72 @@
 		<%= render 'shared/side_bar' %>	
 
 		<div class="col-md-12 contents">
-			<div class="dashboard_head">
-        <img src="/assets/Dashboard.png">Dashboard
-      </div>
+			<div class="page-title">
+        		<img src="/assets/Dashboard.png">Dashboard
+        	</div>
 			
-			<span class="dashboard_sub">Recent Test Overview</span>
+			<span class="page-subtitle">Recent Test Overview</span>
 
 			<div id="overview-box">
-        <div class="col-md-2" id="app-info-box">
-          <p><%= @recent_report.apk_name %></p>
-          <p><%= @recent_report.test_date %></p>
-          <p><%= @recent_report.number_of_scenarios %> Test Scenarios</p>
-          <p><%= @recent_report.number_of_devices %> Devices</p>
-        </div>
-        <div class="col-md-2" id="app-version-box">
-          <p>App version</p>
-          <p class="big-version"><%= @recent_report.app_version %></p>
-        </div>
-        <div class="col-md-6">
-        </div>
-        <div class="col-md-2 report-link">
-          <%= link_to project_total_report_path(@project, @recent_report)  do %>
-          	<div class="link-button">
-          		FULL REPORT
-          	</div>
-          <% end %>
-        </div>
-      </div>
+				<div class="col-md-2" id="app-info-box">
+					<p><%= @recent_report.apk_name %></p>
+					<p><%= @recent_report.test_date %></p>
+					<p><%= @recent_report.number_of_scenarios %> Test Scenarios</p>
+					<p><%= @recent_report.number_of_devices %> Devices</p>
+				</div>
+				<div class="col-md-2" id="app-version-box">
+					<p>App version</p>
+					<p class="big-version"><%= @recent_report.app_version %></p>
+				</div>
+				<div class="col-md-6" id="test-fail-box">
+				</div>
+					<div class="col-md-2 report-link">
+					<%= link_to project_total_report_path(@project, @recent_report)  do %>
+						<div class="link-button">
+							FULL REPORT
+						</div>
+					<% end %>
+				</div>
+			</div>
 
 			<div id="test_fail_graph">
-        <div id="test_fail_bar_graph">
-        </div>
-        <div id="test_fail_chart">
-          <div class="table_title">
-            <span id="table_title_rank" class="rank"></span>
-            <span id="table_title_device_name" class="device_name"></span>
-          </div>
-          <table id="detail_table" class="detail_table">
-            <tr class="table_head"><td class="name"> </td><td class="error"> </td></tr>
-            <tr><td> </td><td> </td></tr>
-            <tr><td> </td><td> </td></tr>
-            <tr><td> </td><td> </td></tr>
-            <tr><td> </td><td> </td></tr>
-          </table>
-        </div>
-      </div>
+				<div id="test_fail_bar_graph">
+				</div>
+				<div id="test_fail_chart">
+					<div class="table_title">
+						<span id="table_title_rank" class="rank"></span>
+						<span id="table_title_device_name" class="device_name"></span>
+					</div>
+					<table id="detail_table" class="detail_table">
+						<!-- A PLACEHOLDER -->
+					</table>
+				</div>
+			</div>
 
-      <span class="dashboard_sub">Project Trends</span>
-	      <div id="project_trends">
-
-	          <div id="test_results">
-	            <p>Test results</p>
-	          </div>
-
-	          <div id="cpu_trend">
-	            <p>CPU usage trend</p>
-	          </div>
-	          <div id="mem_trend">
-	            <p>Memory usage trend</p>
-	          </div>
-
-	          <div id="network_trend">
-	            <p>Network response time trend</p>
-	          </div>
-	          <div id="battery_trend">
-	            <p>Battery consumption trend</p>
-	          </div>
-
-	          <div id="thread_trend">
-	            <p>Thread trend</p>
-	          </div>
-	          <div id="frame_trend">
-	            <p>Frame draw time trend</p>
-	          </div>
-
-	      </div>
-
+			<span class="page-subtitle">Project Trends</span>
+			<div id="project_trends">
+				<div id="test_results">
+					<p>Test results</p>
+				</div>
+				<div id="cpu_trend">
+					<p>CPU usage trend</p>
+				</div>
+				<div id="mem_trend">
+					<p>Memory usage trend</p>
+				</div>
+				<div id="network_trend">
+					<p>Network response time trend</p>
+				</div>
+				<div id="battery_trend">
+					<p>Battery consumption trend</p>
+				</div>
+				<div id="thread_trend">
+					<p>Thread trend</p>
+				</div>
+				<div id="frame_trend">
+					<p>Frame draw time trend</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
