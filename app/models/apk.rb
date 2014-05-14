@@ -33,21 +33,6 @@ class Apk < ActiveRecord::Base
 
 	def apk_name(apk_url = apk.to_s)
 		apk_url.split("/").last
-	end
-
-	# remove
-	def package_name
-		"com.test"
-	end
-
-	# remove
-	def activity_name
-		"MainActivity"
-	end
-
-	# remove
-	def min_sdk
-		"8"
 	end	
 
   # private
