@@ -1,4 +1,5 @@
 mkdir $4
+mkdir $7
 
 chmod 777 $3
 
@@ -97,14 +98,22 @@ java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/test.jar org.cerberus.te
 
 jar cf $3/temp/newjar.jar $3/temp/newclz/.
 
+echo "3-----------------------------------------------------------------"
+
 $3/dex2jar-0.0.9.15/d2j-asm-verify.sh $3/temp/newjar.jar
+
+echo "4-----------------------------------------------------------------"
 
 $3/dex2jar-0.0.9.15/d2j-jar2dex.sh -f -o /classes.dex $3/temp/newjar.jar
 
+echo "5-----------------------------------------------------------------"
+
 cp -rf $1 $3/temp/mm_.apk 
 
-zip -u $3/temp/mm_.apk /classes.dex
+echo "6-----------------------------------------------------------------"
+
+zip -u $3/temp/mm_.apk /classes.dex 
+
+echo "7-----------------------------------------------------------------"
 
 $3/dex2jar-0.0.9.15/d2j-apk-sign.sh -f -o $6 $3/temp/mm_.apk
-
-

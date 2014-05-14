@@ -52,25 +52,50 @@ class Apk < ActiveRecord::Base
   def generate_test_apk
   	secret_password = "Zodlxj10"
   	shell_path = "#{Rails.root}/lib/test_apk_generator"
-  	test_sh = "#{shell_path}/test_.sh"
+  	play_all_sh = "#{shell_path}/playAll.sh"
   	apk_url = "#{Rails.root}/public/#{apk.to_s}" # apk address
   	apk_name = apk_url.split("/").last
   	project_id = project.id
 
   	target_path = "/uploads/#{self.class.to_s.underscore}/test_apk/#{self.id}/"
-  	target_folder_full_path = "#{Rails.root}/public#{target_path}"
+  	target_bed_path = "/uploads/#{self.class.to_s.underscore}/test_bed_apk/#{self.id}/"
 
-  	time_suffix = DateTime.now.strftime("%y%m%d%H%M")
+  	target_folder_full_path = "#{Rails.root}/public#{target_path}"
+  	target_bed_folder_full_path = "#{Rails.root}/public#{target_bed_path}"
+
+  	time_preffix = DateTime.now.strftime("%y%m%d%H%M")
 		
-		test_apk_target = "#{target_folder_full_path}#{apk_name}_test#{time_suffix}"
-		result = `echo #{secret_password} | sudo -S sh #{test_sh} #{apk_url} #{test_apk_target} #{shell_path} #{target_folder_full_path} #{project_id}`
+		test_apk_file_name = "test#{time_preffix}_#{apk_name}"
+		test_bed_apk_file_name = "test_bed#{time_preffix}_#{apk_name}"
+
+		test_apk_target = "#{target_folder_full_path}#{test_apk_file_name}"
+		test_bed_apk_target = "#{target_bed_folder_full_path}#{test_bed_apk_file_name}"
+
+		result = `echo #{secret_password} | sudo -S sh #{play_all_sh} #{apk_url} #{test_apk_target} #{shell_path} #{target_folder_full_path} #{project_id} #{test_bed_apk_target} #{target_bed_folder_full_path}`
 
 		# if succeed 
-		test_apk_url = "#{target_path}#{apk_name}_test#{time_suffix}"
+		test_apk_url = "#{target_path}#{test_apk_file_name}"
+		test_bed_apk_url = "#{target_bed_path}#{test_bed_apk_file_name}"
+
 		update!(test_apk: test_apk_url)
+		update!(test_bed_apk: test_bed_apk_url)
   end
 
   def make_test_apk_folder
   	`mkdir #{Rails.root}/public/uploads/#{self.class.to_s.underscore}/test_apk/`
+  	`mkdir #{Rails.root}/public/uploads/#{self.class.to_s.underscore}/test_bed_apk/`
+  end
+
+  def update_apk_attributes
+  	
   end
 end
+
+
+
+
+
+
+
+
+
