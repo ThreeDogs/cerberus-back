@@ -5,9 +5,11 @@
 #  id            :integer          not null, primary key
 #  apk           :string(255)
 #  test_apk      :string(255)
+#  test_bed_apk  :string(255)
 #  package_name  :string(255)
 #  activity_name :string(255)
 #  min_sdk       :string(255)
+#  target_sdk    :string(255)
 #  project_id    :integer
 #  created_at    :datetime
 #  updated_at    :datetime
@@ -16,6 +18,7 @@
 class Apk < ActiveRecord::Base
 	before_create :make_test_apk_folder
 	after_create :generate_test_apk
+	after_create :update_apk_attributes
 
 	belongs_to :project
 	has_many :total_reports
@@ -47,7 +50,7 @@ class Apk < ActiveRecord::Base
 		"8"
 	end	
 
-  private
+  # private
 
   def generate_test_apk
   	secret_password = "Zodlxj10"
@@ -77,8 +80,7 @@ class Apk < ActiveRecord::Base
 		test_apk_url = "#{target_path}#{test_apk_file_name}"
 		test_bed_apk_url = "#{target_bed_path}#{test_bed_apk_file_name}"
 
-		update!(test_apk: test_apk_url)
-		update!(test_bed_apk: test_bed_apk_url)
+		update!(test_bed_apk: test_bed_apk_url,test_apk: test_apk_url)
   end
 
   def make_test_apk_folder
@@ -87,7 +89,24 @@ class Apk < ActiveRecord::Base
   end
 
   def update_apk_attributes
-  	
+		aapt = "#{Rails.root}/lib/android-tool/aapt"
+		apk_url = "#{Rails.root}/public/#{apk.to_s}" # apk address
+
+		# targetSdkVersion:'19'
+		target_sdk_version_result = `#{aapt} dump badging #{apk_url} | grep 'targetSdkVersion'`
+		# sdkVersion:'8'
+		min_sdk_version_result = `#{aapt} dump badging #{apk_url} | grep 'sdkVersion'`
+		# name='com.example.testandroid.MainActivity'
+		main_activity_result = `#{aapt} dump badging #{apk_url} | grep 'launchable-activity: name' | cut -f2 -d" "`
+		# com.example.testandroid
+		package_name_result = `#{aapt} list -a "#{apk_url}" | sed -n "/^Package Group[^s]/s/.*name=//p"`
+
+		target_sdk_version =  target_sdk_version_result.gsub(/\S*:'|'|\n/,'')
+		min_sdk_version =  min_sdk_version_result.gsub(/\S*:'|'|\n/,'')
+		main_activity =  main_activity_result.gsub(/\S*='|'|\n/,'')
+		package_name = package_name_result.gsub(/\n/,'')
+
+		update!(package_name: package_name, activity_name: main_activity, min_sdk: min_sdk_version, target_sdk: target_sdk_version)
   end
 end
 

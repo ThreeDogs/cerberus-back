@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140502130559) do
     t.string   "package_name"
     t.string   "activity_name"
     t.string   "min_sdk"
+    t.string   "target_sdk"
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"

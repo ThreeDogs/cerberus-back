@@ -7,6 +7,7 @@ class CreateApks < ActiveRecord::Migration
       t.string :package_name
       t.string :activity_name
       t.string :min_sdk
+      t.string :target_sdk
       t.references :project, index: true
 
       t.timestamps
