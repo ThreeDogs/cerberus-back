@@ -30,15 +30,14 @@ class TotalReportsController < ApplicationController
     @apk = Apk.find(params[:apk_id])
     @project = Project.find(@apk.project.id)
     @total_report = @apk.total_reports.build(project_id: @project.id)
-    # @device_list = JSON.parse(get_device_list)
+    @device_list = JSON.parse(get_device_list)
 
     if @total_report.save
       # @devices = []
       # @device_list.each do |device| 
-        # @devices << @total_report.devices.build(device)
+      #   @devices << @total_report.devices.build(device)
       # end
       # Device.import @devices
-
       
       redirect_to [@project, @total_report]
     else

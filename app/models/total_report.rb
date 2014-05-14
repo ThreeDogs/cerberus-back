@@ -15,7 +15,7 @@
 require 'net/http'
 
 class TotalReport < ActiveRecord::Base
-  # after_create :start_test
+  after_create :start_test
 	default_scope { order('created_at DESC') } 
 	scope :complete_total_reports, -> {where(status: true)}
 
@@ -34,6 +34,14 @@ class TotalReport < ActiveRecord::Base
   # validates :test_datetime, presence: true
   def apk_name
   	apk.apk_name
+  end
+
+  def package_name
+    apk.package_name
+  end
+
+  def activity_name
+    apk.activity_name
   end
 
   def test_date
@@ -57,7 +65,7 @@ class TotalReport < ActiveRecord::Base
 
   private
 
-  def start_test(test_bed_url = TEST_BED_URL_START)
+  def start_test(test_bed_url = TEST_BED_URL)
     apk_url = self.apk.apk.to_s
     total_report_id = self.id
     test_scenario_motion_events = []
@@ -66,9 +74,9 @@ class TotalReport < ActiveRecord::Base
       test_scenario_motion_events << {"#{t.id}" => t.motion_events}
     end
 
-    uri = URI("#{test_bed_url}/apk_info_send")
+    uri = URI("#{test_bed_url}/StartDevice")
     req = Net::HTTP::Post.new(uri, initheader = {'Content-Type' =>'application/json'})
-    req.body = {apk_url: apk_url, total_report_id: total_report_id, test_scenarios: test_scenario_motion_events}.to_json
+    req.body = {apk_url: apk_url, total_report_id: total_report_id, test_scenarios: test_scenario_motion_events, package_name: package_name, activity_name: activity_name}.to_json
     puts req.body
     res = Net::HTTP.start(uri.hostname, uri.port) do |http|
       http.request(req)

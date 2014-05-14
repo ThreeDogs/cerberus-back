@@ -16,9 +16,11 @@ ActiveRecord::Schema.define(version: 20140502130559) do
   create_table "apks", force: true do |t|
     t.string   "apk"
     t.string   "test_apk"
+    t.string   "test_bed_apk"
     t.string   "package_name"
     t.string   "activity_name"
     t.string   "min_sdk"
+    t.string   "target_sdk"
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
