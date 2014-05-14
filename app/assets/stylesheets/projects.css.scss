@@ -4,15 +4,6 @@
 
 //** projects/index.html.erb **//
 
-.headline {
-	margin: 40px 0 50px -62px;
-	font-size: 26px;
-	color: rgb(40,112,68);
-	img {
-		padding-right: 18px;
-	}
-}
-
 .project_box {
 
 	height: 150px;
@@ -125,25 +116,6 @@
 }
 
 //** projects/show.html.erb **//
-
-.dashboard_head {
-	margin: 40px 0;
-	color: rgb(40,112,68);
-	font-size: 26px; 
-	img {
-		margin-right: 16px;
-	}
-}
-
-.dashboard_sub {
-	padding: 5px 10px 1px 10px;
-	background-color: #5DBE88;
-	color: #605E5A;
-	font-size: 17px;
-	border-bottom: solid 3px;
-	border-color: #287044;
-	display: inline-block;
-}
 
 #overview-box{
 	height: 120px;

@@ -1,13 +1,14 @@
 <%= render "shared/header" %>
 
-<div class="row">
-	<%= render 'shared/side_bar' %>
-	<div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2">
-		<div class="container">
-			<div class="total_report_head">
-				<p><img src="/assets/Result.png">Test Results</p>
-				<p class="subline">Test Results > Full Report </p>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<%= render 'shared/side_bar' %>	
+		<div class="col-md-12 contents">
+			
+			<div class="page-title">
+				<img src="/assets/Result.png">Test Results
 			</div>
+			<!-- TODO: subline // Test Results > Full Report -->
 
 	    	<!-- TEST INFORMATION -->
 			<div class="test_information">
