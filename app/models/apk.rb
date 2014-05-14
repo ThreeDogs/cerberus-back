@@ -17,8 +17,8 @@
 
 class Apk < ActiveRecord::Base
 	before_create :make_test_apk_folder
-	after_create :generate_test_apk
 	after_create :update_apk_attributes
+	after_create :generate_test_apk
 
 	belongs_to :project
 	has_many :total_reports
@@ -59,7 +59,7 @@ class Apk < ActiveRecord::Base
 		test_apk_target = "#{target_folder_full_path}#{test_apk_file_name}"
 		test_bed_apk_target = "#{target_bed_folder_full_path}#{test_bed_apk_file_name}"
 
-		result = `echo #{secret_password} | sudo -S sh #{play_all_sh} #{apk_url} #{test_apk_target} #{shell_path} #{target_folder_full_path} #{project_id} #{test_bed_apk_target} #{target_bed_folder_full_path}`
+		result = `echo #{secret_password} | sudo -S sh #{play_all_sh} #{apk_url} #{test_apk_target} #{shell_path} #{target_folder_full_path} #{project_id} #{test_bed_apk_target} #{target_bed_folder_full_path} #{activity_name}`
 
 		# if succeed 
 		test_apk_url = "#{target_path}#{test_apk_file_name}"
@@ -94,12 +94,3 @@ class Apk < ActiveRecord::Base
 		update!(package_name: package_name, activity_name: main_activity, min_sdk: min_sdk_version, target_sdk: target_sdk_version)
   end
 end
-
-
-
-
-
-
-
-
-

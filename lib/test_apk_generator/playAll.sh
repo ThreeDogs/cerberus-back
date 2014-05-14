@@ -19,7 +19,6 @@ chmod 777 $3/temp/newclz/.
 
 tar xvf $3/temp/jarfile.jar -C $3/temp/newclz
 
-cp -r $3/lib/org $3/temp/newclz/
 
 #rm ./temp/jarfile.jar
 
@@ -28,8 +27,9 @@ echo $PWD
 java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/asm.jar scenario.org.cerberus.jarasm.JarAsmTest $3/temp/newclz $5
 
 echo "1-----------------------------------------------------------------"
-
-cp -rf $3/src/org $3/temp/newclz
+cp -r $3/lib/org $3/temp/newclz/
+cp -r $3/lib/com $3/temp/newclz/
+#cp -rf $3/src/org $3/temp/newclz
 
 echo "2-----------------------------------------------------------------"
 
@@ -58,6 +58,7 @@ $3/dex2jar-0.0.9.15/d2j-apk-sign.sh -f -o $2 $3/temp/mm_.apk
 
 
 
+
 #------------------------------
 
 chmod 777 $3
@@ -78,7 +79,8 @@ chmod 777 $3/temp/newclz/.
 
 tar xvf $3/temp/jarfile.jar -C $3/temp/newclz
 
-cp -r lib/org temp/newclz/
+cp -r $3/lib/org $3/temp/newclz/
+cp -r $3/lib/com $3/temp/newclz/
 
 #rm ./temp/jarfile.jar
 
@@ -86,7 +88,7 @@ echo $PWD
 
 java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/asm2.jar test.org.cerberus.jarasm.JarAsmTest $3/temp/newclz $5
 
-java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/test.jar org.cerberus.test.TestRunnerAsm com.example.testandroid.MainActivity $3
+java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/test.jar org.cerberus.test.TestRunnerAsm $8 $3
 
 #mkdir $3/temp/newclz/org/cerberus/test
 
@@ -119,3 +121,5 @@ zip -u $3/temp/mm_.apk /classes.dex
 echo "7-----------------------------------------------------------------"
 
 $3/dex2jar-0.0.9.15/d2j-apk-sign.sh -f -o $6 $3/temp/mm_.apk
+
+
