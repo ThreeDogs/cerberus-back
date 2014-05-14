@@ -19,7 +19,7 @@ chmod 777 $3/temp/newclz/.
 
 tar xvf $3/temp/jarfile.jar -C $3/temp/newclz
 
-cp -r lib/org temp/newclz/
+cp -r $3/lib/org $3/temp/newclz/
 
 #rm ./temp/jarfile.jar
 
