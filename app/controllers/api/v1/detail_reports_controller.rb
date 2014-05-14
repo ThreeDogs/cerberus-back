@@ -13,7 +13,7 @@ class Api::V1::DetailReportsController < ApplicationController
 	end
 
 	def upload_screenshot
-		@screen = Screen.new(screen_params)
+		@screen = Screen.new(image: params[:image], client_timestamp: params[:client_timestamp])
 
 		if @screen.save
 			render status: :created, json: {response: "success_created", client_timestamp: @screen.client_timestamp, url: @screen.image}
@@ -32,7 +32,7 @@ class Api::V1::DetailReportsController < ApplicationController
 
 	private 
 
-	def screen_params
-		params.require(:screen).permit(:image, :client_timestamp)		
-	end
+	# def screen_params
+		# params.require(:screen).permit(:image, :client_timestamp)		
+	# end
 end

@@ -19,6 +19,8 @@ chmod 777 $3/temp/newclz/.
 
 tar xvf $3/temp/jarfile.jar -C $3/temp/newclz
 
+cp -r lib/org temp/newclz/
+
 #rm ./temp/jarfile.jar
 
 echo $PWD
