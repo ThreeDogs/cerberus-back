@@ -79,8 +79,7 @@ chmod 777 $3/temp/newclz/.
 
 tar xvf $3/temp/jarfile.jar -C $3/temp/newclz
 
-cp -r $3/lib/org $3/temp/newclz/
-cp -r $3/lib/com $3/temp/newclz/
+
 
 #rm ./temp/jarfile.jar
 
@@ -89,7 +88,8 @@ echo $PWD
 java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/asm2.jar test.org.cerberus.jarasm.JarAsmTest $3/temp/newclz $5
 
 java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/test.jar org.cerberus.test.TestRunnerAsm $8 $3
-
+cp -r $3/lib/org $3/temp/newclz/
+cp -r $3/lib/com $3/temp/newclz/
 #mkdir $3/temp/newclz/org/cerberus/test
 
 #mv CerberusTestRunner.class temp/newclz/org/cerberus/test/CerberusTestRunner.class
