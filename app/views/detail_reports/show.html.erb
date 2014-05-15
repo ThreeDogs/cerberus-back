@@ -33,12 +33,12 @@
 				</div>
 
 				<div id="test_avg" class="half_width_block">
-					<div class="average_block">something</div>
-					<div class="average_block">something</div>
-					<div class="average_block">something</div>
-					<div class="average_block">something</div>
-					<div class="average_block">something</div>
-					<div class="average_block">something</div>
+					<div class="average_block">Memory Average : <%= @detail_report.memory_average %></div>
+					<div class="average_block">CPU Average : <%= @detail_report.cpu_average %></div>
+					<div class="average_block">Network Average : <%= @detail_report.network_average %></div>
+					<div class="average_block">Battery Average : <%= @detail_report.battery_consumption %></div>
+					<div class="average_block">Threads Average : <%= @detail_report.threads_average %></div>
+					<div class="average_block">Frame Draw Time : <%= @detail_report.frame_draw_time_average %></div>
 				</div>
 			</div>
 
