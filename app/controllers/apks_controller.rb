@@ -17,6 +17,8 @@ class ApksController < ApplicationController
 	def show
 		@project = set_project
 		@total_report = set_apk.total_reports.new
+		@test_scenarios = @project.test_scenarios
+		@device_list = JSON.parse(set_apk.get_device_list)
 	end
 
 	private

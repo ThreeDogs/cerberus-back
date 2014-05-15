@@ -12,24 +12,31 @@
         <div class="app_icon_box"><%= image_tag project.get_icon %></div>
         <div class="app_info_box">
           <p class="project_title"><%= link_to project.name, project_path(project) %></p>
-          <span class="date_version">Ver</span><%= project.recent_report_app_version %><br>
-          <span class="date_version">Date</span><%= project.recent_report_test_date %>
+          <% if project.recent_total_report %>
+            <span class="date_version">Ver</span><%= project.recent_report_app_version %><br>
+            <span class="date_version">Date</span><%= project.recent_report_test_date %>
+          <% end %>
         </div>
-        <div class="test_fail_box">
-          <p>Test Fail</p>
-          <div class="test_fail_num">
-            <% project.recent_report_rank_status.each do |key, array| %>
-              <div class="test_fail_each"><%= key %> 
-                <div class="test_success"><%= array[0] %>
-                  <div class="test_fail" style="width:70px"><%= array[1] %></div>
-                  <!-- width: fail percentage * 170px -->
+
+        <% if project.recent_total_report %>
+          <div class="test_fail_box">
+            <p>Test Fail</p>
+            <div class="test_fail_num">
+              <% project.recent_report_rank_status.each do |key, array| %>
+                <div class="test_fail_each"><%= key %> 
+                  <div class="test_success"><%= array[0] %>
+                    <div class="test_fail" style="width:70px"><%= array[1] %></div>
+                    <!-- width: fail percentage * 170px -->
+                  </div>
                 </div>
-              </div>
-            <% end %>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
   <% end %>
+
+  <%= link_to "New Project", new_project_path %>
 
 </div>

@@ -11,13 +11,14 @@
 #
 
 class Project < ActiveRecord::Base
-  default_scope { joins(:total_reports).order('total_reports.created_at DESC') } 
+  # default_scope { joins(:total_reports).order('total_reports.created_at DESC') } 
   mount_uploader :icon, IconUploader
 
 	belongs_to :user
 	has_many :apks
 	has_many :total_reports
 	has_many :test_scenarios
+  has_many :devices
 
 	validates :name, presence: true
   validates :user_id, presence: true

@@ -35,7 +35,13 @@ class Apk < ActiveRecord::Base
 		apk_url.split("/").last
 	end	
 
-  # private
+	def get_device_list(test_bed_url = TEST_BED_URL)
+    uri = URI("#{test_bed_url}/DeviceInfo")
+    res = Net::HTTP.get(uri)
+    res
+  end
+
+  private
 
   def generate_test_apk
   	secret_password = "Zodlxj10"

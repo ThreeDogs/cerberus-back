@@ -16,6 +16,9 @@ require 'net/http'
 
 class TotalReport < ActiveRecord::Base
   after_create :start_test
+  after_create :create_scenarioship
+  after_create :create_deviceship
+
 	default_scope { order('created_at DESC') } 
 	scope :complete_total_reports, -> {where(status: true)}
 
@@ -24,12 +27,15 @@ class TotalReport < ActiveRecord::Base
 
   has_many :detail_reports
 
-  has_many :devices, through: :deviceship
-  has_many :deviceships
-
-  has_many :test_scenarios, through: :scenarioship
   has_many :scenarioships
-  accepts_nested_attributes_for :scenarioships, allow_destroy: true
+  has_many :test_scenarios, through: :scenarioships
+
+  has_many :devices
+
+  # has_many :deviceships
+  # has_many :devices, through: :deviceships
+
+  # accepts_nested_attributes_for :scenarioships, allow_destroy: true
 
   # validates :test_datetime, presence: true
   def apk_name
@@ -49,18 +55,22 @@ class TotalReport < ActiveRecord::Base
   end
 
   def number_of_scenarios
-    # implement
-    112
+    test_scenarios.count
   end
 
   def number_of_devices
-    # implement
-    10
+    devices.count
   end
 
   def test_rank_status
     # implement
     {A:[17,7],B:[23,34], C:[10,5], D:[19,2]}
+  end
+
+  def get_device_list(test_bed_url = TEST_BED_URL)
+    uri = URI("#{test_bed_url}/DeviceInfo")
+    res = Net::HTTP.get(uri)
+    res
   end
 
   private
@@ -85,4 +95,20 @@ class TotalReport < ActiveRecord::Base
     puts res.is_a?(Net::HTTPSuccess) ? "Success" : "Error"
   end
 
+  def create_scenarioship
+    scenarioships_builds = project.test_scenarios.collect do |test_scenario|
+      Scenarioship.new(test_scenario_id: test_scenario.id, total_report_id: self.id)
+    end
+
+    Scenarioship.import scenarioships_builds
+  end
+
+  def create_deviceship
+    device_list = JSON.parse(get_device_list)
+
+    devices = device_list.collect do |device| 
+      self.devices.build(device)
+    end
+    Device.import devices
+  end
 end

@@ -26,16 +26,12 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = current_user.projects.create(project_params.permit(:name))
+    @project = current_user.projects.build(params[:project].permit(:name))
 
-    respond_to do |format|
-      if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @project }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
+    if @project.save!
+      redirect_to @project, notice: 'Project was successfully created.'
+    else
+      render action: 'new'
     end
   end
 

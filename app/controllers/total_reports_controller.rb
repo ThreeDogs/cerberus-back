@@ -1,5 +1,4 @@
 class TotalReportsController < ApplicationController
-  include TotalReportsHelper
   before_action :set_total_report, only: [:show, :edit, :update, :destroy]
 
   # GET /total_reports
@@ -30,15 +29,8 @@ class TotalReportsController < ApplicationController
     @apk = Apk.find(params[:apk_id])
     @project = Project.find(@apk.project.id)
     @total_report = @apk.total_reports.build(project_id: @project.id)
-    @device_list = JSON.parse(get_device_list)
 
     if @total_report.save
-      # @devices = []
-      # @device_list.each do |device| 
-      #   @devices << @total_report.devices.build(device)
-      # end
-      # Device.import @devices
-      
       redirect_to [@project, @total_report]
     else
       render "/projects/#{@project.id}/apks/#{@apk.id}"

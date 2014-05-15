@@ -56,6 +56,10 @@ class DetailReport < ActiveRecord::Base
     status == 1 ? "Pass" : "Fail"
   end
 
+  def screenshots
+    motion_event_infos.collect{|m| m.screen }
+  end
+
   def memory_average
     # implement..
     "20.00mb"

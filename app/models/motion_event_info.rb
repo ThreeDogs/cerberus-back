@@ -16,5 +16,5 @@
 
 class MotionEventInfo < ActiveRecord::Base
   belongs_to :detail_report
-  has_many :screens, foreign_key: 'client_timestamp', primary_key: 'client_timestamp'
+  has_one :screen, foreign_key: 'client_timestamp', primary_key: 'client_timestamp'
 end

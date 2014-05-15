@@ -20,11 +20,11 @@
 				<div id="test_stats" class="half_width_block">
 					<div class="test_stat_entry">
 						<div class="test_stat_key">App Version</div>
-						<div class="test_stat_value">1.0.1</div>
+						<div class="test_stat_value"><%= @detail_report.app_version %></div>
 					</div>
 					<div class="test_stat_entry">
 						<div class="test_stat_key">Test Scenario</div>
-						<div class="test_stat_value">Login Test</div>
+						<div class="test_stat_value"><%= @detail_report.test_scenario_name %></div>
 					</div>
 					<div class="test_stat_entry">
 						<div class="test_stat_key">Tested on</div>
@@ -43,7 +43,9 @@
 			</div>
 
 			<div id="screenshots" class="full_width_block">
-			screenshots
+				<% @detail_report.screenshots.each do |screen| %>
+					<%= image_tag screen.image, size: "150x256" %>
+				<% end %>
 			</div>
 
 			<div>

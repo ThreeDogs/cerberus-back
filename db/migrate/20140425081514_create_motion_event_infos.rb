@@ -6,7 +6,7 @@ class CreateMotionEventInfos < ActiveRecord::Migration
       t.string :view
       t.string :action_type
       t.integer :sleep
-      t.integer :client_timestamp
+      t.integer :client_timestamp, index: true
       t.references :detail_report, index: true
 
       t.timestamps
