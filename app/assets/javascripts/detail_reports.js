@@ -582,9 +582,9 @@ function drawDetailReports(data) {
 	}
 	d3.select(window).on("resize",resize);
 
-	function dataProcess() {
+	function dataProcess(data) {
 		// Sort the data by client_timestamp;
-		function timestampSort (a, b) {
+		data.sort(function (a, b) {
 			if (a.client_timestamp < b.client_timestamp){
 				return -1;
 			} else if (a.client_timestamp > b.client_timestamp){
@@ -592,28 +592,24 @@ function drawDetailReports(data) {
 			} else {
 				return 0;
 			}
-		}
-		data.motion_infos.sort(timestampSort);
-		data.memory_infos.sort(timestampSort);
-		data.cpu_infos.sort(timestampSort);
+		});
 
 		// Process the client java timestamp (ms)
 		// into relative time in second with first element at 0s
-		data.motion_infos.map(function (item) {
-			return (item - data.motion_infos[0].client_timestamp)/1000;
+
+		var zero = data[0].client_timestamp;
+
+		data.forEach(function (element, index) {
+			element.client_timestamp = (element.client_timestamp - zero) / 1000;
+			console.log(element);
 		});
-		data.memory_infos.map(function (item) {
-			return (item - data.memory_infos[0].client_timestamp)/1000;
-		})
-		data.cpu_infos.map(function (item) {
-			return (item - data.cpu_infos[0].client_timestamp)/1000;
-		}) 
+
+		return data;
 	}
 
-	dataProcess(data);
-	drawEventPath(data.motion_infos);
-	drawMemUsage(data.memory_infos);
-	drawCPUUsage(data.cpu_infos);
+	drawEventPath(dataProcess(data.motion_event_infos));
+	drawMemUsage(dataProcess(data.memory_infos));
+	drawCPUUsage(dataProcess(data.cpu_infos));
 }
 
 function divMove (div, direction) {
