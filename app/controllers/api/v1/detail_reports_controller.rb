@@ -30,6 +30,15 @@ class Api::V1::DetailReportsController < ApplicationController
 		render 'detail_reports/api/get_report_infos'
 	end
 
+	def finish_test
+		@total_report = TotalReport.find(params[:total_report_id])
+		if @total_report.update_attributes!(status: true)
+			render status: :created, json: {response: "success_finish", status: @total_report.status}
+		else
+			render status: :unprocessable_entity, json: {response: "error #{e}"}
+		end
+	end
+
 	private 
 
 	# def screen_params

@@ -4,6 +4,7 @@ CerberusBack::Application.routes.draw do
       resources :detail_reports, only: [:create] do
         collection do
           post 'upload_screenshot'
+          post 'finish_test'
         end
         member do
           get 'get_report_infos'

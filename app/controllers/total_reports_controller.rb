@@ -31,7 +31,7 @@ class TotalReportsController < ApplicationController
     @total_report = @apk.total_reports.build(project_id: @project.id)
 
     if @total_report.save
-      redirect_to [@project, @total_report]
+      redirect_to total_report_detail_reports_path(@total_report)
     else
       render "/projects/#{@project.id}/apks/#{@apk.id}"
     end

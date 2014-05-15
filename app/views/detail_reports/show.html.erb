@@ -113,7 +113,8 @@
 	</div>
 </div>
 
-<script>
-	d3.json("http://127.0.0.1:3000/testdata.json",drawDetailReports);
-</script>
+<%= javascript_tag do %>
+	d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_report_infos",drawDetailReports);
+<% end %>
+
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">

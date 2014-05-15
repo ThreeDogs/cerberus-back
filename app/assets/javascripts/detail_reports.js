@@ -1,7 +1,6 @@
 
 function drawDetailReports(data) {
 
-
 	var event_graph_resize;
 
 	function drawEventPath(eventdata) {
@@ -20,7 +19,8 @@ function drawDetailReports(data) {
 						.attr("transform","translate("+margin.left+","+margin.top+")");
 
 		var x = d3.scale.linear().range([0, width]);
-		x_extent = [0, eventdata[eventdata.length-1].time_stamp];
+
+		x_extent = [0, eventdata[eventdata.length-1].client_timestamp];
 		x.domain(x_extent);
 
 		var xAxis = d3.svg.axis()
@@ -48,7 +48,7 @@ function drawDetailReports(data) {
 					.on("click",function (d) {
 						detail_box.selectAll("div").remove();
 						detail_box.append("div")
-							.text("time stamp: "+d.time_stamp);
+							.text("time stamp: "+d.client_timestamp);
 						detail_box.append("div")
 							.text("activity class: "+d.activity_class);
 						detail_box.append("div")
@@ -58,7 +58,7 @@ function drawDetailReports(data) {
 					});
 
 		event_group.attr("transform", function (d) {
-			return "translate("+x(d.time_stamp)+",60)";
+			return "translate("+x(d.client_timestamp)+",60)";
 		});
 
 		event_group.each(function (d, i) {
@@ -66,14 +66,14 @@ function drawDetailReports(data) {
 			var currentActivity = activities[activities.length-1];
 			if (currentActivity!=null && d.activity_class == currentActivity.name){
 				flag = false;
-				currentActivity.end_time=d.time_stamp;
+				currentActivity.end_time=d.client_timestamp;
 				currentActivity.end_num=d.id;
 			}
 			if (flag) activities.push({
 				"name":d.activity_class,
-				"start_time":d.time_stamp,
+				"start_time":d.client_timestamp,
 				"start_num":d.id,
-				"end_time":d.time_stamp,
+				"end_time":d.client_timestamp,
 				"end_num":d.id
 			});
 		})
@@ -123,7 +123,7 @@ function drawDetailReports(data) {
 			
 			if (toggle=="Time") {
 				event_group.attr("transform", function (d) {
-					return "translate("+x(d.time_stamp)+",60)";
+					return "translate("+x(d.client_timestamp)+",60)";
 				});
 				gact.attr("x",function (d) {return x(d.start_time)})
 					.attr("width", function (d) {return x(d.end_time)-x(d.start_time)+10});
@@ -146,7 +146,7 @@ function drawDetailReports(data) {
 		}
 
 		function onTimeAxis() {
-			x_extent = [0, eventdata[eventdata.length-1].time_stamp];
+			x_extent = [0, eventdata[eventdata.length-1].client_timestamp];
 			x.domain(x_extent);
 			toggle = "Time";
 			onZoom();
@@ -181,7 +181,7 @@ function drawDetailReports(data) {
 		var x = d3.scale.linear().range([0, width]);
 		var y = d3.scale.linear().range([height, 0]);
 
-		x_extent = [0, memdata.length+1];
+		x_extent = [0, memdata[memdata.length-1].client_timestamp];
 		y_extent = [0, d3.max(memdata, function(d) { return d.mem_total; })];
 		x.domain(x_extent);
 		y.domain(y_extent);
@@ -228,7 +228,7 @@ function drawDetailReports(data) {
 			var detail_box = d3.select("#mem_graph_detail_info");
 
 			var line = d3.svg.line().interpolate("monotone")
-						.x(function(d){return x(d.id)})
+						.x(function(d){return x(d.client_timestamp)})
 						.y(function(d){return y(d[value_name])});
 
 			var path = mem_svg.append("path")
@@ -247,7 +247,7 @@ function drawDetailReports(data) {
 						.attr("class",value_name+"dot dot")
 						.attr("r",2)
 						.attr("transform",function (d) {
-							return "translate("+x(d.id)+","+y(d[value_name])+")";
+							return "translate("+x(d.client_timestamp)+","+y(d[value_name])+")";
 						})
 						.on("click",function (d) {
 							detail_box.selectAll("div").remove();
@@ -268,7 +268,7 @@ function drawDetailReports(data) {
 			function renew() {
 				path.attr("d",line(memdata));
 				mem_svg.selectAll("."+value_name+"dot").attr("transform",function (d) {
-					return "translate("+x(d.id)+","+y(d[value_name])+")";
+					return "translate("+x(d.client_timestamp)+","+y(d[value_name])+")";
 				});
 			}
 
@@ -451,7 +451,7 @@ function drawDetailReports(data) {
 		var x = d3.scale.linear().range([0, width]);
 		var y = d3.scale.linear().range([height, 0]);
 
-		x_extent = [0, cpudata.length+1];
+		x_extent = [0, cpudata[cpudata.length-1].client_timestamp];
 		y_extent = [0, 100];
 		x.domain(x_extent);
 		y.domain(y_extent);
@@ -488,7 +488,7 @@ function drawDetailReports(data) {
 		    .call(zoom);
 
 		var line = d3.svg.line().interpolate("monotone")
-						.x(function(d){return x(d.id)})
+						.x(function(d){return x(d.client_timestamp)})
 						.y(function(d){return y(d.usage)});
 
 		var cpu_usage = cpu_svg.append("path")
@@ -507,7 +507,7 @@ function drawDetailReports(data) {
 								.attr("class","dot")
 								.attr("r",2)
 								.attr("transform",function (d) {
-									return "translate("+x(d.id)+","+y(d.usage)+")";
+									return "translate("+x(d.client_timestamp)+","+y(d.usage)+")";
 								})
 								.on("click",function (d) {
 									detail_box.selectAll("div").remove();
@@ -530,7 +530,7 @@ function drawDetailReports(data) {
 			cpu_svg.select("g.y.axis").call(yAxis);
 			cpu_svg.select("#cpu_usage").attr("d",line(cpudata));
 			cpu_svg.selectAll("circle.dot").attr("transform",function (d) {
-				return "translate("+x(d.id)+","+y(d.usage)+")";
+				return "translate("+x(d.client_timestamp)+","+y(d.usage)+")";
 			});
 		}
 
@@ -582,9 +582,34 @@ function drawDetailReports(data) {
 	}
 	d3.select(window).on("resize",resize);
 
-	drawEventPath(data.motion_reports);
-	drawMemUsage(data.memory_reports);
-	drawCPUUsage(data.cpu_reports);
+	function dataProcess(data) {
+		// Sort the data by client_timestamp;
+		data.sort(function (a, b) {
+			if (a.client_timestamp < b.client_timestamp){
+				return -1;
+			} else if (a.client_timestamp > b.client_timestamp){
+				return 1;
+			} else {
+				return 0;
+			}
+		});
+
+		// Process the client java timestamp (ms)
+		// into relative time in second with first element at 0s
+
+		var zero = data[0].client_timestamp;
+
+		data.forEach(function (element, index) {
+			element.client_timestamp = (element.client_timestamp - zero) / 1000;
+			console.log(element);
+		});
+
+		return data;
+	}
+	
+	drawEventPath(dataProcess(data.motion_event_infos));
+	drawMemUsage(dataProcess(data.memory_infos));
+	drawCPUUsage(dataProcess(data.cpu_infos));
 }
 
 function divMove (div, direction) {

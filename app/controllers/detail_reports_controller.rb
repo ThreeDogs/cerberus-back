@@ -6,7 +6,7 @@ class DetailReportsController < ApplicationController
   def index
     @total_report = TotalReport.find(params[:total_report_id])
     @project = @total_report.project
-    @detail_reports = DetailReport.all
+    @detail_reports = @total_report.detail_reports
   end
 
   # GET total_reports/1/detail_reports/1?detail_report_id=1
