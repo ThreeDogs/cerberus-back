@@ -46,9 +46,7 @@ class DetailReport < ActiveRecord::Base
   end
 
   def get_running_time
-    minutes = running_time / 60
-    seconds = running_time % 60
-    "#{running_time}s (#{minutes.to_i}:#{seconds.to_i})"
+    "#{running_time}s"
   end
 
   # status -1 : Fail, 1: Pass
