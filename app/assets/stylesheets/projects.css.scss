@@ -140,20 +140,10 @@
 	}
 
 	.report-link {
-		margin: 0px;
-		padding: 42px 0 0 20px;
 		height: 100%;
 		float: left;
-
-		.link-button {
-			text-align: center;
-			width: 70%;
-			height: 36px;
-			border: 2px solid;
-			padding-top: 7px;
-			border-radius: 18px;
-			border-color: rgb(52,119,78);
-			background-color: rgb(219,238,225);
+		img {
+			margin: 0 auto;
 		}
 	}
 }
