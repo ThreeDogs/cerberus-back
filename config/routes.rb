@@ -1,6 +1,15 @@
+require 'sidekiq/web'
+
 CerberusBack::Application.routes.draw do
+  mount Sidekiq::Web, at: "/sidekiq"
   namespace :api, defaults: {format: 'json'} do 
     namespace :v1 do
+      resources :apks, only: [] do
+        member do
+          get 'apk_conversion_status'
+        end
+      end
+
       resources :detail_reports, only: [:create] do
         collection do
           post 'upload_screenshot'

@@ -15,11 +15,7 @@ class Api::V1::DetailReportsController < ApplicationController
 	def upload_screenshot
 		@screen = Screen.new(image: params[:image], client_timestamp: params[:client_timestamp])
 
-		if @screen.save
-			render status: :created, json: {response: "success_created", client_timestamp: @screen.client_timestamp, url: @screen.image}
-		else
-			render status: :unprocessable_entity, json: {response: "error #{e}"}
-		end
+		UploadScreenshotWorker.perform_async(@screen)
 	end
 
 	def get_report_infos

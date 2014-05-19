@@ -1,0 +1,12 @@
+---
+:concurrency: 10
+:pidfile: tmp/pids/sidekiq.pid
+staging:
+  :concurrency: 20
+production:
+  :concurrency: 30
+:queues:
+  - default
+  - [image, 7]
+  - [data, 5]
+  - [apk, 3]

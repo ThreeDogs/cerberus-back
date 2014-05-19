@@ -35,6 +35,9 @@ gem 'activerecord-import'
 
 # Background Worker
 gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim', '>= 1.3.0'
+gem 'sidekiq-limit_fetch'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

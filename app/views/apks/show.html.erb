@@ -8,35 +8,46 @@
 			<div class="apk-upload-head">
         <img src="/assets/Dashboard.png">Test Ready
       </div>
-			<div class="jumbotron">
-				<h3><%= @apk.apk_name %></h3>
-				<p>Package Name  <%= @apk.package_name %></p>
-				<p>Activity Name  <%= @apk.activity_name %></p>
-				<p>Minimum SDK  <%= @apk.min_sdk %></p>
-				<p>Test APK  <%= link_to @apk.test_apk_name, @apk.test_apk %></p>
-			</div>
+      <% if @apk.apk_conversion_done? -%>
+				<div class="jumbotron">
+					<h3><%= @apk.apk_name %></h3>
+					<p>Package Name  <%= @apk.package_name %></p>
+					<p>Activity Name  <%= @apk.activity_name %></p>
+					<p>Minimum SDK  <%= @apk.min_sdk %></p>
+					<p>Test APK  <%= link_to @apk.test_apk_name, @apk.test_apk %></p>
+				</div>
 
-			<div class="total-report-form">
-				<%= form_for [@apk, @total_report] do |f| %>
-					<div class="col-md-6 jumbotron test-scenario-list">
-						<% @test_scenarios.each do |test_scenario| %>
-							<div class="test-scenario-item">
-								<%= test_scenario.name %>
-							</div>
-						<% end %>
-					</div>
-					<div class="col-md-6 jumbotron">
-						<% @device_list.each do |device| %>
-							<div class="device-item">
-								<p><%= device["model"] %>&nbsp;<%= device["brand"] %>&nbsp;<%= device["os_version"] %>&nbsp;<%= device["cpu"] %><p>
-							</div>
-						<% end  %>
-					</div>
-					<div class="pull-right">
-						<%= f.submit "Start Test", class: "btn btn-large btn-primary" %>
-					</div>
-				<% end %>
-			</div>
+				<div class="total-report-form">
+					<%= form_for [@apk, @total_report] do |f| %>
+						<div class="col-md-6 jumbotron test-scenario-list">
+							<% @test_scenarios.each do |test_scenario| %>
+								<div class="test-scenario-item">
+									<%= test_scenario.name %>
+								</div>
+							<% end %>
+						</div>
+						<div class="col-md-6 jumbotron">
+							<% if @device_list %>
+							<% @device_list.each do |device| %>
+								<div class="device-item">
+									<p><%= device["model"] %>&nbsp;<%= device["brand"] %>&nbsp;<%= device["os_version"] %>&nbsp;<%= device["cpu"] %><p>
+								</div>
+							<% end  %>
+							<% end %>
+						</div>
+						<div class="pull-right">
+							<%= f.submit "Start Test", class: "btn btn-large btn-primary" %>
+						</div>
+					<% end %>
+				</div>
+			<% else %>
+				<div id="progress-circle">
+					<%= javascript_tag do %>
+						progressCircle();
+						requestDoneTime(<%= @apk.id %>);
+					<% end %>
+				</div>
+			<% end %>
 		</div>
 </div>
 

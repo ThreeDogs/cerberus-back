@@ -18,8 +18,6 @@
 class Apk < ActiveRecord::Base
 	default_scope {order('created_at DESC')}
 	before_create :make_test_apk_folder
-	after_create :update_apk_attributes
-	after_create :generate_test_apk
 
 	belongs_to :project
 	has_many :total_reports
@@ -46,7 +44,9 @@ class Apk < ActiveRecord::Base
   	created_at.strftime("%y.%m.%d. %I:%M %p")
   end
 
-  private
+  def apk_conversion_done?
+  	test_apk != nil && test_bed_apk != nil
+  end
 
   def generate_test_apk
   	secret_password = "Zodlxj10"
@@ -79,11 +79,6 @@ class Apk < ActiveRecord::Base
 		update!(test_bed_apk: test_bed_apk_url,test_apk: test_apk_url)
   end
 
-  def make_test_apk_folder
-  	`mkdir #{Rails.root}/public/uploads/#{self.class.to_s.underscore}/test_apk/`
-  	`mkdir #{Rails.root}/public/uploads/#{self.class.to_s.underscore}/test_bed_apk/`
-  end
-
   def update_apk_attributes
 		aapt = "#{Rails.root}/lib/android-tool/aapt"
 		apk_url = "#{Rails.root}/public/#{apk.to_s}" # apk address
@@ -103,5 +98,12 @@ class Apk < ActiveRecord::Base
 		package_name = package_name_result.gsub(/\n/,'')
 
 		update!(package_name: package_name, activity_name: main_activity, min_sdk: min_sdk_version, target_sdk: target_sdk_version)
+  end
+
+  private
+
+  def make_test_apk_folder
+  	`mkdir #{Rails.root}/public/uploads/#{self.class.to_s.underscore}/test_apk/`
+  	`mkdir #{Rails.root}/public/uploads/#{self.class.to_s.underscore}/test_bed_apk/`
   end
 end

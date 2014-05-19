@@ -8,8 +8,12 @@ class ApksController < ApplicationController
 	end
 
 	def create
+		# @apk = set_project.apks.build(apk_params)
+		# ApkUploadWorker.perform_async(set_project.id, apk_params)
+		
 		if @apk = set_project.apks.create(apk_params)
-			redirect_to [@project,@apk]
+			ApkUploadWorker.perform_async(@apk.id)
+			redirect_to [@project,@apk]	
 		else
 			render 'new'
 		end
@@ -19,7 +23,7 @@ class ApksController < ApplicationController
 		@project = set_project
 		@total_report = set_apk.total_reports.new
 		@test_scenarios = @project.test_scenarios
-		@device_list = JSON.parse(set_apk.get_device_list)
+		# @device_list = JSON.parse(set_apk.get_device_list)
 	end
 
 	def destroy
