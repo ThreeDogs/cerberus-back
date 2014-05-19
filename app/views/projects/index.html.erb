@@ -1,8 +1,11 @@
 <%= render "shared/header" %>
 
 <div class="container">
-  <div class="headline">
+  <div class="page-title">
     <img src="/assets/Project_list.png">My projects list
+     <%= link_to new_project_path do %>
+        <div class="project-new"></div>
+     <% end %>
   </div>
 
   <% @projects.each do |project| %>
@@ -18,18 +21,24 @@
           <% end %>
         </div>
 
+
         <% if project.recent_total_report %>
           <div class="test_fail_box">
             <p>Test Fail</p>
             <div class="test_fail_num">
+              <!-- RANK STATUS -->
               <% project.recent_report_rank_status.each do |key, array| %>
-                <div class="test_fail_each"><%= key %> 
+                <div class="test_fail_each">
+                  <div class="test_key <%= key %>"><%= key %></div>
                   <div class="test_success"><%= array[0] %>
-                    <div class="test_fail" style="width:70px"><%= array[1] %></div>
-                    <!-- width: fail percentage * 170px -->
+                    <div class="test_fail <%= key %>" style="width:30%"><%= array[1] %></div>
+                    <!-- width in percentage; test_fail / total# of tests -->
                   </div>
                 </div>
+                <%= javascript_tag do %>
+                <% end %>
               <% end %>
+              <!-- -->
             </div>
           </div>
         <% end %>
@@ -37,6 +46,9 @@
     </div>
   <% end %>
 
-  <%= link_to "New Project", new_project_path %>
 
 </div>
+
+<script>
+// band_chart_exception( 1/2/3/4 );
+</script>

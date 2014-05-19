@@ -606,7 +606,6 @@ function drawDetailReports(data) {
 
 		return data;
 	}
-	
 	drawEventPath(dataProcess(data.motion_event_infos));
 	drawMemUsage(dataProcess(data.memory_infos));
 	drawCPUUsage(dataProcess(data.cpu_infos));

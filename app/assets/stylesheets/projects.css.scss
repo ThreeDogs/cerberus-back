@@ -81,13 +81,33 @@
 
 		background-color: rgb(239,239,239);
 		.test_fail_num {
+			.test_key {
+				font-size: 15px;
+				height: 24px;
+				width: 24px;
+				border-radius: 12px;
+				border: solid 2px;
+				margin: 5px auto;
+				text-align: center;
+			}
+			.A {
+				border-color: rgb(244,86,86);
+			}
+			.B {
+				border-color: rgb(239,134,164);
+			}
+			.C {
+				border-color: rgb(255,130,30);
+			}
+			.D {
+				border-color: rgb(255,186,80);
+			}
 			.test_fail_each{
 				font-size: 19px;
 				width: 25%;
 				height: 100;
 				float:left;
 				text-align: center;
-
 				.test_fail {
 					text-align: left;
 					padding-left: 5px;
@@ -105,14 +125,39 @@
 					font-size: 21px;
 					color: white;
 					height: 28px;
-					width: 170px;
+					width: 80%;
+					margin: 0 auto;
 					border-radius: 14px;
 					background-color: rgb(93,190,136);
 					position: relative;
+					.A {
+						background-color: rgb(244,86,86);
+					}
+					.B {
+						background-color: rgb(239,134,164);
+					}
+					.C {
+						background-color: rgb(255,130,30);
+					}
+					.D {
+						background-color: rgb(255,186,80);
+					}
 				}
 			}
 		}
 	}
+}
+
+.project-new {
+	background-image: url('/assets/plus.png');
+	float: right;
+	width: 30px;
+	height: 30px;
+	background-size: 30px 30px;
+	background-repeat: no-repeat;
+}
+.project-new:hover {
+	background-image: url('/assets/plus_click.png');
 }
 
 //** projects/show.html.erb **//
@@ -140,20 +185,19 @@
 	}
 
 	.report-link {
-		margin: 0px;
-		padding: 42px 0 0 20px;
 		height: 100%;
 		float: left;
-
-		.link-button {
-			text-align: center;
-			width: 70%;
-			height: 36px;
-			border: 2px solid;
-			padding-top: 7px;
-			border-radius: 18px;
-			border-color: rgb(52,119,78);
-			background-color: rgb(219,238,225);
+		padding-top: 20px;
+		.full-report {
+			background-image: url('/assets/fullreport.png');
+			float: right;
+			width: 140px;
+			height: 35px;
+			background-size: 140px 35px;
+			background-repeat: no-repeat;
+		}
+		.full-report:hover {
+			background-image: url('/assets/fullreport_click.png');
 		}
 	}
 }
@@ -230,7 +274,7 @@
 	}
 }
 
-#project_trends {
+#project-trends {
 	margin: 0px;
 	padding: 0px;
 	background-color: rgb(239,238,238);
@@ -264,57 +308,127 @@
 		stroke-dasharray: 2,2;
 	}
 
+	.failure-path {
+		stroke: #D87342;
+		stroke-width: 2;
+		fill: none;
+	}
+
+	.warning-path {
+		stroke: #E7CC2F;
+		stroke-width: 2;
+		fill: none;
+	}
+
+	.pass-path {
+		stroke: #5DBE88;
+		stroke-width: 2;
+		fill: none;
+	}
+
+	.failure-area {
+		stroke: none;
+		fill: #D87342;
+		opacity: 0.2;
+	}
+
+	.warning-area {
+		stroke: none;
+		fill: #E7CC2F;
+		opacity: 0.2;
+	}
+
+	.pass-area {
+		stroke: none;
+		fill: #5DBE88;
+		opacity: 0.2;
+	}
+
+	.max-path {
+		stroke: #D87342;
+		stroke-width: 2;
+		fill: none;
+	}
+
+	.avg-path {
+		stroke: #E7CC2F;
+		stroke-width: 2;
+		fill: none;
+	}
+
+	.min-path {
+		stroke: #5DBE88;
+		stroke-width: 2;
+		fill: none;
+	}
+
+	.max-area {
+		stroke: none;
+		fill: #D87342;
+		opacity: 0.2;
+	}
+
+	.avg-area {
+		stroke: none;
+		fill: #E7CC2F;
+		opacity: 0.2;
+	}
+
+	.min-area {
+		stroke: none;
+		fill: #5DBE88;
+		opacity: 0.2;
+	}
+
+	.failure-dot {
+		fill: #D87342;
+	}
+
+	.warning-dot {
+		fill: #E7CC2F;
+	}
+
+	.pass-dot {
+		fill: #5DBE88;
+	}
+
+
 	.legend {
 		font-size: 12px;
 		fill: #555;
 	}
 
-	#test_results {
-		width: 100%;
-		padding: 10px 100px;
-		float: left;
+	.trend-div {
+		margin: 0px;
+		padding: 10px;
+		height: 240px;
+	}
+
+	#test-results {
 		background-color: rgb(239,238,238);
 	}
 
-	#cpu_trend {
-		width: 50%;
-		padding: 10px 10px;
-		float: left;
+	#cpu-trend {
 		background-color: rgb(239,238,238);
 	}
 
-	#mem_trend {
-		width: 50%;
-		padding: 10px 10px;
-		float: left;
+	#mem-trend {
 		background-color: rgb(239,238,238);
 	}
 
-	#network_trend {
-		width: 50%;
-		padding: 10px 10px;
-		float: left;
+	#network-trend {
 		background-color: rgb(239,238,238);
 	}
 
-	#battery_trend {
-		width: 50%;
-		padding: 10px 10px;
-		float: left;
+	#battery-trend {
 		background-color: rgb(239,238,238);
 	}
 
-	#thread_trend {
-		width: 50%;
-		padding: 10px 10px;
-		float: left;
+	#thread-trend {
 		background-color: rgb(239,238,238);
 	}
 
-	#frame_trend {
-		width: 50%;
-		padding: 10px 10px;
-		float: left;
+	#frame-trend {
 		background-color: rgb(239,238,238);
 	}
 

@@ -1,17 +1,13 @@
 <%= render "shared/header" %>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<%= render 'shared/side_bar' %>	
+		<div class="col-md-12 contents">
 
-<div>
-	<%= render 'shared/side_bar' %>
-	<div class="my_container">
-		<div class="page_title">
-			<div class="image_box">
-				<img src="/assets/Result.png">
+			<div class="page-title">
+				<img src="/assets/Result.png">Test Result
 			</div>
-			<div class="text_box">
-				<p class="title">Test Result</p>
-				<p class="subtitle">Test Results > Full Report > Detail Report</p>
-			</div>
-		</div>
+			<div class="below-page-title">Test Result > Full Report > Detail Report</div>
 
 		<div id="test_results">
 
@@ -24,10 +20,6 @@
 					<div class="test_stat_entry">
 						<div class="test_stat_key">Test Scenario</div>
 						<div class="test_stat_value"><%= @detail_report.test_scenario_name %></div>
-					</div>
-					<div class="test_stat_entry">
-						<div class="test_stat_key">Tested on</div>
-						<div class="test_stat_value">{device_name} on testbed {testbed_id}</div>
 					</div>
 				</div>
 
@@ -47,69 +39,69 @@
 				<% end %>
 			</div>
 
-			<div>
-			<div id="event_div" class="full_width_block">
-				<div id="event_flow" class="graph">
-				</div>
-				<div class="graph_details">
-					<div id="event_graph_detail_info" class="graph_detail_info">
-						
+				<div>
+				<div id="event_div" class="full_width_block">
+					<div id="event_flow" class="graph">
 					</div>
-					<div class="graph_detail_control">
-						<div class="control_field">
-							X-axis:
-							<button id="event_x_time">Time</button>
-							<button id="event_x_order">Order</button>
+					<div class="graph_details">
+						<div id="event_graph_detail_info" class="graph_detail_info">
+							
+						</div>
+						<div class="graph_detail_control">
+							<div class="control_field">
+								X-axis:
+								<button id="event_x_time">Time</button>
+								<button id="event_x_order">Order</button>
+							</div>
 						</div>
 					</div>
+					<div class="graph_updown">
+						<br><i class="fa fa-arrow-up" onclick="divMove('event','up')"></i>
+						<br><i class="fa fa-arrow-down" onclick="divMove('event','down')"></i>
+					</div>
 				</div>
-				<div class="graph_updown">
-					<br><i class="fa fa-arrow-up" onclick="divMove('event','up')"></i>
-					<br><i class="fa fa-arrow-down" onclick="divMove('event','down')"></i>
-				</div>
-			</div>
 
-			<div id="mem_div" class="full_width_block">
-				<div id="mem_graph" class="graph">
-					<div class="graph_label">Memory Usage</div>
-				</div>
-				<div class="graph_details">
-					<div id="mem_graph_detail_info" class="graph_detail_info">
-						
+				<div id="mem_div" class="full_width_block">
+					<div id="mem_graph" class="graph">
+						<div class="graph_label">Memory Usage</div>
 					</div>
-					<div class="graph_detail_control">
-						<div class="control_field"><input type="checkbox" class="mem_control" id="dalvik_heap_checkbox">Dalvik heap</div>
-						<div class="control_field"><input type="checkbox" class="mem_control" id="native_heap_checkbox">Native heap</div>
-						<div class="control_field"><input type="checkbox" class="mem_control" id="total_checkbox">Total</div>
+					<div class="graph_details">
+						<div id="mem_graph_detail_info" class="graph_detail_info">
+							
+						</div>
+						<div class="graph_detail_control">
+							<div class="control_field"><input type="checkbox" class="mem_control" id="dalvik_heap_checkbox">Dalvik heap</div>
+							<div class="control_field"><input type="checkbox" class="mem_control" id="native_heap_checkbox">Native heap</div>
+							<div class="control_field"><input type="checkbox" class="mem_control" id="total_checkbox">Total</div>
+						</div>
+					</div>
+					<div class="graph_updown">
+						<br><i class="fa fa-arrow-up" onclick="divMove('mem','up')"></i>
+						<br><i class="fa fa-arrow-down" onclick="divMove('mem','down')"></i>
 					</div>
 				</div>
-				<div class="graph_updown">
-					<br><i class="fa fa-arrow-up" onclick="divMove('mem','up')"></i>
-					<br><i class="fa fa-arrow-down" onclick="divMove('mem','down')"></i>
-				</div>
-			</div>
 
-			<div id="cpu_div" class="full_width_block">
-				<div id="cpu_graph" class="graph">
-				<div class="graph_label">CPU Usage</div>
-				</div>
-				<div class="graph_details">
-					<div id="cpu_graph_detail_info" class="graph_detail_info">
-						
+				<div id="cpu_div" class="full_width_block">
+					<div id="cpu_graph" class="graph">
+					<div class="graph_label">CPU Usage</div>
 					</div>
-					<div class="graph_detail_control">
-						
+					<div class="graph_details">
+						<div id="cpu_graph_detail_info" class="graph_detail_info">
+							
+						</div>
+						<div class="graph_detail_control">
+							
+						</div>
+					</div>
+					<div class="graph_updown">
+						<br><i class="fa fa-arrow-up" onclick="divMove('cpu','up')"></i>
+						<br><i class="fa fa-arrow-down" onclick="divMove('cpu','down')"></i>
 					</div>
 				</div>
-				<div class="graph_updown">
-					<br><i class="fa fa-arrow-up" onclick="divMove('cpu','up')"></i>
-					<br><i class="fa fa-arrow-down" onclick="divMove('cpu','down')"></i>
-				</div>
-			</div>
 
+				</div>
 			</div>
 		</div>
-
 	</div>
 </div>
 

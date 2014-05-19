@@ -10,7 +10,7 @@
 			</div>
 			<!-- TODO: subline // Test Results > Full Report -->
 
-	    	<!-- TEST INFORMATION -->
+			<!-- TEST INFORMATION -->
 			<div class="test_information">
 				<div class="test_app_icon">
 					<img src="/assets/todaybreaker.png">
@@ -27,239 +27,131 @@
 				</div>
 			</div>
 			<!-- END TEST INFORMATION -->
+			<!-- TEST RESULT SUMMARY -->
+			<div class="test-result-half">
+				<div class="band-chart-wrapper">
+					<div class="band-chart-2by2">
+						<div class='band-chart-segment'>
+							<div class='band-chart-label A'>A</div>
+							<div class='band-chart'>
+								<div class='band-chart-success A'>
+									<div class='band-chart-fail' style="width:20%"></div>
+								</div>
+							</div>
+						</div>
+						<div class='band-chart-segment'>
+							<div class='band-chart-label B'>B</div>
+							<div class='band-chart'>
+								<div class='band-chart-success B'>
+									<div class='band-chart-fail' style="width:20%"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="band-chart-2by2">
+						<div class='band-chart-segment'>
+							<div class='band-chart-label C'>C</div>
+							<div class='band-chart'>
+								<div class='band-chart-success C'>
+									<div class='band-chart-fail' style="width:20%"></div>
+								</div>
+							</div>
+						</div>
+						<div class='band-chart-segment'>
+							<div class='band-chart-label D'>D</div>
+							<div class='band-chart'>
+								<div class='band-chart-success D'>
+									<div class='band-chart-fail' style="width:20%"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="band-chart-legend">
+				</div>
+			</div>
+			<!-- END TEST RESULT SUMMARY -->
 
-			<div id="test_contents">
+			<span class="page-subtitle">Device Fail</span>
+			<div id="test_fail_graph">
+				<div id="test_fail_bar_graph">
+				</div>
+				<div id="test_fail_chart">
+					<div class="table_title">
+						<span id="table_title_rank" class="rank"></span>
+						<span id="table_title_device_name" class="device_name"></span>
+					</div>
+					<table id="detail_table" class="detail_table">
+						<!-- A PLACEHOLDER -->
+					</table>
+				</div>
+			</div>
+
+			<span class="page-subtitle">Performance Average</span>
 				
-				<ul class="nav nav-tabs">
-					<li id="select_overview"><a>Overview</a></li>
-					<li id="select_alltests"><a>All Tests</a></li>
-					<li id="select_alldevices"><a>All Devices</a></li>
-				</ul>
+			<div id="report-contents">
+				<div class="avg-section">
+					<div class="avg-category">Memory avg 20.00MB</div>
+					<div class="max_min">
+						<span class="max_min_left">Min 8.51Mb</span>
+						<span class="max_min_right">Galaxy S4 (4.3)</span>
+						<span class="max_min_left">Max 30.51Mb</span>
+						<span class="max_min_right">Galaxy S (2.2)</span>
+					</div>
+				</div>
+				<div class="avg-section">
+					<div class="avg-category">CPU avg 11%</div>
+					<div class="max_min">
+						<span class="max_min_left">Min 9%</span>
+						<span class="max_min_right">G Note 3 (4.4)</span>
+						<span class="max_min_left">Max 41%</span>
+						<span class="max_min_right">Galaxy S (2.2)</span>
+					</div>
+				</div>
+				<div class="avg-section">
+					<div class="avg-category">Network Response avg 41ms</div>
+					<div class="max_min">
+						<span class="max_min_left">Min 7ms</span>
+						<span class="max_min_right">Galaxy S4 (4.3)</span>
+						<span class="max_min_left">Max 415ms</span>
+						<span class="max_min_right">Vega Racer (3.1)</span>
+					</div>
+				</div>
 				
-				<div id="report_contents">
-					
-					<div id="overview"><!-- OVERVIEW -->
-						
-						<div id="test_failure">
-							<div class="overview_head">Test Failure</div>
-						</div>
-						
-
-						<div id="device_failure">
-							<div class="overview_head">Device Failure</div>
-						</div>
-
-						<div class="overview_head">Performance Average</div>
-						<div id="performance_average">
-							<div class="avg_section">
-								<div class="avg_category">Memory avg 20.00MB</div>
-								<div class="max_min">
-									<span class="max_min_left">Min 8.51Mb</span>
-									<span class="max_min_right">Galaxy S4 (4.3)</span>
-									<span class="max_min_left">Max 30.51Mb</span>
-									<span class="max_min_right">Galaxy S (2.2)</span>
-								</div>
-							</div>
-							<div class="avg_section">
-								<div class="avg_category">CPU avg 11%</div>
-								<div class="max_min">
-									<span class="max_min_left">Min 9%</span>
-									<span class="max_min_right">G Note 3 (4.4)</span>
-									<span class="max_min_left">Max 41%</span>
-									<span class="max_min_right">Galaxy S (2.2)</span>
-								</div>
-							</div>
-							<div class="avg_section">
-								<div class="avg_category">Network Response avg 41ms</div>
-								<div class="max_min">
-									<span class="max_min_left">Min 7ms</span>
-									<span class="max_min_right">Galaxy S4 (4.3)</span>
-									<span class="max_min_left">Max 415ms</span>
-									<span class="max_min_right">Vega Racer (3.1)</span>
-								</div>
-							</div>
-							
-							<div class="avg_section">
-								<div class="avg_category">Battery consumption normal</div>
-								<div class="max_min">
-									<span class="max_min_left">Display OK</span>
-									<span class="max_min_right">Sound OK</span>
-									<span class="max_min_left">Network OK</span>
-									<span class="max_min_right">Etc OK</span>
-								</div>
-							</div>
-							<div class="avg_section">
-								<div class="avg_category">Threads avg 13.7</div>
-								<div class="max_min">
-									<span class="max_min_left">Min 9</span>
-									<span class="max_min_right">Galaxy S4 (4.3)</span>
-									<span class="max_min_left">Max 26</span>
-									<span class="max_min_right">Galaxy S (2.2)</span>
-								</div>
-							</div>
-							<div class="avg_section">
-								<div class="avg_category">Frame draw time avg 11.27ms</div>
-								<div class="max_min">
-									<span class="max_min_left">Min 3ms</span>
-									<span class="max_min_right">Galaxy S4 (4.3)</span>
-									<span class="max_min_left">Max 57ms</span>
-									<span class="max_min_right">Galaxy S (2.2)</span>
-								</div>
-							</div>
-						</div>
-					
-					</div><!-- END OVERVIEW -->
-					
-					<div id="alltests"><!-- ALL TESTS -->
-						
-						<%= render "filter" %>
-
-						<div class="report_scenario">
-							<table class="report_scenario_table">
-								<tr class="column_label">
-									<td class="rank">Rank</td>
-									<td class="test_name">Test Name</td>
-									<td class="status">Status</td>
-									<td class="error">Error</td>
-									<td class="device">Device & API version</td>
-								</tr>
-
-								<!-- LOOP -->
-								<tr>
-									<td class="rank">A</td>
-									<td class="test_name">Login test</td>
-									<td class="status">FAIL</td>
-									<td class="error">Out of memory error</td>
-									<td class="device">SamsungGalaxyS2(2.3)<br> LGOptimus(2.2) ...</td>
-								</tr>
-								<!-- END LOOP -->
-								<tr>
-									<td class="rank">A</td>
-									<td class="test_name">Register test</td>
-									<td class="status">FAIL</td>
-									<td class="error">Format Exception error</td>
-									<td class="device">SamsungGalaxyS2(2.3)<br> LGOptimus(2.2) ...</td>
-								</tr>
-								<tr>
-									<td class="rank">B</td>
-									<td class="test_name">Setup test</td>
-									<td class="status">FAIL</td>
-									<td class="error">Out of memory error</td>
-									<td class="device">SamsungGalaxyS2(2.3)<br> LGOptimus(2.2) ...</td>
-								</tr>
-							</table>
-						</div>
-
-					</div><!-- END ALL TESTS -->
-
-					<div id="alldevices"><!-- ALL DEVICES -->
-						
-						<%= render "filter" %>
-
-						<div class="report_device">
-							
-							<div><!-- LOOP -->
-								<div class="device_info">
-									<div class="device_name">Asus Nexus 7.2</div>
-									<div class="info">
-										Model:Nexus7
-										<br>OS:4.4.2
-										<br>CPU: 1.5GHz ARMv7
-										<br>Memory: 1Gb
-									</div>
-								</div>
-								
-								<table class="report_device_table">
-									<tr class="column_label">
-										<td class="rank">Rank</td>
-										<td class="test_name">Test Name</td>
-										<td class="status">Status</td>
-										<td class="error">Error</td>
-									</tr>
-									<!-- LOOP -->
-									<tr>
-										<td class="rank">A</td>
-										<td class="test_name">Login Test</td>
-										<td class="status">Fail</td>
-										<td class="error">Out of memory error</td>
-									</tr>
-									<!-- END LOOP -->
-									<!-- ANOTHER EXAMPLE -->
-									<tr>
-										<td class="rank">B</td>
-										<td class="test_name">Report Test</td>
-										<td class="status">Error</td>
-										<td class="error">Null pointer exception error</td>
-									</tr>
-									<!-- END ANOTHER EXAMPLE -->
-								</table>
-							</div> <!-- END LOOP -->
-							<div><!-- LOOP -->
-								<div class="device_info">
-									<div class="device_name">Galaxy Note 3</div>
-									<div class="info">
-										Model:Galaxy Note 3
-										<br>OS:4.4.2
-										<br>CPU: 1.5GHz ARMv7
-										<br>Memory: 1Gb
-									</div>
-								</div>
-								
-								<table class="report_device_table">
-									<tr class="column_label">
-										<td class="rank">Rank</td>
-										<td class="test_name">Test Name</td>
-										<td class="status">Status</td>
-										<td class="error">Error</td>
-									</tr>
-									<!-- LOOP -->
-									<tr>
-										<td class="rank">A</td>
-										<td class="test_name">Login Test</td>
-										<td class="status">Fail</td>
-										<td class="error">Out of memory error</td>
-									</tr>
-									<!-- END LOOP -->
-									<!-- ANOTHER EXAMPLE -->
-									<tr>
-										<td class="rank">B</td>
-										<td class="test_name">Report Test</td>
-										<td class="status">Error</td>
-										<td class="error">Null pointer exception error</td>
-									</tr>
-									<!-- END ANOTHER EXAMPLE -->
-								</table>
-							</div> <!-- END LOOP -->
-						</div><!-- END ALL DEVICES -->
-
+				<div class="avg-section">
+					<div class="avg-category">Battery consumption normal</div>
+					<div class="max_min">
+						<span class="max_min_left">Display OK</span>
+						<span class="max_min_right">Sound OK</span>
+						<span class="max_min_left">Network OK</span>
+						<span class="max_min_right">Etc OK</span>
+					</div>
+				</div>
+				<div class="avg-section">
+					<div class="avg-category">Threads avg 13.7</div>
+					<div class="max_min">
+						<span class="max_min_left">Min 9</span>
+						<span class="max_min_right">Galaxy S4 (4.3)</span>
+						<span class="max_min_left">Max 26</span>
+						<span class="max_min_right">Galaxy S (2.2)</span>
+					</div>
+				</div>
+				<div class="avg-section">
+					<div class="avg-category">Frame draw time avg 11.27ms</div>
+					<div class="max_min">
+						<span class="max_min_left">Min 3ms</span>
+						<span class="max_min_right">Galaxy S4 (4.3)</span>
+						<span class="max_min_left">Max 57ms</span>
+						<span class="max_min_right">Galaxy S (2.2)</span>
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
 </div>
 
 <script>
-//jqeury script to show 1 of following 3 divs: Overview, All tests, and All devices 
-
-$("#overview").css("display","true");
-$("#alltests").css("display","none");
-$("#alldevices").css("display","none");
-
-$("#select_overview").click(function(){
-	$("#overview").css("display","true");
-	$("#alltests").css("display","none");
-	$("#alldevices").css("display","none");});
-
-$("#select_alltests").click(function(){
-	$("#overview").css("display","none");
-	$("#alltests").css("display","true");
-	$("#alldevices").css("display","none");});
-
-$("#select_alldevices").click(function(){
-	$("#overview").css("display","none");
-	$("#alltests").css("display","none");
-	$("#alldevices").css("display","true");});
 
 var total_reports_show_data = {
 	"device_failure":{
@@ -402,7 +294,6 @@ var total_reports_show_data = {
 	]
 }
 
-drawTestFailPies(total_reports_show_data.device_failure);
-drawDeviceFailure(total_reports_show_data.device_failure_detail);
+drawDeviceFail(total_reports_show_data.device_failure_detail);
 
 </script>

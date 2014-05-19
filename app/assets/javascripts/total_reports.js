@@ -101,75 +101,103 @@ function drawTestFailPies(fail_data) {
 
 }
 
-function drawDeviceFailure (data) {
+function drawDeviceFail (data) {
 
-	var device_fail_svg = d3.select("#device_failure").append("svg")
-								.attr("width",1150).attr("height",400);
+	var fail_by_device_svg = d3.select("#test_fail_bar_graph").append("svg")
+								.attr("width",700).attr("height",350);
 
-	var x_domain = [];
+	var y_domain = [];
 	for (var each in data) {
-		x_domain.push(data[each].device_name);
+		y_domain.push(data[each].device_name);
 	}
-	var y_domain = [0,data[0].fail_data.A.length+data[0].fail_data.B.length+data[0].fail_data.C.length+data[0].fail_data.D.length];
 
-	var x_scale = d3.scale.ordinal().domain(x_domain).rangeRoundBands([100,1000],0.2,0.2);
-	var y_scale = d3.scale.linear().domain(y_domain).range([350,50]);
-	var height_scale = d3.scale.linear().domain(y_domain).range([0,300]);	
+	var x_extent = [0,data[0].fail_data.A.length+data[0].fail_data.B.length+data[0].fail_data.C.length+data[0].fail_data.D.length];
 
-	var x_axis = device_fail_svg.append("g")
+	var x_scale = d3.scale.linear().domain(x_extent).range([120,600]);
+	var y_scale = d3.scale.ordinal().domain(y_domain).rangeRoundBands([300,30],0.3,0.3);
+
+	var x_axis = fail_by_device_svg.append("g")
 				.attr("class", "x axis")
-				.attr("transform", "translate(0,350)")
+				.attr("transform", "translate(0,300)")
 				.call(d3.svg.axis()
 					.scale(x_scale)
 					.innerTickSize(3)
 					.outerTickSize(0));
 
-	var y_axis = device_fail_svg.append("g")
+	var y_axis = fail_by_device_svg.append("g")
 				.attr("class", "y axis")
-				.attr("transform","translate(100,0)")
+				.attr("transform","translate(120,0)")
 				.call(d3.svg.axis()
 					.scale(y_scale)
 					.orient("left"));
 
-	var columns = device_fail_svg.selectAll("g column")
+	var columns = fail_by_device_svg.selectAll("g column")
 		.data(data).enter().append("g")
-			.attr("class","device_col")
-			.attr("transform",function (d) {return "translate("+x_scale(d.device_name)+",0)"})
+			.attr("class","device_row")
+			.attr("transform",function (d) {return "translate(120,"+y_scale(d.device_name)+")"});
+	
+	columns.append("rect")
+			.attr("width",function (d) {return x_scale(d.fail_data.A.length)-x_scale(0);}).attr("height",40)
+			.attr("x",function (d) {return x_scale(0)-x_scale(0);}).attr("y",0)
+			.attr("fill","#EA7C4B")
+			.on("click",function (d) {renewDetailTable("A", d.device_name, d.fail_data.A)});
 
 	columns.append("rect")
-			.attr("width",50).attr("height",function (d) {return height_scale(d.fail_data.A.length)})
-			.attr("x",10).attr("y",function (d) {return y_scale(0)-height_scale(d.fail_data.A.length)})
-			.attr("fill","#EA7C4B");
+			.attr("width",function (d) {return x_scale(d.fail_data.B.length)-x_scale(0);}).attr("height",40)
+			.attr("x",function (d) {return x_scale(d.fail_data.A.length)-x_scale(0);}).attr("y",0)
+			.attr("fill","#ED9FBD")
+			.on("click",function (d) {renewDetailTable("B", d.device_name, d.fail_data.B)});
+
 	columns.append("rect")
-			.attr("width",10).attr("height",function (d) {return height_scale(d.fail_data.A.length)})
-			.attr("x",60).attr("y",function (d) {return y_scale(0)-height_scale(d.fail_data.A.length)})
+			.attr("width",function (d) {return x_scale(d.fail_data.C.length)-x_scale(0);}).attr("height",40)
+			.attr("x",function (d) {return x_scale(d.fail_data.A.length+d.fail_data.B.length)-x_scale(0);}).attr("y",0)
+			.attr("fill","#52C4D0")
+			.on("click",function (d) {renewDetailTable("C", d.device_name, d.fail_data.C)});
+
+	columns.append("rect")
+			.attr("width",function (d) {return x_scale(d.fail_data.D.length)-x_scale(0);}).attr("height",40)
+			.attr("x",function (d) {return x_scale(d.fail_data.A.length+d.fail_data.B.length+d.fail_data.C.length)-x_scale(0);}).attr("y",0)
+			.attr("fill","#D6B6EF")
+			.on("click",function (d) {renewDetailTable("D", d.device_name, d.fail_data.D)});
+
+
+	columns.append("rect")
+			.attr("width",function (d) {return x_scale(d.fail_data.A.length)-x_scale(0);}).attr("height",8)
+			.attr("x",function (d) {return x_scale(0)-x_scale(0);}).attr("y",32)
 			.attr("fill","#C1633E");
 
 	columns.append("rect")
-			.attr("width",50).attr("height",function (d) {return height_scale(d.fail_data.B.length)})
-			.attr("x",10).attr("y",function (d) {return y_scale(0+d.fail_data.A.length)-height_scale(d.fail_data.B.length)})
-			.attr("fill","#ED9FBD");
-	columns.append("rect")
-			.attr("width",10).attr("height",function (d) {return height_scale(d.fail_data.B.length)})
-			.attr("x",60).attr("y",function (d) {return y_scale(0+d.fail_data.A.length)-height_scale(d.fail_data.B.length)})
+			.attr("width",function (d) {return x_scale(d.fail_data.B.length)-x_scale(0);}).attr("height",8)
+			.attr("x",function (d) {return x_scale(d.fail_data.A.length)-x_scale(0);}).attr("y",32)
 			.attr("fill","#BF7593");
 
 	columns.append("rect")
-			.attr("width",50).attr("height",function (d) {return height_scale(d.fail_data.C.length)})
-			.attr("x",10).attr("y",function (d) {return y_scale(0+d.fail_data.A.length+d.fail_data.B.length)-height_scale(d.fail_data.C.length)})
-			.attr("fill","#52C4D0");
-	columns.append("rect")
-			.attr("width",10).attr("height",function (d) {return height_scale(d.fail_data.C.length)})
-			.attr("x",60).attr("y",function (d) {return y_scale(0+d.fail_data.A.length+d.fail_data.B.length)-height_scale(d.fail_data.C.length)})
+			.attr("width",function (d) {return x_scale(d.fail_data.C.length)-x_scale(0);}).attr("height",8)
+			.attr("x",function (d) {return x_scale(d.fail_data.A.length+d.fail_data.B.length)-x_scale(0);}).attr("y",32)
 			.attr("fill","#34989A");
 
 	columns.append("rect")
-			.attr("width",50).attr("height",function (d) {return height_scale(d.fail_data.D.length)})
-			.attr("x",10).attr("y",function (d) {return y_scale(0+d.fail_data.A.length+d.fail_data.B.length+d.fail_data.C.length)-height_scale(d.fail_data.D.length)})
-			.attr("fill","#D6B6EF");
-	columns.append("rect")
-			.attr("width",10).attr("height",function (d) {return height_scale(d.fail_data.D.length)})
-			.attr("x",60).attr("y",function (d) {return y_scale(0+d.fail_data.A.length+d.fail_data.B.length+d.fail_data.C.length)-height_scale(d.fail_data.D.length)})
+			.attr("width",function (d) {return x_scale(d.fail_data.D.length)-x_scale(0);}).attr("height",8)
+			.attr("x",function (d) {return x_scale(d.fail_data.A.length+d.fail_data.B.length+d.fail_data.C.length)-x_scale(0);}).attr("y",32)
 			.attr("fill","#A28BBC");
 
+	function renewDetailTable (rank, device_name, error_array) {
+
+		d3.select("#table_title_rank").text(rank);
+		d3.select("#table_title_device_name").text(device_name);
+
+		//TODO: hyperlink to specific report page
+
+		d3.select("#detail_table").remove();
+		var detail_table = d3.select("#test_fail_chart").append("table").attr("id","detail_table");
+		var table_label = detail_table.append("tr").attr("class","table_head");
+		table_label.append("td").attr("class","name").text("Name");
+		table_label.append("td").attr("class","error").text("Error");
+
+		for (var row in error_array) {
+			var row_tr = detail_table.append("tr");
+			row_tr.append("td").text(error_array[row].scenario_name);
+			row_tr.append("td").text(error_array[row].error_message);
+		}
+	}
 }

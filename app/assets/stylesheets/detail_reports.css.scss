@@ -5,6 +5,13 @@ $event_div_height: 150px;
 $mem_div_height: 340px;
 $cpu_div_height: 340px;
 
+.below-page-title {
+	padding-left: 50px;
+	margin-top: -45px;
+	color: rgb(93,196,136);
+	font: 17px;
+}
+
 #test_results {
 	min-width: 600px;
 	width: 100%;
