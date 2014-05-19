@@ -22,10 +22,42 @@
 					<p class="big-version"><%= @recent_report.app_version %></p>
 				</div>
 				<div class="col-md-6" id="test-fail-box">
+					<div class='band-chart-segment'>
+						<div class='band-chart-label A'>A</div>
+						<div class='band-chart'>
+							<div class='band-chart-success A'>
+								<div class='band-chart-fail' style="width:20%"></div>
+							</div>
+						</div>
+					</div>
+					<div class='band-chart-segment'>
+						<div class='band-chart-label B'>B</div>
+						<div class='band-chart'>
+							<div class='band-chart-success B'>
+								<div class='band-chart-fail' style="width:20%"></div>
+							</div>
+						</div>
+					</div>
+					<div class='band-chart-segment'>
+						<div class='band-chart-label C'>C</div>
+						<div class='band-chart'>
+							<div class='band-chart-success C'>
+								<div class='band-chart-fail' style="width:20%"></div>
+							</div>
+						</div>
+					</div>
+					<div class='band-chart-segment'>
+						<div class='band-chart-label D'>D</div>
+						<div class='band-chart'>
+							<div class='band-chart-success D'>
+								<div class='band-chart-fail' style="width:20%"></div>
+							</div>
+						</div>
+					</div>
 				</div>
-					<div class="col-md-2 report-link">
+				<div class="col-md-2 report-link">
 					<%= link_to project_total_report_path(@project, @recent_report)  do %>
-						<img src="/assets/fullreport.png">
+						<div class="full-report"></div>
 					<% end %>
 				</div>
 			</div>
@@ -45,26 +77,26 @@
 			</div>
 
 			<span class="page-subtitle">Project Trends</span>
-			<div id="project_trends">
-				<div id="test_results">
+			<div id="project-trends" class="row">
+				<div id="test-results" class="trend-div col-md-12">
 					<p>Test results</p>
 				</div>
-				<div id="cpu_trend">
+				<div id="cpu-trend" class="trend-div col-md-4">
 					<p>CPU usage trend</p>
 				</div>
-				<div id="mem_trend">
+				<div id="mem-trend" class="trend-div col-md-4">
 					<p>Memory usage trend</p>
 				</div>
-				<div id="network_trend">
+				<div id="network-trend" class="trend-div col-md-4">
 					<p>Network response time trend</p>
 				</div>
-				<div id="battery_trend">
+				<div id="battery-trend" class="trend-div col-md-4">
 					<p>Battery consumption trend</p>
 				</div>
-				<div id="thread_trend">
+				<div id="thread-trend" class="trend-div col-md-4">
 					<p>Thread trend</p>
 				</div>
-				<div id="frame_trend">
+				<div id="frame-trend" class="trend-div col-md-4">
 					<p>Frame draw time trend</p>
 				</div>
 			</div>
@@ -76,8 +108,6 @@
   //requires data inserted as argument//
 
 var data = {
-	
-	"fail_data": {"A":[7,17],"B":[34,23],"C":[5,10],"D":[2,19]},
 	
 	"fail_data_detail" : [
 		{
@@ -304,13 +334,12 @@ var data = {
 	]
 }
 
-  projectsShow(data.fail_data);
   drawFailByDevice(data.fail_data_detail);
   drawTestResults(data.test_results_data);
   drawCPUusage(data.cpu_trend_data);
-  drawMemUsage(data.mem_trend_data);
-  drawNetworkTrend(data.net_trend_data);
-  drawBatteryTrend(data.battery_trend_data);
-  drawThreadTrend(data.thread_trend_data);
-  drawFrameTrend(data.frame_trend_data);
+  // drawMemUsage(data.mem_trend_data);
+  // drawNetworkTrend(data.net_trend_data);
+  // drawBatteryTrend(data.battery_trend_data);
+  // drawThreadTrend(data.thread_trend_data);
+  // drawFrameTrend(data.frame_trend_data);
 </script>
