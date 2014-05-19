@@ -1,8 +1,9 @@
 <%= render "shared/header" %>
 
 <div class="container">
-  <div class="headline">
+  <div class="page-title">
     <img src="/assets/Project_list.png">My projects list
+    <div class="project-new"></div>
   </div>
 
   <% @projects.each do |project| %>
@@ -19,10 +20,11 @@
           <p>Test Fail</p>
           <div class="test_fail_num">
             <% project.recent_report_rank_status.each do |key, array| %>
-              <div class="test_fail_each"><%= key %> 
+              <div class="test_fail_each">
+                <div class="test_key <%= key %>"><%= key %></div>
                 <div class="test_success"><%= array[0] %>
-                  <div class="test_fail" style="width:70px"><%= array[1] %></div>
-                  <!-- width: fail percentage * 170px -->
+                  <div class="test_fail <%= key %>" style="width:30%"><%= array[1] %></div>
+                  <!-- width in percentage; test_fail / total# of tests -->
                 </div>
               </div>
             <% end %>
@@ -33,3 +35,7 @@
   <% end %>
 
 </div>
+
+<script>
+// band_chart_exception( 1/2/3/4 );
+</script>

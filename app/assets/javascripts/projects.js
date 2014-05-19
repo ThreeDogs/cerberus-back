@@ -1,3 +1,8 @@
+function band_chart_exception (num) {
+	var percentage = (100/num)+'%';
+	$('.test_fail_each').css('width',percentage);
+}
+
 
 function projectsShow (fail_data) {
 
