@@ -4,6 +4,7 @@ class ApksController < ApplicationController
 
 	def new
 		@apk = set_project.apks.new
+		@apks = set_project.apks
 	end
 
 	def create
@@ -19,6 +20,13 @@ class ApksController < ApplicationController
 		@total_report = set_apk.total_reports.new
 		@test_scenarios = @project.test_scenarios
 		@device_list = JSON.parse(set_apk.get_device_list)
+	end
+
+	def destroy
+		@project = set_project
+    @apk = Apk.find(params[:id])
+    @apk.destroy
+    redirect_to new_project_apk_path(@project)
 	end
 
 	private

@@ -16,6 +16,7 @@
 #
 
 class Apk < ActiveRecord::Base
+	default_scope {order('created_at DESC')}
 	before_create :make_test_apk_folder
 	after_create :update_apk_attributes
 	after_create :generate_test_apk
@@ -39,6 +40,10 @@ class Apk < ActiveRecord::Base
     uri = URI("#{test_bed_url}/DeviceInfo")
     res = Net::HTTP.get(uri)
     res
+  end
+
+  def upload_date
+  	created_at.strftime("%y.%m.%d. %I:%M %p")
   end
 
   private
