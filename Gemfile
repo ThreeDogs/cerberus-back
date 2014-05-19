@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 1.2'
 gem 'rabl'
 
 gem 'carrierwave'
+gem 'carrierwave_backgrounder'
+# gem 'rmagick', '2.13.2'
 
 # Query Customizing
 gem 'activerecord-import'

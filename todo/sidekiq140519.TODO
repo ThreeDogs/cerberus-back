@@ -1,22 +1,21 @@
 Sidekiq
 Image Update:
  ✔ worker create @started(14-05-19 14:11) @done (14-05-19 14:18) @lasted(0:07:00)
- ✔ code move @done (14-05-19 14:18)
+ ✔ code move @done (14-05-19 17:05)
+ ✔ Test @done (14-05-19 17:54)
 
 Performance Data Update:
  ☐ worker create
  ☐ code move
- ☐ DB query optimize import?
 
 APK Upload Update: @started(14-05-19 14:18)
  ✔ worker create @done (14-05-19 14:41)
  ✔ code move @done (14-05-19 14:52)
  ✔ sidekiq options @started(14-05-19 14:52) @done (14-05-19 15:00) @lasted(0:08:00)
- ☐ show 페이지 분기
-   ☐ APK 만들기 작업이 끝났을때, 안끝났을때
-   ☐ Jquery Get 요청
-   ☐ 페이지 처리
-
+ ✔ show 페이지 분기 @done (14-05-19 16:12)
+   ✔ APK 만들기 작업이 끝났을때, 안끝났을때 @done (14-05-19 16:12)
+   ✔ Jquery Get 요청 @done (14-05-19 16:12)
+   ✔ 페이지 처리 @done (14-05-19 16:12)
 
 Integrate Test:
  ☐ Client Integrate Test

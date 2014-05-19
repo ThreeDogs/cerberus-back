@@ -11,5 +11,7 @@
 
 class Screen < ActiveRecord::Base
 	mount_uploader :image, ScreenshotUploader
+	process_in_background :image
+
 	belongs_to :motion_event_info, foreign_key: 'client_timestamp', primary_key: 'client_timestamp'
 end
