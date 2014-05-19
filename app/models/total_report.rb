@@ -67,14 +67,37 @@ class TotalReport < ActiveRecord::Base
   end
 
   def test_progress
-    puts number_of_devices
-    puts number_of_scenarios
     (number_of_details * 1.0 / (number_of_devices * number_of_scenarios)) * 100
   end
 
   def test_rank_status
-    # implement
-    {A:[17,7],B:[23,34], C:[10,5], D:[19,2]}
+    result = {}
+    details = detail_reports
+    if a = rank_result("A", details)
+      result["A"] = a  
+    end
+
+    if b = rank_result("B", details)
+      result["B"] = b
+    end
+
+    if c = rank_result("C", details)
+      result["C"] = c
+    end
+
+    if d = rank_result("D", details)
+      result["D"] = d
+    end
+
+    result
+  end
+
+  def rank_result(rank, details)
+    rank_reports = details.select{|d| d.rank == rank}
+    unless rank_reports.blank?
+      [rank_reports.select{|d| d.status == 1}.length,# Pass Count
+      rank_reports.select{|d| d.status == 0}.length] # Fail Count
+    end
   end
 
   def get_device_list(test_bed_url = TEST_BED_URL)
