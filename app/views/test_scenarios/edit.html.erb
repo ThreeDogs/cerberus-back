@@ -1,6 +1,26 @@
-<h1>Editing test_scenario</h1>
+<h1>Editing Motion Event Params</h1>
 
-<%= render 'form' %>
+<%= nested_form_for([@project, @test_scenario]) do |f| %>
+  <table class="table">
+  	<tr>
+  		<th>Num</th>
+  		<th>Activity</th>
+  		<th>View</th>
+  		<th>Event Type</th>
+  		<th>Parameter</th>
+  	</tr>
+		<%= f.fields_for :motion_events do |builder| %>
+			<tr>
+	  		<th><%= builder.object.seq_id %></th>
+	  		<th><%= builder.object.activity_class %></th>
+	  		<th><%= builder.object.view %></th>
+	  		<th><%= builder.object.action_type %></th>
+	  		<th><%= builder.text_field :param %></th>
+	  	</tr>
+		<% end %>
+  </table>
 
-<%= link_to 'Show', @test_scenario %> |
-<%= link_to 'Back', test_scenarios_path %>
+  <div class="actions">
+    <%= f.submit 'Update', class: "btn btn-info" %>
+  </div>
+<% end %>

@@ -35,6 +35,9 @@ gem 'carrierwave_backgrounder'
 # Query Customizing
 gem 'activerecord-import'
 
+# nested_form
+gem 'nested_form'
+
 # Background Worker
 gem 'sidekiq'
 gem 'sinatra', require: false

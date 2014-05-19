@@ -23,6 +23,7 @@ class TestScenariosController < ApplicationController
 
   # GET /test_scenarios/1/edit
   def edit
+    @project = set_project
   end
 
   # POST /test_scenarios
@@ -44,14 +45,12 @@ class TestScenariosController < ApplicationController
   # PATCH/PUT /test_scenarios/1
   # PATCH/PUT /test_scenarios/1.json
   def update
-    respond_to do |format|
-      if @test_scenario.update(test_scenario_params)
-        format.html { redirect_to @test_scenario, notice: 'Test scenario was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @test_scenario.errors, status: :unprocessable_entity }
-      end
+    @project = set_project
+    if @test_scenario.update(test_scenario_params)
+
+      redirect_to project_test_scenario_path(@project,@test_scenario), notice: 'Test scenario was successfully updated.' 
+    else
+      render action: 'edit' 
     end
   end
 
@@ -73,6 +72,6 @@ class TestScenariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def test_scenario_params
-      params.require(:test_scenario).permit(:name, :description, :rank, :project_id, :scenarioship_id)
+      params.require(:test_scenario).permit(:name, :description, :rank, :project_id, :scenarioship_id, motion_events_attributes: [:id,:param,:_destroy])
     end
 end

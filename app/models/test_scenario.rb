@@ -17,7 +17,8 @@ class TestScenario < ActiveRecord::Base
 	default_scope {order('created_at DESC')}
   belongs_to :project
 
-  has_many :motion_events
+  has_many :motion_events, dependent: :destroy
+  accepts_nested_attributes_for :motion_events
   has_many :detail_reports
 
   has_many :scenarioships
@@ -49,6 +50,6 @@ class TestScenario < ActiveRecord::Base
   private 
 
   def name_generate
-    self.name = "TestScenario #{DateTime.now.to_s}"
+    self.name ||= "TestScenario #{DateTime.now.to_s}"
   end
 end

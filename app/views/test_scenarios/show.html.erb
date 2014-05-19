@@ -13,7 +13,7 @@
 				<div class="scenario_info_title">
 					<div class="rank"><%= @test_scenario.get_rank %></div>
 					<div class="test_name"><%= @test_scenario.name %></div>
-					<div class="edit_button">edit</div>
+					<div class="edit_button"><%= link_to "Edit", "#", data: {toggle: "modal", target: "#edit"},class: "btn btn-info" %></div>
 				</div>
 				<div class="detail_content"><%= @test_scenario.description %></div>
 				<div class="recently_tested">recently tested on: <%= @test_scenario.recent_test_date %></div>
@@ -24,26 +24,30 @@
 				<div id="scenario_event_chart">
 				</div>
 			</div>
-			
-			<table id="event_detail" class="table table-bordered table-condensed">
-				<tr id="event_detail_scheme" class="row">
-					<td class="col-md-1">Num</td>
-					<td class="col-md-4">Activity</td>
-					<td class="col-md-2">View</td>
-					<td class="col-md-3">Event Type</td>
-					<td class="col-md-2">Parameter</td>
-				</tr>
-				<!-- LOOP -->
-				<% @motion_events.each do |motion_event| %>
-					<tr class="row">
-						<td><%= motion_event.seq_id %></td>
-						<td><%= motion_event.activity_class %></td>
-						<td><%= motion_event.view %></td>
-						<td><%= motion_event.action_type %></td>
-						<td><%= motion_event.param %></td>
-					</tr>
-				<% end  %>
-				<!-- END LOOP -->
+			<%= nested_form_for([@project, @test_scenario]) do |f| %>
+			  <table class="table">
+			  	<tr>
+			  		<th>Num</th>
+			  		<th>Activity</th>
+			  		<th>View</th>
+			  		<th>Event Type</th>
+			  		<th>Parameter</th>
+			  	</tr>
+					<%= f.fields_for :motion_events do |builder| %>
+						<tr>
+				  		<th><%= builder.object.seq_id %></th>
+				  		<th><%= builder.object.activity_class %></th>
+				  		<th><%= builder.object.view %></th>
+				  		<th><%= builder.object.action_type %></th>
+				  		<th><%= builder.text_field :param %></th>
+				  	</tr>
+					<% end %>
+			  </table>
+
+			  <div class="actions">
+			    <%= f.submit 'Save Changes', class: "btn btn-info event-edit-button" %>
+			  </div>
+			<% end %>
 		</div>
 	</div>
 	
@@ -52,3 +56,37 @@
 <script>
 	d3.json("http://127.0.0.1:3000/testdata.json",drawEventFlow);
 </script>
+
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="editLabel">Editing Test Scenario</h4>
+      </div>
+      <%= form_for([@project, @test_scenario]) do |f| %>
+	      <div class="modal-body">
+				  <div class="field">
+				    <%= f.label :name %><br>
+				    <%= f.text_field :name %>
+				  </div>
+
+				  <div class="field">
+				    <%= f.label :description %><br>
+				    <%= f.text_field :description %>
+				  </div>
+
+				  <div class="field">
+				    <%= f.label :rank %><br>
+				    <%= f.select :rank, options_for_select([['A',0],['B',1],['C',2],['D',3]]) %>
+				  </div>
+				</div>
+				<div class="modal-footer">
+					<div class="actions">
+				    <%= f.submit 'Update', class: "btn btn-info" %>
+				  </div>	
+				</div>
+			<% end %>
+    </div>
+  </div>
+</div>
