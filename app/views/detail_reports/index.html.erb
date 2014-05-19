@@ -8,6 +8,18 @@
         <p><img src="/assets/Result.png">Test Results</p>
         <p class="subline">Test Results > Full Report </p>
       </div>
+
+      <% unless @total_report.status %>
+        <div class="progress progress-striped active">
+          <div class="progress-bar" id="test-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+          </div>
+        </div>
+
+        <%= javascript_tag do %>
+          progressUpdate(<%= @total_report.id %>);
+        <% end %>
+      <% end %>
+
       <table class="table table-hover">
         <tr>
           <th>Rank</th>

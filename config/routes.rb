@@ -10,6 +10,12 @@ CerberusBack::Application.routes.draw do
         end
       end
 
+      resources :total_reports, only: [] do
+        member do
+          get 'test_progress'
+        end
+      end
+
       resources :detail_reports, only: [:create] do
         collection do
           post 'upload_screenshot'

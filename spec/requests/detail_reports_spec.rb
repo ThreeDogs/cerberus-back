@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe 'DetailReports' do
  describe 'POST /api/v1/detail_reports/upload_screenshot' do
-  it "create @screen" do
+  # it "create @screen" do
     # image_path = "#{Rails.root}/app/assets/images/screenshots/ss1.png"
     # # screen_json = {image: Rack::Test::UploadedFile.new(image_path, 'image/png'), client_timestamp: 1234}
     # post '/api/v1/detail_reports/upload_screenshot', image: Rack::Test::UploadedFile.new(image_path, 'image/png'), client_timestamp: 1234
     # response.status.should be(201)
     # response.body.should include("image updated")
-  end  
+  # end  
  end
 
  describe 'POST /api/v1/detail_reports' do

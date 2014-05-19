@@ -62,6 +62,16 @@ class TotalReport < ActiveRecord::Base
     devices.count
   end
 
+  def number_of_details
+    detail_reports.count
+  end
+
+  def test_progress
+    puts number_of_devices
+    puts number_of_scenarios
+    (number_of_details * 1.0 / (number_of_devices * number_of_scenarios)) * 100
+  end
+
   def test_rank_status
     # implement
     {A:[17,7],B:[23,34], C:[10,5], D:[19,2]}

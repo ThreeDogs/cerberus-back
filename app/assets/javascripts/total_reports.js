@@ -1,5 +1,3 @@
-
-
 function drawTestFailPies(fail_data) {
 
 	var test_fail_svg = d3.select("#test_failure")

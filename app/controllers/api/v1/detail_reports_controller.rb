@@ -4,9 +4,8 @@ class Api::V1::DetailReportsController < ApplicationController
 
 	def create
 		# @detail_report = DetailReport.new(JSON.parse(params[:detail_report]))
-
-		detail_report_json = JSON.parse(params[:detail_report])
-		@detail_report.perform_async(detail_report_json)
+		detail_report_json = params[:detail_report]
+		DetailReportWorker.perform_async(detail_report_json)
 		render status: :created, json: {response: "success_created"}
 
 		# if @detail_report.save
