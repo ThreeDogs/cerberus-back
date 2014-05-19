@@ -150,12 +150,21 @@ function drawTestResults(test_results_data) {
 		var area = d3.svg.area()
 		var path = svg.append("path").attr("class",field_name+"-path");
 		var shade = svg.append("path").attr("class",field_name+"-area");
-		return {line: line, area: area, path: path, shade: shade};
+		var dot = svg.append("g").attr("class",field_name+"-dot").selectAll(".dot")
+					.data(test_results_data).enter().append("circle").attr("r",8)
+					.attr("stroke","none").attr("opacity",0)
+					.on("mouseover", function () {
+						d3.select(this).transition().attr("opacity",1);
+					})
+					.on("mouseout", function () {
+						d3.select(this).transition().attr("opacity",0);
+					});
+		return {line: line, area: area, path: path, shade: shade, dot: dot};
 	}
 
-	var failure = new Field(test_results_svg, 'failure');
-	var warning = new Field(test_results_svg, 'warning');
 	var pass = new Field(test_results_svg, 'pass');
+	var warning = new Field(test_results_svg, 'warning');
+	var failure = new Field(test_results_svg, 'failure');
 
 	failure.path.moveToFront();
 	warning.path.moveToFront();
@@ -169,6 +178,9 @@ function drawTestResults(test_results_data) {
 					.y0(function (d, i) {return y_scale(0)})
 					.y1(function (d, i) {return y_scale(d.failure/(d.failure+d.warning+d.pass)*100)});
 		failure.shade.attr("d",failure.area(test_results_data));
+		failure.dot.attr("transform",function (d, i) {
+			return "translate("+run_scale(i+1)+","+y_scale(d.failure/(d.failure+d.warning+d.pass)*100)+")"
+		});
 
 		warning.line.x(function (d, i) {return run_scale(i+1)})
 					.y(function (d, i) {return y_scale((d.failure+d.warning)/(d.failure+d.warning+d.pass)*100)});
@@ -177,6 +189,9 @@ function drawTestResults(test_results_data) {
 					.y0(function (d, i) {return y_scale(0)})
 					.y1(function (d, i) {return y_scale((d.failure+d.warning)/(d.failure+d.warning+d.pass)*100)});
 		warning.shade.attr("d",warning.area(test_results_data));
+		warning.dot.attr("transform",function (d, i) {
+			return "translate("+run_scale(i+1)+","+y_scale((d.failure+d.warning)/(d.failure+d.warning+d.pass)*100)+")"
+		});
 
 		pass.line.x(function (d, i) {return run_scale(i+1)})
 					.y(function (d, i) {return y_scale(100)});
@@ -185,6 +200,9 @@ function drawTestResults(test_results_data) {
 					.y0(function (d, i) {return y_scale(0)})
 					.y1(function (d, i) {return y_scale(100)});
 		pass.shade.attr("d",pass.area(test_results_data));
+		pass.dot.attr("transform",function (d, i) {
+			return "translate("+run_scale(i+1)+","+y_scale(100)+")"
+		});
 	};
 	fieldResize();
 
@@ -267,9 +285,9 @@ function drawCPUusage(cpu_trend_data) {
 		return {line: line, area: area, path: path, shade: shade};
 	}
 
-	var max = new Field(cpu_trend_svg, 'max');
-	var avg = new Field(cpu_trend_svg, 'avg');
 	var min = new Field(cpu_trend_svg, 'min');
+	var avg = new Field(cpu_trend_svg, 'avg');
+	var max = new Field(cpu_trend_svg, 'max');
 
 	max.path.moveToFront();
 	avg.path.moveToFront();

@@ -380,6 +380,19 @@
 		opacity: 0.2;
 	}
 
+	.failure-dot {
+		fill: #D87342;
+	}
+
+	.warning-dot {
+		fill: #E7CC2F;
+	}
+
+	.pass-dot {
+		fill: #5DBE88;
+	}
+
+
 	.legend {
 		font-size: 12px;
 		fill: #555;
