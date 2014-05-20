@@ -9,7 +9,65 @@
 			</div>
 			<div class="below-page-title">Test Result > Full Report > Detail Report</div>
 
-			
+			<div>
+				<div>
+					<div>
+						<p>Scenario Name</p>
+						<p><%= @detail_report.test_scenario_name %></p>
+					</div>
+					<div>
+						<p>Device Name</p>
+						<p> </p>
+					</div>
+					<div>
+						<p>App Version</p>
+						<p><%= @detail_report.app_version %></p>
+					</div>
+					<div>
+						<p>Date&Time</p>
+						<p> </p>
+					</div>
+					<div>
+						<p>Status</p>
+						<p></p>
+					</div>
+					<div>
+						<p>Running Time</p>
+						<p></p>
+					</div>
+				</div>
+				<div>
+					<div>Memory Average : <%= @detail_report.memory_average %></div>
+					<div>CPU Average : <%= @detail_report.cpu_average %></div>
+					<div>Network Average : <%= @detail_report.network_average %></div>
+					<div>Battery Average : <%= @detail_report.battery_consumption %></div>
+					<div>Threads Average : <%= @detail_report.threads_average %></div>
+					<div>Frame Draw Time : <%= @detail_report.frame_draw_time_average %></div>
+				</div>
+			</div>
+
+			<div class="detail-report-upper">
+				<div class="col-md-4">
+					<span class="page-subtitle">Report Overview</span>
+					<div class="detail-info">
+						<p>Scenario Name:</p>
+						<p>Device:</p>
+						<p>App Version:</p>
+						<p>Date&Time:</p>
+						<p>Status:</p>
+						<p>Run Time:</p>
+					</div>
+					<span class="page-subtitle">Summary</span>
+						<p>Memory Usage Avg:</p>
+						<p>Network Latency Avg:</p>
+						<p>CPU Usage Avg:</p>
+
+				</div>
+				<div class="col-md-8">
+					<span class="page-subtitle">Event Path & Screenshot</span>
+				</div>
+			</div>
+			<div class=""
 		</div>
 	</div>
 </div>
