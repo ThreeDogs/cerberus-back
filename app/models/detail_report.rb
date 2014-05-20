@@ -43,6 +43,10 @@ class DetailReport < ActiveRecord::Base
     device.model
   end
 
+  def device_country
+    device.country
+  end
+
   def os_version
     device.os_version
   end

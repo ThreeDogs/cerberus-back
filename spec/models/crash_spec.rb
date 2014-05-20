@@ -14,6 +14,6 @@ require 'spec_helper'
 
 describe Crash do
   describe "Crash Test" do
-  	
+		  	
   end
 end

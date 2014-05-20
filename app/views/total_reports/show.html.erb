@@ -80,14 +80,16 @@
 							<td>Rank</td>
 							<td>Error Count</td>
 							<td>Error Name</td>
+							<td></td>
 						</tr>
 					</thead>
 					<tbody>
 						<% @crashes.each do |crash| %>
 						<tr>
-							<td></td>
-							<td></td>
-							<td><%= crash.name %></td>
+							<td><%= crash.error_rank %></td>
+							<td><%= crash.error_count %></td>
+							<td><%= crash.error_name %></td>
+							<td><%= link_to "Show", total_report_crash_path(@total_report, crash), class: "btn btn-primary" %></td>
 						</tr>
 						<% end %>
 					</tbody>
