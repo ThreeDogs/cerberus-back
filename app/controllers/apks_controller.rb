@@ -8,9 +8,6 @@ class ApksController < ApplicationController
 	end
 
 	def create
-		# @apk = set_project.apks.build(apk_params)
-		# ApkUploadWorker.perform_async(set_project.id, apk_params)
-		
 		if @apk = set_project.apks.create(apk_params)
 			ApkUploadWorker.perform_async(@apk.id)
 			redirect_to [@project,@apk]	

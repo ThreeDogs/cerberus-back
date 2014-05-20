@@ -9,21 +9,17 @@
         <img src="/assets/Dashboard.png">APK Upload
       </div>
 
-  		<div class="jumbotron" id="apk-upload-section">
-				<div id="apk-upload-header">
-					<h1 id="apk-upload-header1">Drop Or Click Upload your APK</h1>
+			<%= form_for [@project, @apk], html: {multipart: true, id: "fileupload"} do |f| %>
+	  		<div class="jumbotron fileinput-button" id="apk-upload-section" style="width:100%;">
+					<div id="apk-upload-header">
+						<h1 id="apk-upload-header1"><img src="/assets/testresults_sidebar.png" class="folder-img">Drop Or Click Upload your APK</h1>
+					</div>
+					<div id="apk-upload-form">
+						<%= f.file_field :apk, id: 'upload-field', class: "apk-upload-filed" %>
+			  	</div>
 				</div>
-				<div id="apk-upload-form">
-					<%= form_for [@project, @apk] do |f| %>
-						<div class="field">
-							<%= f.file_field :apk %>
-						</div>
-						<div class="pull-right">
-							<%= f.submit "Upload", class: "btn btn-large btn-primary" %>
-						</div>
-					<% end %>
-		  	</div>
-			</div>	
+				<table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>	
+			<% end %>
 
 			<table class="table">
 				<tr>
@@ -36,7 +32,8 @@
 					<% @apks.each do |apk| %>
 						<tr>
 							<td><%= apk.apk_name %></td>
-							<td><%= link_to apk.test_apk_name, apk.test_apk %></td>
+
+							<td>link_to apk.test_apk_name, apk.test_apk</td>
 							<td><%= apk.upload_date %></td>
 							<td><%= link_to "Start Test", apk_total_reports_path(apk), method: :post, class: "btn btn-large btn-primary" %></td>
 							<td><%= link_to "Delete", project_apk_path(@project, apk), data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-danger" %></td>
@@ -46,3 +43,49 @@
   	</div>
 	</div>
 </div>
+
+
+<script>
+  var fileUploadErrors = {
+  maxFileSize: 'File is too big',
+  minFileSize: 'File is too small',
+  acceptFileTypes: 'Filetype not allowed',
+  maxNumberOfFiles: 'Max number of files exceeded',
+  uploadedBytes: 'Uploaded bytes exceed file size',
+  emptyResult: 'Empty file upload result'
+  };
+</script>
+
+<script id="template-upload" type="text/x-tmpl">
+  {% for (var i=0, file; file=o.files[i]; i++) { %}
+	  <tr class="template-upload fade">
+	    <td class="preview"><span class="fade"></span></td>
+	    <td class="name"><span>{%=file.name%}</span></td>
+	    <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+	    {% if (file.error) { %}
+	    <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
+	    {% } else if (o.files.valid && !i) { %}
+	    <td class="start">{% if (!o.options.autoUpload) { %}
+	      <button class="btn btn-primary">
+	        <i class="icon-upload icon-white"></i>
+	        <span>{%=locale.fileupload.start%}</span>
+	      </button>
+	      {% } %}</td>
+	    {% } %}
+	  </tr>
+  {% } %}
+</script>
+
+<script id="template-download" type="text/x-tmpl">
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('#fileupload').fileupload({
+      paramName: 'apk[apk]',
+      drop: function(e,data){
+      	
+      }
+    });
+  });
+</script>
