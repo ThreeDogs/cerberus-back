@@ -28,14 +28,17 @@
             <div class="test_fail_num">
               <!-- RANK STATUS -->
               <% project.recent_report_rank_status.each do |key, array| %>
-                <div class="test_fail_each">
+                <div class="test_fail_each" id="unique_id">
                   <div class="test_key <%= key %>"><%= key %></div>
                   <div class="test_success"><%= array[0] %>
-                    <div class="test_fail <%= key %>" style="width:30%"><%= array[1] %></div>
-                    <!-- width in percentage; test_fail / total# of tests -->
+                    <div class="test_fail <%= key %>" style="width:<%= array[0]/(array[0]+array[1])*100 %>%"><%= array[1] %></div>
                   </div>
                 </div>
                 <%= javascript_tag do %>
+                  band_chart_exception('#unique_id',1);
+                  if (<%= array[0] %> == 0) {
+                    $('#unique_id').find('.test_fail').css('visibility','hidden');
+                  }
                 <% end %>
               <% end %>
               <!-- -->
@@ -50,5 +53,4 @@
 </div>
 
 <script>
-// band_chart_exception( 1/2/3/4 );
 </script>
