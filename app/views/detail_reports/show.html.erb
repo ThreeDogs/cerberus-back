@@ -9,9 +9,22 @@
 			</div>
 			<div class="below-page-title">Test Result > Full Report > Detail Report</div>
 
-			<span class="page-subtitle">Report Overview</span>
-			<div class="detail-report-summary row">
-				<div class="summary-area col-md-6">
+			<div class="detail-report row">
+				<div class="event-screenshot col-md-8">
+					<p>Event Path and Screenshot</p>
+					<div class="event-screenshot-inner">
+						<!-- LOOP -->
+						<div class="event-screenshot-each">
+							<img src="">
+							<div class="event-each"></div>
+						</div>
+						<!-- END LOOP -->
+					</div>
+					<%= javascript_tag do %>
+						$('.event-screenshot-inner').css('width',)
+					<% end %>
+				</div>
+				<div class="summary-area col-md-4">
 					<div class="row">
 						<div class="col-md-4">
 							<p class="summary-key">Scenario Name</p>
@@ -40,8 +53,6 @@
 							<p class="summary-value"></p>
 						</div>
 					</div>
-				</div>
-				<div class="summary-area col-md-6">
 					<div class="summary-block col-md-6">Memory Average : <%= @detail_report.memory_average %></div>
 					<div class="summary-block col-md-6">CPU Average : <%= @detail_report.cpu_average %></div>
 					<div class="summary-block col-md-6">Network Average : <%= @detail_report.network_average %></div>
@@ -50,7 +61,10 @@
 					<div class="summary-block col-md-6">Frame Draw Time : <%= @detail_report.frame_draw_time_average %></div>
 				</div>
 			</div>
-
+			<div class="detail-report-charts">
+				<div id="cpu-chart" class="col-md-4"></div>
+				<div id="mem-chart" class="col-md-4"></div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -58,5 +72,3 @@
 <%= javascript_tag do %>
 	d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_report_infos",drawDetailReports);
 <% end %>
-
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">

@@ -9,14 +9,40 @@
 	font: 17px;
 }
 
-.detail-report-summary {
+.detail-report {
+
 	width: 100%;
 	font-size: 11pt;
 	color: #605E5A;
 
+	.event-screenshot {
+		height: 400px;
+
+		.event-screenshot-inner {
+
+		}
+
+		.event-screenshot-each {
+			width: ;
+			height: ;
+		}
+
+		.event-each {
+			background-image: url('/assets/event.png');
+			width: 30px;
+			height: 30px;
+			background-size: 30px 30px;
+			background-repeat: no-repeat;
+		}
+		.event-each:hover {
+			background-image: url('/assets/event_click.png');
+		}
+
+	}
+
 	.summary-area {
+		height: 400px;
 		background-color: #EFEEEE;
-		height: 150px;
 	}
 
 	.summary-key {
@@ -29,9 +55,12 @@
 	}
 
 	.summary-block {
-		height: 30%;
-		margin: 2px 0;
+		height: 40px;
 		padding: 2px 5px;
 		text-align: center;
 	}
+}
+
+.detail-report-charts {
+	
 }
