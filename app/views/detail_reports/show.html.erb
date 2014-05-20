@@ -9,97 +9,61 @@
 			</div>
 			<div class="below-page-title">Test Result > Full Report > Detail Report</div>
 
-		<div id="test_results">
-
-			<div style="display:inline-block;width:100%;">
-				<div id="test_stats" class="half_width_block">
-					<div class="test_stat_entry">
-						<div class="test_stat_key">App Version</div>
-						<div class="test_stat_value"><%= @detail_report.app_version %></div>
+			<div class="detail-report row">
+				<div class="event-screenshot col-md-8">
+					<p>Event Path and Screenshot</p>
+					<div class="event-screenshot-inner">
+						<!-- LOOP -->
+						<div class="event-screenshot-each">
+							<img src="">
+							<div class="event-each"></div>
+						</div>
+						<!-- END LOOP -->
 					</div>
-					<div class="test_stat_entry">
-						<div class="test_stat_key">Test Scenario</div>
-						<div class="test_stat_value"><%= @detail_report.test_scenario_name %></div>
-					</div>
+					<%= javascript_tag do %>
+						$('.event-screenshot-inner').css('width',)
+					<% end %>
 				</div>
-
-				<div id="test_avg" class="half_width_block">
-					<div class="average_block">Memory Average : <%= @detail_report.memory_average %></div>
-					<div class="average_block">CPU Average : <%= @detail_report.cpu_average %></div>
-					<div class="average_block">Network Average : <%= @detail_report.network_average %></div>
-					<div class="average_block">Battery Average : <%= @detail_report.battery_consumption %></div>
-					<div class="average_block">Threads Average : <%= @detail_report.threads_average %></div>
-					<div class="average_block">Frame Draw Time : <%= @detail_report.frame_draw_time_average %></div>
+				<div class="summary-area col-md-4">
+					<div class="row">
+						<div class="col-md-4">
+							<p class="summary-key">Scenario Name</p>
+							<p class="summary-value"><%= @detail_report.test_scenario_name %></p>
+						</div>
+						<div class="col-md-4">
+							<p class="summary-key">Device Name</p>
+							<p class="summary-value"></p>
+						</div>
+						<div class="col-md-4">
+							<p class="summary-key">App Version</p>
+							<p class="summary-value"><%= @detail_report.app_version %></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<p class="summary-key">Date&Time</p>
+							<p class="summary-value"></p>
+						</div>
+						<div class="col-md-4">
+							<p class="summary-key">Status</p>
+							<p class="summary-value"></p>
+						</div>
+						<div class="col-md-4">
+							<p class="summary-key">Running Time</p>
+							<p class="summary-value"></p>
+						</div>
+					</div>
+					<div class="summary-block col-md-6">Memory Average : <%= @detail_report.memory_average %></div>
+					<div class="summary-block col-md-6">CPU Average : <%= @detail_report.cpu_average %></div>
+					<div class="summary-block col-md-6">Network Average : <%= @detail_report.network_average %></div>
+					<div class="summary-block col-md-6">Battery Average : <%= @detail_report.battery_consumption %></div>
+					<div class="summary-block col-md-6">Threads Average : <%= @detail_report.threads_average %></div>
+					<div class="summary-block col-md-6">Frame Draw Time : <%= @detail_report.frame_draw_time_average %></div>
 				</div>
 			</div>
-
-			<div id="screenshots" class="full_width_block">
-				<% @detail_report.screenshots.each do |screen| %>
-					<%= image_tag screen.image, size: "150x256" %>
-				<% end %>
-			</div>
-
-				<div>
-				<div id="event_div" class="full_width_block">
-					<div id="event_flow" class="graph">
-					</div>
-					<div class="graph_details">
-						<div id="event_graph_detail_info" class="graph_detail_info">
-							
-						</div>
-						<div class="graph_detail_control">
-							<div class="control_field">
-								X-axis:
-								<button id="event_x_time">Time</button>
-								<button id="event_x_order">Order</button>
-							</div>
-						</div>
-					</div>
-					<div class="graph_updown">
-						<br><i class="fa fa-arrow-up" onclick="divMove('event','up')"></i>
-						<br><i class="fa fa-arrow-down" onclick="divMove('event','down')"></i>
-					</div>
-				</div>
-
-				<div id="mem_div" class="full_width_block">
-					<div id="mem_graph" class="graph">
-						<div class="graph_label">Memory Usage</div>
-					</div>
-					<div class="graph_details">
-						<div id="mem_graph_detail_info" class="graph_detail_info">
-							
-						</div>
-						<div class="graph_detail_control">
-							<div class="control_field"><input type="checkbox" class="mem_control" id="dalvik_heap_checkbox">Dalvik heap</div>
-							<div class="control_field"><input type="checkbox" class="mem_control" id="native_heap_checkbox">Native heap</div>
-							<div class="control_field"><input type="checkbox" class="mem_control" id="total_checkbox">Total</div>
-						</div>
-					</div>
-					<div class="graph_updown">
-						<br><i class="fa fa-arrow-up" onclick="divMove('mem','up')"></i>
-						<br><i class="fa fa-arrow-down" onclick="divMove('mem','down')"></i>
-					</div>
-				</div>
-
-				<div id="cpu_div" class="full_width_block">
-					<div id="cpu_graph" class="graph">
-					<div class="graph_label">CPU Usage</div>
-					</div>
-					<div class="graph_details">
-						<div id="cpu_graph_detail_info" class="graph_detail_info">
-							
-						</div>
-						<div class="graph_detail_control">
-							
-						</div>
-					</div>
-					<div class="graph_updown">
-						<br><i class="fa fa-arrow-up" onclick="divMove('cpu','up')"></i>
-						<br><i class="fa fa-arrow-down" onclick="divMove('cpu','down')"></i>
-					</div>
-				</div>
-
-				</div>
+			<div class="detail-report-charts">
+				<div id="cpu-chart" class="col-md-4"></div>
+				<div id="mem-chart" class="col-md-4"></div>
 			</div>
 		</div>
 	</div>
@@ -108,5 +72,3 @@
 <%= javascript_tag do %>
 	d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_report_infos",drawDetailReports);
 <% end %>
-
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">

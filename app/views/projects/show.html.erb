@@ -57,6 +57,12 @@
 						</div>
 					</div>
 				</div>
+				<%= javascript_tag do %>
+					band_chart_exception('.band-chart-segment', 4);
+					//if ( no fail ) {
+	                //  $('.band-chart-segment').find('.test_fail').css('visibility','hidden');
+	                //}
+				<% end %>
 				<div class="col-md-2 report-link">
 					<%= link_to project_total_report_path(@project, @recent_report)  do %>
 						<div class="full-report"></div>
@@ -335,9 +341,9 @@ var data = {
   drawFailByDevice(data.fail_data_detail);
   drawTestResults(data.test_results_data);
   drawCPUusage(data.cpu_trend_data);
-  // drawMemUsage(data.mem_trend_data);
-  // drawNetworkTrend(data.net_trend_data);
-  // drawBatteryTrend(data.battery_trend_data);
-  // drawThreadTrend(data.thread_trend_data);
-  // drawFrameTrend(data.frame_trend_data);
+  drawMemUsage(data.mem_trend_data);
+  drawNetworkTrend(data.net_trend_data);
+  drawBatteryTrend(data.battery_trend_data);
+  drawThreadTrend(data.thread_trend_data);
+  drawFrameTrend(data.frame_trend_data);
 </script>
