@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
 .below-page-title {
 	padding-left: 50px;
 	margin-top: -45px;
@@ -10,3 +9,29 @@
 	font: 17px;
 }
 
+.detail-report-summary {
+	width: 100%;
+	font-size: 11pt;
+	color: #605E5A;
+
+	.summary-area {
+		background-color: #EFEEEE;
+		height: 150px;
+	}
+
+	.summary-key {
+		padding: 5px;
+		color: #5DBE88;
+	}
+	
+	.summary-value {
+		padding: 5px;
+	}
+
+	.summary-block {
+		height: 30%;
+		margin: 2px 0;
+		padding: 2px 5px;
+		text-align: center;
+	}
+}
