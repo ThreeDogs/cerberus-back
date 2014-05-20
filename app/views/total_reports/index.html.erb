@@ -7,6 +7,12 @@
 			<div class="page-title">
 	    		<p><img src="/assets/Result.png">Test results</p>
 	    	</div>
+	    	<div class="page-table-header">
+	    		<div class="col-md-2">Test Info</div>
+	    		<div class="col-md-2">App Version</div>
+	    		<div class="col-md-6">Test Success/Fail</div>
+	    		<div class="col-md-2">Full Report</div>
+	    	</div>
 			<% @total_reports.each do |total_report| %>
 			<div class="test-result">
 				<div class="col-md-2" id="app-info-box">
@@ -53,6 +59,12 @@
 						</div>
 					</div>
 				</div>
+				<%= javascript_tag do %>
+					band_chart_exception('.band-chart-segment', 4);
+					//if ( no fail ) {
+	                //  $('.band-chart-segment').find('.test_fail').css('visibility','hidden');
+	                //}
+				<% end %>
 				<div class="col-md-2">
 					<%= link_to total_report_detail_reports_path(total_report) do %>
 					<div class="report-link">

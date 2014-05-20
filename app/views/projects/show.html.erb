@@ -59,6 +59,9 @@
 				</div>
 				<%= javascript_tag do %>
 					band_chart_exception('.band-chart-segment', 4);
+					//if ( no fail ) {
+	                //  $('.band-chart-segment').find('.test_fail').css('visibility','hidden');
+	                //}
 				<% end %>
 				<div class="col-md-2 report-link">
 					<%= link_to project_total_report_path(@project, @recent_report)  do %>
