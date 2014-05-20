@@ -4,6 +4,7 @@
 #
 #  id               :integer          not null, primary key
 #  image            :string(255)
+#  image_processing :boolean
 #  client_timestamp :integer
 #  created_at       :datetime
 #  updated_at       :datetime

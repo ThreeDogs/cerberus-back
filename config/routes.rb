@@ -41,6 +41,7 @@ CerberusBack::Application.routes.draw do
   end
 
   resources :total_reports, only: [] do
+    resources :crashes, only: [:show]
     resources :detail_reports
   end
 

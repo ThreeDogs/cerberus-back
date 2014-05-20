@@ -72,6 +72,29 @@
 			</div>
 			<!-- END TEST RESULT SUMMARY -->
 
+			<span class="page-subtitle">Test Errors</span>
+			<div class="test-errors-list">
+				<table class="table">
+					<thead>
+						<tr>
+							<td>Rank</td>
+							<td>Error Count</td>
+							<td>Error Name</td>
+						</tr>
+					</thead>
+					<tbody>
+						<% @crashes.each do |crash| %>
+						<tr>
+							<td></td>
+							<td></td>
+							<td><%= crash.name %></td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+				
+			</div>
+
 			<span class="page-subtitle">Device Fail</span>
 			<div id="test_fail_graph">
 				<div id="test_fail_bar_graph">

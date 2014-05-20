@@ -10,6 +10,7 @@
 #  device_key       :string(255)
 #  test_scenario_id :integer
 #  total_report_id  :integer
+#  crash_id         :integer
 #  created_at       :datetime
 #  updated_at       :datetime
 #

@@ -55,12 +55,18 @@ describe 'DetailReports' do
           action_type: 'Click',
       }
     ]}.to_json
+
+  crash_json = {error_name: 'java.lang.NullPointerException',error_line: '(com.autoschedule.proto.c.a:-1)', description: 'java.lang.NullPointerException (com.autoschedule.proto.c.a:-1) Error description and so on..', total_report_id: 1}.to_json
+
  	it "create @detail_report" do
  		post "/api/v1/detail_reports", detail_report: detail_report_json
  		response.status.should be(201)
  	end
+
+  it "create @detail_report with crash" do
+    post "/api/v1/detail_reports", detail_report: detail_report_json, crash: crash_json
+    response.status.should be(201)
+    response.body.should include('java.lang.NullPointerException')
+  end
  end 
 end
-
-
-
