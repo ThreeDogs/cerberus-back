@@ -8,6 +8,7 @@ class CreateDetailReports < ActiveRecord::Migration
       t.string :device_key, index: true
       t.references :test_scenario, index: true
       t.references :total_report, index: true
+      t.references :crash, index: true
 
       t.timestamps
     end

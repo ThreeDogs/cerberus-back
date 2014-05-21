@@ -1,11 +1,11 @@
 # == Schema Information
 #
-# Table name: screens
+# Table name: crashes
 #
 #  id               :integer          not null, primary key
-#  image            :string(255)
-#  image_processing :boolean
-#  client_timestamp :integer
+#  error_name       :string(255)
+#  description      :text
+#  total_reports_id :integer
 #  created_at       :datetime
 #  updated_at       :datetime
 #
@@ -13,8 +13,9 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :screen do
-    url "sasd"
-    client_timestamp 1
+  factory :crash do
+    error_name "MyString"
+    error_line "MyString"
+    description "MyText"
   end
 end

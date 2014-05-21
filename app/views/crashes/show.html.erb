@@ -1,0 +1,67 @@
+<%= render "shared/header" %>
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<%= render 'shared/side_bar' %>	
+		<div class="col-md-12 contents">
+			
+			<div class="page-title">
+				<img src="/assets/Result.png">Crash Report
+			</div>
+			<!-- TODO: subline // Test Results > Full Report -->
+
+			<span class="page-subtitle">Error Summary</span>
+			<div class="error-summary jumbotron">
+				<div class="test_app_icon">
+				</div>
+				<div>
+					<h5><%= @crash.error_name %></h5>
+					<span><%= @crash.error_line %></span>
+				</div>
+			</div>
+			
+			<div class="graph jumbotron">
+				<p>Test rank Rate <%= @crash.test_rank_rate %></p>
+				<p>OS Version <%= @crash.os_version_rate %></p>
+				<p>Device <%= @crash.device_rate %></p>
+				<p>Country <%= @crash.country_rate %></p>
+			</div>
+			
+			<span class="page-subtitle">Stack Trace</span>
+			<div class="stack-trace jumbotron">
+				<%= @crash.description %>
+			</div>
+			<span class="page-subtitle">Event Path</span>
+			<div class="event-path jumbotron">
+			</div>
+
+			<span class="page-subtitle">Detail Reports</span>
+			<div class="detail-report-list jumbotron">
+				<table class="table">
+					<thead>
+						<tr>
+							<td>Rank</td>
+							<td>Test Name</td>
+							<td>OS Version</td>
+							<td>Device</td>
+							<td>Country</td>
+							<td></td>
+						</tr>
+					</thead>
+					<% @detail_reports.each do |detail_report| %>
+						<tbody>
+							<tr>
+								<td><%= detail_report.rank %></td>
+								<td><%= detail_report.test_scenario_name %></td>
+								<td><%= detail_report.os_version %></td>
+								<td><%= detail_report.device_name %></td>
+								<td><%= detail_report.device_country %></td>
+								<td><%= link_to "Show", total_report_detail_report_path(@total_report,detail_report), class: "btn btn-primary" %></td>
+							</tr>
+						</tbody>
+					<% end %>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

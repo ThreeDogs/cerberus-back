@@ -17,8 +17,9 @@
  *= require detail_reports
  *= require test_scenarios
  *= require apk
-
  */
+
+@import "jquery.fileupload-ui";
 
 @font-face {
 	font-family: 'NanumBarunGothic';

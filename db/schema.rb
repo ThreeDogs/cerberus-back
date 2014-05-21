@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140502130559) do
+ActiveRecord::Schema.define(version: 20140520034833) do
 
   create_table "apks", force: true do |t|
     t.string   "apk"
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(version: 20140502130559) do
 
   add_index "cpu_infos", ["detail_report_id"], name: "index_cpu_infos_on_detail_report_id"
 
+  create_table "crashes", force: true do |t|
+    t.string   "error_name"
+    t.string   "error_line"
+    t.text     "description"
+    t.integer  "total_report_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "crashes", ["total_report_id"], name: "index_crashes_on_total_report_id"
+
   create_table "detail_reports", force: true do |t|
     t.string   "app_version"
     t.string   "test_datetime"
@@ -46,10 +57,12 @@ ActiveRecord::Schema.define(version: 20140502130559) do
     t.string   "device_key"
     t.integer  "test_scenario_id"
     t.integer  "total_report_id"
+    t.integer  "crash_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "detail_reports", ["crash_id"], name: "index_detail_reports_on_crash_id"
   add_index "detail_reports", ["test_scenario_id"], name: "index_detail_reports_on_test_scenario_id"
   add_index "detail_reports", ["total_report_id"], name: "index_detail_reports_on_total_report_id"
 
@@ -139,6 +152,7 @@ ActiveRecord::Schema.define(version: 20140502130559) do
 
   create_table "screens", force: true do |t|
     t.string   "image"
+    t.boolean  "image_processing"
     t.integer  "client_timestamp"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -72,6 +72,31 @@
 			</div>
 			<!-- END TEST RESULT SUMMARY -->
 
+			<span class="page-subtitle">Test Errors</span>
+			<div class="test-errors-list">
+				<table class="table">
+					<thead>
+						<tr>
+							<td>Rank</td>
+							<td>Error Count</td>
+							<td>Error Name</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+						<% @crashes.each do |crash| %>
+						<tr>
+							<td><%= crash.error_rank %></td>
+							<td><%= crash.error_count %></td>
+							<td><%= crash.error_name %></td>
+							<td><%= link_to "Show", total_report_crash_path(@total_report, crash), class: "btn btn-primary" %></td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+				
+			</div>
+
 			<span class="page-subtitle">Device Fail</span>
 			<div id="test_fail_graph">
 				<div id="test_fail_bar_graph">

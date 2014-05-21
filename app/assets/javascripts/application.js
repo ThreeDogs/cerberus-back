@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap.min
 //= require jquery_nested_form
+//= require jquery-fileupload
 //= require_tree .
 
 

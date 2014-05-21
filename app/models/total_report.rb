@@ -25,6 +25,8 @@ class TotalReport < ActiveRecord::Base
   belongs_to :apk
   belongs_to :project
 
+  has_many :crashes
+
   has_many :detail_reports
 
   has_many :scenarioships

@@ -10,6 +10,7 @@
 #  device_key       :string(255)
 #  test_scenario_id :integer
 #  total_report_id  :integer
+#  crash_id         :integer
 #  created_at       :datetime
 #  updated_at       :datetime
 #
@@ -18,6 +19,7 @@ class DetailReport < ActiveRecord::Base
 	belongs_to :device, foreign_key: 'device_key', primary_key: 'device_key'
   belongs_to :test_scenario
   belongs_to :total_report
+  belongs_to :crash
 
   has_many :memory_infos
   has_many :cpu_infos
@@ -39,6 +41,10 @@ class DetailReport < ActiveRecord::Base
 
   def device_name
     device.model
+  end
+
+  def device_country
+    device.country
   end
 
   def os_version

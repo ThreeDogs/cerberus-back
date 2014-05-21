@@ -9,3 +9,5 @@ class DetailReportWorker
 		DetailReport.create!(detail_report)
 	end
 end
+
+

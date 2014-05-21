@@ -13,9 +13,10 @@ class TotalReportsController < ApplicationController
   def show
     @project = set_project
     @total_report = set_total_report
-    unless @total_report.status
-      redirect_to total_report_detail_reports_path(@total_report)
-    end
+    @crashes = @total_report.crashes
+    # unless @total_report.status
+      # redirect_to total_report_detail_reports_path(@total_report)
+    # end
   end
 
   # GET /total_reports/new

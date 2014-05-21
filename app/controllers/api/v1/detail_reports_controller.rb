@@ -3,16 +3,16 @@ class Api::V1::DetailReportsController < ApplicationController
 	respond_to :json
 
 	def create
-		# @detail_report = DetailReport.new(JSON.parse(params[:detail_report]))
-		detail_report_json = params[:detail_report]
-		DetailReportWorker.perform_async(detail_report_json)
-		render status: :created, json: {response: "success_created"}
-
-		# if @detail_report.save
-			# render status: :created, json: {response: "success_created"}
-		# else
-			# render status: :unprocessable_entity, json: {response: "error #{e}"}
-		# end
+		if params[:crash]
+			crash_json = params[:crash]
+			detail_report_json = params[:detail_report]
+			DetailReportWithCrashWorker.perform_async(crash_json, detail_report_json)
+			render status: :created, json: crash_json
+		else 
+			detail_report_json = params[:detail_report]
+			DetailReportWorker.perform_async(detail_report_json)
+			render status: :created, json: {response: "success_created"}	
+		end
 	end
 
 	def upload_screenshot
@@ -39,10 +39,4 @@ class Api::V1::DetailReportsController < ApplicationController
 			render status: :unprocessable_entity, json: {response: "error #{e}"}
 		end
 	end
-
-	private 
-
-	# def screen_params
-		# params.require(:screen).permit(:image, :client_timestamp)		
-	# end
 end
