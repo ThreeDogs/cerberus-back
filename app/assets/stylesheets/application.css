@@ -19,8 +19,6 @@
  *= require apk
  */
 
-@import "jquery.fileupload-ui";
-
 @font-face {
 	font-family: 'NanumBarunGothic';
 	src: url('../assets/NanumBarunGothic.eot');

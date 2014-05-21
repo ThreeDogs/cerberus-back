@@ -10,7 +10,7 @@ class ApksController < ApplicationController
 	def create
 		if @apk = set_project.apks.create(apk_params)
 			ApkUploadWorker.perform_async(@apk.id)
-			redirect_to [@project,@apk]	
+			render json: [set_project.id, @apk.id]
 		else
 			render 'new'
 		end

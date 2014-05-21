@@ -32,3 +32,14 @@
 	width: 50px;
 	height: 50px;
 }
+
+.hidden{
+	display: none;
+}
+
+input#upload-field{
+  display: block;
+  visibility: hidden;
+  width: 0;
+  height: 0;	
+}

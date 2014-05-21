@@ -38,3 +38,19 @@ function requestDoneTime(apk_id){
   }, 5000);  
 }
 
+var fileUploadErrors = {
+  maxFileSize: 'File is too big',
+  minFileSize: 'File is too small',
+  acceptFileTypes: 'Filetype not allowed',
+  maxNumberOfFiles: 'Max number of files exceeded',
+  uploadedBytes: 'Uploaded bytes exceed file size',
+  emptyResult: 'Empty file upload result'
+};
+
+
+$(document).ready(function(){
+  $('.fileinput-button').click(function(){
+    document.getElementById('upload-field').click();
+  });
+});
+

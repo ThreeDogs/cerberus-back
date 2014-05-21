@@ -30,7 +30,6 @@ gem 'rabl'
 
 gem 'carrierwave'
 gem 'carrierwave_backgrounder'
-gem 'jquery-fileupload-rails'
 # gem 'rmagick', '2.13.2'
 
 # Query Customizing

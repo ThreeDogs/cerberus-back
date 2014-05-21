@@ -15,11 +15,14 @@
 						<h1 id="apk-upload-header1"><img src="/assets/testresults_sidebar.png" class="folder-img">Drop Or Click Upload your APK</h1>
 					</div>
 					<div id="apk-upload-form">
-						<%= f.file_field :apk, id: 'upload-field', class: "apk-upload-filed" %>
+						<%= f.file_field :apk, id: 'upload-field', class: "apk-upload-field", multiple: false %>
 			  	</div>
+			  	
 				</div>
-				<table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>	
 			<% end %>
+			<div class="pull-right">
+				<%= link_to 'Upload', '#', class: "btn btn-primary hidden", id: "upload-button" %>
+			</div>
 
 			<table class="table">
 				<tr>
@@ -32,10 +35,13 @@
 					<% @apks.each do |apk| %>
 						<tr>
 							<td><%= apk.apk_name %></td>
-
-							<td>link_to apk.test_apk_name, apk.test_apk</td>
+							<% if apk.test_apk %>
+								<td><%= link_to apk.test_apk_name, apk.test_apk %></td>
+							<% else %>
+								<td>trasforming...</td>
+							<% end %>								
 							<td><%= apk.upload_date %></td>
-							<td><%= link_to "Start Test", apk_total_reports_path(apk), method: :post, class: "btn btn-large btn-primary" %></td>
+							<td><%= link_to "Start Test", project_apk_path(@project, apk), class: "btn btn-large btn-primary" %></td>
 							<td><%= link_to "Delete", project_apk_path(@project, apk), data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-danger" %></td>
 						</tr>
 					<% end %>
@@ -44,48 +50,24 @@
 	</div>
 </div>
 
-
-<script>
-  var fileUploadErrors = {
-  maxFileSize: 'File is too big',
-  minFileSize: 'File is too small',
-  acceptFileTypes: 'Filetype not allowed',
-  maxNumberOfFiles: 'Max number of files exceeded',
-  uploadedBytes: 'Uploaded bytes exceed file size',
-  emptyResult: 'Empty file upload result'
-  };
-</script>
-
-<script id="template-upload" type="text/x-tmpl">
-  {% for (var i=0, file; file=o.files[i]; i++) { %}
-	  <tr class="template-upload fade">
-	    <td class="preview"><span class="fade"></span></td>
-	    <td class="name"><span>{%=file.name%}</span></td>
-	    <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
-	    {% if (file.error) { %}
-	    <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
-	    {% } else if (o.files.valid && !i) { %}
-	    <td class="start">{% if (!o.options.autoUpload) { %}
-	      <button class="btn btn-primary">
-	        <i class="icon-upload icon-white"></i>
-	        <span>{%=locale.fileupload.start%}</span>
-	      </button>
-	      {% } %}</td>
-	    {% } %}
-	  </tr>
-  {% } %}
-</script>
-
-<script id="template-download" type="text/x-tmpl">
-</script>
-
-<script type="text/javascript" charset="utf-8">
-  $(function () {
+<script type="text/javascript">
+	$(function () {
     $('#fileupload').fileupload({
-      paramName: 'apk[apk]',
-      drop: function(e,data){
-      	
-      }
+    	maxNumberOfFiles: 1,
+    	singleFileUploads: true,
+    	autoUpload: false,
+    	add: function(e, data){
+    		console.log(data);
+    		$('h1#apk-upload-header1').text(data.files[0].name);
+    		$('#upload-button').removeClass("hidden");
+    		data.context = $('#upload-button');
+    		$('#upload-button').click(function(){
+					data.submit();
+    		});
+    	},
+    	done: function(e, data){
+    		location.href="/projects/" + data.result[0] + "/apks/" + data.result[1];
+    	}
     });
   });
-</script>
+</script>		
