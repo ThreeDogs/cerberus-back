@@ -44,6 +44,9 @@ gem 'sinatra', require: false
 gem 'slim', '>= 1.3.0'
 gem 'sidekiq-limit_fetch'
 
+# Search
+gem 'ransack'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

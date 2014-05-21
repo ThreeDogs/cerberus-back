@@ -15,10 +15,31 @@
 #
 
 class Device < ActiveRecord::Base
+	include Rails.application.routes.url_helpers
 	belongs_to :project
 	belongs_to :total_report
-	# has_many :deviceships
-  # has_many :total_report, through: :deviceships
   
   has_many :detail_reports, foreign_key: 'device_key', primary_key: 'device_key'
+
+  def fail_data
+  	results = {}
+  	fail_get_ranks.each do |rank|
+  		results["#{rank}"] = detail_reports.collect do |detail_report|
+  			hash = {}
+  			if detail_report.rank == rank && detail_report.status == -1
+  				hash["scenario_name"] = detail_report.test_scenario_name
+  				hash["error_message"] = detail_report.error_name
+  				hash["link"] = total_report_detail_report_path(id, detail_report.id)
+  				hash
+  			else
+  				nil
+  			end
+  		end.compact
+  	end
+  	results
+  end
+
+  def fail_get_ranks
+  	detail_reports.collect{|d| d.rank}.uniq
+  end
 end

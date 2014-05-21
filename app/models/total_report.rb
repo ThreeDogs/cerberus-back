@@ -34,12 +34,10 @@ class TotalReport < ActiveRecord::Base
 
   has_many :devices
 
-  # has_many :deviceships
-  # has_many :devices, through: :deviceships
+  def app_version
+    detail_reports.first.app_version
+  end
 
-  # accepts_nested_attributes_for :scenarioships, allow_destroy: true
-
-  # validates :test_datetime, presence: true
   def apk_name
   	apk.apk_name
   end
@@ -72,6 +70,18 @@ class TotalReport < ActiveRecord::Base
     (number_of_details * 1.0 / (number_of_devices * number_of_scenarios)) * 100
   end
 
+  def device_fail_results
+    results = []
+    devices.each do |device|
+      result = {}
+      result["device_name"] = device.model
+      result["os_version"] = device.os_version
+      result["fail_data"] = device.fail_data
+      results << result
+    end
+    results
+  end
+
   def test_rank_status
     result = {}
     details = detail_reports
@@ -98,7 +108,7 @@ class TotalReport < ActiveRecord::Base
     rank_reports = details.select{|d| d.rank == rank}
     unless rank_reports.blank?
       [rank_reports.select{|d| d.status == 1}.length,# Pass Count
-      rank_reports.select{|d| d.status == 0}.length] # Fail Count
+      rank_reports.select{|d| d.status == -1}.length] # Fail Count
     end
   end
 

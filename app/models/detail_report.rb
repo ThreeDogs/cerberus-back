@@ -31,6 +31,10 @@ class DetailReport < ActiveRecord::Base
 
   validates :app_version, presence: true
 
+  def error_name
+    crash.error_name
+  end
+
   def rank
     test_scenario.get_rank
   end
@@ -57,7 +61,11 @@ class DetailReport < ActiveRecord::Base
 
   # status -1 : Fail, 1: Pass
   def get_status
-    status == 1 ? "Pass" : "Fail"
+    if status == 1
+      "Pass"
+    elsif status == -1
+      "Fail"
+    end
   end
 
   def screenshots

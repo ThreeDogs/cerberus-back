@@ -13,6 +13,7 @@ CerberusBack::Application.routes.draw do
       resources :total_reports, only: [] do
         member do
           get 'test_progress'
+          get 'device_failure_detail'
         end
       end
 

@@ -51,6 +51,6 @@ class Crash < ActiveRecord::Base
 				result["#{attribute}"] = 1
 			end
 		end
-		result		
+		result
 	end
 end
