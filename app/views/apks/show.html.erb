@@ -20,19 +20,22 @@
 				<div class="total-report-form">
 					<%= form_for [@apk, @total_report] do |f| %>
 						<div class="col-md-6 jumbotron test-scenario-list">
-							<% @test_scenarios.each do |test_scenario| %>
-								<div class="test-scenario-item">
-									<%= test_scenario.name %>
-								</div>
+							<%= f.fields_for "test_scenario_ids" do |form| %>
+								<% @test_scenarios.each do |test_scenario| %>
+									<div class="test-scenario-item">
+										<%= form.check_box test_scenario.id %>
+										<%= test_scenario.name %>
+									</div>
+								<% end %>
 							<% end %>
 						</div>
 						<div class="col-md-6 jumbotron">
 							<% if @device_list %>
-							<% @device_list.each do |device| %>
-								<div class="device-item">
-									<p><%= device["model"] %>&nbsp;<%= device["brand"] %>&nbsp;<%= device["os_version"] %>&nbsp;<%= device["cpu"] %><p>
-								</div>
-							<% end  %>
+								<% @device_list.each do |device| %>
+									<div class="device-item">
+										<p><%= device["model"] %>&nbsp;<%= device["brand"] %>&nbsp;<%= device["os_version"] %>&nbsp;<%= device["cpu"] %><p>
+									</div>
+								<% end  %>
 							<% end %>
 						</div>
 						<div class="pull-right">

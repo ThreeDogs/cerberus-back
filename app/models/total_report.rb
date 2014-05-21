@@ -114,7 +114,7 @@ class TotalReport < ActiveRecord::Base
     apk_url = self.apk.test_bed_apk
     total_report_id = self.id
     test_scenario_motion_events = []
-    test_scenarios = project.test_scenarios
+    # test_scenarios = project.test_scenarios
     test_scenarios.each do |t|
       test_scenario_motion_events << {"#{t.id}" => t.motion_events}
     end

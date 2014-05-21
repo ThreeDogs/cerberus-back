@@ -35,10 +35,19 @@ class TotalReportsController < ApplicationController
     @project = Project.find(@apk.project.id)
     @total_report = @apk.total_reports.build(project_id: @project.id)
 
-    if @total_report.save
-      redirect_to project_total_report(@project, @total_report)
-    else
-      render "/projects/#{@project.id}/apks/#{@apk.id}"
+    test_scenario_ids = params[:total_report][:test_scenario_ids].collect{|key,value| key.to_i if value == "1"}.compact
+
+    TotalReport.transaction do
+      begin
+        @total_report.save!
+        test_scenario_ids.each do |test_scenario_id|
+          @total_report.scenarioships.create!(test_scenario_id: test_scenario_id)
+        end
+        redirect_to total_report_detail_reports_path(@total_report)
+      rescue Exception => e
+        render "/projects/#{@project.id}/apks/#{@apk.id}"
+        raise ActiveRecord::Rollback         
+      end 
     end
   end
 
