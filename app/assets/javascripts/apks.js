@@ -49,6 +49,25 @@ var fileUploadErrors = {
 
 
 $(document).ready(function(){
+  $('#fileupload').fileupload({
+      acceptFileTypes: /(\.|\/)(apk)$/i,
+      maxNumberOfFiles: 1,
+      singleFileUploads: true,
+      autoUpload: false,
+      add: function(e, data){
+        console.log(data);
+        $('h1#apk-upload-header1').text(data.files[0].name);
+        $('#upload-button').removeClass("hidden");
+        data.context = $('#upload-button');
+        $('#upload-button').click(function(){
+          data.submit();
+        });
+      },
+      done: function(e, data){
+        location.href="/projects/" + data.result[0] + "/apks/" + data.result[1];
+      }
+    });
+
   $('.fileinput-button').click(function(){
     document.getElementById('upload-field').click();
   });
