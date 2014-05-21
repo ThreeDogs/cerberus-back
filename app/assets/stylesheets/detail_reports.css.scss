@@ -2,6 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+//index
+
+.test-result-list {
+	width: 100%;
+	th {
+		padding: 5px;
+		color: #287044;
+		font-size: 12px;
+		text-align: center;
+		background-color: #A9D8B9;
+	}
+	td {
+		padding: 5px;
+		color: #5E5E5E;
+		font-size: 11px;
+		border: 1px solid #A9D8B9;
+	}
+	tr:hover {
+		background-color: #A9D8B9;
+	}
+}
+
+
+// show
 .below-page-title {
 	padding-left: 50px;
 	margin-top: -45px;
@@ -16,20 +41,28 @@
 	color: #605E5A;
 
 	.event-screenshot {
-		height: 400px;
+		height: 320px;
 
 		.event-screenshot-inner {
-
+			height: 100%;
 		}
 
 		.event-screenshot-each {
+			width: 140px;
+			padding: 10px;
+			margin: 0 5px;
+			background-color: #A9D8B9;
+			img {
+				width: 120px;
+				height: 200px;
+			}
 		}
 
 		.event-each {
 			background-image: url('/assets/event.png');
-			width: 30px;
-			height: 30px;
-			background-size: 30px 30px;
+			width: 120px;
+			height: 50px;
+			background-size: 120px 50px;
 			background-repeat: no-repeat;
 		}
 		.event-each:hover {
@@ -39,7 +72,7 @@
 	}
 
 	.summary-area {
-		height: 400px;
+		height: 320px;
 		background-color: #EFEEEE;
 	}
 
@@ -60,5 +93,30 @@
 }
 
 .detail-report-charts {
+	height: 200px;
+	
+	#cpu-chart {
+		height: 200px;
+	}
+	
+	#mem-chart {
+		height: 200px;
+	}
 
+	.axis {
+		font-size: 10px;
+		fill: none;
+		color: #A1A1A1;
+		stroke: #A1A1A1;
+		shape-rendering: crispEdges;
+	}
+
+	.cpu-area {
+		fill: #A1A1A1;
+	}
+
+	.mem-area {
+		fill: #A1A1A1;
+	}
 }
+

@@ -4,7 +4,7 @@
 .page-title {
 	margin: 40px 0;
 	color: rgb(40,112,68);
-	font-size: 26px; 
+	font-size: 20px; 
 	img {
 		margin-right: 16px;
 	}
@@ -14,7 +14,7 @@
 	padding: 5px 10px 1px 10px;
 	background-color: #5DBE88;
 	color: #605E5A;
-	font-size: 17px;
+	font-size: 13px;
 	border-bottom: solid 3px;
 	border-color: #287044;
 	display: inline-block;
@@ -29,4 +29,26 @@
 		text-align: center;
 		padding: 5px 0;
 	}
+}
+
+.rank {
+	font-size: 15px;
+	height: 24px;
+	width: 24px;
+	border-radius: 12px;
+	border: solid 2px;
+	margin: 5px auto;
+	text-align: center;
+}
+.A {
+	border-color: rgb(244,86,86);
+}
+.B {
+	border-color: rgb(239,134,164);
+}
+.C {
+	border-color: rgb(255,130,30);
+}
+.D {
+	border-color: rgb(255,186,80);
 }

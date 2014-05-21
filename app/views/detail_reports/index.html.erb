@@ -4,10 +4,11 @@
   <div class="row-fluid">
     <%= render 'shared/side_bar' %>
     <div class="col-md-12 contents">
-      <div class="total-report-head">
-        <p><img src="/assets/Result.png">Test Results</p>
-        <p class="subline">Test Results > Full Report </p>
+      
+      <div class="page-title">
+        <img src="/assets/Result.png">Test Results
       </div>
+      <div class="below-page-title">Test Results > Full Report</div>
 
       <% unless @total_report.status %>
         <div class="progress progress-striped active">
@@ -20,7 +21,7 @@
         <% end %>
       <% end %>
 
-      <table class="table table-hover">
+      <table class="test-result-list">
         <tr>
           <th>Rank</th>
           <th>Status</th>
@@ -32,7 +33,7 @@
         </tr>
         <% @detail_reports.each do |detail_report| %>
           <tr>
-            <td><%= detail_report.rank %></td>
+            <td><div class="rank <%= detail_report.rank %>"><%= detail_report.rank %></div></td>
             <td><%= detail_report.get_status %></td>
             <td><%= detail_report.test_scenario_name %></td>
             <td><%= detail_report.device_name %></td>

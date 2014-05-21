@@ -11,7 +11,7 @@
 
 			<div class="detail-report row">
 				<div class="event-screenshot col-md-8">
-					<p>Event Path and Screenshot</p>
+					<span class="page-subtitle">Event Path and Screenshot</span>
 					<div class="event-screenshot-inner">
 						<!-- LOOP -->
 						<div class="event-screenshot-each">
@@ -21,7 +21,7 @@
 						<!-- END LOOP -->
 					</div>
 					<%= javascript_tag do %>
-						$('.event-screenshot-inner').css('width',)
+						//$('.event-screenshot-inner').css('width', 150 * n );
 					<% end %>
 				</div>
 				<div class="summary-area col-md-4">
@@ -70,5 +70,6 @@
 </div>
 
 <%= javascript_tag do %>
-	d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_report_infos",drawDetailReports);
+	//d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_report_infos",drawDetailReports);
+	d3.json("http://127.0.0.1:3000/testdata.json",drawDetailReports);
 <% end %>
