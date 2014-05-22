@@ -11,20 +11,13 @@
 
 			<div class="detail-report row">
 				<div class="event-screenshot col-md-8">
-					<p>Event Path and Screenshot</p>
-					<div class="event-screenshot-inner">
-						<!-- LOOP -->
-						<div class="event-screenshot-each">
-							<img src="">
-							<div class="event-each"></div>
-						</div>
-						<!-- END LOOP -->
+					<span class="page-subtitle">Event Path</span>
+					<div class="event-screenshot-wrapper">
+						<div id="event-screenshot-inner"></div>
 					</div>
-					<%= javascript_tag do %>
-						$('.event-screenshot-inner').css('width',)
-					<% end %>
 				</div>
 				<div class="summary-area col-md-4">
+					<span class="page-subtitle">Report Overview</span>
 					<div class="row">
 						<div class="col-md-4">
 							<p class="summary-key">Scenario Name</p>
@@ -70,5 +63,6 @@
 </div>
 
 <%= javascript_tag do %>
-	d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_report_infos",drawDetailReports);
+	//d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_report_infos",drawDetailReports);
+	d3.json("http://127.0.0.1:3000/testdata.json",drawDetailReports);
 <% end %>

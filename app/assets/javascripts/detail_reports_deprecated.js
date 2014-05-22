@@ -1,4 +1,5 @@
 
+/*
 function drawDetailReports(data) {
 
 	var event_graph_resize;
@@ -621,3 +622,4 @@ function divMove (div, direction) {
 		to_move.next().after(to_move);
 	}
 }
+*/

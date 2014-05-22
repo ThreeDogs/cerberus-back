@@ -121,23 +121,23 @@
 [
 {
 "id": 5,
-"usage": null,
-"client_timestamp": null
+"usage": 10,
+"client_timestamp": 1400136668625
 },
 {
 "id": 6,
-"usage": null,
-"client_timestamp": null
+"usage": 20,
+"client_timestamp": 1400136663208
 },
 {
 "id": 7,
-"usage": null,
-"client_timestamp": null
+"usage": 30,
+"client_timestamp": 1400136657902
 },
 {
 "id": 8,
-"usage": null,
-"client_timestamp": null
+"usage": 40,
+"client_timestamp": 1400136652515
 }
 ]
 }
