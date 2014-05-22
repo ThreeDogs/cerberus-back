@@ -34,7 +34,12 @@ function drawDetailReports (data) {
 			.append("div").attr("class","event-screenshot-each");
 
 		each_div.append("img").attr("src",function (d) {return d.src});
-		each_div.append("div").attr("class","event-each").text(function (d) {return d.action_type});
+		each_div.append("div").attr("class","view-each").text(function (d) {
+			return d.view})
+		each_div.append("div").attr("class","event-each").text(function (d) {
+			return d.action_type+"("+d.param+")"});
+		each_div.append("div").attr("class","sleep-each").text(function (d) {
+			return d.sleep+"ms"})
 
 	}
 
