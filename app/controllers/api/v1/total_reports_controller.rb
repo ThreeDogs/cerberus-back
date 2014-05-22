@@ -17,9 +17,24 @@ class Api::V1::TotalReportsController < ApplicationController
 	end
 
 	def test_errors
-		# Rank OS Version search
 		@total_report = TotalReport.find(params[:id])
 		@crashes = @total_report.crashes.search(params[:error_ranks],params[:os_versions])
 		render 'total_reports/api/test_errors'
+	end
+
+	def detail_report_list
+		@total_report = TotalReport.find(params[:id])
+		@detail_reports = @total_report.detail_reports
+		render 'total_reports/api/detail_report_list'
+	end
+
+	def device_report_list
+		@total_report = TotalReport.find(params[:id])
+		@devices = @total_report.devices
+		render 'total_reports/api/device_report_list'
+	end
+
+	def test_report_list
+		
 	end
 end

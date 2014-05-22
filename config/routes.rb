@@ -16,6 +16,9 @@ CerberusBack::Application.routes.draw do
           get 'device_failure_detail'
           get 'test_errors'
           get 'test_rank_rate'
+          get 'detail_report_list'
+          get 'device_report_list'
+          get 'test_report_list'
         end
       end
 
