@@ -73,10 +73,13 @@
 				<div class="band-chart-legend">
 				</div>
 			</div>
+			<%= link_to "More Tests", "#" %>
 			<!-- END TEST RESULT SUMMARY -->
 
 			<span class="page-subtitle">Test Errors</span>
+
 			<div class="test-errors-list">
+				<%= link_to "More Errors", total_report_crashes_path(@total_report) %>
 				<table class="table">
 					<thead>
 						<tr>

@@ -14,6 +14,8 @@ CerberusBack::Application.routes.draw do
         member do
           get 'test_progress'
           get 'device_failure_detail'
+          get 'test_errors'
+          get 'test_rank_rate'
         end
       end
 
@@ -42,7 +44,7 @@ CerberusBack::Application.routes.draw do
   end
 
   resources :total_reports, only: [] do
-    resources :crashes, only: [:show]
+    resources :crashes, only: [:show, :index]
     resources :detail_reports
   end
 

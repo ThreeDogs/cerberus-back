@@ -15,6 +15,7 @@
 require 'net/http'
 
 class TotalReport < ActiveRecord::Base
+  include AttributesReturn
   # after_create :start_test
   # after_create :create_scenarioship
   # after_create :create_deviceship
@@ -34,8 +35,8 @@ class TotalReport < ActiveRecord::Base
 
   has_many :devices
 
-  def app_version
-    detail_reports.first.app_version
+  def app_version   
+    detail_reports.first.app_version unless detail_reports.empty?
   end
 
   def apk_name

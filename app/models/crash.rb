@@ -11,6 +11,7 @@
 #
 
 class Crash < ActiveRecord::Base
+	include AttributesReturn
 	belongs_to :total_report
 	has_many :detail_reports
 
@@ -23,34 +24,31 @@ class Crash < ActiveRecord::Base
 		detail_reports.first.rank
 	end
 
-	def test_rank_rate
-		attributes_return_rate("rank")
-	end
-
-	def os_version_rate
-		attributes_return_rate("os_version")
-	end
-
-	def device_rate
-		attributes_return_rate("device_name")
-	end
-
-	def country_rate
-		attributes_return_rate("device_country")
-	end
-
-	private
-
-	def attributes_return_rate(attribute)
-		detail_report_attributes = detail_reports.collect{|d| d.send(attribute)}
-		result = {}
-		detail_report_attributes.each do |attribute|
-			if result["#{attribute}"]
-				result["#{attribute}"] = result["#{attribute}"] + 1
-			else
-				result["#{attribute}"] = 1
-			end
+	# ex) ?error_ranks[]=A&error_ranks[]=B&error_ranks[]=C&error_ranks[]=D
+	# ex)  &os_versions[]
+	def self.search(error_ranks=nil, os_versions=nil)
+		if error_ranks && os_versions
+			select {|c| is_error_ranks?(c.error_rank, error_ranks) && include_os_versions?(c, os_versions)}
+		elsif error_ranks
+			select {|c| is_error_ranks?(c.error_rank, error_ranks)}
+		elsif os_versions
+			select {|c| include_os_versions?(c, os_versions)}
+		else
+			all
 		end
-		result
+	end
+
+	def self.include_os_versions?(crash, os_versions)
+		os_versions.each do |os_version|
+			return true if crash.os_version_rate.keys.include?(os_version)
+		end
+		false
+	end
+
+	def self.is_error_ranks?(rank, error_ranks)
+		error_ranks.length.times do |i|
+			return true if rank == error_ranks[i]
+		end
+		false
 	end
 end

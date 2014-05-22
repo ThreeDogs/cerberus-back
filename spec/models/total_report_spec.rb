@@ -26,7 +26,7 @@ describe TotalReport do
 		@apk.apk = @uploader
 		@apk.save!
 
-		@total_report = @apk.total_reports.create!(app_version: "1.0", status: true)
+		@total_report = @apk.total_reports.create!(status: true)
 
 		10.times do 
 			@total_report.devices.create!(brand: "samsung", cpu:"123-core", model:"Galaxy",os_version:"4.2", country: "KR",device_key: "p1po2")
