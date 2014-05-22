@@ -16,9 +16,8 @@ require 'net/http'
 
 class TotalReport < ActiveRecord::Base
   include AttributesReturn
-  # after_create :start_test
-  # after_create :create_scenarioship
-  # after_create :create_deviceship
+  after_create :start_test
+  after_create :create_deviceship
 
 	default_scope { order('created_at DESC') } 
 	scope :complete_total_reports, -> {where(status: true)}
@@ -119,14 +118,12 @@ class TotalReport < ActiveRecord::Base
     res
   end
 
-  private
-
   def start_test(test_bed_url = TEST_BED_URL)
     apk_url = self.apk.test_bed_apk
     total_report_id = self.id
     test_scenario_motion_events = []
-    # test_scenarios = project.test_scenarios
-    test_scenarios.each do |t|
+
+    self.test_scenarios.each do |t|
       test_scenario_motion_events << {"#{t.id}" => t.motion_events}
     end
 
@@ -141,20 +138,9 @@ class TotalReport < ActiveRecord::Base
     puts res.is_a?(Net::HTTPSuccess) ? "Success" : "Error"
   end
 
-  def create_scenarioship
-    scenarioships_builds = project.test_scenarios.collect do |test_scenario|
-      Scenarioship.new(test_scenario_id: test_scenario.id, total_report_id: self.id)
-    end
-
-    Scenarioship.import scenarioships_builds
-  end
-
   def create_deviceship
     device_list = JSON.parse(get_device_list)
-
-    devices = device_list.collect do |device| 
-      self.devices.build(device)
-    end
+    devices = device_list.collect { |device| self.devices.build(device) }
     Device.import devices
   end
 end

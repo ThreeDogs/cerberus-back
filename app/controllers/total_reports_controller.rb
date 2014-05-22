@@ -11,11 +11,12 @@ class TotalReportsController < ApplicationController
   # GET /total_reports/1
   # GET /total_reports/1.json
   def show
-    @project = set_project
-    @total_report = set_total_report
-    @crashes = @total_report.crashes
+    redirect_to total_report_detail_reports_path(@total_report)
+    # @project = set_project
+    # @total_report = set_total_report
+    # @crashes = @total_report.crashes
     # unless @total_report.status
-      # redirect_to total_report_detail_reports_path(@total_report)
+    
     # end
   end
 
@@ -46,7 +47,7 @@ class TotalReportsController < ApplicationController
         redirect_to total_report_detail_reports_path(@total_report)
       rescue Exception => e
         render "/projects/#{@project.id}/apks/#{@apk.id}"
-        raise ActiveRecord::Rollback         
+      raise ActiveRecord::Rollback
       end 
     end
   end
