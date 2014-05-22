@@ -25,7 +25,7 @@
 						</div>
 						<div class="col-md-4">
 							<p class="summary-key">Device Name</p>
-							<p class="summary-value"></p>
+							<p class="summary-value"><%= @detail_report.device_name %></p>
 						</div>
 						<div class="col-md-4">
 							<p class="summary-key">App Version</p>
@@ -35,15 +35,15 @@
 					<div class="row">
 						<div class="col-md-4">
 							<p class="summary-key">Date&Time</p>
-							<p class="summary-value"></p>
+							<p class="summary-value"><%= @detail_report.test_date %></p>
 						</div>
 						<div class="col-md-4">
 							<p class="summary-key">Status</p>
-							<p class="summary-value"></p>
+							<p class="summary-value"><%= @detail_report.get_status %></p>
 						</div>
 						<div class="col-md-4">
 							<p class="summary-key">Running Time</p>
-							<p class="summary-value"></p>
+							<p class="summary-value"><%= @detail_report.get_running_time %></p>
 						</div>
 					</div>
 					<div class="summary-block col-md-6">Memory Average : <%= @detail_report.memory_average %></div>

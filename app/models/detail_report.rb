@@ -43,6 +43,10 @@ class DetailReport < ActiveRecord::Base
     test_scenario.name
   end
 
+  def test_date
+    created_at.strftime("%y.%m.%d. %I:%M %p")
+  end
+
   def device_name
     device.model
   end
