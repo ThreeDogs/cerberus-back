@@ -8,70 +8,41 @@
 			<div class="page-title">
 				<img src="/assets/Result.png">Test Results
 			</div>
-			<!-- TODO: subline // Test Results > Full Report -->
+			<div class="below-page-title">Test Results > Full Report</div>
 
-			<!-- TEST INFORMATION -->
-			<div class="test_information">
-				<div class="test_app_icon">
-					<img src="/assets/todaybreaker.png">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="total-report-info">
+						<div class="app-version"></div>
+						<div class="test-time"></div>
+					</div>
+					<div class="result-summary">
+						<p>Test Result</p>
+					</div>
+
 				</div>
-				<div class="test_information_apk">
-					<span class="app_name">APP_NAME.APK</span>
-					<p>App version</p>
-					<span class="ver">1.0.0</span>
-				</div>
-				<div class="test_information_others">
-					<p>14.03.05 10:53AM</p>
-					<p>112 Test scenarios</p>
-					<p>10 Devices</p>
+
+				<div class="col-md-8">
+					<table>
+					</table>
 				</div>
 			</div>
-			<!-- END TEST INFORMATION -->
-			<!-- TEST RESULT SUMMARY -->
-			<div class="test-result-half">
-				<div class="band-chart-wrapper">
-					<div class="band-chart-2by2">
-						<div class='band-chart-segment'>
-							<div class='band-chart-label A'>A</div>
-							<div class='band-chart'>
-								<div class='band-chart-success A'>
-									<div class='band-chart-fail' style="width:20%"></div>
-								</div>
-							</div>
-						</div>
-						<div class='band-chart-segment'>
-							<div class='band-chart-label B'>B</div>
-							<div class='band-chart'>
-								<div class='band-chart-success B'>
-									<div class='band-chart-fail' style="width:20%"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="band-chart-2by2">
-						<div class='band-chart-segment'>
-							<div class='band-chart-label C'>C</div>
-							<div class='band-chart'>
-								<div class='band-chart-success C'>
-									<div class='band-chart-fail' style="width:20%"></div>
-								</div>
-							</div>
-						</div>
-						<div class='band-chart-segment'>
-							<div class='band-chart-label D'>D</div>
-							<div class='band-chart'>
-								<div class='band-chart-success D'>
-									<div class='band-chart-fail' style="width:20%"></div>
-								</div>
-							</div>
-						</div>
-					</div>
+
+			<span class="page-subtitle">Device Fail</span>
+			<div class="device-fail">
+				<div id="test_fail_bar_graph">
 				</div>
-				<div class="band-chart-legend">
+				<div id="test_fail_chart">
+					<div class="table_title">
+						<span id="table_title_rank" class="rank"></span>
+						<span id="table_title_device_name" class="device_name"></span>
+					</div>
+					<table id="detail_table" class="detail_table">
+						<!-- A PLACEHOLDER -->
+					</table>
 				</div>
 			</div>
-			<!-- END TEST RESULT SUMMARY -->
-
+			
 			<span class="page-subtitle">Test Errors</span>
 			<div class="test-errors-list">
 				<table class="table">
@@ -95,21 +66,6 @@
 					</tbody>
 				</table>
 				
-			</div>
-
-			<span class="page-subtitle">Device Fail</span>
-			<div id="test_fail_graph">
-				<div id="test_fail_bar_graph">
-				</div>
-				<div id="test_fail_chart">
-					<div class="table_title">
-						<span id="table_title_rank" class="rank"></span>
-						<span id="table_title_device_name" class="device_name"></span>
-					</div>
-					<table id="detail_table" class="detail_table">
-						<!-- A PLACEHOLDER -->
-					</table>
-				</div>
 			</div>
 
 			<span class="page-subtitle">Performance Average</span>

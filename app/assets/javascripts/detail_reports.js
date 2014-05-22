@@ -1,6 +1,13 @@
 
 function drawDetailReports (data) {
 
+	function drawEventScreenshot (data) {
+
+		var inner_div = d3.select("#event-screenshot-inner");
+		
+
+	}
+
 	function drawCPUChart (data) {
 		//client_timestamp, usage
 

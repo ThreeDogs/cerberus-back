@@ -92,7 +92,7 @@ function drawFailByDevice (data) {
 
 	function renewDetailTable (rank, device_name, error_array) {
 
-		d3.select("#table_title_rank").text(rank);
+		d3.select("#table_title_rank").text(rank).attr("class","rank "+rank);
 		d3.select("#table_title_device_name").text(device_name);
 
 		//TODO: hyperlink to specific report page

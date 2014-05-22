@@ -14,7 +14,7 @@
 		color: rgb(96,94,90);
 	}
 	#app-info-box{
-		font-size: 14px;
+		font-size: 12px;
 		height: 120px;
 		float: left;
 		padding: 10px 0 0 24px;
@@ -27,34 +27,25 @@
 		padding: 10px 0 0 0;
 		float: left;
 		.big_version {
-			font-size: 41px;
+			font-size: 31px;
 		}
 	}
 
 	.report-link{
 		height: 120px;
-		margin: 0px;
-		padding: 42px 0 0 20px;
-		float: left;
-		.link-button{
-			text-align: center;
+		width: 100%;
+		text-align: center;
+		padding-top: 30px;
+		.full-report {
+			display: inline-block;
+			background-image: url('/assets/fullreport.png');
 			width: 140px;
-			height: 36px;
-			border: 2px solid;
-			padding-top: 7px;
-			border-radius: 18px;
-			border-color: rgb(52,119,78);
-			background-color: rgb(219,238,225);
+			height: 35px;
+			background-size: 140px 35px;
+			background-repeat: no-repeat;
 		}
-		.link-button:hover{
-			text-align: center;
-			width: 140px;
-			height: 36px;
-			border: 2px solid;
-			padding-top: 7px;
-			border-radius: 18px;
-			border-color: rgb(52,119,78);
-			background-color: rgb(219,238,225);
+		.full-report:hover {
+			background-image: url('/assets/fullreport_click.png');
 		}
 	}
 
@@ -65,6 +56,7 @@
 	width: 25%;
 	height: 100%;
 	float: left;
+	padding-top: 20px;
 	.band-chart-label {
 		width: 24px;
 		height: 24px;
@@ -120,74 +112,7 @@
 }
 //** total_reports/show.html **//
 
-.test_information {
-	height: 110px;
-	background-color: #EFEEEE;
-	min-width: 500px;
-	width: 45%;
-	margin: 0 2.5%;
-	float: left;
-	.test_app_icon {
-		width: 100px;
-		height: 100%;
-		background-color: #EFEEEE;
-		float: left;
-		img {
-			width: 80px;
-			height: 80px;
-			margin-top: 15px;
-			margin-left: 20px;
-		}
-	}
 
-	.test_information_apk {
-		padding: 10px 20px;
-		background-color: #EFEEEE;
-		width: 160px;
-		height: 100%;
-		float: left;
-		.app_name {
-			font-size: 16px;
-			padding-bottom: 10px;
-			color: rgb(40,112,68);
-			display: block;
-		}
-		.ver {
-			font-size: 30px;
-		}
-	}
-	.test_information_others {
-		padding: 42px 10px 10px 10px;
-		background-color: #EFEEEE;
-		width: 200px;
-		height: 100%;
-		float: left;
-	}
-}
-
-.test-result-half {
-	height: 110px;
-	min-width: 500px;
-	width: 45%;
-	margin: 0 2.5%;
-	background-color: #EFEEEE;
-	float: left;
-	.band-chart-wrapper {
-		width: 80%;
-		float: left;
-		.band-chart-2by2 {
-			width: 100%;
-			.band-chart-segment {
-				width: 50%;
-			}
-		}
-	}
-
-	.band-chart-legend {
-		float: left;
-		width: 20%;
-	}
-}
 
 .avg-section {
 	padding: 20px;
@@ -219,4 +144,69 @@
 			float: left;
 		}
 	}
+}
+
+.device-fail {
+	width: 100%;
+	height: 300px;
+	#test_fail_bar_graph {
+		width: 60%;
+		height: 100%;
+		float: left;
+		.axis path{
+			stroke: #B4B4B4;
+		}
+		.axis {
+			font-size: 12px;
+			fill: #B0B0B0;
+			stroke-width: 1;
+			.tick > text {
+				fill: #777;
+			}
+		}
+	}
+	#test_fail_chart {
+		width: 40%;
+		height: 100%;
+		float: left;
+		.table_title {
+			text-align: center;
+			font-size:18px;
+			margin: 35px auto 15px auto;
+			.rank {
+				display: inline-block;
+				margin-right: 18px;
+			}
+			.device_name {
+				display: inline-block;
+				color: #287044;
+			}
+		}
+		table {
+			text-align: center;
+			font-size: 14px;
+			background-color: white;
+			padding: 5px;
+			margin: 0 auto;
+			color: #A7A7A7;
+			.table_head {
+				color: #287044;
+				background-color: #A9D8B9;
+				.name {
+					width: 160px;
+				}
+				.error {
+					width: 240px;
+				}
+			}
+			tr td {
+				border: solid 1px;
+				border-color: #A9D8B9;
+				padding: 5px;
+			}
+		}
+	}
+}
+
+.device-column {
 }
