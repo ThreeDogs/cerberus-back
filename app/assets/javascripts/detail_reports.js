@@ -44,6 +44,12 @@ function drawDetailReports (data) {
 			.attr("width",function (d) {return (per_screenshot.width + per_screenshot.margin_rl) * d.events.length})
 			.attr("height",per_screenshot.height+per_screenshot.margin_tb);
 
+		activity_div.append("div").attr("class","activity-name")
+			.text(function (d) {
+				var name_string = d.name.split('.');
+				return name_string[name_string.length-1]
+			}).attr("title",function (d) {return d.name});
+
 		var each_div = activity_div.selectAll(".event-screenshot-each").data(function (d) {return d.events}).enter()
 			.append("div").attr("class","event-screenshot-each");
 
@@ -67,13 +73,15 @@ function drawDetailReports (data) {
 					.attr('width',width).attr('height',height);
 
 		var x_extent = d3.extent(data, function (d) { return d.client_timestamp });
-		var y_extent = [0,100];
+		var y_extent_max = d3.max(data, function (d) { return d.usage * 1.1});
+		if (y_extent_max>100) {y_extent_max = 100};
+		var y_extent = [0, y_extent_max];
 
 		var x_scale = d3.scale.linear().domain(x_extent).range([margin.left,width-margin.right]);
 		var y_scale = d3.scale.linear().domain(y_extent).range([height-margin.bottom,margin.top]);
 
-		var x_axis = d3.svg.axis().scale(x_scale).orient('bottom');
-		var y_axis = d3.svg.axis().scale(y_scale).orient('left');
+		var x_axis = d3.svg.axis().scale(x_scale).orient('bottom').outerTickSize([0]);
+		var y_axis = d3.svg.axis().scale(y_scale).orient('left').outerTickSize([0]);
 	
 		var area = d3.svg.area()
 						.x(function (d) {return x_scale(d.client_timestamp)})
@@ -93,26 +101,26 @@ function drawDetailReports (data) {
 	}
 
 	function drawMemChart (data) {
-		//client_timestamp, dalvik_heap_alloc/dalvik_heap_size
+		//client_timestamp, dalvik_heap_alloc
 		var width = d3.select('#mem-chart').style('width').split("px")[0];
 		var height = d3.select('#mem-chart').style('height').split("px")[0];
-		var margin = {top:10, right: 10, bottom: 30, left: 30};
+		var margin = {top:10, right: 10, bottom: 30, left: 60};
 		var svg = d3.select('#mem-chart').append('svg')
 					.attr('width',width).attr('height',height);
 
 		var x_extent = d3.extent(data, function (d) { return d.client_timestamp });
-		var y_extent = [0,100];
+		var y_extent = [0, d3.max(data, function (d) { return d.dalvik_heap_alloc*1.1})];
 
 		var x_scale = d3.scale.linear().domain(x_extent).range([margin.left,width-margin.right]);
 		var y_scale = d3.scale.linear().domain(y_extent).range([height-margin.bottom,margin.top]);
 
-		var x_axis = d3.svg.axis().scale(x_scale).orient('bottom');
-		var y_axis = d3.svg.axis().scale(y_scale).orient('left');
+		var x_axis = d3.svg.axis().scale(x_scale).orient('bottom').outerTickSize([0]);
+		var y_axis = d3.svg.axis().scale(y_scale).orient('left').outerTickSize([0]);
 	
 		var area = d3.svg.area()
 						.x(function (d) {return x_scale(d.client_timestamp)})
 						.y0(y_scale(0))
-						.y1(function (d) {return y_scale((d.dalvik_heap_alloc/d.dalvik_heap_size)*100)});
+						.y1(function (d) {return y_scale(d.dalvik_heap_alloc)});
 
 		svg.append("path").attr("class","mem-area").attr("d",area(data));
 
