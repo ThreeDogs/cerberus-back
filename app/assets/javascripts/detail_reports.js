@@ -4,7 +4,37 @@ function drawDetailReports (data) {
 	function drawEventScreenshot (data) {
 
 		var inner_div = d3.select("#event-screenshot-inner");
-		
+		var per_screenshot = {width: 130, height: 200, margin_rl: 10, margin_tb: 10};
+
+		inner_div.style("width",(per_screenshot.width+20)*data.length+"px");
+
+		//process data to group activities
+		var activities = [];
+		for (var i in data) {
+			var flag = true;
+			var currentActivity = activities[activities.length-1];
+			if ( (currentActivity!=null) && (data[i].activity_class == currentActivity.name) ){
+				flag = false;
+				currentActivity.events.push(data[i]);
+				currentActivity.end_time=data[i].client_timestamp;
+			}
+			if (flag) activities.push({
+				"name":data[i].activity_class,
+				"events": [data[i]],
+				"start_time":data[i].client_timestamp,
+				"end_time":data[i].client_timestamp,
+			});
+		}
+
+		var activity_div = inner_div.selectAll(".activity").data(activities).enter().append("div").attr("class","activity")
+			.attr("width",function (d) {return (per_screenshot.width + per_screenshot.margin_rl) * d.events.length})
+			.attr("height",per_screenshot.height+per_screenshot.margin_tb);
+
+		var each_div = activity_div.selectAll(".event-screenshot-each").data(function (d) {return d.events}).enter()
+			.append("div").attr("class","event-screenshot-each");
+
+		each_div.append("img").attr("src",function (d) {return d.src});
+		each_div.append("div").attr("class","event-each").text(function (d) {return d.action_type});
 
 	}
 
@@ -98,6 +128,7 @@ function drawDetailReports (data) {
 		return data;
 	}
 
+	drawEventScreenshot(dataProcess(data.motion_event_infos));
 	drawCPUChart(dataProcess(data.cpu_infos));
 	drawMemChart(dataProcess(data.memory_infos));
 }

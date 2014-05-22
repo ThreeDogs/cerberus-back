@@ -37,19 +37,18 @@
 .detail-report {
 
 	width: 100%;
-	font-size: 11pt;
-	color: #605E5A;
+	font-size: 12px;
+	margin-top: 20px;
 
-	.event-screenshot {
-		height: 320px;
-
-		.event-screenshot-inner {
-			height: 100%;
-		}
-
+	.activity {
+		display: inline-block;
+		float: left;
+		background-color: #A9D8B9;
+		margin: 0 5px;
 		.event-screenshot-each {
-			width: 140px;
-			padding: 10px;
+			display: inline-block;
+			width: 130px;
+			padding: 5px;
 			margin: 0 5px;
 			background-color: #A9D8B9;
 			img {
@@ -68,27 +67,39 @@
 		.event-each:hover {
 			background-image: url('/assets/event_click.png');
 		}
+	}
 
+	.event-screenshot {
+		height: 320px;
+		overflow-x: scroll;
+		overflow-y: hidden;
+
+		.event-screenshot-inner {
+			display: inline-block;
+			height: 230px;
+		}
 	}
 
 	.summary-area {
 		height: 320px;
-		background-color: #EFEEEE;
 	}
 
 	.summary-key {
 		padding: 5px;
 		color: #5DBE88;
+		background-color: #EFEEEE;
 	}
 	
 	.summary-value {
 		padding: 5px;
+		background-color: #EFEEEE;
 	}
 
 	.summary-block {
 		height: 40px;
 		padding: 2px 5px;
 		text-align: center;
+		background-color: #EFEEEE;
 	}
 }
 
