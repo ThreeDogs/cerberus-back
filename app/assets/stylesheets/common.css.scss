@@ -52,3 +52,29 @@
 .D {
 	border-color: rgb(255,186,80);
 }
+
+.filter {
+	width: 100%;
+	background-color: #EFEEEE;
+	padding: 5px;
+	.filter-field {
+		width: 100%;
+		height: 25px;
+	}
+	.filter-key {
+		width: 100px;
+		float: left;
+		height: 25px;
+		background-color: #EFEEEE;
+	}
+	.filter-value {
+		float: left;
+		height: 25px;
+		background-color: #EFEEEE;
+	}
+	.filter-value-each {
+		height: 25px;
+		background-color: #EFEEEE;
+		padding-right: 30px;
+	}
+}

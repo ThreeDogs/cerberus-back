@@ -1,3 +1,17 @@
+function detailReportList (data) {
+
+	var table = d3.select("#test-result-list");
+	var tr = table.selectAll("tr").data(data).enter().append("tr");
+
+	tr.append("td").text(function (d) {return d.get_status});
+	tr.append("td").text(function (d) {return d.test_scenario_name});
+	tr.append("td").text(function (d) {return d.device_name});
+	tr.append("td").text(function (d) {return d.os_version});
+	tr.append("td").text(function (d) {return d.get_running_time});
+	tr.append("td").append("a").attr("href",function (d) {return d.link}).text("Show");
+
+}
+
 
 function drawDetailReports (data) {
 
