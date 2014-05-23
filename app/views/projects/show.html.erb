@@ -10,76 +10,67 @@
 			
 
 			<% if @recent_report %>
-			<span class="page-subtitle">Recent Test Overview</span>
-
-			<div id="overview-box">
-				<div class="col-md-2" id="app-info-box">
-					<p><%= @recent_report.apk_name %></p>
-					<p><%= @recent_report.test_date %></p>
-					<p><%= @recent_report.number_of_scenarios %> Test Scenarios</p>
-					<p><%= @recent_report.number_of_devices %> Devices</p>
-				</div>
-				<div class="col-md-2" id="app-version-box">
-					<p>App version</p>
-					<p class="big-version"><%= @recent_report.app_version %></p>
-				</div>
-				<div class="col-md-6" id="test-fail-box">
-					<div class='band-chart-segment'>
-						<div class='band-chart-label A'>A</div>
-						<div class='band-chart'>
-							<div class='band-chart-success A'>
-								<div class='band-chart-fail' style="width:20%"></div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="total-report-brief">
+						<div class="apk-name"><b><%= @recent_report.apk_name %></b></div>
+						<div class="brief-left">
+							<div class="app-version">
+								<p>App Version</p>
+								<p class="app-version-big"><%= @recent_report.app_version %></p>
 							</div>
 						</div>
-					</div>
-					<div class='band-chart-segment'>
-						<div class='band-chart-label B'>B</div>
-						<div class='band-chart'>
-							<div class='band-chart-success B'>
-								<div class='band-chart-fail' style="width:20%"></div>
-							</div>
+						<div class="brief-right">
+							<p><%= @recent_report.test_date %></p>
+							<p><%= @recent_report.number_of_scenarios %> Test scenarios</p>
+							<p><%= @recent_report.number_of_devices %> Devices</p>
 						</div>
-					</div>
-					<div class='band-chart-segment'>
-						<div class='band-chart-label C'>C</div>
-						<div class='band-chart'>
-							<div class='band-chart-success C'>
-								<div class='band-chart-fail' style="width:20%"></div>
-							</div>
-						</div>
-					</div>
-					<div class='band-chart-segment'>
-						<div class='band-chart-label D'>D</div>
-						<div class='band-chart'>
-							<div class='band-chart-success D'>
-								<div class='band-chart-fail' style="width:20%"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<%= javascript_tag do %>
-					band_chart_exception('.band-chart-segment', 4);
-					//if ( no fail ) {
-	                //  $('.A/B/C/D').find('.test_fail').css('visibility','hidden');
-	                //}
-				<% end %>
-				<div class="col-md-2 report-link">
-					<%= link_to project_total_report_path(@project, @recent_report)  do %>
+						<span class="more"><%= link_to project_total_report_path(@project, @recent_report) do %>
 						<div class="full-report"></div>
-					<% end %>
+					<% end %></span>
+					</div>
+					
+					<div class="total-report-test-result">
+						<p>Test Result</p>
+						<div id="band-graph"></div>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<span class="page-subtitle">Test Errors</span>
+						<p class="more"><u>More Errors</u></p>
+					<div class="test-error">
+						<table class="test-error-table">
+							<thead>
+								<tr>
+									<th>Rank</th>
+									<th>Error Count</th>
+									<th>Error Name</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 
-			<div id="test_fail_graph">
+			<span class="page-subtitle">Device Fail</span>
+			<div class="device-fail">
 				<div id="test_fail_bar_graph">
 				</div>
 				<div id="test_fail_chart">
 					<div class="table_title">
-						<span id="table_title_rank"></span>
+						<span id="table_title_rank" class="test_rank"></span>
 						<span id="table_title_device_name" class="device_name"></span>
 					</div>
+					<table id="detail_table" class="detail_table">
+						<!-- A PLACEHOLDER -->
+					</table>
 				</div>
 			</div>
+
+
 			<span class="page-subtitle">Project Trends</span>
 			<div id="project-trends" class="row">
 				<div id="test-results" class="trend-div col-md-12">
@@ -109,7 +100,6 @@
 </div>
 
 <script>
-  //requires data inserted as argument//
 
 var data = {
 	

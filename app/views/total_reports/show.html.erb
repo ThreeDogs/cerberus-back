@@ -13,11 +13,11 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="total-report-brief">
+						<div class="apk-name"><b><%= @total_report.apk_name %></b></div>
 						<div class="brief-left">
-							<div class="apk-name"><%= @total_report.apk_name %></div>
 							<div class="app-version">
 								<p>App Version</p>
-								<p class=""><%= @total_report.app_version %></p>
+								<p class="app-version-big"><%= @total_report.app_version %></p>
 							</div>
 						</div>
 						<div class="brief-right">
@@ -25,16 +25,39 @@
 							<p><%= @total_report.number_of_scenarios %> Test scenarios</p>
 							<p><%= @total_report.number_of_devices %> Devices</p>
 						</div>
+						<span class="more"><u>All Tests More</u></span>
 					</div>
-					<p>All Tests More</p>
+					
 					<div class="total-report-test-result">
 						<p>Test Result</p>
 						<div id="band-graph"></div>
 					</div>
 				</div>
 				<div class="col-md-8">
-					<table>
-					</table>
+					<span class="page-subtitle">Test Errors</span>
+					<p class="more"><u><%= link_to "More Errors", total_report_crashes_path(@total_report) %></u></p>
+					<div class="test-error">
+						<table class="test-error-table">
+							<thead>
+								<tr>
+									<th>Rank</th>
+									<th>Error Count</th>
+									<th>Error Name</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<% @crashes.each do |crash| %>
+								<tr>
+									<td><%= crash.error_rank %></td>
+									<td><%= crash.error_count %></td>
+									<td><%= crash.error_name %></td>
+									<td><%= link_to "Show", total_report_crash_path(@total_report, crash), class: "btn btn-primary" %></td>
+								</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 
@@ -51,33 +74,6 @@
 						<!-- A PLACEHOLDER -->
 					</table>
 				</div>
-			</div>
-			
-			<span class="page-subtitle">Test Errors</span>
-
-			<div class="test-errors-list">
-				<%= link_to "More Errors", total_report_crashes_path(@total_report) %>
-				<table class="table">
-					<thead>
-						<tr>
-							<td>Rank</td>
-							<td>Error Count</td>
-							<td>Error Name</td>
-							<td></td>
-						</tr>
-					</thead>
-					<tbody>
-						<% @crashes.each do |crash| %>
-						<tr>
-							<td><%= crash.error_rank %></td>
-							<td><%= crash.error_count %></td>
-							<td><%= crash.error_name %></td>
-							<td><%= link_to "Show", total_report_crash_path(@total_report, crash), class: "btn btn-primary" %></td>
-						</tr>
-						<% end %>
-					</tbody>
-				</table>
-				
 			</div>
 
 			<span class="page-subtitle">Performance Average</span>

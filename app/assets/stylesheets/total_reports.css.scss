@@ -113,17 +113,73 @@
 //** total_reports/show.html **//
 
 .total-report-brief {
-	padding: 0 10px 0 0;
+	width: 100%;
+	padding: 10px;
 	margin: 0;
 	font-size: 12px;
 	color: rgb(96,94,90);
-	
+	display: inline-block;
+	background-color: rgb(239,238,238);
+	.apk-name {
+		width: 100%;
+		color: #287044;
+		font-size: 15px;
+		padding: 0 0 15px 10px;
+	}
 	.brief-left {
+		float: left;
 		width: 35%;
+		background-color: rgb(239,238,238);
+		.app-version-big {
+			font-size: 20px;
+		}
 	}
 
 	.brief-right {
+		float: left;
 		width: 65%;
+		background-color: rgb(239,238,238);
+	}
+}
+
+.total-report-test-result {
+	width: 100%;
+	padding: 0 10px 0 0;
+	margin: 10px;
+	display: inline-block;
+	#band-graph {
+
+	}
+}
+
+.test-error {
+	background-color: #EFEEEE;
+}
+
+.test-error-table {
+	width: 100%;
+	text-align: center;
+	font-size: 13px;
+	background-color: white;
+	margin: 15px;
+	color: #A7A7A7;
+	thead {
+		color: #287044;
+		background-color: #A9D8B9;
+		.name {
+			width: 160px;
+		}
+		.error {
+			width: 240px;
+		}
+	}
+	th {
+		padding: 3px 5px;
+	}
+	tr td {
+		border: solid 1px;
+		border-color: #A9D8B9;
+		padding: 5px;
 	}
 }
 
@@ -137,11 +193,11 @@
 	.avg-category {
 		text-align: center;
 		padding: 8px 0;
-		font-size: 18px;
+		font-size: 12px;
 		background-color: rgb(169,216,185);
 	}
 	.max_min {
-		font-size: 14px;
+		font-size: 12px;
 		background-color: white;
 		padding-bottom: 20px;
 		.max_min_left {
