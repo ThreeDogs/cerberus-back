@@ -11,10 +11,10 @@ class TotalReportsController < ApplicationController
   # GET /total_reports/1
   # GET /total_reports/1.json
   def show
-    redirect_to total_report_detail_reports_path(@total_report)
-    # @project = set_project
-    # @total_report = set_total_report
-    # @crashes = @total_report.crashes
+    # redirect_to total_report_detail_reports_path(@total_report)
+    @project = set_project
+    @total_report = set_total_report
+    @crashes = @total_report.crashes
     # unless @total_report.status
     
     # end

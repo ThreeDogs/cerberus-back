@@ -21,7 +21,46 @@
         <% end %>
       <% end %>
 
-      <table class="test-result-list">
+      <div class="filter">
+        <div class="filter-field">
+          <div class="filter-key">Rank</div>
+          <div class="filter-value">
+            <span class="filter-value-each"><input type="checkbox" name="rank" value="all">All</span>
+            <span class="filter-value-each"><input type="checkbox" name="rank" value="a">A</span>
+            <span class="filter-value-each"><input type="checkbox" name="rank" value="b">B</span>
+            <span class="filter-value-each"><input type="checkbox" name="rank" value="c">C</span>
+            <span class="filter-value-each"><input type="checkbox" name="rank" value="d">D</span>
+          </div>
+        </div>
+        <div class="filter-field">
+          <div class="filter-key">Status</div>
+          <div class="filter-value">
+          <span class="filter-value-each"><input type="checkbox" name="status" value="all">All</span>
+            <span class="filter-value-each"><input type="checkbox" name="status" value="fail">Fail</span>
+            <span class="filter-value-each"><input type="checkbox" name="status" value="warning">Warning</span>
+            <span class="filter-value-each"><input type="checkbox" name="status" value="pass">Pass</span>
+          </div>
+        </div>
+        <div class="filter-field">
+          <div class="filter-key">OS Version</div>
+          <div class="filter-value">
+            <span class="filter-value-each"><input type="checkbox" name="os_version" value="all">All</span>
+            <span class="filter-value-each"><input type="checkbox" name="os_version" value="pass">Pass</span>
+            <span class="filter-value-each"><input type="checkbox" name="os_version" value="pass">Pass</span>
+            <span class="filter-value-each"><input type="checkbox" name="os_version" value="pass">Pass</span>
+          </div>
+        </div>
+        <div class="filter-field">
+          <div class="filter-key">Device</div>
+          <div class="filter-value">blah4</div>
+        </div>
+        <div class="filter-field">
+          <div class="filter-key">Test Name</div>
+          <div class="filter-value">blah5</div>
+        </div>
+      </div>
+
+      <table id="test-result-list">
         <tr>
           <th>Rank</th>
           <th>Status</th>
@@ -31,7 +70,7 @@
           <th>Running Time</th>
           <th></th>
         </tr>
-        <% @detail_reports.each do |detail_report| %>
+        <!-- <% @detail_reports.each do |detail_report| %>
           <tr>
             <td><div class="rank <%= detail_report.rank %>"><%= detail_report.rank %></div></td>
             <td><%= detail_report.get_status %></td>
@@ -41,9 +80,415 @@
             <td><%= detail_report.get_running_time %></td>
             <td><%= link_to "Show", total_report_detail_report_path(@total_report, detail_report) %></td>
           </tr>
-        <% end  %>
+        <% end  %> -->
       </table>
     </div>
   </div>  
 </div>
 
+
+<script>
+var temporary = [
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Login Test",
+        "device_name": "Galaxy",
+        "os_version": "4.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/1"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Login Test",
+        "device_name": "Galaxy",
+        "os_version": "4.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/2"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Login Test",
+        "device_name": "Galaxy",
+        "os_version": "4.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/3"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Post Test",
+        "device_name": "Galaxy",
+        "os_version": "4.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/4"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Post Test",
+        "device_name": "Galaxy",
+        "os_version": "4.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/5"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Post Test",
+        "device_name": "Galaxy",
+        "os_version": "4.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/6"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "Galaxy",
+        "os_version": "4.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/7"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "Galaxy",
+        "os_version": "4.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/8"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "Galaxy",
+        "os_version": "4.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/9"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "Galaxy",
+        "os_version": "4.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/10"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Login Test",
+        "device_name": "G2",
+        "os_version": "4.4",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/11"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Login Test",
+        "device_name": "G2",
+        "os_version": "4.4",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/12"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Login Test",
+        "device_name": "G2",
+        "os_version": "4.4",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/13"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Post Test",
+        "device_name": "G2",
+        "os_version": "4.4",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/14"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Post Test",
+        "device_name": "G2",
+        "os_version": "4.4",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/15"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Post Test",
+        "device_name": "G2",
+        "os_version": "4.4",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/16"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "G2",
+        "os_version": "4.4",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/17"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "G2",
+        "os_version": "4.4",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/18"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "G2",
+        "os_version": "4.4",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/19"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "G2",
+        "os_version": "4.4",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/20"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Login Test",
+        "device_name": "Nokia",
+        "os_version": "4.0",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/21"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Login Test",
+        "device_name": "Nokia",
+        "os_version": "4.0",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/22"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Login Test",
+        "device_name": "Nokia",
+        "os_version": "4.0",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/23"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Post Test",
+        "device_name": "Nokia",
+        "os_version": "4.0",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/24"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Post Test",
+        "device_name": "Nokia",
+        "os_version": "4.0",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/25"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Post Test",
+        "device_name": "Nokia",
+        "os_version": "4.0",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/26"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "Nokia",
+        "os_version": "4.0",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/27"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "Nokia",
+        "os_version": "4.0",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/28"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "Nokia",
+        "os_version": "4.0",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/29"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "Nokia",
+        "os_version": "4.0",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/30"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Login Test",
+        "device_name": "XaomiXXX",
+        "os_version": "4.1",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/31"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Login Test",
+        "device_name": "XaomiXXX",
+        "os_version": "4.1",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/32"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Login Test",
+        "device_name": "XaomiXXX",
+        "os_version": "4.1",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/33"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Post Test",
+        "device_name": "XaomiXXX",
+        "os_version": "4.1",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/34"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Post Test",
+        "device_name": "XaomiXXX",
+        "os_version": "4.1",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/35"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Post Test",
+        "device_name": "XaomiXXX",
+        "os_version": "4.1",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/36"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "XaomiXXX",
+        "os_version": "4.1",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/37"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "XaomiXXX",
+        "os_version": "4.1",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/38"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "XaomiXXX",
+        "os_version": "4.1",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/39"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "XaomiXXX",
+        "os_version": "4.1",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/40"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Login Test",
+        "device_name": "GogolPhone",
+        "os_version": "2.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/41"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Login Test",
+        "device_name": "GogolPhone",
+        "os_version": "2.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/42"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Login Test",
+        "device_name": "GogolPhone",
+        "os_version": "2.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/43"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Post Test",
+        "device_name": "GogolPhone",
+        "os_version": "2.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/44"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Post Test",
+        "device_name": "GogolPhone",
+        "os_version": "2.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/45"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "Post Test",
+        "device_name": "GogolPhone",
+        "os_version": "2.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/46"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "GogolPhone",
+        "os_version": "2.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/47"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "GogolPhone",
+        "os_version": "2.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/48"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "GogolPhone",
+        "os_version": "2.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/49"
+    },
+    {
+        "get_status": "Fail",
+        "test_scenario_name": "TestScenario 2014-05-21T21:08:35+09:00",
+        "device_name": "GogolPhone",
+        "os_version": "2.3",
+        "get_running_time": "1200.0s",
+        "link": "/total_reports/1/detail_reports/50"
+    }
+]
+detailReportList(temporary);
+</script>

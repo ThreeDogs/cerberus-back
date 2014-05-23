@@ -5,27 +5,30 @@
 		<%= render 'shared/side_bar' %>
 		
 		<div class="col-md-12 contents">
-			<div class="test-scenario-head">
-				<img src="/assets/scenario_sidebar.png">Test Scenarios
+			<div class="page-title">
+				<img src="/assets/scenario.png">Test Scenarios
 			</div>
 
-			<div id="scenario_info_detail" >
-				<div class="scenario_info_title">
-					<div class="rank"><%= @test_scenario.get_rank %></div>
-					<div class="test_name"><%= @test_scenario.name %></div>
-					<div class="edit_button"><%= link_to "Edit", "#", data: {toggle: "modal", target: "#edit"},class: "btn btn-info" %></div>
+			<div class="scenario-info" >
+				<div class="scenario-info-title">
+					<span class="scenario-rank"><%= @test_scenario.get_rank %></span>
+					<span class="scenario-name"><%= @test_scenario.name %></span>
+					<!--<%= link_to "Edit", "#", data: {toggle: "modal", target: "#edit"} %>-->
+					<div class="edit-button"></div>
 				</div>
 				<div class="detail_content"><%= @test_scenario.description %></div>
 				<div class="recently_tested">recently tested on: <%= @test_scenario.recent_test_date %></div>
 			</div>
 
-			<span class="dashboard_sub">Event Path</span>
-			<div id="scenario_event_path">
-				<div id="scenario_event_chart">
+			<span class="page-subtitle">Event Path</span>
+			<div class="scenario-event-wrapper">
+				<div id="scenario_event_inner">
 				</div>
 			</div>
+
+			<div class="edit-button"></div>
 			<%= nested_form_for([@project, @test_scenario]) do |f| %>
-			  <table class="table">
+			  <table class="motion-events-table">
 			  	<tr>
 			  		<th>Num</th>
 			  		<th>Activity</th>

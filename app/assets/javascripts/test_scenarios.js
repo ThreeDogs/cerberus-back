@@ -1,81 +1,47 @@
-function drawEventFlow(data) {
+function drawEventFlow (data) {
 
-	d3.selection.prototype.moveToFront = function() {
-		return this.each(function(){this.parentNode.appendChild(this);});
-	};
+	var inner_div = d3.select("#scenario-event-inner");
+	var per_screenshot = {width: 130, height: 200, margin_rl: 10, margin_tb: 10};
 
-	var unit_length = 120;
-	var margin = 10;
-	var width = (data.motion_reports.length + 1) * unit_length + margin * 2;
+	inner_div.style("width",(per_screenshot.width+20)*data.length+"px");
 
-	var event_flow_svg = d3.select("#scenario_event_chart")
-							.append("svg")
-							.attr("width",width)
-							.attr("height",60);
-
-	var x_domain = [0, data.motion_reports.length+1];
-	var x_range = [margin, width - margin]
-	var x_axis = d3.scale.linear().domain(x_domain).range(x_range);
-
-	var event_flow_g = event_flow_svg.selectAll("g event_flow_rect")
-							.data(data.motion_reports).enter().append("g");
-
-	event_flow_g.attr("transform", function (d) { return "translate("+x_axis(d.id)+",10)"});
-
+	//process data to group activities
 	var activities = [];
-
-	event_flow_g.each(function (d,i) {
+	for (var i in data) {
 		var flag = true;
 		var currentActivity = activities[activities.length-1];
-		if (currentActivity!=null && d.activity_class == currentActivity.name){
+		if ( (currentActivity!=null) && (data[i].activity_class == currentActivity.name) ){
 			flag = false;
-			currentActivity.end_time=d.time_stamp;
-			currentActivity.end_num=d.id;
+			currentActivity.events.push(data[i]);
+			currentActivity.end_time=data[i].client_timestamp;
 		}
 		if (flag) activities.push({
-			"name":d.activity_class,
-			"start_time":d.time_stamp,
-			"start_num":d.id,
-			"end_time":d.time_stamp,
-			"end_num":d.id
+			"name":data[i].activity_class,
+			"events": [data[i]],
+			"start_time":data[i].client_timestamp,
+			"end_time":data[i].client_timestamp,
 		});
-	})
+	}
 
-	var event_flow_act = event_flow_svg.selectAll("activity_box")
-							.data(activities).enter()
-							.append("rect").attr("class","activity_box")
-							.attr("x",function (d) {return x_axis(d.start_num)-5})
-							.attr("y",5)
-							.attr("width",function (d) {return x_axis(d.end_num-d.start_num)+105})
-							.attr("height",50)
-							.attr("stroke","none")
-							.attr("fill","#A9D8B9");
+	var activity_div = inner_div.selectAll(".activity").data(activities).enter().append("div").attr("class","activity")
+		.attr("width",function (d) {return (per_screenshot.width + per_screenshot.margin_rl) * d.events.length})
+		.attr("height",per_screenshot.height+per_screenshot.margin_tb);
 
-	var event_flow_rect = event_flow_g.append("rect").attr("class","event_flow_rect")
-							.attr("width", unit_length-20).attr("height",40)
-							.attr("stroke","none")
-							.attr("fill","#DBEEE1");
+	activity_div.append("div").attr("class","activity-name")
+		.text(function (d) {
+			var name_string = d.name.split('.');
+			return name_string[name_string.length-1]
+		}).attr("title",function (d) {return d.name});
 
-	event_flow_rect.moveToFront();
+	var each_div = activity_div.selectAll(".event-screenshot-each").data(function (d) {return d.events}).enter()
+		.append("div").attr("class","event-screenshot-each");
 
-	var event_flow_text = event_flow_g.append("text").attr("class","event_flow_text")
-							.attr("dx",10)
-							.attr("dy",25)
-							.text(function (d) {return d.action_type});
-
-	event_flow_svg.append("marker").attr("id","circle_head")
-						.attr("viewBox","0 0 6 6")
-						.attr("refX",3).attr("refY",3)
-						.attr("markerWidth",6).attr("markerHeight",6)
-						.append("circle").attr("r",1.5).attr("cx",3).attr("cy",3)
-						.attr("fill","#5DBE88");
-
-	var event_flow_arrow = event_flow_g.append("line").attr("class","event_flow_arrow")
-							.attr("x1",unit_length-20).attr("y1",20)
-							.attr("x2",unit_length).attr("y2",20)
-							.style("stroke","#5DBE88")
-							.attr("stroke-width",3)
-							.attr("marker-start","url(#circle_head)")
-							.attr("marker-end","url(#circle_head)");
+	each_div.append("img").attr("src",function (d) {return d.src});
+	each_div.append("div").attr("class","view-each").text(function (d) {
+		return d.view})
+	each_div.append("div").attr("class","event-each").text(function (d) {
+		return d.action_type+"("+d.param+")"});
+	each_div.append("div").attr("class","sleep-each").text(function (d) {
+		return d.sleep+"ms"})
 
 }

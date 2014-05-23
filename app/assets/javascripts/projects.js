@@ -12,8 +12,12 @@ d3.select(window).on("resize",function () {
 
 function drawFailByDevice (data) {
 
-	var fail_by_device_svg = d3.select("#test_fail_bar_graph").append("svg")
-								.attr("width",700).attr("height",350);
+	var width = d3.select("#test_fail_bar_graph").style("width").split("px")[0];
+	var height = d3.select("#test_fail_bar_graph").style("height").split("px")[0];
+	var margin = {top: 10, right: 10, bottom: 30, left: 100};
+
+	var svg = d3.select("#test_fail_bar_graph").append("svg")
+				.attr("width",width).attr("height",height);
 
 	var y_domain = [];
 	for (var each in data) {
@@ -22,77 +26,78 @@ function drawFailByDevice (data) {
 
 	var x_extent = [0,data[0].fail_data.A.length+data[0].fail_data.B.length+data[0].fail_data.C.length+data[0].fail_data.D.length];
 
-	var x_scale = d3.scale.linear().domain(x_extent).range([120,600]);
-	var y_scale = d3.scale.ordinal().domain(y_domain).rangeRoundBands([300,30],0.3,0.3);
+	var x_scale = d3.scale.linear().domain(x_extent).range([margin.left,width-margin.right]);
+	var y_scale = d3.scale.ordinal().domain(y_domain).rangeRoundBands([height-margin.bottom,margin.top],0.3,0.3);
 
-	var x_axis = fail_by_device_svg.append("g")
+	var x_axis = svg.append("g")
 				.attr("class", "x axis")
-				.attr("transform", "translate(0,300)")
+				.attr("transform", "translate(0,"+(height-margin.bottom)+")")
 				.call(d3.svg.axis()
 					.scale(x_scale)
+					.orient("bottom")
 					.innerTickSize(3)
 					.outerTickSize(0));
 
-	var y_axis = fail_by_device_svg.append("g")
+	var y_axis = svg.append("g")
 				.attr("class", "y axis")
-				.attr("transform","translate(120,0)")
+				.attr("transform","translate("+margin.left+",0)")
 				.call(d3.svg.axis()
 					.scale(y_scale)
-					.orient("left"));
+					.orient("left")
+					.innerTickSize(3)
+					.outerTickSize(0));
 
-	var columns = fail_by_device_svg.selectAll("g column")
-		.data(data).enter().append("g")
-			.attr("class","device_row")
-			.attr("transform",function (d) {return "translate(120,"+y_scale(d.device_name)+")"});
-	
-	columns.append("rect")
-			.attr("width",function (d) {return x_scale(d.fail_data.A.length)-x_scale(0);}).attr("height",40)
-			.attr("x",function (d) {return x_scale(0)-x_scale(0);}).attr("y",0)
-			.attr("fill","#EA7C4B")
-			.on("click",function (d) {renewDetailTable("A", d.device_name, d.fail_data.A)});
+	var columns = svg.selectAll("device-column")
+				.data(data).enter().append("g")
+				.attr("class","device_row")
+				.attr("transform",function (d) {return "translate("+margin.left+","+y_scale(d.device_name)+")"});
 
-	columns.append("rect")
-			.attr("width",function (d) {return x_scale(d.fail_data.B.length)-x_scale(0);}).attr("height",40)
-			.attr("x",function (d) {return x_scale(d.fail_data.A.length)-x_scale(0);}).attr("y",0)
-			.attr("fill","#ED9FBD")
-			.on("click",function (d) {renewDetailTable("B", d.device_name, d.fail_data.B)});
+	var rect_height = (height-margin.top-margin.bottom) / data.length * 0.4;
 
-	columns.append("rect")
-			.attr("width",function (d) {return x_scale(d.fail_data.C.length)-x_scale(0);}).attr("height",40)
-			.attr("x",function (d) {return x_scale(d.fail_data.A.length+d.fail_data.B.length)-x_scale(0);}).attr("y",0)
-			.attr("fill","#52C4D0")
-			.on("click",function (d) {renewDetailTable("C", d.device_name, d.fail_data.C)});
+	columns.each(function (d, i){
+		var sum = 0;
+		var ranks = ["A","B","C","D"]
+		for (var index in ranks) {
+			var rank = ranks[index];
+			if(d.fail_data[rank]) {
+				d3.select(this).append("rect").attr("class",rank)
+					.attr("width",x_scale(d.fail_data[rank].length)-x_scale(0))
+					.attr("height",rect_height)
+					.attr("x",x_scale(sum)-margin.left)
+					.attr("y",0)
+					.on("click",function (d) {
+						rank = d3.select(this).attr("class");
+						renewDetailTable(rank, d.device_name, d.fail_data[rank]);
+					})
+				sum = sum + d.fail_data[rank].length;
+			}
+		}
+	})
 
-	columns.append("rect")
-			.attr("width",function (d) {return x_scale(d.fail_data.D.length)-x_scale(0);}).attr("height",40)
-			.attr("x",function (d) {return x_scale(d.fail_data.A.length+d.fail_data.B.length+d.fail_data.C.length)-x_scale(0);}).attr("y",0)
-			.attr("fill","#D6B6EF")
-			.on("click",function (d) {renewDetailTable("D", d.device_name, d.fail_data.D)});
-
-
-	columns.append("rect")
-			.attr("width",function (d) {return x_scale(d.fail_data.A.length)-x_scale(0);}).attr("height",8)
-			.attr("x",function (d) {return x_scale(0)-x_scale(0);}).attr("y",32)
-			.attr("fill","#C1633E");
-
-	columns.append("rect")
-			.attr("width",function (d) {return x_scale(d.fail_data.B.length)-x_scale(0);}).attr("height",8)
-			.attr("x",function (d) {return x_scale(d.fail_data.A.length)-x_scale(0);}).attr("y",32)
-			.attr("fill","#BF7593");
-
-	columns.append("rect")
-			.attr("width",function (d) {return x_scale(d.fail_data.C.length)-x_scale(0);}).attr("height",8)
-			.attr("x",function (d) {return x_scale(d.fail_data.A.length+d.fail_data.B.length)-x_scale(0);}).attr("y",32)
-			.attr("fill","#34989A");
-
-	columns.append("rect")
-			.attr("width",function (d) {return x_scale(d.fail_data.D.length)-x_scale(0);}).attr("height",8)
-			.attr("x",function (d) {return x_scale(d.fail_data.A.length+d.fail_data.B.length+d.fail_data.C.length)-x_scale(0);}).attr("y",32)
-			.attr("fill","#A28BBC");
+	function onResize() {
+		width = d3.select("#test_fail_bar_graph").style("width").split("px")[0];
+		svg.attr("width".width);
+		x_scale.range([margin.left,width-margin.right]);
+		x_axis.call(d3.svg.axis().scale(x_scale).orient("bottom").innerTickSize(3).outerTickSize(0));
+		columns.each(function (d, i){
+			var sum = 0;
+			var ranks = ["A","B","C","D"]
+			for (var index in ranks) {
+				var rank = ranks[index];
+				if(d.fail_data[rank]) {
+					d3.select(this).select("."+rank)
+						.attr("width",x_scale(d.fail_data[rank].length)-x_scale(0))
+						.attr("x",x_scale(sum)-margin.left)
+					sum = sum + d.fail_data[rank].length;
+				}
+			}
+		});
+	}
+	resizeFunctions.push(onResize);
 
 	function renewDetailTable (rank, device_name, error_array) {
 
-		d3.select("#table_title_rank").text(rank).attr("class","rank "+rank);
+		d3.select("#table_title_rank").attr("class","test_rank "+rank).text(rank);
 		d3.select("#table_title_device_name").text(device_name);
 
 		//TODO: hyperlink to specific report page
@@ -109,7 +114,6 @@ function drawFailByDevice (data) {
 			row_tr.append("td").text(error_array[row].error_message);
 		}
 	}
-
 }
 
 

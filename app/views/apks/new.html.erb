@@ -5,14 +5,14 @@
   	<%= render 'shared/side_bar' %>
 
   	<div class="col-md-12 contents">
-  		<div class="apk-upload-head">
-        <img src="/assets/Dashboard.png">APK Upload
-      </div>
+		<div class="page-title">
+			<img src="/assets/starttest.png">APK Upload
+		</div>
 
 			<%= form_for [@project, @apk], html: {multipart: true, id: "fileupload"} do |f| %>
 	  		<div class="jumbotron fileinput-button" id="apk-upload-section" style="width:100%;">
 					<div id="apk-upload-header">
-						<h1 id="apk-upload-header1"><img src="/assets/testresults_sidebar.png" class="folder-img">Drop Or Click Upload your APK</h1>
+						<h1 id="apk-upload-header1"><img src="/assets/starttest.png" class="folder-img">Drop Or Click Upload your APK</h1>
 					</div>
 					<div id="apk-upload-form">
 						<%= f.file_field :apk, id: 'upload-field', class: "apk-upload-field", multiple: false %>

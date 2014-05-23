@@ -5,7 +5,7 @@
 
 //index
 
-.test-result-list {
+#test-result-list {
 	width: 100%;
 	th {
 		padding: 5px;
@@ -45,31 +45,60 @@
 		float: left;
 		background-color: #A9D8B9;
 		margin: 0 5px;
+		padding: 0 5px 5px 5px;
+
+		.activity-name {
+			padding-left: 5px;
+			cursor: pointer;
+		}
+
 		.event-screenshot-each {
 			display: inline-block;
 			width: 130px;
 			padding: 5px;
-			margin: 0 5px;
-			background-color: #A9D8B9;
+			margin: 0 5 5 5px;
+			background-color: #DBEEE1;
+			position: relative;
 			img {
 				width: 120px;
-				height: 200px;
+				height: 180px;
 			}
 		}
 
+		.view-each {
+			width: 120px;
+			height: 18px;
+			background-color: #DBEEE1;
+			text-align: center;
+			vertical-align: middle;
+		}
+
 		.event-each {
+			background-color: #A9D8B9;
 			background-image: url('/assets/event.png');
 			width: 120px;
-			height: 50px;
-			background-size: 120px 50px;
+			height: 40px;
+			background-size: 120px 40px;
 			background-repeat: no-repeat;
+			text-align: center;
+			vertical-align: middle;
+			display: table-cell;
 		}
 		.event-each:hover {
 			background-image: url('/assets/event_click.png');
 		}
+
+		.sleep-each {
+			position: absolute;
+			top: 200px;
+			left: 110px;
+			z-index: 10;
+		}
 	}
 
 	.event-screenshot {
+		padding: 0 10px 0 0;
+		margin: 0;
 
 		.event-screenshot-wrapper {
 			width: 100%;
@@ -80,12 +109,14 @@
 		}
 
 		.event-screenshot-inner {
-			height: 230px;
+			height: 260px;
 		}
 	}
 
 	.summary-area {
 		height: 320px;
+		margin: 0;
+		padding: 0 0 0 10px;
 	}
 
 	.summary-key {
@@ -109,13 +140,42 @@
 
 .detail-report-charts {
 	height: 200px;
-	
+	background-color: #EFEEEE;
+	.chart-title {
+		height: 15px;
+		font-size: 14px;
+		text-align: center;
+		background-color: #EFEEEE;
+	}
+
 	#cpu-chart {
 		height: 200px;
+		margin: 0;
+		padding: 0;
+		.cpu-line {
+			stroke: #5DBE88;
+			stroke-width: 2;
+			fill: none;
+		}
+		.cpu-area {
+			fill: #5DBE88;
+			opacity: 0.2;
+		}
 	}
 	
 	#mem-chart {
 		height: 200px;
+		margin: 0;
+		padding: 0;
+		.mem-line {
+			stroke: #F7CE25;
+			stroke-width: 2;
+			fill: none;
+		}
+		.mem-area {
+			fill: #F7CE25;
+			opacity: 0.2;
+		}
 	}
 
 	.axis {
@@ -124,14 +184,6 @@
 		color: #A1A1A1;
 		stroke: #A1A1A1;
 		shape-rendering: crispEdges;
-	}
-
-	.cpu-area {
-		fill: #A1A1A1;
-	}
-
-	.mem-area {
-		fill: #A1A1A1;
 	}
 }
 

@@ -4,7 +4,7 @@
   left: 0px;
   margin-top: 50px;
   width: 240px;
-  height: 100%;
+  min-height: 100%;
   background-color: rgb(219,238,225);
   overflow: hidden;
   z-index: 1000;
@@ -21,20 +21,26 @@
     }
   }
   .sidebar_menu {
-    div {
+    .menu {
       background-color: #C9E6D2;
-      height: 32px;
+      height: 40px;
       font-size: 14px;
-      vertical-align: bottom;
       img {
         margin: 0px 10px 0px 50px;
         width: 32px;
         vertical-align: text-middle;
       }
     }
-    div:hover {
+    .menu:hover {
       background-color: #A9D8B9;
     }
+  }
+  .divider {
+    width: 240px;
+    height: 2px;
+    background-image: url('/assets/line.png');
+    background-size: 240px 2px;
+    background-repeat: no-repeat;
   }
 }
 
