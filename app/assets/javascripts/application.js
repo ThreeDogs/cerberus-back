@@ -38,3 +38,7 @@ window.onresize = updateWindow;
 d3.selection.prototype.moveToFront = function() {
 	return this.each(function(){this.parentNode.appendChild(this);});
 };
+
+$(function () {
+	$(".sidebar").css("height",$(".container-fluid").css("height"));
+})
