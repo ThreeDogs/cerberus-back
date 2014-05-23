@@ -1,3 +1,10 @@
+var resizeFunctions = [];
+d3.select(window).on("resize",function () {
+	for (var i in resizeFunctions){
+		resizeFunctions[i]();
+	}
+});
+
 function detailReportList (data) {
 
 	var table = d3.select("#test-result-list");
@@ -80,24 +87,38 @@ function drawDetailReports (data) {
 		var x_scale = d3.scale.linear().domain(x_extent).range([margin.left,width-margin.right]);
 		var y_scale = d3.scale.linear().domain(y_extent).range([height-margin.bottom,margin.top]);
 
-		var x_axis = d3.svg.axis().scale(x_scale).orient('bottom').outerTickSize([0]);
-		var y_axis = d3.svg.axis().scale(y_scale).orient('left').outerTickSize([0]);
+		var x_axis = d3.svg.axis().scale(x_scale).orient('bottom').innerTickSize(3).outerTickSize([0]);
+		var y_axis = d3.svg.axis().scale(y_scale).orient('left').innerTickSize(3).outerTickSize([0]);
 	
+		var line = d3.svg.line()
+						.x(function (d) {return x_scale(d.client_timestamp)})
+						.y(function (d) {return y_scale(d.usage)});
 		var area = d3.svg.area()
 						.x(function (d) {return x_scale(d.client_timestamp)})
 						.y0(y_scale(0))
 						.y1(function (d) {return y_scale(d.usage)});
 
-		svg.append("path").attr("class","cpu-area").attr("d",area(data));
+		var cpu_area = svg.append("path").attr("class","cpu-area").attr("d",area(data));
+		var cpu_line = svg.append("path").attr("class","cpu-line").attr("d",line(data));
 
-		svg.append("g").attr("class", "x axis")
+		var cpu_x_axis = svg.append("g").attr("class", "x axis")
 				.attr("transform", "translate(0,"+(height-margin.bottom)+")")
 				.call(x_axis);
 
-		svg.append("g").attr("class", "y axis")
+		var cpu_y_axis = svg.append("g").attr("class", "y axis")
 				.attr("transform", "translate("+margin.left+",0)")
 				.call(y_axis);
 
+		function onResize () {
+			width = d3.select('#cpu-chart').style('width').split("px")[0];
+			svg.attr("width",width);
+			x_scale.range([margin.left,width-margin.right]);
+			x_axis.scale(x_scale);
+			cpu_line.attr("d",line(data));
+			cpu_area.attr("d",area(data));
+			cpu_x_axis.call(x_axis);
+		}
+		resizeFunctions.push(onResize);
 	}
 
 	function drawMemChart (data) {
@@ -114,24 +135,38 @@ function drawDetailReports (data) {
 		var x_scale = d3.scale.linear().domain(x_extent).range([margin.left,width-margin.right]);
 		var y_scale = d3.scale.linear().domain(y_extent).range([height-margin.bottom,margin.top]);
 
-		var x_axis = d3.svg.axis().scale(x_scale).orient('bottom').outerTickSize([0]);
-		var y_axis = d3.svg.axis().scale(y_scale).orient('left').outerTickSize([0]);
+		var x_axis = d3.svg.axis().scale(x_scale).orient('bottom').innerTickSize(3).outerTickSize([0]);
+		var y_axis = d3.svg.axis().scale(y_scale).orient('left').innerTickSize(3).outerTickSize([0]);
 	
+		var line = d3.svg.line()
+						.x(function (d) {return x_scale(d.client_timestamp)})
+						.y(function (d) {return y_scale(d.dalvik_heap_alloc)});
 		var area = d3.svg.area()
 						.x(function (d) {return x_scale(d.client_timestamp)})
 						.y0(y_scale(0))
 						.y1(function (d) {return y_scale(d.dalvik_heap_alloc)});
 
-		svg.append("path").attr("class","mem-area").attr("d",area(data));
+		var mem_area = svg.append("path").attr("class","mem-area").attr("d",area(data));
+		var mem_line = svg.append("path").attr("class","mem-line").attr("d",line(data));
 
-		svg.append("g").attr("class", "x axis")
+		var mem_x_axis = svg.append("g").attr("class", "x axis")
 				.attr("transform", "translate(0,"+(height-margin.bottom)+")")
 				.call(x_axis);
 
-		svg.append("g").attr("class", "y axis")
+		var mem_y_axis = svg.append("g").attr("class", "y axis")
 				.attr("transform", "translate("+margin.left+",0)")
 				.call(y_axis);
 
+		function onResize () {
+			width = d3.select('#mem-chart').style('width').split("px")[0];
+			svg.attr("width",width);
+			x_scale.range([margin.left,width-margin.right]);
+			x_axis.scale(x_scale);
+			mem_line.attr("d",line(data));
+			mem_area.attr("d",area(data));
+			mem_x_axis.call(x_axis);
+		}
+		resizeFunctions.push(onResize);
 	}
 
 	function dataProcess(data) {

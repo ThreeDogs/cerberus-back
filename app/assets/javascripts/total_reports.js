@@ -1,4 +1,17 @@
 
+// function drawBandGraph (data) {
+
+// 	var row = d3.select("#band-graph").data(data).enter()
+// 				.append("div").attr("class","band-graph-row");
+	
+// 	row.append("span").attr("class","band-graph-rank").text(function (d) {return d})
+// 	row.append("span").attr("class","band-graph-success")
+// 		.append("class","band-graph-fail").attr("width",function (d) {
+// 			return d[0]/(d[0]+d[1])*100+"%";
+// 		})
+
+// }
+
 function drawDeviceFail (data) {
 
 	var width = d3.select("#test_fail_bar_graph").style("width").split("px")[0];
@@ -55,6 +68,7 @@ function drawDeviceFail (data) {
 					.attr("x",x_scale(sum)-margin.left)
 					.attr("y",0)
 					.on("click",function (d) {
+						rank = d3.select(this).attr("class");
 						renewDetailTable(rank, d.device_name, d.fail_data[rank]);
 					})
 				sum = sum + d.fail_data[rank].length;
@@ -85,7 +99,7 @@ function drawDeviceFail (data) {
 
 	function renewDetailTable (rank, device_name, error_array) {
 
-		d3.select("#table_title_rank").text(rank);
+		d3.select("#table_title_rank").attr("class","test_rank "+rank).text(rank);
 		d3.select("#table_title_device_name").text(device_name);
 
 		//TODO: hyperlink to specific report page
