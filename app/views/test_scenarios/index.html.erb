@@ -4,52 +4,28 @@
 	<div class="row-fluid">
 		<%= render 'shared/side_bar' %>	
 		<div class="col-md-12 contents">
-			<div class="test-scenario-head">
+			<div class="page-title">
 				<img src="/assets/scenario_sidebar.png">Test Scenarios
 			</div>
 
-			<div class="filter">
-				<div class="filter_row">
-					<div class="key">Rank</div>
-					<div class="value">
-						<input type="checkbox" name="rank" value="all">All 
-						<input type="checkbox" name="rank" value="a">A 
-						<input type="checkbox" name="rank" value="b">B 
-						<input type="checkbox" name="rank" value="c">C 
-						<input type="checkbox" name="rank" value="d">D 
-					</div>
-				</div>
-				<div class="filter_row">
-					<div class="key">Name</div>
-					<div class="value">
-						<select id = "myList">
-						<option value = "1">one</option>
-						<option value = "2">two</option>
-						<option value = "3">three</option>
-						<option value = "4">four</option>
-						</select>
-					</div>
-				</div>
-			</div>
-
-			<table class="table table-hover" id="scenario_list">
-				<tr id="event_detail_scheme" class="row">
-					<th class="row_rank">Rank</th>
-					<th class="row_name">Name</th>
-					<th class="row_description">Description</th>
-					<th class="row_recent">Recently tested on</th>
-					<th class="row_show"></th>
+			<table class="scenario-list-table">
+				<tr>
+					<th>Rank</th>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Recently tested on</th>
+					<th>-</th>
 				</tr>
 				<!-- LOOP -->
 				<% @test_scenarios.each do |test_scenario| %>
-					<tr class="row event_list">
-						<td class="row_rank"><%= test_scenario.get_rank %></td>
-						<td class="row_name"><%= test_scenario.name %></td>
-						<td class="row_description"><%= test_scenario.description %></td>
-						<td class="row_recent"><%= test_scenario.recent_test_date %></td>
-						<td class="row_show">
+					<tr>
+						<td><div class="rank <%= test_scenario.get_rank %>"><%= test_scenario.get_rank %></div></td>
+						<td><%= test_scenario.name %></td>
+						<td><%= test_scenario.description %></td>
+						<td><%= test_scenario.recent_test_date %></td>
+						<td>
 							<%= link_to project_test_scenario_path(@project, test_scenario) do %>
-								<div class="link_button">Show</div>
+								<div class="show-button"></div>
 							<% end %>
 						</td>
 					</tr>

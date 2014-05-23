@@ -2,140 +2,117 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.test-scenario-head {
-	margin: 40px 0;
-	color: rgb(40,112,68);
-	font-size: 26px; 
-	img {
-		margin-right: 16px;
-	}
-}
-
 //**index**//
-#scenario_list {
 
-	#event_detail_scheme {
-		font-size: 22px;
-		color: rgb(40,112,68);
-		background-color: rgb(169,216,185);
-		text-align: center;
-		height: 35px;
-		padding: 0px;
-		border: none;
-	}
-
-	.event_list {
-		font-size: 21px;
-		color: rgb(96,94,90);
-		text-align: center;
-		padding: 0px;
-		border: none;
-	}
-
-	.row_rank {
-		text-align: center;
-		border: 2pt solid rgb(169,216,185);
-	}
-	.row_name {
-		text-align: center;
-		border: 2pt solid rgb(169,216,185);
-	}
-	.row_description {
-		border: 2pt solid rgb(169,216,185);
-	}
-	.row_recent {
-		text-align: center;
-		border: 2pt solid rgb(169,216,185);
-	}
-	.row_show {
-		text-align: center;
-		border: 2pt solid rgb(169,216,185);
-		.link_button {
-			text-align: center;
-			width: 140px;
-			height: 36px;
-			margin: 0 auto;
-			border: 2px solid;
-			padding-top: 2px;
-			border-radius: 18px;
-			border-color: rgb(52,119,78);
-			background-color: rgb(219,238,225);
-		}
-	}
-}
-
-.filter {
-	padding: 10px;
+.scenario-list-table {
 	width: 100%;
-	background-color: rgb(239,239,239);
-	margin-bottom: 20px;
-	.filter_row {
-		display: inline-block;
-		.key {
-			width: 100px;
-			float: left;
-			font-size: 23px;
-			color: rgb(40,112,68);
-		}
-		.value {
-			width: 1050px;
-			float: left;
-			font-size: 21px;
-			color: rgb(96,94,90);
-		}
+	margin-top: 20px;
+
+	th {
+		background-color: #A9D8B9;
+		color: #287044;
+		font-size: 13px;
+		border: solid 1px #A9D8B9;
+		padding: 5px;
+		text-align: center;
+	}
+
+	td {
+		color: #5E5E5E;
+		font-size: 12px;
+		padding: 5px;
 	}
 }
 
+.show-button {
+	background-image: url('/assets/show.png');
+	margin: 0 auto;
+	width: 80px;
+	height: 20px;
+	background-size: 80px 20px;
+	background-repeat: no-repeat;
+}
+.show-button:hover {
+	background-image: url('/assets/show_click.png');
+}
 
 //**show**//
 
-#scenario_info_detail {
-	padding: 20px 40px;
+.scenario-info {
+	padding: 10px 30px;
+	margin: 10px 0;
 	background-color: rgb(239,239,239);
-	.scenario_info_title {
-		display: inline-block;
-		position: relative;
+	.scenario-info-title {
 		width: 100%;
-		height: 50px;
-		.rank {
-			position: absolute;
-			bottom: -6px;
-			left: 0px;
+		padding: 0px;
+		line-height: 30px;
+		display: inline-block;
+		.scenario-rank {
 			float: left;
-			font-size: 42px;
-			color: rgb(40,112,68);
+			color: #287044;
+			font-size: 22px;
+			margin-right: 10px;
+			vertical-align: bottom;
 		}
-		.test_name {
-			position: absolute;
-			bottom: 0px;
-			left: 40px;
+		.scenario-name {
 			float: left;
-			font-size: 24px;
-			color: rgb(93,190,136);
-		}
-		.edit_button {
-			position: absolute;
-			bottom: 0px;
-			right: 0px;
-			float: right;
+			color: #5DBE88;
+			font-size: 14px;
+			vertical-align: bottom;
 		}
 	}
+	
 	.detail_content {
-		font-size: 21px;
+		font-size: 12px;
 		color: rgb(96,94,90);
 	}
 	.recently_tested {
 		margin-top: 10px;
-		font-size: 21px;
+		font-size: 12px;
 		color: rgb(96,94,90);
 	}
 }
 
-#scenario_event_path {
+.edit-button {
+	display: inline-block;
+	background-image: url('/assets/edit.png');
+	float: right;
+	width: 30px;
+	height: 30px;
+	background-size: 30px 30px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+.edit-button:hover {
+	background-image: url('/assets/edit_click.png');
+}
+
+.scenario-event-wrapper {
 	width: 100%;
-	padding: 10px 10px 0 10px;
-	background-color: rgb(239,239,239);
+	height: 290px;
 	overflow-x: scroll;
+	overflow-y: hidden;
+	padding: 10px;
+}
+
+.motion-events-table {
+	width: 100%;
+	margin-top: 20px;
+
+	th {
+		background-color: #A9D8B9;
+		color: #287044;
+		font-size: 13px;
+		border: solid 1px #A9D8B9;
+		padding: 5px;
+		text-align: center;
+	}
+
+	td {
+		color: #5E5E5E;
+		font-size: 12px;
+		padding: 5px;
+	}
 }
 
 .event-edit-button {
