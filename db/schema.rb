@@ -161,7 +161,7 @@ ActiveRecord::Schema.define(version: 20140520034833) do
   create_table "test_scenarios", force: true do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "rank"
+    t.integer  "rank",            default: 0
     t.integer  "project_id"
     t.integer  "scenarioship_id"
     t.datetime "created_at"

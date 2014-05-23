@@ -16,7 +16,6 @@ require 'net/http'
 
 class TotalReport < ActiveRecord::Base
   include AttributesReturn
-  after_create :start_test
   after_create :create_deviceship
 
 	default_scope { order('created_at DESC') } 

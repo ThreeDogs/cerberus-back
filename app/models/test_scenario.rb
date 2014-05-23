@@ -30,21 +30,33 @@ class TestScenario < ActiveRecord::Base
 
   # rank 0,1,2,3 A,B,C,D
 
+  def status
+    if detail_reports.where("status = ?", -1).count >= 1
+      "Fail"
+    else
+      "Pass"
+    end
+  end
+
+  def errors
+    detail_reports.collect{|d| d.crash }.uniq
+  end
+
+  def devices
+    detail_reports.collect{|d| d.device }.uniq
+  end
+
+  def devices_number
+    devices.length
+  end
+
   def get_rank
-  	if rank==0
-  		"A"
-  	elsif rank==1
-  		"B"
-  	elsif rank==2
-  		"C"
-  	elsif rank==3
-  		"D"
-  	end
+    results = ["A","B","C","D"]
+    results[rank]
   end
 
   def recent_test_date
-  	# implement
-  	"14.MAR.03 3:00pm"
+    detail_reports.first.test_date unless detail_reports.blank?
   end
 
   private 

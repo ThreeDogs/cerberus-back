@@ -22,7 +22,7 @@ class Device < ActiveRecord::Base
   has_many :detail_reports, foreign_key: 'device_key', primary_key: 'device_key'
 
   def error_reports
-    detail_reports.where("status == ?", -1)
+    detail_reports.where("status = ?", -1)
   end
 
   def fail_data

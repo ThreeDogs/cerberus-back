@@ -130,7 +130,7 @@ tar xf $3/temp/jarfile.jar -C $3/temp/newclz
 
 echo $PWD
 
-java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/asm2.jar test.org.cerberus.jarasm.JarAsmTest $3/temp/newclz $5 $9
+java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/asm2.jar profiling.org.cerberus.jarasm.JarAsmTest $3/temp/newclz $5 $9
 
 java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/test.jar org.cerberus.test.TestRunnerAsm $3 172.16.101.167 $8 $9 
 

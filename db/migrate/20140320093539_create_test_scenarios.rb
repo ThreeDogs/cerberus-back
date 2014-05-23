@@ -3,7 +3,7 @@ class CreateTestScenarios < ActiveRecord::Migration
     create_table :test_scenarios do |t|
       t.string :name
       t.string :description
-      t.integer :rank
+      t.integer :rank, default: 0
       t.references :project, index: true
       t.integer :scenarioship_id
 
