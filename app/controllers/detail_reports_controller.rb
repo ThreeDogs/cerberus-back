@@ -1,4 +1,4 @@
-class DetailReportsController < ApplicationController
+class DetailReportsController < ServiceController
   # before_action :set_detail_report, only: [:show, :edit, :update, :destroy]
 
   # GET /detail_reports

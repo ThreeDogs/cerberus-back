@@ -1,4 +1,4 @@
-class MotionEventsController < ApplicationController
+class MotionEventsController < ServiceController
   before_action :set_motion_event, only: [:show, :edit, :update, :destroy]
 
   # GET /motion_events

@@ -1,4 +1,4 @@
-class ApksController < ApplicationController
+class ApksController < ServiceController
 	before_action :set_apk, only: [:show]
 	# before_action :set_project, only: [:show, :create, :show]
 

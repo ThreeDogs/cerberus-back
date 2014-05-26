@@ -1,40 +1,305 @@
-<%= stylesheet_link_tag  "cover" %>
-
-<div class="site-wrapper">
-  <div class="site-wrapper-inner">
-
-    <div class="cover-container">
-
-      <div class="masthead clearfix">
-        <div class="inner">
-          <h3 class="masthead-brand">Cerberus</h3>
-          <ul class="nav masthead-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Features</a></li>
-            <li><a href="#">Contact</a></li>
-            <% if user_signed_in? %>
-              <li><%= link_to "Log out", destroy_user_session_path,method: :delete %></li>
-            <% end %>
-          </ul>
+    <!-- ******HEADER****** --> 
+    <header id="top" class="header navbar-fixed-top">  
+        <div class="container">            
+            <h1 class="logo pull-left">
+                <a class="scrollto" href="#promo">
+                    <img id="logo-image" class="logo-image" src="asset/images/logo/logo.png" alt="Logo">
+                    <span class="logo-title">AppXcellent</span>
+                </a>
+            </h1><!--//logo-->              
+            <nav id="main-nav" class="main-nav navbar-right" role="navigation">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button><!--//nav-toggle-->
+                </div><!--//navbar-header-->            
+                <div class="navbar-collapse collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active nav-item sr-only"><a class="scrollto" href="#promo">Home</a></li>
+                        <li class="nav-item"><a class="scrollto" href="#features">Features</a></li>
+                        <li class="nav-item"><a class="scrollto" href="#how">How it works</a></li>
+                        <li class="nav-item"><a class="scrollto" href="#customer">Customer</a></li>
+                        <li class="nav-item last"><a class="scrollto" href="#team">Team</a></li>
+                    </ul><!--//nav-->
+                </div><!--//navabr-collapse-->
+            </nav><!--//main-nav-->           
         </div>
-      </div>
+    </header><!--//header-->
+    
+    <!-- ******PROMO****** --> 
+    <section id="promo" class="promo section offset-header has-pattern">
+        <div class="container">
+            <div class="row">
+                <div class="overview col-md-8 col-sm-12 col-xs-12">
+                    <h2 class="title">Make the Excellent Mobile App</h2>
+                    <h2 class="title">Boot your Mobile App Test!</h2>
+                    <ul class="summary">
+                        <li>Reduce App Tests Costs</li>
+                        <li>Build Your Test Bed Environment</li>
+                        <li>Speed Up Time To Market</li>
+                        <li>Automate Mobile App Test</li>
+                        <li>Improve App Quality</li>
+                    </ul>
+                    <div class="download-area">
+                        <ul class="btn-group list-inline">
+                            <li class="btn"><a href="#">Get Started AppXcellent</a></li>
+                        </ul>
+                    </div>
+                </div><!--//overview-->
+                
+                <!--// iPhone starts -->
+                <div class="phone iphone iphone-black col-md-4 col-sm-12 col-xs-12 ">
+                    <div class="iphone-holder phone-holder">
+                        <div class="iphone-holder-inner">
+                            <div class="slider flexslider">
+                                <ul class="slides">
+                                    <li>
+                                        <img src="asset/images/iphone/iphone-slide-1.png"  alt="" />
+                                    </li>
+                                    <li>
+                                        <img src="asset/images/iphone/iphone-slide-2.png"  alt="" />
+                                    </li>
+                                    <li>
+                                        <img src="asset/images/iphone/iphone-slide-3.png"  alt="" />
+                                    </li>
+                                </ul><!--//slides-->
+                            </div><!--//flexslider-->   
+                        </div><!--//iphone-holder-inner-->                    
+                    </div><!--//iphone-holder-->                   
+                </div><!--//iphone-->  
+                <!--// iPhone ends -->
+                                           
+            </div><!--//row-->
+        </div><!--//container-->
+    </section><!--//promo-->
+    
+    <!-- ******FEATURES****** --> 
+    <section id="features" class="features section">
+        <div class="container">
+            <div class="row">
+                <h2 class="title text-center sr-only">Features</h2>
+                <div class="item col-md-4 col-sm-6 col-xs-12 text-center">
+                    <div class="icon">
+                        <i class="fa fa-cloud-upload"></i>                
+                    </div><!--//icon-->
+                    <div class="content">
+                        <h3 class="title">Test Recording</h3>
+                        <p>Record your tests with UI manipulation without having to write a single code of your own. </p>  
+                    </div><!--//content-->               
+                </div><!--//item-->
+                <div class="item col-md-4 col-sm-6 col-xs-12 text-center">
+                    <div class="icon">
+                        <i class="fa fa-rocket"></i>                
+                    </div><!--//icon-->
+                    <div class="content">
+                        <h3 class="title">Multiple Device Auto Test</h3>
+                        <p>Run the recorded test on all of your devices simultaneously /p>   
+                    </div><!--//content-->               
+                </div><!--//item-->
+                <div class="item col-md-4 col-sm-6 col-xs-12 text-center">
+                    <div class="icon">
+                        <i class="fa fa-users"></i>                
+                    </div><!--//icon-->
+                    <div class="content">
+                        <h3 class="title">Test Management</h3>
+                        <p>Manage the recorded tests based on their priority ons/" target="_blank">FontAwsome icons</a> available. </p>   
+                    </div><!--//content-->               
+                </div><!--//item-->
+            </div><!--//row-->
+            
+            <div class="row">
+                <div class="item col-md-4 col-sm-6 col-xs-12 text-center">
+                    <div class="icon">
+                        <i class="fa fa-calendar"></i>                
+                    </div><!--//icon-->
+                    <div class="content">
+                        <h3 class="title">Trend Graph</h3>
+                        <p>Check the trend of the accumulated test results to improve your app's quality </p>  
+                    </div><!--//content-->               
+                </div><!--//item-->
+                <div class="item col-md-4 col-sm-6 col-xs-12 text-center">
+                    <div class="icon">
+                        <i class="fa fa-comments"></i>                
+                    </div><!--//icon-->
+                    <div class="content">
+                        <h3 class="title">Visualization</h3>
+                        <p>Intuitive visualization helps you to focus on only what's important and save time /p>   
+                    </div><!--//content-->               
+                </div><!--//item-->
+                <div class="item col-md-4 col-sm-6 col-xs-12 text-center">
+                    <div class="icon">
+                        <i class="fa fa-globe"></i>                
+                    </div><!--//icon-->
+                    <div class="content">
+                        <h3 class="title">Performance Data</h3>
+                        <p>Performance data - memory, cpu, battery, network latency, frame draw time - is gathered during the test /p>   
+                    </div><!--//content-->               
+                </div><!--//item-->
+            </div><!--//row-->
+        </div><!--//container-->
+    </section><!--//features-->
+    
+    <!-- ******HOW****** --> 
+    <section id="how" class="how section has-pattern">
+        <div class="container">
+            <div class="row">
+                <div class="content col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6 text-center">
+                    <h2 class="title">How it works</h2>
+                    <p class="intro">You can <a href="http://blog.sensortower.com/blog/2013/07/19/3-ways-to-create-a-great-ios-app-demo-video-without-breaking-the-bank/" target="_blank">create a video demo</a> for your app to demonstrate how the app works. You can also <a href="http://www.qrstuff.com/" target="_blank">generate QR codes</a> for the app download links.</p>
+                </div><!--//content-->
+                <div id="video-container" class="video-container col-md-6 col-sm-6 col-xs-12 col-md-pull-6 col-sm-pull-6">
+                    <iframe src="//player.vimeo.com/video/96484981" width="570" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div><!--//video-->
+            </div><!--//row-->
+        </div><!--//container-->
+    </section><!--//how-->
+    
+    <!-- ******TESTIMONIALS****** --> 
+    <section id="customer" class="testimonials section">
+        <div class="container">
+            <div class="row">
+                <h2 class="title text-center">What do people think?</h2>
+                <div class="item col-md-4 col-sm-4">
+                    <div class="quote-box">
+                        <i class="fa fa-quote-left"></i>
+                        <blockquote class="quote">
+                            <a href="#">@AppXcellent</a> I love this #app. Lorem ipsum dolor sit amet, consectetur adipiscing elit. #Mobile
+                        </blockquote><!--//quote-->
+                    </div><!--//quote-box-->
+                    <div class="people row">
+                        <img class="img-rounded user-pic col-md-5 col-sm-5 col-xs-12 col-md-offset-1 col-sm-offset-1" src="asset/images/people/people-1.png" alt="" />
+                        <p class="details text-center pull-left">
+                            <span class="name">Christine Heal</span>
+                            <span class="title">Bristol, UK</span>
+                        </p>                        
+                    </div><!--//people-->
+                </div><!--//item-->
+                <div class="item col-md-4 col-sm-4">
+                    <div class="quote-box">
+                        <i class="fa fa-quote-left"></i>
+                        <blockquote class="quote">
+                            <a href="#">@AppXcellent</a> consectetur adipiscing elit. #AppXcellent Sed bibendum velit quis nunc laoreet dictum id nisl id lacinia. 
+                        </blockquote><!--//quote-->
+                    </div><!--//quote-box-->
+                    <div class="people row">
+                        <img class="img-rounded user-pic col-md-5 col-sm-5 col-xs-12 col-md-offset-1 col-sm-offset-1" src="asset/images/people/people-2.png" alt="" />
+                        <p class="details text-center pull-left">
+                            <span class="name">Ben Rousseau</span>
+                            <span class="title">Paris, France</span>
+                        </p>                        
+                    </div><!--//people-->
+                </div><!--//item-->
+                <div class="item col-md-4 col-sm-4">
+                    <div class="quote-box">
+                        <i class="fa fa-quote-left"></i>
+                        <blockquote class="quote">
+                        I find AppXcellent very useful - Lorem ipsum dolor sit amet, check it out: <a href="#">http://bit.ly/1gB9UBR</a>
+                        </blockquote><!--//quote-->
+                    </div><!--//quote-box-->
+                    <div class="people row">
+                        <img class="img-rounded user-pic col-md-5 col-sm-5 col-xs-12 col-md-offset-1 col-sm-offset-1" src="asset/images/people/people-3.png" alt="" />
+                        <p class="details text-center pull-left">
+                            <span class="name">Mike Chan</span>
+                            <span class="title">Hongkong, China</span>
+                        </p>                        
+                    </div><!--//people-->
+                </div><!--//item-->
+            </div><!--//row-->
+            <div class="row">
+                <div class="item col-md-4 col-sm-4 col-md-offset-2 col-sm-offset-2">
+                    <div class="quote-box">
+                        <i class="fa fa-quote-left"></i>
+                        <blockquote class="quote">
+                         AppXcellent is fab lorem ipsum dolor sit amet proin sagittis sodales pulvinar Mauris id arcu eget augue condimentum euismod: <a href="#">http://bit.ly/1gB9UBR</a>
+                        </blockquote><!--//quote-->
+                    </div><!--//quote-box-->
+                    <div class="people row">
+                        <img class="img-rounded user-pic col-md-5 col-sm-5 col-xs-12 col-md-offset-1 col-sm-offset-1" src="asset/images/people/people-4.png" alt="" />
+                        <p class="details text-center pull-left">
+                            <span class="name">Annie Lee</span>
+                            <span class="title">Berlin, Germany</span>
+                        </p>                        
+                    </div><!--//people-->
+                </div><!--//item-->
+                <div class="item col-md-4 col-sm-4">
+                    <div class="quote-box">
+                        <i class="fa fa-quote-left"></i>
+                        <blockquote class="quote">
+                        AppXcellent is a great dolor sit amet proin sagittis sodales pulvinar vestibulum porta dolor molestie semper.: <a href="#">http://bit.ly/1gB9UBR</a>
+                        </blockquote><!--//quote-->
+                    </div><!--//quote-box-->
+                    <div class="people row">
+                        <img class="img-rounded user-pic col-md-5 col-sm-5 col-xs-12 col-md-offset-1 col-sm-offset-1" src="asset/images/people/people-5.png" alt="" />
+                        <p class="details text-center pull-left">
+                            <span class="name">Adam Gordon</span>
+                            <span class="title">London, UK</span>
+                        </p>                        
+                    </div><!--//people-->
+                </div><!--//item-->
+            </div>
+            <!-- <div class="press row text-center">
+                <h3 class="note">Also featured in...</h3>
+                <ul class="col-md-12 list-inline">
+                    <li><a href="#"><img class="img-responsive" src="asset/images/press/press-1.png" alt="" /></a></li>
+                    <li><a href="#"><img class="img-responsive" src="asset/images/press/press-2.png" alt="" /></a></li>
+                    <li><a href="#"><img class="img-responsive" src="asset/images/press/press-3.png" alt="" /></a></li>
+                    <li><a href="#"><img class="img-responsive" src="asset/images/press/press-4.png" alt="" /></a></li>
+                    <li class="last"><a href="#"><img class="img-responsive" src="asset/images/press/press-5.png" alt="" /></a></li>
+                </ul>
+            </div> --><!--//row-->
+        </div><!--//container-->
+    </section><!--//Testimonials-->
 
-      <div class="inner cover">
-        <h1 class="cover-heading">Cerberus Temporary page</h1>
-        <p class="lead">Cerberus is the Mobile - Application Performance Management & Test Automation Service.</p>
-        <p class="lead">
-          <%= link_to "Login",new_user_session_path, class: "btn btn-lg btn-default" %>
-        </p>
-      </div>
-
-      <div class="mastfoot">
-        <div class="inner">
-          <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+    <!-- ******STORY****** --> 
+    <section id="team" class="story section has-pattern">
+        <div class="container">
+            <div class="row">
+                <div class="team col-md-12col-xs-12">
+                    <div class="row">
+                        <div class="member col-md-4 text-center">
+                            <div class="circular-team"><img src="asset/images/team/member-1.JPG"/></div>
+                            <p class="name">Jaewoo Cho</p>
+                            <p class="title">Lead Developer</p>
+                            <ul class="connect list-inline">
+                                <li><a href="http://twitter.com/Fl0wk27er" ><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="http://www.linkedin.com/pub/jaewoo-carter-cho/50/437/6a9" ><i class="fa fa-linkedin"></i></a></li>
+                                <li class="row-end"><a href="http://github.com/flowkater" ><i class="fa fa-github"></i></a></li>         
+                            </ul>
+                        </div><!--//member-->
+                        <div class="member col-md-4 text-center">
+                            <div class="circular-team"><img src="asset/images/team/member-2.jpg" /></div>
+                            <p class="name">Sunghyun Rho</p>
+                            <p class="title">Java Client Developer</p>
+                            <ul class="connect list-inline">
+                                <li><a href="http://www.facebook.com/sunghyun.roh.12" ><i class="fa fa-facebook"></i></a></li>
+                                <li class="row-end"><a href=" http://github.com/pickerss" ><i class="fa fa-github"></i></a></li>         
+                            </ul>
+                        </div><!--//member-->
+                        <div class="member col-md-4 text-center">
+                            <div class="circular-team"><img src="asset/images/team/member-3.jpg" /></div>
+                            <p class="name">Kangho Yoon</p>
+                            <p class="title">Front-end Developer</p>
+                            <ul class="connect list-inline">
+                                <li><a href="http://www.facebook.com/kangho.k.yoon" ><i class="fa fa-facebook"></i></a></li>
+                                <li class="row-end"><a href="http://github.com/kangho99" ><i class="fa fa-github"></i></a></li>   
+                            </ul>
+                        </div><!--//member-->
+                    </div>
+                </div><!--//team-->
+            </div><!--//row-->
+        </div><!--//container-->
+    </section><!--//story-->
+      
+    <!-- ******FOOTER****** --> 
+    <footer class="footer">
+        <div class="container">
+            <small class="copyright pull-left">Copyright &copy; 2014 AppXcellent</small>
+            <ul class="links list-inline">
+                <!-- <li><a href="#">Terms</a></li>
+                <li><a href="#">Privacy</a></li> -->
+            </ul>
         </div>
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
+    </footer><!--//footer-->

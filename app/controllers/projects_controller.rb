@@ -1,4 +1,4 @@
-class ProjectsController < ApplicationController
+class ProjectsController < ServiceController
   before_action :set_project, only: [:edit, :update, :destroy]
 
   # GET /projects

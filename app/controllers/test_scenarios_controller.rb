@@ -1,4 +1,4 @@
-class TestScenariosController < ApplicationController
+class TestScenariosController < ServiceController
   before_action :set_test_scenario, only: [:show, :edit, :update, :destroy]
 
   # GET /test_scenarios

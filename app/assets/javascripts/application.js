@@ -17,7 +17,17 @@
 //= require jquery.ui.widget
 //= require jquery.iframe-transport
 //= require jquery.fileupload
-//= require_tree .
+//= require d3.v3
+//= require apks
+//= require detail_reports
+//= require main
+//= require motion_events
+//= require projects
+//= require spin.min
+//= require test_scenarios
+//= require total_reports
+//= require total_reports_progress
+//= require_self
 
 
 var w = window,

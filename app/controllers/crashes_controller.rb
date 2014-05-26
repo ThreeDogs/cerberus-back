@@ -1,4 +1,4 @@
-class CrashesController < ApplicationController
+class CrashesController < ServiceController
 	def show
 		@total_report = TotalReport.find(params[:total_report_id])
 		@project = @total_report.project

@@ -1,4 +1,4 @@
-class TotalReportsController < ApplicationController
+class TotalReportsController < ServiceController
   before_action :set_total_report, only: [:show, :edit, :update, :destroy]
 
   # GET /total_reports
