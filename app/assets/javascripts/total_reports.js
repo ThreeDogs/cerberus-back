@@ -52,6 +52,7 @@ function drawDeviceFail (data) {
 	var columns = svg.selectAll("device-column")
 				.data(data).enter().append("g")
 				.attr("class","device_row")
+				.style("cursor","pointer")
 				.attr("transform",function (d) {return "translate("+margin.left+","+y_scale(d.device_name)+")"});
 
 	var rect_height = (height-margin.top-margin.bottom) / data.length * 0.4;
