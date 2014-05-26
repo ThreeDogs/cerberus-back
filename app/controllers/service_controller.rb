@@ -1,6 +1,7 @@
 class ServiceController < ApplicationController
   layout "service"
-
+  before_action :authenticate_user!
+  
   protected
 
   	def set_project
