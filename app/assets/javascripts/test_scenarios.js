@@ -1,11 +1,29 @@
 function drawEventFlow (data) {
 
-	var inner_div = d3.select("#scenario-event-inner");
-	var per_screenshot = {width: 130, height: 200, margin_rl: 10, margin_tb: 10};
+	function dataProcess(data) {
+		data.sort(function (a, b) {
+			if (a.client_timestamp < b.client_timestamp){
+				return -1;
+			} else if (a.client_timestamp > b.client_timestamp){
+				return 1;
+			} else {
+				return 0;
+			}
+		});
+		var zero = data[0].client_timestamp;
+		data.forEach(function (element, index) {
+			element.client_timestamp = (element.client_timestamp - zero) / 1000;
+		});
+		return data;
+	}
 
-	inner_div.style("width",(per_screenshot.width+20)*data.length+"px");
+	data = dataProcess(data.motion_event_infos);
 
-	//process data to group activities
+	var inner_div = d3.select("#event-flow-inner");
+	var rect_width = 120;
+
+	inner_div.style("width",(rect_width+20)*data.length+"px");
+
 	var activities = [];
 	for (var i in data) {
 		var flag = true;
@@ -23,25 +41,23 @@ function drawEventFlow (data) {
 		});
 	}
 
-	var activity_div = inner_div.selectAll(".activity").data(activities).enter().append("div").attr("class","activity")
-		.attr("width",function (d) {return (per_screenshot.width + per_screenshot.margin_rl) * d.events.length})
-		.attr("height",per_screenshot.height+per_screenshot.margin_tb);
+	var activity_div = inner_div.selectAll("activity-div").data(activities).enter()
+			.append("div").attr("class","activity-div")
+			.style("width",function (d) {return rect_width*d.events.length+"px"});
 
-	activity_div.append("div").attr("class","activity-name")
-		.text(function (d) {
-			var name_string = d.name.split('.');
+	activity_div.append("div").attr("class","activity-name").text(function (d) {
+			var name_string = d.name.split(".");
 			return name_string[name_string.length-1]
-		}).attr("title",function (d) {return d.name});
+		})
+		.attr("title",function (d) {
+			return d.name;
+		});
 
-	var each_div = activity_div.selectAll(".event-screenshot-each").data(function (d) {return d.events}).enter()
-		.append("div").attr("class","event-screenshot-each");
+	var event_div = activity_div.selectAll("event").data(function (d) {return d.events}).enter()
+			.append("div").attr("class","event-div")
+			.style("width",rect_width+"px");
 
-	each_div.append("img").attr("src",function (d) {return d.src});
-	each_div.append("div").attr("class","view-each").text(function (d) {
-		return d.view})
-	each_div.append("div").attr("class","event-each").text(function (d) {
-		return d.action_type+"("+d.param+")"});
-	each_div.append("div").attr("class","sleep-each").text(function (d) {
-		return d.sleep+"ms"})
+	event_div.append("p").text(function (d) {return "View: "+d.view});
+	event_div.append("p").text(function (d) {return "Action: "+d.action_type});
 
 }
