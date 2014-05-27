@@ -1,16 +1,16 @@
 # Set the working application directory
 # working_directory "/path/to/your/app"
-working_directory "/Users/flowkater/repo/cerberus-back"
+working_directory "/var/www/cerberus-back"
 
 # Unicorn PID file location
 # pid "/path/to/pids/unicorn.pid"
-pid "/Users/flowkater/repo/cerberus-back/pids/unicorn.pid"
+pid "/var/www/cerberus-back/pids/unicorn.pid"
 
 # Path to logs
 # stderr_path "/path/to/log/unicorn.log"
 # stdout_path "/path/to/log/unicorn.log"
-stderr_path "/Users/flowkater/repo/cerberus-back/log/unicorn.log"
-stdout_path "/Users/flowkater/repo/cerberus-back/log/unicorn.log"
+stderr_path "/var/www/cerberus-back/log/unicorn.log"
+stdout_path "/var/www/cerberus-back/log/unicorn.log"
 
 # Unicorn socket
 listen "/tmp/unicorn.cerberus-back.sock"
