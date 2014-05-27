@@ -1,4 +1,3 @@
 rake db:drop
-rake db:migrate
-rake db:seed
+rake db:create db:migrate
 rake db:test:prepare

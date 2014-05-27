@@ -73,3 +73,10 @@ $(document).ready(function(){
   });
 });
 
+// test scenario choice
+$(function(){
+  $('input:checkbox').attr("checked", true);
+  $("#checkAll").change(function () {
+    $(".test-scenario-item input:checkbox").prop('checked', $(this).prop("checked"));
+  });
+});

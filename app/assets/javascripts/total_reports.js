@@ -1,17 +1,3 @@
-
-// function drawBandGraph (data) {
-
-// 	var row = d3.select("#band-graph").data(data).enter()
-// 				.append("div").attr("class","band-graph-row");
-	
-// 	row.append("span").attr("class","band-graph-rank").text(function (d) {return d})
-// 	row.append("span").attr("class","band-graph-success")
-// 		.append("class","band-graph-fail").attr("width",function (d) {
-// 			return d[0]/(d[0]+d[1])*100+"%";
-// 		})
-
-// }
-
 function drawDeviceFail (data) {
 
 	var width = d3.select("#test_fail_bar_graph").style("width").split("px")[0];

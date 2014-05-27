@@ -6,10 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-path_to_file = "#{Rails.root}/lib/test_apk_generator/TestAndroid.apk"
+# path_to_file = "#{Rails.root}/lib/test_apk_generator/TestAndroid.apk"
 # test_path_to_file = "#{Rails.root}/lib/test_apk_generator/NewTestTestAndroid.apk"
 
 @user = User.create!(email: "foobar@foobar.com", password: "foobarfoo", password_confirmation: "foobarfoo")
+puts "seed"
 # @project = @user.projects.create!(name: "First App")
 
 # @apk = @project.apks.new
