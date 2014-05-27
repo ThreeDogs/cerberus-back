@@ -14,7 +14,6 @@ stdout_path "/var/www/cerberus-back/log/unicorn.log"
 
 # Unicorn socket
 listen "/tmp/unicorn.cerberus-back.sock"
-listen "/tmp/unicorn.cerberus-back.sock"
 
 # Number of processes
 # worker_processes 4
