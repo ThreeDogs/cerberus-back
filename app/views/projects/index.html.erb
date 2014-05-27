@@ -25,13 +25,7 @@
         <% if project.recent_total_report %>
           <div class="test_fail_box">
             <p>Test Fail</p>
-            <div class="test_fail_num">
-              <!-- RANK STATUS -->
-              <% project.recent_report_rank_status.each do |key, array| %>
-                
-              <% end %>
-              <!-- -->
-            </div>
+            <div id="test_fail_num"></div>
           </div>
         <% end %>
       </div>
@@ -55,3 +49,8 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<script>
+  var testdata = {"A":[2,2],"C":[2,0],"D":[0,2]};
+  addColoredBandGraph("test_fail_num",testdata);
+</script>

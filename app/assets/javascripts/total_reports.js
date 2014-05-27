@@ -11,6 +11,23 @@ function addBandGraph (key, num_success, num_fail) {
 	}
 }
 
+function addColoredBandGraph (div_id, data_rough) {
+
+	var keys = Object.keys(data_rough);
+
+	var segment = d3.select("#"+div_id).selectAll(".band-chart-segment").data(keys).enter()
+					.append("div").attr("class","band-chart-segment")
+					.style("width",100/keys.length +"%");
+
+	segment.append("div").attr("class",function (d) {return "band-chart-label "+d}).text(function (d) {return d});
+	var band = segment.append("div").attr("class","band-chart");
+	var success = band.append("div").attr("class","band-chart-success").text(function (d){return data_rough[d][0]});
+	var fail = success.append("div").attr("class",function (d) {return "band-chart-fail "+d})
+					.text(function (d){return data_rough[d][1]})
+					.style("width",function (d) {return data_rough[d][1]/(data_rough[d][0]+data_rough[d][1])*100+"%"})
+					.style("display",function (d) {if (data_rough[d][1]==0) {return "none"} else return "initial"})
+}
+
 function drawDeviceFail (data) {
 
 	var width = d3.select("#test_fail_bar_graph").style("width").split("px")[0];

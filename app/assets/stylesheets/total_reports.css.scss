@@ -54,7 +54,6 @@
 
 
 .band-chart-segment {
-	width: 25%;
 	height: 100%;
 	float: left;
 	padding-top: 20px;
@@ -88,13 +87,20 @@
 			width: 100%;
 			height: 100%;
 			border-radius: 10px;
+			background-color: #5DBE88;
 			overflow: hidden;
+			padding-right: 10px;
+			text-align: right;
+			color: white;
 		}
 		.band-chart-fail {
 			position: absolute;
 			height: 100%;
 			top: 0;
-			right: 0;
+			left: 0;
+			padding-left: 10px;
+			text-align: left;
+			color: white;
 			background-color: rgb(93,190,136);
 		}
 		.A {
@@ -342,8 +348,4 @@
 			}
 		}
 	}
-}
-
-.device-column {
-
 }
