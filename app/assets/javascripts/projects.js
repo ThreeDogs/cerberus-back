@@ -1,7 +1,3 @@
-function band_chart_exception (id, num) {
-	var percentage = (100/num)+'%';
-	$(id).css('width',percentage);
-}
 
 var resizeFunctions = [];
 d3.select(window).on("resize",function () {

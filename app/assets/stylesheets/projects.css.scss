@@ -162,46 +162,6 @@
 
 //** projects/show.html.erb **//
 
-#overview-box{
-	height: 120px;
-	color: rgb(96,94,90);
-	background-color: rgb(239,238,238);
-
-	#app-info-box{
-		font-size: 14px;
-		float: left;
-		padding: 10px 0 0 24px;
-		p {
-			margin-bottom: 5px;
-		}
-	}
-	
-	#app-version-box{
-		padding: 10px 0 0 0;
-		float: left;
-		.big-version {
-			font-size: 41px;
-		}
-	}
-
-	.report-link {
-		height: 100%;
-		float: left;
-		padding-top: 20px;
-		.full-report {
-			background-image: url('/assets/fullreport.png');
-			float: right;
-			width: 140px;
-			height: 35px;
-			background-size: 140px 35px;
-			background-repeat: no-repeat;
-		}
-		.full-report:hover {
-			background-image: url('/assets/fullreport_click.png');
-		}
-	}
-}
-
 #test_fail_graph {
 	margin: 5px 0;
 	padding: 0;

@@ -1,16 +1,15 @@
-
-// function drawBandGraph (data) {
-
-// 	var row = d3.select("#band-graph").data(data).enter()
-// 				.append("div").attr("class","band-graph-row");
-	
-// 	row.append("span").attr("class","band-graph-rank").text(function (d) {return d})
-// 	row.append("span").attr("class","band-graph-success")
-// 		.append("class","band-graph-fail").attr("width",function (d) {
-// 			return d[0]/(d[0]+d[1])*100+"%";
-// 		})
-
-// }
+function addBandGraph (key, num_success, num_fail) {
+	var band_row = d3.select("#band-graph").append("div").attr("class","band-row")
+	band_row.append("div").attr("class","band-row-key").text(key);
+	var success_div = band_row.append("div").attr("class","band-row-success").text(num_success)
+	if (num_fail!=0) {
+		var fail_div = success_div.append("div").attr("class","band-row-fail").text(num_fail)
+			.style("width",num_fail/(num_success+num_fail)*100+"%");
+	}
+	if (num_success==0) {
+		fail_div.style("border-top-right-radius","10px").style("border-bottom-right-radius","10px");
+	}
+}
 
 function drawDeviceFail (data) {
 
