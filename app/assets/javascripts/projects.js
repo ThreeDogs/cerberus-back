@@ -77,7 +77,7 @@ function drawFailByDevice (data) {
 
 	function onResize() {
 		width = d3.select("#test_fail_bar_graph").style("width").split("px")[0];
-		svg.attr("width".width);
+		svg.attr("width",width);
 		x_scale.range([margin.left,width-margin.right]);
 		x_axis.call(d3.svg.axis().scale(x_scale).orient("bottom").innerTickSize(3).outerTickSize(0));
 		columns.each(function (d, i){
