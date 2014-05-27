@@ -21,6 +21,10 @@
 					<%= form_for [@apk, @total_report] do |f| %>
 						<div class="col-md-6 jumbotron test-scenario-list">
 							<%= f.fields_for "test_scenario_ids" do |form| %>
+								<div>
+									<h3>Test Scenario Choice</h3>
+									<p><label><input type="checkbox" id="checkAll"/>All</label></p>
+								</div>
 								<% @test_scenarios.each do |test_scenario| %>
 									<div class="test-scenario-item">
 										<%= form.check_box test_scenario.id %>
@@ -53,4 +57,3 @@
 			<% end %>
 		</div>
 </div>
-
