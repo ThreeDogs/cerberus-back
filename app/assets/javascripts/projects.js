@@ -179,6 +179,10 @@ function drawTestResults(test_results_data) {
 	pass.path.moveToFront();
 	dotgg.moveToFront();
 
+	var mouse_trigger = dotg.append("rect").attr("fill","transparent")
+		.attr("width",20).attr("height",height-margin.top-margin.bottom)
+		.attr("y",margin.top);
+
 	function fieldResize() {
 		failure.line.x(function (d, i) {return run_scale(i+1)})
 					.y(function (d, i) {return y_scale(d.failure/(d.failure+d.warning+d.pass)*100)});
@@ -212,6 +216,8 @@ function drawTestResults(test_results_data) {
 		pass.dot.attr("transform",function (d, i) {
 			return "translate("+run_scale(i+1)+","+y_scale(100)+")"
 		});
+
+		mouse_trigger.attr("x",function (d,i) {return run_scale(i+1)-10});
 	};
 	fieldResize();
 
@@ -315,6 +321,10 @@ function drawCPUusage(cpu_trend_data) {
 	min.path.moveToFront();
 	dotgg.moveToFront();
 	
+	var mouse_trigger = dotg.append("rect").attr("fill","transparent")
+		.attr("width",20).attr("height",height-margin.top-margin.bottom)
+		.attr("y",margin.top);
+
 	function fieldResize() {
 		max.line.x(function (d, i) {return run_scale(i+1)})
 					.y(function (d, i) {return y_scale(d.max)});
@@ -348,6 +358,8 @@ function drawCPUusage(cpu_trend_data) {
 		min.dot.attr("transform",function (d, i) {
 			return "translate("+run_scale(i+1)+","+y_scale(d.min)+")";
 		});
+
+		mouse_trigger.attr("x",function (d,i) {return run_scale(i+1)-10});
 	};
 	fieldResize();
 
@@ -431,6 +443,10 @@ function drawMemUsage(mem_trend_data) {
 	min.path.moveToFront();
 	dotgg.moveToFront();
 	
+	var mouse_trigger = dotg.append("rect").attr("fill","transparent")
+		.attr("width",20).attr("height",height-margin.top-margin.bottom)
+		.attr("y",margin.top);
+
 	function fieldResize() {
 		max.line.x(function (d, i) {return run_scale(i+1)})
 					.y(function (d, i) {return y_scale(d.max)});
@@ -464,6 +480,8 @@ function drawMemUsage(mem_trend_data) {
 		min.dot.attr("transform",function (d, i) {
 			return "translate("+run_scale(i+1)+","+y_scale(d.min)+")";
 		});
+
+		mouse_trigger.attr("x",function (d,i) {return run_scale(i+1)-10});
 	};
 	fieldResize();
 
@@ -547,6 +565,10 @@ function drawNetworkTrend(network_trend_data) {
 	min.path.moveToFront();
 	dotgg.moveToFront();
 	
+	var mouse_trigger = dotg.append("rect").attr("fill","transparent")
+		.attr("width",20).attr("height",height-margin.top-margin.bottom)
+		.attr("y",margin.top);
+
 	function fieldResize() {
 		max.line.x(function (d, i) {return run_scale(i+1)})
 					.y(function (d, i) {return y_scale(d.max)});
@@ -580,6 +602,8 @@ function drawNetworkTrend(network_trend_data) {
 		min.dot.attr("transform",function (d, i) {
 			return "translate("+run_scale(i+1)+","+y_scale(d.min)+")";
 		});
+
+		mouse_trigger.attr("x",function (d,i) {return run_scale(i+1)-10});
 	};
 	fieldResize();
 
@@ -663,6 +687,10 @@ function drawBatteryTrend(battery_trend_data) {
 	min.path.moveToFront();
 	dotgg.moveToFront();
 	
+	var mouse_trigger = dotg.append("rect").attr("fill","transparent")
+		.attr("width",20).attr("height",height-margin.top-margin.bottom)
+		.attr("y",margin.top);
+
 	function fieldResize() {
 		max.line.x(function (d, i) {return run_scale(i+1)})
 					.y(function (d, i) {return y_scale(d.max)});
@@ -696,6 +724,8 @@ function drawBatteryTrend(battery_trend_data) {
 		min.dot.attr("transform",function (d, i) {
 			return "translate("+run_scale(i+1)+","+y_scale(d.min)+")";
 		});
+
+		mouse_trigger.attr("x",function (d,i) {return run_scale(i+1)-10});
 	};
 	fieldResize();
 
@@ -779,6 +809,10 @@ function drawThreadTrend(thread_trend_data) {
 	min.path.moveToFront();
 	dotgg.moveToFront();
 	
+	var mouse_trigger = dotg.append("rect").attr("fill","transparent")
+		.attr("width",20).attr("height",height-margin.top-margin.bottom)
+		.attr("y",margin.top);
+
 	function fieldResize() {
 		max.line.x(function (d, i) {return run_scale(i+1)})
 					.y(function (d, i) {return y_scale(d.max)});
@@ -812,6 +846,8 @@ function drawThreadTrend(thread_trend_data) {
 		min.dot.attr("transform",function (d, i) {
 			return "translate("+run_scale(i+1)+","+y_scale(d.min)+")";
 		});
+
+		mouse_trigger.attr("x",function (d,i) {return run_scale(i+1)-10});
 	};
 	fieldResize();
 
@@ -895,6 +931,10 @@ function drawFrameTrend(frame_trend_data) {
 	min.path.moveToFront();
 	dotgg.moveToFront();
 	
+	var mouse_trigger = dotg.append("rect").attr("fill","transparent")
+		.attr("width",20).attr("height",height-margin.top-margin.bottom)
+		.attr("y",margin.top);
+
 	function fieldResize() {
 		max.line.x(function (d, i) {return run_scale(i+1)})
 					.y(function (d, i) {return y_scale(d.max)});
@@ -928,6 +968,8 @@ function drawFrameTrend(frame_trend_data) {
 		min.dot.attr("transform",function (d, i) {
 			return "translate("+run_scale(i+1)+","+y_scale(d.min)+")";
 		});
+
+		mouse_trigger.attr("x",function (d,i) {return run_scale(i+1)-10});
 	};
 	fieldResize();
 
