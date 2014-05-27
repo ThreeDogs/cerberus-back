@@ -15,13 +15,13 @@
 	    	</div>
 			<% @total_reports.each do |total_report| %>
 			<div class="test-result row">
-				<div class="col-md-2" id="app-info-box">
+				<div class="col-md-2 app-info-box">
 					<p><%= total_report.apk_name %></p>
 					<p><%= total_report.test_date %></p>
 					<p><%= total_report.number_of_scenarios %> Test Scenarios</p>
 					<p><%= total_report.number_of_devices %> Devices</p>
 				</div>
-				<div class="col-md-2" id="app-version-box">
+				<div class="col-md-2 app-version-box">
 					<p>App version</p>
 					<p class="big_version"><%= total_report.app_version %></p>	
 				</div>
