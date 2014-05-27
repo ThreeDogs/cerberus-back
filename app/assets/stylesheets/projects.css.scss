@@ -160,6 +160,32 @@
 	background-image: url('/assets/plus_click.png');
 }
 
+#new-project-modal {
+	.modal-content {
+		border-radius: 0px;
+	}
+	.modal-header {
+		text-align: center;
+		font-size: 16px;
+		color: #287044;
+		background-color: #A9D8B9;
+		img {
+			width: 40px;
+		}
+	}
+	.modal-body {
+		text-align: center;
+	}
+}
+
+body.modal-open .container {
+	-webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
+}
+
 //** projects/show.html.erb **//
 
 #test_fail_graph {

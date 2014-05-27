@@ -3,9 +3,9 @@
 <div class="container">
   <div class="page-title">
     <img src="/assets/Project_list.png">My projects list
-     <%= link_to new_project_path do %>
-        <div class="project-new"></div>
-     <% end %>
+     
+        <div class="project-new" data-toggle="modal" data-target="#new-project-modal"></div>
+     <%= link_to new_project_path do %><% end %>
   </div>
 
   <% @projects.each do |project| %>
@@ -28,18 +28,7 @@
             <div class="test_fail_num">
               <!-- RANK STATUS -->
               <% project.recent_report_rank_status.each do |key, array| %>
-                <div class="test_fail_each" id="unique_id">
-                  <div class="test_key <%= key %>"><%= key %></div>
-                  <div class="test_success"><%= array[0] %>
-                    <div class="test_fail <%= key %>" style="width:<%= array[0]/(array[0]+array[1])*100 %>%"><%= array[1] %></div>
-                  </div>
-                </div>
-                <%= javascript_tag do %>
-                  band_chart_exception('#unique_id',1);
-                  if (<%= array[0] %> == 0) {
-                    $('#unique_id').find('.test_fail').css('visibility','hidden');
-                  }
-                <% end %>
+                
               <% end %>
               <!-- -->
             </div>
@@ -52,5 +41,17 @@
 
 </div>
 
-<script>
-</script>
+<div id="new-project-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <img src="/assets/projectlist.png"><b>Add New Project</b>
+      </div>
+      <div class="modal-body">
+        <input type="text" placeholder="Project Name" id="new-project-name">
+        <button>OK</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
