@@ -53,13 +53,13 @@ group :doc do
 end
 
 group :production do # heroku
-	gem 'pg'
+	#gem 'pg'
 	gem 'rails_12factor'
 end
 
 group :development, :test do
-	# gem 'sqlite3'
-	gem 'mysql2'
+	gem 'sqlite3'
+	# gem 'mysql2'
 	gem 'rails-erd', github: 'paulwittmann/rails-erd', branch: 'mavericks'
 	gem 'rspec-rails'
 	gem 'factory_girl_rails', '~> 4.0'

@@ -11,7 +11,7 @@
 
 @user = User.create!(email: "foobar@foobar.com", password: "foobarfoo", password_confirmation: "foobarfoo")
 puts "seed"
-# @project = @user.projects.create!(name: "First App")
+@project = @user.projects.create!(name: "First App")
 
 # @apk = @project.apks.new
 # @uploader = ApkUploader.new(@apk, :apk)
