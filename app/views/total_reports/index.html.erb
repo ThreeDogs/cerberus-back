@@ -15,56 +15,18 @@
 	    	</div>
 			<% @total_reports.each do |total_report| %>
 			<div class="test-result row">
-				<div class="col-md-2" id="app-info-box">
+				<div class="col-md-2 app-info-box">
 					<p><%= total_report.apk_name %></p>
 					<p><%= total_report.test_date %></p>
 					<p><%= total_report.number_of_scenarios %> Test Scenarios</p>
 					<p><%= total_report.number_of_devices %> Devices</p>
 				</div>
-				<div class="col-md-2" id="app-version-box">
+				<div class="col-md-2 app-version-box">
 					<p>App version</p>
 					<p class="big_version"><%= total_report.app_version %></p>	
 				</div>
-				<div class="col-md-6">
-					<div class='band-chart-segment'>
-						<div class='band-chart-label A'>A</div>
-						<div class='band-chart'>
-							<div class='band-chart-success A'>
-								<div class='band-chart-fail' style="width:20%"></div>
-							</div>
-						</div>
-					</div>
-					<div class='band-chart-segment'>
-						<div class='band-chart-label B'>B</div>
-						<div class='band-chart'>
-							<div class='band-chart-success B'>
-								<div class='band-chart-fail' style="width:20%"></div>
-							</div>
-						</div>
-					</div>
-					<div class='band-chart-segment'>
-						<div class='band-chart-label C'>C</div>
-						<div class='band-chart'>
-							<div class='band-chart-success C'>
-								<div class='band-chart-fail' style="width:20%"></div>
-							</div>
-						</div>
-					</div>
-					<div class='band-chart-segment'>
-						<div class='band-chart-label D'>D</div>
-						<div class='band-chart'>
-							<div class='band-chart-success D'>
-								<div class='band-chart-fail' style="width:20%"></div>
-							</div>
-						</div>
-					</div>
+				<div class="col-md-6" id="test-fail-box">
 				</div>
-				<%= javascript_tag do %>
-					band_chart_exception('.band-chart-segment', 4);
-					//if ( no fail ) {
-	                //  $('.band-chart-segment').find('.test_fail').css('visibility','hidden');
-	                //}
-				<% end %>
 				<div class="col-md-2">
 					<div class="report-link">
 						<%= link_to project_total_report_path(@project, total_report) do %>
@@ -79,5 +41,6 @@
 </div>
 
 <script>
-
+  var testdata = {"A":[2,2],"C":[2,0],"D":[0,2]};
+  addColoredBandGraph("test-fail-box",testdata);
 </script>

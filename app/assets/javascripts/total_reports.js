@@ -1,3 +1,33 @@
+function addBandGraph (key, num_success, num_fail) {
+	var band_row = d3.select("#band-graph").append("div").attr("class","band-row")
+	band_row.append("div").attr("class","band-row-key").text(key);
+	var success_div = band_row.append("div").attr("class","band-row-success").text(num_success)
+	if (num_fail!=0) {
+		var fail_div = success_div.append("div").attr("class","band-row-fail").text(num_fail)
+			.style("width",num_fail/(num_success+num_fail)*100+"%");
+	}
+	if (num_success==0) {
+		fail_div.style("border-top-right-radius","10px").style("border-bottom-right-radius","10px");
+	}
+}
+
+function addColoredBandGraph (div_id, data_rough) {
+
+	var keys = Object.keys(data_rough);
+
+	var segment = d3.select("#"+div_id).selectAll(".band-chart-segment").data(keys).enter()
+					.append("div").attr("class","band-chart-segment")
+					.style("width",100/keys.length +"%");
+
+	segment.append("div").attr("class",function (d) {return "band-chart-label "+d}).text(function (d) {return d});
+	var band = segment.append("div").attr("class","band-chart");
+	var success = band.append("div").attr("class","band-chart-success").text(function (d){return data_rough[d][0]});
+	var fail = success.append("div").attr("class",function (d) {return "band-chart-fail "+d})
+					.text(function (d){return data_rough[d][1]})
+					.style("width",function (d) {return data_rough[d][1]/(data_rough[d][0]+data_rough[d][1])*100+"%"})
+					.style("display",function (d) {if (data_rough[d][1]==0) {return "none"} else return "initial"})
+}
+
 function drawDeviceFail (data) {
 
 	var width = d3.select("#test_fail_bar_graph").style("width").split("px")[0];
@@ -38,6 +68,7 @@ function drawDeviceFail (data) {
 	var columns = svg.selectAll("device-column")
 				.data(data).enter().append("g")
 				.attr("class","device_row")
+				.style("cursor","pointer")
 				.attr("transform",function (d) {return "translate("+margin.left+","+y_scale(d.device_name)+")"});
 
 	var rect_height = (height-margin.top-margin.bottom) / data.length * 0.4;
@@ -64,7 +95,7 @@ function drawDeviceFail (data) {
 
 	function onResize() {
 		width = d3.select("#test_fail_bar_graph").style("width").split("px")[0];
-		svg.attr("width".width);
+		svg.attr("width",width);
 		x_scale.range([margin.left,width-margin.right]);
 		x_axis.call(d3.svg.axis().scale(x_scale).orient("bottom").innerTickSize(3).outerTickSize(0));
 		columns.each(function (d, i){

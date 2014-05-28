@@ -2,12 +2,15 @@
 //page title & icon & subtitle
 
 .page-title {
-	margin: 40px 0;
+	margin: 10px -30px 15px -25px;
 	color: rgb(40,112,68);
-	font-size: 20px; 
+	font-size: 20px;
+	padding: 15px 25px;
+	background-color: #C7E5CF;
 	img {
 		width: 40px;
 		margin-right: 16px;
+		vertical-align: text-top;
 	}
 }
 
@@ -91,4 +94,18 @@
 		font-size: 13px;
 		color: #287044;
 	}
+}
+
+.green-button {
+	display: inline-block;
+	background-image: url('/assets/button.png');
+	width: 120px;
+	height: 30px;
+	background-size: 120px 30px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	font-size: 16px;
+	text-align: center;
+	padding-top: 5px;
+	color: #287044;
 }

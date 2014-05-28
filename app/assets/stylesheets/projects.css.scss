@@ -4,6 +4,16 @@
 
 //** projects/index.html.erb **//
 
+.page-title-project {
+	margin: 30px 0;
+	color: rgb(40,112,68);
+	font-size: 20px;
+	img {
+		width: 40px;
+		margin-right: 16px;
+	}
+}
+
 .project_box {
 
 	height: 150px;
@@ -78,73 +88,7 @@
 		margin-left: 25px;
 		padding: 22px 34px 22px 34px;
 		font-size: 16px;
-
 		background-color: rgb(239,239,239);
-		.test_fail_num {
-			.test_key {
-				font-size: 15px;
-				height: 24px;
-				width: 24px;
-				border-radius: 12px;
-				border: solid 2px;
-				margin: 5px auto;
-				text-align: center;
-			}
-			.A {
-				border-color: rgb(244,86,86);
-			}
-			.B {
-				border-color: rgb(239,134,164);
-			}
-			.C {
-				border-color: rgb(255,130,30);
-			}
-			.D {
-				border-color: rgb(255,186,80);
-			}
-			.test_fail_each{
-				font-size: 19px;
-				width: 25%;
-				height: 100;
-				float:left;
-				text-align: center;
-				.test_fail {
-					text-align: left;
-					padding-left: 5px;
-					height:28px;
-					border-top-left-radius: 14px;
-					border-bottom-left-radius: 14px;
-					background-color: rgb(229,96,60);
-					position: absolute;
-					top: 0px;
-					left: 0px;
-				}
-				.test_success{
-					text-align: right;
-					padding-right: 5px;
-					font-size: 21px;
-					color: white;
-					height: 28px;
-					width: 80%;
-					margin: 0 auto;
-					border-radius: 14px;
-					background-color: rgb(93,190,136);
-					position: relative;
-					.A {
-						background-color: rgb(244,86,86);
-					}
-					.B {
-						background-color: rgb(239,134,164);
-					}
-					.C {
-						background-color: rgb(255,130,30);
-					}
-					.D {
-						background-color: rgb(255,186,80);
-					}
-				}
-			}
-		}
 	}
 }
 
@@ -160,47 +104,44 @@
 	background-image: url('/assets/plus_click.png');
 }
 
-//** projects/show.html.erb **//
-
-#overview-box{
-	height: 120px;
-	color: rgb(96,94,90);
-	background-color: rgb(239,238,238);
-
-	#app-info-box{
-		font-size: 14px;
-		float: left;
-		padding: 10px 0 0 24px;
-		p {
-			margin-bottom: 5px;
+#new-project-modal {
+	.modal-content {
+		border-radius: 0px;
+		height: 300px;
+		width: 300px;
+		margin-top: -150px;
+		margin-left: -150px;
+	}
+	.modal-header {
+		text-align: center;
+		font-size: 16px;
+		color: #287044;
+		background-color: #4FB475;
+		img {
+			width: 40px;
+			margin: 0 10px;
 		}
 	}
-	
-	#app-version-box{
-		padding: 10px 0 0 0;
-		float: left;
-		.big-version {
-			font-size: 41px;
-		}
+	.modal-body {
+		text-align: center;
 	}
-
-	.report-link {
-		height: 100%;
-		float: left;
-		padding-top: 20px;
-		.full-report {
-			background-image: url('/assets/fullreport.png');
-			float: right;
-			width: 140px;
-			height: 35px;
-			background-size: 140px 35px;
-			background-repeat: no-repeat;
-		}
-		.full-report:hover {
-			background-image: url('/assets/fullreport_click.png');
-		}
+	.modal-dialog {
+		margin: 0;
+		position: absolute;
+		top: 50%;
+		left: 50%;
 	}
 }
+
+body.modal-open .container {
+	-webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
+}
+
+//** projects/show.html.erb **//
 
 #test_fail_graph {
 	margin: 5px 0;
@@ -226,7 +167,6 @@
 				fill: #777;
 			}
 		}
-
 	}
 
 	#test_fail_chart {

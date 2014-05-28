@@ -3,7 +3,7 @@
 	<div class="row-fluid">
 		<%= render 'shared/side_bar' %>	
 
-		<div class="col-md-12 contents">
+		<div class="contents">
 			<div class="page-title">
         		<img src="/assets/dashboard.png">Dashboard
         	</div>
@@ -33,6 +33,11 @@
 					<div class="total-report-test-result">
 						<p>Test Result</p>
 						<div id="band-graph"></div>
+						<script>
+							addBandGraph("A",2,2);
+							addBandGraph("C",0,2);
+							addBandGraph("D",2,0);
+						</script>
 					</div>
 				</div>
 				<div class="col-md-8">
@@ -65,7 +70,7 @@
 						<span id="table_title_device_name" class="device_name"></span>
 					</div>
 					<table id="detail_table" class="detail_table">
-						<!-- A PLACEHOLDER -->
+						<tr><td>click on bar graph left for more detail</td></tr>
 					</table>
 				</div>
 			</div>
