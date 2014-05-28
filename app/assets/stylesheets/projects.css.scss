@@ -107,6 +107,10 @@
 #new-project-modal {
 	.modal-content {
 		border-radius: 0px;
+		height: 300px;
+		width: 300px;
+		margin-top: -150px;
+		margin-left: -150px;
 	}
 	.modal-header {
 		text-align: center;
@@ -115,10 +119,17 @@
 		background-color: #4FB475;
 		img {
 			width: 40px;
+			margin: 0 10px;
 		}
 	}
 	.modal-body {
 		text-align: center;
+	}
+	.modal-dialog {
+		margin: 0;
+		position: absolute;
+		top: 50%;
+		left: 50%;
 	}
 }
 
