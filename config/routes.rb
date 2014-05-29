@@ -49,6 +49,9 @@ CerberusBack::Application.routes.draw do
   resources :total_reports, only: [] do
     resources :crashes, only: [:show, :index]
     resources :detail_reports
+    member do
+      get 'start_test'
+    end
   end
 
   devise_for :users, path_names: {sign_in: 'login', sing_out: 'logout'}

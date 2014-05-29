@@ -39,7 +39,7 @@ tar xf $3/temp/jarfile.jar -C $3/temp/newclz
 echo $PWD
 
 java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/asm.jar scenario.org.cerberus.jarasm.JarAsmTest $3/temp/newclz $5 $9
-java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/test.jar org.cerberus.test.TestRunnerAsm $3 172.16.101.190 $8 $9 
+java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/test.jar org.cerberus.test.TestRunnerAsm $3 192.168.0.21 $8 $9 
 echo "1-----------------------------------------------------------------"
 cp -r $3/lib/org $3/temp/newclz/
 cp -r $3/lib/com $3/temp/newclz/
@@ -132,7 +132,7 @@ echo $PWD
 
 java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/asm2.jar profiling.org.cerberus.jarasm.JarAsmTest $3/temp/newclz $5 $9
 
-java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/test.jar org.cerberus.test.TestRunnerAsm $3 172.16.101.190 $8 $9 
+java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/test.jar org.cerberus.test.TestRunnerAsm $3 192.168.0.21 $8 $9 
 
 		# String path = args[0];
 		# String ip = args[1];

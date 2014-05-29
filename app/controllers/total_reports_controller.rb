@@ -1,4 +1,10 @@
 class TotalReportsController < ServiceController
+  def start_test
+    @total_report = TotalReport.find(params[:id])
+    @total_report.start_test unless @total_report.status
+    redirect_to total_report_detail_reports_path(@total_report)
+  end
+
   def index
     @project = set_project
     @total_reports = TotalReport.all
@@ -27,7 +33,7 @@ class TotalReportsController < ServiceController
         test_scenario_ids.each do |test_scenario_id|
           @total_report.scenarioships.create!(test_scenario_id: test_scenario_id)
         end
-        redirect_to total_report_detail_reports_path(@total_report)
+        redirect_to start_test_total_report_path(@total_report)
       rescue Exception => e
         redirect_to session.delete(:return_to)
       raise ActiveRecord::Rollback
