@@ -10,8 +10,8 @@
 # test_path_to_file = "#{Rails.root}/lib/test_apk_generator/NewTestTestAndroid.apk"
 
 @user = User.create!(email: "foobar@foobar.com", password: "foobarfoo", password_confirmation: "foobarfoo")
-puts "seed"
-@project = @user.projects.create!(name: "First App")
+# puts "seed"
+# @project = @user.projects.create!(name: "First App")
 
 # @apk = @project.apks.new
 # @uploader = ApkUploader.new(@apk, :apk)
