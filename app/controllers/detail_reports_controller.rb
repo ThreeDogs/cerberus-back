@@ -1,7 +1,6 @@
 class DetailReportsController < ServiceController
   def index
     @total_report = TotalReport.find(params[:total_report_id])
-    # @total_report.start_test unless @total_report.status
     @project = @total_report.project
     @detail_reports = @total_report.detail_reports
   end

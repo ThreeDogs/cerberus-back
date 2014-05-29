@@ -17,7 +17,7 @@
         </div>
 
         <%= javascript_tag do %>
-          progressUpdate(<%= @total_report.id %>);
+          //progressUpdate(<%= @total_report.id %>);
         <% end %>
       <% end %>
 
@@ -78,7 +78,7 @@
             <td><%= detail_report.device_name %></td>
             <td><%= detail_report.os_version %></td>
             <td><%= detail_report.get_running_time %></td>
-            <td><%= link_to "Show", total_report_detail_report_path(@total_report, @detail_report) %></td>
+            <td><%= link_to "Show", total_report_detail_report_path(@total_report, detail_report) %></td>
         </tr>
         <% end %>
       </table>
