@@ -43,8 +43,10 @@
         <img src="/assets/add_new_project.png"><b>Add New Project</b>
       </div>
       <div class="modal-body">
-        <input type="text" placeholder="Project Name" id="new-project-name">
-        <div class="green-button" style="margin-top: 30px;">OK</div>
+        <%= form_for(@project) do |f| %>
+          <%= f.text_field :name, placeholder:"Project Name", id: "new-project-name" %>
+          <%= f.submit "OK", class: "green-button", style: "margin-top:30px;" %>
+        <% end %>
       </div>
     </div>
   </div>

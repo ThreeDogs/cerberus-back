@@ -17,3 +17,5 @@
 
 /lib/test_apk_generator/temp
 /public/uploads/
+
+/config/database.yml
