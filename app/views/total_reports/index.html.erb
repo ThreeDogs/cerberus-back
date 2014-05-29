@@ -1,4 +1,5 @@
 <%= render "shared/header" %>
+
 <div class="container-fluid">
 	<div class="row-fluid">
 		<%= render 'shared/side_bar' %>
@@ -29,7 +30,7 @@
 				</div>
 				<div class="col-md-2">
 					<div class="report-link">
-						<%= link_to project_total_report_path(@project, total_report) do %>
+						<%= link_to total_report_detail_reports_path(total_report) do %>
 						<div class="full-report"></div>
 						<% end %>
 					</div>
