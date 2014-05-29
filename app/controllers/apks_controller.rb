@@ -9,7 +9,7 @@ class ApksController < ServiceController
 
 	def create
 		if @apk = set_project.apks.create(apk_params)
-			ApkUploadWorker.perform_async(@apk.id)
+			# ApkUploadWorker.perform_asyn	c(@apk.id)
 			render json: [set_project.id, @apk.id]
 		else
 			render 'new'
@@ -20,7 +20,7 @@ class ApksController < ServiceController
 		@project = set_project
 		@total_report = set_apk.total_reports.new
 		@test_scenarios = @project.test_scenarios
-		@device_list = JSON.parse(set_apk.get_device_list) # socket io
+		# @device_list = JSON.parse(set_apk.get_device_list) # socket io
 	end
 
 	def destroy

@@ -8,19 +8,19 @@
 			<div class="page-title">
 				<img src="/assets/Result.png">Crash Report
 			</div>
+			<div class="below-page-title">Test Result > Full Report > Crash Report</div>
 			<!-- TODO: subline // Test Results > Full Report -->
 
 			<span class="page-subtitle">Error Summary</span>
-			<div class="error-summary jumbotron">
-				<div class="test_app_icon">
-				</div>
-				<div>
+			<div class="error-summary">
+				<div class="app-icon"></div>
+				<div class="error-line">
 					<h5><%= @crash.error_name %></h5>
 					<span><%= @crash.error_line %></span>
 				</div>
 			</div>
 			
-			<div class="graph jumbotron">
+			<div class="crash-graph">
 				<p>Test rank Rate <%= @crash.test_rank_rate %></p>
 				<p>OS Version <%= @crash.os_version_rate %></p>
 				<p>Device <%= @crash.device_rate %></p>

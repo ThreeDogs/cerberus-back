@@ -17,7 +17,7 @@
 
 class Apk < ActiveRecord::Base
 	default_scope {order('created_at DESC')}
-	before_create :make_test_apk_folder
+	# before_create :make_test_apk_folder
 
 	belongs_to :project
 	has_many :total_reports
@@ -46,6 +46,7 @@ class Apk < ActiveRecord::Base
 
   def apk_conversion_done?
   	test_apk != nil && test_bed_apk != nil
+  	true	
   end
 
   def generate_test_apk
