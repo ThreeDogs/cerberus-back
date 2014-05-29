@@ -30,7 +30,7 @@ class DetailReport < ActiveRecord::Base
   accepts_nested_attributes_for :cpu_infos
   accepts_nested_attributes_for :motion_event_infos
 
-  validates :app_version, presence: true
+  # validates :app_version, presence: true
 
   def error_name
     crash.error_name
