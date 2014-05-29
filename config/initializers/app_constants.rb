@@ -1,1 +1,1 @@
-TEST_BED_URL = "http://172.16.101.167:8080/testSvr/"
+TEST_BED_URL = "http://172.16.101.190:8080/testSvr/"
