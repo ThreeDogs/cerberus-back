@@ -10,13 +10,13 @@
 class CreateMotionEvents < ActiveRecord::Migration
   def change
     create_table :motion_events do |t|
-      t.integer :seq_id
-      t.timestamp :time_stamp
-      t.integer :sleep
       t.string :activity_class
-      t.string :action_type
       t.string :param
       t.string :view
+      t.string :action_type
+      t.string :activity_class
+      t.integer :sleep
+      t.integer :client_timestamp      
       t.integer :test_scenario_id
 
       t.timestamps

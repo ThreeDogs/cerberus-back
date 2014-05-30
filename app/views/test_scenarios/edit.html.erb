@@ -3,7 +3,6 @@
 <%= nested_form_for([@project, @test_scenario]) do |f| %>
   <table class="table">
   	<tr>
-  		<th>Num</th>
   		<th>Activity</th>
   		<th>View</th>
   		<th>Event Type</th>
@@ -11,7 +10,6 @@
   	</tr>
 		<%= f.fields_for :motion_events do |builder| %>
 			<tr>
-	  		<th><%= builder.object.seq_id %></th>
 	  		<th><%= builder.object.activity_class %></th>
 	  		<th><%= builder.object.view %></th>
 	  		<th><%= builder.object.action_type %></th>

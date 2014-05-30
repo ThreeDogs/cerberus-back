@@ -1,6 +1,16 @@
 class Api::V1::TotalReportsController < ApplicationController
 	respond_to :json
 
+	def filter
+		@total_report = TotalReport.find(params[:id])
+		render json: {name: @total_report.test_names, device: @total_report.device_names, rank: @total_report.test_rank_rate, os_version: @total_report.os_version_rate, status: @total_report.status_rate}
+	end
+
+	def test_rank_status
+		@total_report = TotalReport.find(params[:id])
+		render json: @total_report.test_rank_status
+	end
+
 	def test_progress
 		@total_report = TotalReport.find(params[:id])
 		render json: @total_report.test_progress

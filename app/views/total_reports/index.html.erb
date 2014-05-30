@@ -26,7 +26,13 @@
 					<p>App version</p>
 					<p class="big_version"><%= total_report.app_version %></p>	
 				</div>
-				<div class="col-md-6" id="test-fail-box">
+				<div class="col-md-6" id="test-fail-<%= total_report.id %>">
+					<%= javascript_tag do %>
+            $.getJSON("/api/v1/total_reports/<%= total_report.id %>/test_rank_status",function(data){
+              var testdata = data;
+              addColoredBandGraph("test-fail-<%= total_report.id %>",testdata);
+            });
+           <% end %>
 				</div>
 				<div class="col-md-2">
 					<div class="report-link">
@@ -40,8 +46,3 @@
 		</div>	
 	</div>
 </div>
-
-<script>
-  var testdata = {"A":[2,2],"C":[2,0],"D":[0,2]};
-  addColoredBandGraph("test-fail-box",testdata);
-</script>
