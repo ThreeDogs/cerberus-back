@@ -66,10 +66,15 @@ class DetailReport < ActiveRecord::Base
 
   # status -1 : Fail, 1: Pass
   def get_status
-    if status == 1
+    case status
+    when 1
       "Pass"
-    elsif status == -1
+    when 0
+      "Warning"
+    when -1
       "Fail"
+    else
+      "Error"
     end
   end
 
@@ -78,13 +83,11 @@ class DetailReport < ActiveRecord::Base
   end
 
   def memory_average
-    # implement..
-    "20.00mb"
+    "#{performace_average(memory_infos, "dalvik_heap_size")} Mb"
   end
 
   def cpu_average
-    # implement..
-    "11%"
+    "#{performace_average(cpu_infos, "usage")} %"
   end
 
   def network_average
@@ -105,6 +108,10 @@ class DetailReport < ActiveRecord::Base
   def frame_draw_time_average
     # implement..
     "11.27ms"
+  end
+
+  def performace_average(performace, attribute)
+    performace.inject(0){|sum,p| sum += p.send(attribute) } / performace.size
   end
 
   def project_id

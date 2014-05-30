@@ -1,18 +1,58 @@
-<%= stylesheet_link_tag  "login" %>
-
 <div class="container">
-  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),html: {class: "form-signin"}) do |f| %>
-    <h2 class="form-signin-heading">Please Login</h2> 
-    <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email address", required: true %>
-    <%= f.password_field :password, class: "form-control", placeholder: "Password", required: true %>
-    <label class="checkbox">
-      <% if devise_mapping.rememberable? -%>
-        <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-      <% end -%>     
-    </label>
+  <div class="col-md-4 col-md-offset-4">
+    <div class="header">
+      <%= image_tag "/assets/Logo.png" %>
+    </div>
+    <div class="body">
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),html: {class: "form-signin"}) do |f| %>
+        <%= f.email_field :email, autofocus: true, class: "form-control login-form", placeholder: "Email address", required: true %>
+        <%= f.password_field :password, class: "form-control login-form", placeholder: "Password", required: true %>
 
-    <div><%= f.submit "Login", class: "btn btn-lg btn-primary btn-block" %></div>
+        <div><%= f.submit "Login", class: "btn btn-lg btn-back" %></div>
 
-    <%= render "users/shared/links" %>
-  <% end %>  
+        <div class="links">
+          <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+            <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+          <% end -%>
+
+          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+            <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+          <% end -%>  
+        </div>
+      <% end %>  
+    </div>
+  </div>
 </div>
+
+<style type="text/css">
+  .header {
+    text-align: center;
+    background-color: #4FB475;
+    height: 80px;
+  }
+
+  img{
+    height: 50px;
+    margin-top: 15px;
+  }
+
+  .body {
+    margin-top: 100px;
+    text-align: center;
+  }
+
+  .login-form{
+    margin-left: 10%;
+    margin-bottom: 10px;
+    width: 80%;
+  }
+
+  .btn-back{
+    background-color: #4FB475;
+    color: #ffffff;
+  }
+
+  .links{
+    text-align: left;
+  }
+</style>

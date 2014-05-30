@@ -46,11 +46,11 @@ end
 @total_report.devices.create(brand: "Xaomi", cpu: "ARM", model:"XaomiXXX", os_version: "4.1", country: "CN", device_key: "A5BVDWE")
 @total_report.devices.create(brand: "Google", cpu: "ARM", model:"GogolPhone", os_version: "2.3", country: "KR", device_key: "A6BVDWE")
 
-crash_1 = @total_report.crashes.create!(error_name: "Out Of Memory")
-crash_2 = @total_report.crashes.create!(error_name: "Just Fuck Error")
-crash_3 = @total_report.crashes.create!(error_name: "What the fuck Error")
-crash_4 = @total_report.crashes.create!(error_name: "Error")
-crash_5 = @total_report.crashes.create!(error_name: "NullPointerException")
+crash_1 = @total_report.crashes.create!(error_name: "Out Of Memory", error_line: "android.widget.Browsasd.webkit(234)")
+crash_2 = @total_report.crashes.create!(error_name: "Just Fuck Error", error_line: "android.widget.Browsasd.webkit(234)")
+crash_3 = @total_report.crashes.create!(error_name: "What the fuck Error", error_line: "android.widget.Browsasd.webkit(234)")
+crash_4 = @total_report.crashes.create!(error_name: "Error", error_line: "android.widget.Browsasd.webkit(234)")
+crash_5 = @total_report.crashes.create!(error_name: "NullPointerException", error_line: "android.widget.Browsasd.webkit(234)")
 
 
 (2..6).each do |i|
