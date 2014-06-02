@@ -1,23 +1,27 @@
 <div class="container">
-  <div class="col-md-4 col-md-offset-4">
+  <div class="col-md-4 col-md-offset-3 login-area">
     <div class="header">
       <%= image_tag "/assets/Logo.png" %>
     </div>
-    <div class="body">
+    <div class="login-body">
       <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),html: {class: "form-signin"}) do |f| %>
-        <%= f.email_field :email, autofocus: true, class: "form-control login-form", placeholder: "Email address", required: true %>
+        <%= f.email_field :email, autofocus: true, class: "form-control login-form email-field", placeholder: "Email address", required: true %>
         <%= f.password_field :password, class: "form-control login-form", placeholder: "Password", required: true %>
 
         <div><%= f.submit "Login", class: "btn btn-lg btn-back" %></div>
 
         <div class="links">
-          <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-            <%= link_to "Sign up", new_registration_path(resource_name) %><br />
-          <% end -%>
+          <div class="sign-up pull-left">
+            <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+              <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+            <% end -%>
+          </div>
 
-          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-            <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
-          <% end -%>  
+          <div class="password pull-left">
+            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+              <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+            <% end -%>    
+          </div>
         </div>
       <% end %>  
     </div>
@@ -25,26 +29,35 @@
 </div>
 
 <style type="text/css">
+  .login-area{
+    width: 550px;
+  }
+
   .header {
+    width: 520px;
+    margin-left: 15px;
     text-align: center;
-    background-color: #4FB475;
-    height: 80px;
+    background-color: #5DBE88;
+    height: 124px;
   }
 
   img{
-    height: 50px;
-    margin-top: 15px;
+    height: 60px;
+    margin-top: 35px;
   }
 
-  .body {
-    margin-top: 100px;
+  .login-body {
+    background-color: #EFEEEE;
+    margin-top: 124px;
+    padding-top: 42px;
+    height: 300px;
     text-align: center;
-  }
+  }  
 
   .login-form{
-    margin-left: 10%;
-    margin-bottom: 10px;
-    width: 80%;
+    margin-left: 100px;
+    margin-bottom: 14px;
+    width: 60%;
   }
 
   .btn-back{
@@ -53,6 +66,14 @@
   }
 
   .links{
-    text-align: left;
+    margin-top: 50px;
+  }
+
+  .sign-up{
+    margin-left: 150px;
+  }
+
+  .password{
+    margin-left: 30px;
   }
 </style>
