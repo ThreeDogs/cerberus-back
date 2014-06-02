@@ -52,3 +52,22 @@ d3.selection.prototype.moveToFront = function() {
 $(function () {
 	$(".sidebar").css("height",$(".container-fluid").css("height"));
 })
+
+
+function generateFilter(div_id, fields, callback) {
+	fields = ["rank","status","os_version","device","name"];
+	filter_address = "127.0.0.1:3000/api/v1/total_reports/1/filter";
+	var div = d3.select("#"+div_id);
+	d3.json(filter_address, function (data) {
+		var field, field_key, field_value;
+		if (fields.indexOf("rank")>-1) {
+			field = div.append("div").attr("class","filter-field");
+			field_key = field.append("div").attr("class","filter-key").text()
+			field_value = field.append("div").attr("class","filter-value");
+			for (i in data.rank) {
+				field_value.append("div").attr("class","filter-value-each")
+					.text(i+"("+data.rank[i]+")");
+			}
+		}
+	})
+}

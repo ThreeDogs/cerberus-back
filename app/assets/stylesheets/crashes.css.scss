@@ -3,7 +3,7 @@
 	padding: 10px;
 	background-color: #EFEEEE;
 	display: block;
-	.test-app-icon {
+	.status-icon {
 		display: inline-block;
 		width: 80px;
 		text-align: center;
@@ -30,5 +30,35 @@
 	background-color: #EFEEEE;
 	.crash-graph-each {
 		width:25%;
+	}
+}
+
+.stack-trace {
+	padding: 10px;
+	width: 100%;
+}
+
+.event-path {
+	padding: 10px;
+	width: 100%;
+}
+
+.detail-report-list-table {
+	width: 100%;
+	margin-top: 20px;
+
+	th {
+		background-color: #A9D8B9;
+		color: #287044;
+		font-size: 13px;
+		border: solid 1px #A9D8B9;
+		padding: 5px;
+		text-align: center;
+	}
+
+	td {
+		color: #5E5E5E;
+		font-size: 12px;
+		padding: 5px;
 	}
 }
