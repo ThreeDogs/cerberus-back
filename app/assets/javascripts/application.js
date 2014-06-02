@@ -56,18 +56,92 @@ $(function () {
 
 function generateFilter(div_id, fields, callback) {
 	fields = ["rank","status","os_version","device","name"];
-	filter_address = "127.0.0.1:3000/api/v1/total_reports/1/filter";
+	filter_address = "http://127.0.0.1:3000/api/v1/total_reports/1/filter";
 	var div = d3.select("#"+div_id);
-	d3.json(filter_address, function (data) {
-		var field, field_key, field_value;
-		if (fields.indexOf("rank")>-1) {
-			field = div.append("div").attr("class","filter-field");
-			field_key = field.append("div").attr("class","filter-key").text()
-			field_value = field.append("div").attr("class","filter-value");
-			for (i in data.rank) {
-				field_value.append("div").attr("class","filter-value-each")
-					.text(i+"("+data.rank[i]+")");
-			}
+
+	var data = {
+	    "name": [
+	        "TestScenario 2014-05-29T21:04:57+09:00",
+	        "TestScenario 2014-05-29T21:04:57+09:00",
+	        "TestScenario 2014-05-29T21:04:57+09:00",
+	        "TestScenario 2014-05-29T21:04:57+09:00"
+	    ],
+	    "device": [
+	        "Galaxy",
+	        "G2",
+	        "Nokia",
+	        "XaomiXXX",
+	        "GogolPhone"
+	    ],
+	    "rank": {
+	        "A": 15,
+	        "B": 15,
+	        "C": 10,
+	        "D": 11
+	    },
+	    "os_version": {
+	        "4.1": 10,
+	        "2.3": 10,
+	        "4.3": 11,
+	        "4.4": 10,
+	        "4.0": 10
+	    },
+	    "status": {
+	        "-1": 51
+	    }
+	};
+	//d3.json(filter_address, function (data) {
+	
+	var field, field_key, field_value;
+	if (fields.indexOf("rank")>-1) {
+		field = div.append("div").attr("class","filter-field");
+		field_key = field.append("div").attr("class","filter-key").text("Rank")
+		field_value = field.append("div").attr("class","filter-value");
+		for (i in data.rank) {
+			field_value.append("div").attr("class","filter-value-each")
+				.text(i+"("+data.rank[i]+")");
 		}
-	})
+	}
+	if (fields.indexOf("status")>-1) {
+		field = div.append("div").attr("class","filter-field");
+		field_key = field.append("div").attr("class","filter-key").text("Status")
+		field_value = field.append("div").attr("class","filter-value");
+		for (i in data.status) {
+			var status;
+			if (i==-1) {status="Error"}
+			else if (i==0) {status="Warning"}
+			else if (i==1) {status="Pass"}
+			field_value.append("div").attr("class","filter-value-each")
+				.text(status+"("+data.status[i]+")");
+		}
+	}
+	if (fields.indexOf("os_version")>-1) {
+		field = div.append("div").attr("class","filter-field");
+		field_key = field.append("div").attr("class","filter-key").text("OS Version")
+		field_value = field.append("div").attr("class","filter-value");
+		for (i in data.os_version) {
+			field_value.append("div").attr("class","filter-value-each")
+				.text(i+"("+data.os_version[i]+")");
+		}
+	}
+	if (fields.indexOf("device")>-1) {
+		field = div.append("div").attr("class","filter-field");
+		field_key = field.append("div").attr("class","filter-key").text("Device")
+		field_value = field.append("div").attr("class","filter-value");
+		for (i in data.device) {
+			field_value.append("div").attr("class","filter-value-each")
+				.text(""+data.device[i]);
+		}
+	}
+	if (fields.indexOf("name")>-1) {
+		field = div.append("div").attr("class","filter-field");
+		field_key = field.append("div").attr("class","filter-key").text("Name")
+		field_value = field.append("div").attr("class","filter-value");
+		for (i in data.name) {
+			field_value.append("div").attr("class","filter-value-each")
+				.text(""+data.name[i]);
+		}
+	}
+	
+	//})
 }
