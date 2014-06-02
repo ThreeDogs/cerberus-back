@@ -27,6 +27,7 @@
 //= require test_scenarios
 //= require total_reports
 //= require total_reports_progress
+//= require socket.io
 //= require_self
 
 

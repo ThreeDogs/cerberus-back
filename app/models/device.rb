@@ -16,6 +16,21 @@
 
 class Device < ActiveRecord::Base
 	include Rails.application.routes.url_helpers
+  after_create {|device| device.message 'create'}
+  after_destroy {|device| device.message 'destroy'}
+
+  def message action
+    msg = {
+      resource: 'devices',
+      action: action,
+      id: self.id,
+      obj: self
+    }
+
+    $redis.publish 'rt-change', msg.to_json
+  end
+
+
 	belongs_to :project
 	belongs_to :total_report
   

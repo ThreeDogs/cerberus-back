@@ -7,6 +7,8 @@ CerberusBack::Application.routes.draw do
       resources :apks, only: [] do
         member do
           get 'apk_conversion_status'
+          post 'create_device'
+          delete 'destroy_device'
         end
       end
 

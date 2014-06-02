@@ -47,6 +47,13 @@ gem 'sidekiq-limit_fetch'
 # Search
 gem 'ransack'
 
+# db
+gem 'mysql2'
+gem 'redis'
+
+# server
+gem 'thin'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -59,7 +66,7 @@ end
 
 group :development, :test do
 	# gem 'sqlite3'
-	gem 'mysql2'
+	# gem 'mysql2'
 	gem 'rails-erd', github: 'paulwittmann/rails-erd', branch: 'mavericks'
 	gem 'rspec-rails'
 	gem 'factory_girl_rails', '~> 4.0'
