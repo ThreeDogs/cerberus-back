@@ -92,12 +92,14 @@ function generateFilter(div_id, fields, callback) {
 	};
 	//d3.json(filter_address, function (data) {
 	
-	var field, field_key, field_value;
+	var field, field_key, field_value, field_value_each;
 	if (fields.indexOf("rank")>-1) {
 		field = div.append("div").attr("class","filter-field");
 		field_key = field.append("div").attr("class","filter-key").text("Rank")
 		field_value = field.append("div").attr("class","filter-value");
 		for (i in data.rank) {
+			field_value.append("input").attr("type","checkbox");
+			field_value.append("span");
 			field_value.append("div").attr("class","filter-value-each")
 				.text(i+"("+data.rank[i]+")");
 		}
@@ -111,6 +113,8 @@ function generateFilter(div_id, fields, callback) {
 			if (i==-1) {status="Error"}
 			else if (i==0) {status="Warning"}
 			else if (i==1) {status="Pass"}
+			field_value.append("input").attr("type","checkbox");
+			field_value.append("span");
 			field_value.append("div").attr("class","filter-value-each")
 				.text(status+"("+data.status[i]+")");
 		}
@@ -120,6 +124,8 @@ function generateFilter(div_id, fields, callback) {
 		field_key = field.append("div").attr("class","filter-key").text("OS Version")
 		field_value = field.append("div").attr("class","filter-value");
 		for (i in data.os_version) {
+			field_value.append("input").attr("type","checkbox");
+			field_value.append("span");
 			field_value.append("div").attr("class","filter-value-each")
 				.text(i+"("+data.os_version[i]+")");
 		}
