@@ -52,16 +52,19 @@
 
 }
 
+#test-fail-box{
+	padding-top: 10px;
+}
 
 .band-chart-segment {
 	height: 100%;
 	float: left;
-	padding-top: 20px;
+	padding-top: 10px;
 	.band-chart-label {
 		width: 24px;
 		height: 24px;
 		border-radius: 12px;
-		border: solid 2px;
+		border: solid 3px;
 		margin: 5px auto;
 		text-align: center;
 		background-color: #FFF;
@@ -91,6 +94,8 @@
 			overflow: hidden;
 			padding-right: 10px;
 			text-align: right;
+			font-size: 12px;
+			line-height: 20px;
 			color: white;
 		}
 		.band-chart-fail {
