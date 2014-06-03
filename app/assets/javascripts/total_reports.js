@@ -37,6 +37,27 @@ function drawDeviceFail (data) {
 	var svg = d3.select("#test_fail_bar_graph").append("svg")
 				.attr("width",width).attr("height",height);
 
+	var defs = svg.append("defs");
+	
+	function gradation(defs) {
+
+		addGradation("grad-A","#EA7C4B","#C1633E");
+		addGradation("grad-B","#ED9FBD","#BF7593");
+		addGradation("grad-C","#52C4D0","#34989A");
+		addGradation("grad-D","#D6B6EF","#A28BBC");
+		
+		function addGradation(id, color1, color2) {
+			var grad = defs.append("linearGradient").attr("id",id)
+				.attr("x1","0%").attr("x2","0%").attr("y1","0%").attr("y2","100%");
+			grad.append("stop").attr("offset","0%").attr("stop-color",color1);
+			grad.append("stop").attr("offset","78%").attr("stop-color",color1);
+			grad.append("stop").attr("offset","78%").attr("stop-color",color2);
+			grad.append("stop").attr("offset","100%").attr("stop-color",color2);
+		}
+	};
+	
+	gradation(defs);
+
 	var y_domain = [];
 	for (var each in data) {
 		y_domain.push(data[each].device_name);
@@ -45,7 +66,7 @@ function drawDeviceFail (data) {
 	var x_extent = [0,data[0].fail_data.A.length+data[0].fail_data.B.length+data[0].fail_data.C.length+data[0].fail_data.D.length];
 
 	var x_scale = d3.scale.linear().domain(x_extent).range([margin.left,width-margin.right]);
-	var y_scale = d3.scale.ordinal().domain(y_domain).rangeRoundBands([height-margin.bottom,margin.top],0.3,0.3);
+	var y_scale = d3.scale.ordinal().domain(y_domain).rangeRoundBands([margin.top,height-margin.bottom],0.3,0.3);
 
 	var x_axis = svg.append("g")
 				.attr("class", "x axis")
@@ -71,7 +92,7 @@ function drawDeviceFail (data) {
 				.style("cursor","pointer")
 				.attr("transform",function (d) {return "translate("+margin.left+","+y_scale(d.device_name)+")"});
 
-	var rect_height = (height-margin.top-margin.bottom) / data.length * 0.4;
+	var rect_height = (height-margin.top-margin.bottom) / data.length * 0.5;
 
 	columns.each(function (d, i){
 		var sum = 0;

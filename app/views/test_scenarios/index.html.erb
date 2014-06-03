@@ -15,15 +15,15 @@
 					<th>Name</th>
 					<th>Description</th>
 					<th>Recently tested on</th>
-					<th>-</th>
+					<th></th>
 				</tr>
 				<!-- LOOP -->
 				<% @test_scenarios.each do |test_scenario| %>
 					<tr>
 						<td><div class="rank <%= test_scenario.get_rank %>"><%= test_scenario.get_rank %></div></td>
-						<td><%= test_scenario.name %></td>
+						<td style="text-align: center;"><%= test_scenario.name %></td>
 						<td><%= test_scenario.description %></td>
-						<td><%= test_scenario.recent_test_date %></td>
+						<td style="text-align: center;"><%= test_scenario.recent_test_date %></td>
 						<td>
 							<%= link_to project_test_scenario_path(@project, test_scenario) do %>
 								<div class="show-button"></div>
