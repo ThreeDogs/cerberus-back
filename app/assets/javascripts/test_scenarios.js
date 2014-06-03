@@ -20,7 +20,8 @@ function drawEventFlow (data) {
 	data = dataProcess(data.motion_event_infos);
 
 	var inner_div = d3.select("#event-flow-inner");
-	var rect_width = 120;
+	var detail_div = d3.select("#event-detail");
+	var rect_width = 110;
 
 	inner_div.style("width",(rect_width+20)*data.length+"px");
 
@@ -53,11 +54,27 @@ function drawEventFlow (data) {
 			return d.name;
 		});
 
+	activity_div.on("click",function (d) {
+		detail_div.html("");
+		detail_div.append("p").text(d.name);
+		detail_div.append("p").text("# of events: "+d.events.length);
+		detail_div.append("p").text("Start time: "+d.start_time);
+		detail_div.append("p").text("End time: "+d.end_time);
+		event.stopPropagation();
+	});
+
 	var event_div = activity_div.selectAll("event").data(function (d) {return d.events}).enter()
-			.append("div").attr("class","event-div")
-			.style("width",rect_width+"px");
+			.append("div").attr("class","event-div");
 
 	event_div.append("p").text(function (d) {return "View: "+d.view});
 	event_div.append("p").text(function (d) {return "Action: "+d.action_type});
 
+	event_div.on("click",function (d) {
+		detail_div.html("");
+		detail_div.append("p").text(d.name);
+		detail_div.append("p").text("Action type: "+d.action_type);
+		detail_div.append("p").text("View: "+d.view);
+		detail_div.append("p").text("Parameter: "+d.param);
+		event.stopPropagation();
+	});
 }

@@ -112,13 +112,25 @@
 }
 
 .event-flow {
-	width: 100%;
+	float: left;
+	width: 80%;
 	overflow-x: scroll;
 	overflow-y: none;
 }
 
+#event-detail {
+	float: left;
+	margin-left: 2%;
+	width: 18%;
+	height: 85px;
+	padding: 10px;
+	background-color: #EFEEEE;
+	color: #5E5E5E;
+	font-size: 12px;
+}
+
 #event-flow-inner {
-	height: 60px;
+	height: 65px;
 	font-size: 12px;
 	color: #5E5E5E;
 	background-color: #EFEEEE;
@@ -126,6 +138,7 @@
 		float: left;
 		background-color: #A9D8B9;
 		margin-right: 20px;
+		padding: 5px;
 		.activity-name {
 			padding: 2px;
 			width: 100%;
@@ -135,11 +148,10 @@
 	.event-div {
 		display: inline-block;
 		background-image: url('/assets/event.png');
-		float: right;
-		padding: 2px;
-		width: 120px;
+		padding: 5px 10px;
+		width: 100px;
 		height: 40px;
-		background-size: 120px 40px;
+		background-size: 100px 40px;
 		background-repeat: no-repeat;
 	}
 }
