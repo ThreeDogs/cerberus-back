@@ -12,13 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require socket.io
+//= require connection
 //= require bootstrap.min
 //= require jquery_nested_form
 //= require jquery.ui.widget
 //= require jquery.iframe-transport
 //= require jquery.fileupload
 //= require d3.v3
-//= require socket.io
 //= require spin.min
 //
 //= require apks
@@ -29,8 +30,6 @@
 //= require test_scenarios
 //= require total_reports
 //= require total_reports_progress
-//= require connection
-//
 //= require_self
 
 
