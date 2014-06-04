@@ -50,7 +50,7 @@ class Apk < ActiveRecord::Base
   end
 
   def generate_test_apk
-  	secret_password = "gkqazx"
+  	secret_password = $ROOT_PASSWORD
   	shell_path = "#{Rails.root}/lib/test_apk_generator"
   	play_all_sh = "#{shell_path}/playAll.sh"
   	apk_url = "#{Rails.root}/public/#{apk.to_s}" # apk address

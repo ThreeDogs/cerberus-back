@@ -6,8 +6,8 @@ development:
   pool: 20
   timeout: 5000
   host: localhost
-  username: root
-  password: Zodlxj10
+  username: $DB_USER
+  password: $DB_PASSWORD
   socket: /tmp/mysql.sock
   
 test:
@@ -18,8 +18,8 @@ test:
   pool: 20
   timeout: 5000
   host: localhost
-  username: root
-  password: Zodlxj10
+  username: $DB_USER
+  password: $DB_PASSWORD
   socket: /tmp/mysql.sock
 
 production:
@@ -30,6 +30,6 @@ production:
   pool: 30
   timeout: 5000
   host: localhost
-  username: root
-  password: Zodlxj10
+  username: $DB_USER
+  password: $DB_PASSWORD
   socket: /tmp/mysql.sock
