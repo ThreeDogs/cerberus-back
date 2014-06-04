@@ -3,8 +3,7 @@
 <div class="container">
   <div class="page-title-project">
     <img src="/assets/Project_list.png">My projects list
-     
-        <div class="project-new" data-toggle="modal" data-target="#new-project-modal"></div>
+      <div class="project-new" data-toggle="modal" data-target="#new-project-modal"></div>
      <%= link_to new_project_path do %><% end %>
   </div>
 
@@ -21,18 +20,21 @@
           <% end %>
         </div>
 
-
         <% if project.recent_total_report %>
           <div class="test_fail_box">
             <p>Test Fail</p>
-            <div id="test_fail_num"></div>
+            <div id="test-fail-<%= project.id %>"></div>
+            <%= javascript_tag do %>
+              $.getJSON("/api/v1/total_reports/<%= project.recent_total_report.id %>/test_rank_status",function(data){
+                var testdata = data;
+                addColoredBandGraph("test-fail-<%= project.id %>",testdata);
+              });
+            <% end %>
           </div>
         <% end %>
       </div>
     </div>
   <% end %>
-
-
 </div>
 
 <div id="new-project-modal" class="modal fade">
@@ -43,14 +45,11 @@
         <img src="/assets/add_new_project.png"><b>Add New Project</b>
       </div>
       <div class="modal-body">
-        <input type="text" placeholder="Project Name" id="new-project-name">
-        <div class="green-button" style="margin-top: 30px;">OK</div>
+        <%= form_for(@project) do |f| %>
+          <%= f.text_field :name, placeholder:"Project Name", id: "new-project-name" %>
+          <%= f.submit "OK", class: "green-button", style: "margin-top:30px;" %>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
-
-<script>
-  var testdata = {"A":[2,2],"C":[2,0],"D":[0,2]};
-  addColoredBandGraph("test_fail_num",testdata);
-</script>

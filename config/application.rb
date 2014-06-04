@@ -32,5 +32,15 @@ module CerberusBack
             request_specs: true
         g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
+
+    # config.middleware.use Rack::Cors do
+    #   allow do
+    #     origins '*'
+    #     resource '*',
+    #       :headers => :any,
+    #       :methods => [:get, :put, :patch, :options],
+    #       :max_age => 15
+    #   end
+    # end
   end
 end

@@ -18,5 +18,5 @@
 class MotionEvent < ActiveRecord::Base
 	belongs_to :test_scenario
 
-	validates :seq_id, presence: true
+	# validates :seq_id, presence: true
 end

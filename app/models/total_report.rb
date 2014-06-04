@@ -61,6 +61,15 @@ class TotalReport < ActiveRecord::Base
     devices.count
   end
 
+  # Rank, Status, OS Version, Device, Name
+  def test_names
+    test_scenarios.collect{|t| t.name}
+  end
+
+  def device_names
+    devices.collect{|d| d.model }
+  end
+
   def number_of_details
     detail_reports.count
   end

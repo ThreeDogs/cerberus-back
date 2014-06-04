@@ -13,8 +13,9 @@
 				<div class="scenario-info-title">
 					<span class="scenario-rank"><%= @test_scenario.get_rank %></span>
 					<span class="scenario-name"><%= @test_scenario.name %></span>
-					<!--<%= link_to "Edit", "#", data: {toggle: "modal", target: "#edit"} %>-->
-					<div class="edit-button"></div>
+					<%= link_to edit_project_test_scenario_path(@project, @test_scenario) do%>
+						<div class="edit-button"></div>
+					<% end %>
 				</div>
 				<div class="detail_content"><%= @test_scenario.description %></div>
 				<div class="recently_tested">recently tested on: <%= @test_scenario.recent_test_date %></div>
@@ -31,7 +32,6 @@
 			<%= nested_form_for([@project, @test_scenario]) do |f| %>
 			  <table class="motion-events-table">
 			  	<tr>
-			  		<th>Num</th>
 			  		<th>Activity</th>
 			  		<th>View</th>
 			  		<th>Event Type</th>
@@ -39,7 +39,6 @@
 			  	</tr>
 					<%= f.fields_for :motion_events do |builder| %>
 						<tr>
-				  		<th><%= builder.object.seq_id %></th>
 				  		<th><%= builder.object.activity_class %></th>
 				  		<th><%= builder.object.view %></th>
 				  		<th><%= builder.object.action_type %></th>
@@ -57,7 +56,7 @@
 	
 </div>
 
-<script>
-	d3.json("http://127.0.0.1:3000/testdata.json",drawEventFlow);
-</script>
+<%= javascript_tag do %>
+	d3.json("/api/v1/test_scenarios/<%= @test_scenario.id %>/motion_event_list",drawEventFlow);
+<% end %>
 

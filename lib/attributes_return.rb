@@ -15,6 +15,10 @@ module AttributesReturn
 		attributes_return_rate("device_country")
 	end
 
+	def status_rate
+		attributes_return_rate("status")
+	end
+
 	private 
 
 	def attributes_return_rate(attribute)

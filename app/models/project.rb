@@ -11,7 +11,6 @@
 #
 
 class Project < ActiveRecord::Base
-  # default_scope { joins(:total_reports).order('total_reports.created_at DESC') } 
   mount_uploader :icon, IconUploader
 
 	belongs_to :user
@@ -47,13 +46,15 @@ class Project < ActiveRecord::Base
     recent_total_report.test_rank_status
   end
 
+  # icon.
   def get_icon
-    # icon.
     icon.blank? ? "/assets/default_app_icon.png" : icon.to_s
   end
 
+  # state _fail, _warning
   def get_color_band
-    result = "color_band"
-    # state _fail, _warning
+    return "color_band_fail" if recent_report_rank_status["A"][1] >= 1 or recent_report_rank_status["B"][1] >= 5
+    return "color_band_warning" if recent_report_rank_status["B"][1] >= 1 or recent_report_rank_status["C"][1] >= 1 or recent_report_rank_status["D"][1] >= 1
+    "color_band"
   end
 end

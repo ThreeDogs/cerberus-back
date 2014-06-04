@@ -7,11 +7,14 @@ CerberusBack::Application.routes.draw do
       resources :apks, only: [] do
         member do
           get 'apk_conversion_status'
+          post 'create_device'
+          delete 'destroy_device'
         end
       end
 
       resources :total_reports, only: [] do
         member do
+          get 'test_rank_status'
           get 'test_progress'
           get 'device_failure_detail'
           get 'test_errors'
@@ -19,6 +22,7 @@ CerberusBack::Application.routes.draw do
           get 'detail_report_list'
           get 'device_report_list'
           get 'test_report_list'
+          get 'filter'
         end
       end
 
@@ -31,7 +35,13 @@ CerberusBack::Application.routes.draw do
           get 'get_report_infos'
         end
       end
-      resources :test_scenarios, only: [:create]
+
+      resources :test_scenarios, only: [:create] do
+        member do
+          get "motion_event_list"
+        end
+      end
+      
       resources :motion_events, only: [:create]
     end
   end
@@ -48,7 +58,12 @@ CerberusBack::Application.routes.draw do
 
   resources :total_reports, only: [] do
     resources :crashes, only: [:show, :index]
+    resources :devices, only: [:index]
     resources :detail_reports
+    member do
+      get 'start_test'
+      get 'tests'
+    end
   end
 
   devise_for :users, path_names: {sign_in: 'login', sing_out: 'logout'}
