@@ -66,10 +66,10 @@ crash_5 = @total_report.crashes.create!(error_name: "NullPointerException", erro
 @total_report.detail_reports.create!(crash_id: crash_5.id,app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: -1, running_time: 1200, test_scenario_id: d.id, device_key: "A#{i}BVDWE")
 end
 
-@detail_report = @total_report.detail_reports.create!(crash_id: crash_5.id,app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: -1, running_time: 1200, test_scenario_id: d.id, device_key: "A2BVDWE")
+@total_report.detail_reports.create!(crash_id: crash_5.id,app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: -1, running_time: 1200, test_scenario_id: d.id, device_key: "A2BVDWE")
 
-
-@detail_report.memory_infos.create!(
+DetailReport.all.each do |d|
+  d.memory_infos.create!(
           mem_total: 10,
           dalvik_heap_alloc: 10,
           native_heap_size: 10,
@@ -79,7 +79,7 @@ end
           client_timestamp: 1234
       )
 
-@detail_report.memory_infos.create!(
+d.memory_infos.create!(
           mem_total: 10,
           dalvik_heap_alloc: 10,
           native_heap_size: 10,
@@ -89,18 +89,21 @@ end
           client_timestamp: 1235
       )
 
-@detail_report.cpu_infos.create!(usage: 10,client_timestamp: 1234)
-@detail_report.cpu_infos.create!(usage: 20,client_timestamp: 1235)
-@detail_report.cpu_infos.create!(usage: 30,client_timestamp: 1236)
+d.cpu_infos.create!(usage: 10,client_timestamp: 1234)
+d.cpu_infos.create!(usage: 20,client_timestamp: 1235)
+d.cpu_infos.create!(usage: 30,client_timestamp: 1236)
 
-@detail_report.motion_event_infos.create!(activity_class: 'asd',
+d.motion_event_infos.create!(activity_class: 'asd',
           param:  '123',
           view: 'view',
           sleep: 3000,
           action_type: 'Click',client_timestamp: 1234)
 
-@detail_report.motion_event_infos.create!(activity_class: 'asd',
+d.motion_event_infos.create!(activity_class: 'asd',
           param:  '123',
           view: 'view',
           sleep: 3000,
           action_type: 'Click',client_timestamp: 1237)
+end
+
+

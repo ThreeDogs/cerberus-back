@@ -83,11 +83,11 @@ class DetailReport < ActiveRecord::Base
   end
 
   def memory_average
-    "#{performace_average(memory_infos, "dalvik_heap_size")} Mb"
+    # "#{performace_average(memory_infos, "dalvik_heap_size")} Mb"
   end
 
   def cpu_average
-    "#{performace_average(cpu_infos, "usage")} %"
+    # "#{performace_average(cpu_infos, "usage")} %"
   end
 
   def network_average
