@@ -1,0 +1,12 @@
+apk name : <%= @total_report.apk_name %>
+<br>
+app verison : <%= @total_report.app_version %>
+<br>
+test data : <%= @total_report.test_date %>
+<br>
+test scenarios : <%= @total_report.number_of_scenarios %>
+<br>
+devices : <%= @total_report.number_of_devices %>
+<br>
+<!-- Device Table List -->
+/api/v1/total_reports/<%= @total_report.id %>/device_report_list

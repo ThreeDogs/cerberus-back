@@ -10,6 +10,11 @@ class TotalReportsController < ServiceController
     @total_reports = TotalReport.all
   end
 
+  def tests
+    @total_report = TotalReport.find(params[:id])
+    @project = @total_report.project
+  end
+
   def show
     @project = set_project
     @total_report = TotalReport.find(params[:id])

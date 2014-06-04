@@ -58,9 +58,11 @@ CerberusBack::Application.routes.draw do
 
   resources :total_reports, only: [] do
     resources :crashes, only: [:show, :index]
+    resources :devices, only: [:index]
     resources :detail_reports
     member do
       get 'start_test'
+      get 'tests'
     end
   end
 

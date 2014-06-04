@@ -1,0 +1,19 @@
+apk name : <%= @total_report.apk_name %>
+<br>
+app verison : <%= @total_report.app_version %>
+<br>
+test data : <%= @total_report.test_date %>
+<br>
+test scenarios : <%= @total_report.number_of_scenarios %>
+<br>
+devices : <%= @total_report.number_of_devices %>
+<br>
+<div id="band-graph"></div>
+<% @total_report.test_rank_status.each do |v, k| %>
+	<%=	javascript_tag do %>
+		addBandGraph("<%= v.to_s %>",<%= k[0] %>,<%= k[1] %>);
+	<% end %>
+<% end %>
+<br>
+<!-- Tests Table List -->
+/api/v1/total_reports/<%= @total_report.id %>/test_report_list
