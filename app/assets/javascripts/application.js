@@ -58,7 +58,7 @@ $(function () {
 function generateFilter(div_id, fields, callback) {
 	fields = ["rank","status","os_version","device","name"];
 	filter_address = "http://127.0.0.1:3000/api/v1/total_reports/1/filter";
-	var div = d3.select("#"+div_id);
+	var div = d3.select("#"+div_id).append("form");
 
 	var data = {
 	    "name": [
@@ -93,7 +93,7 @@ function generateFilter(div_id, fields, callback) {
 	};
 	//d3.json(filter_address, function (data) {
 	
-	var field, field_key, field_value, field_value_each;
+	var field, field_key, field_value, field_value_each, dropdown_button, dropdown;
 	if (fields.indexOf("rank")>-1) {
 		field = div.append("div").attr("class","filter-field");
 		field_key = field.append("div").attr("class","filter-key").text("Rank")
@@ -135,8 +135,17 @@ function generateFilter(div_id, fields, callback) {
 		field = div.append("div").attr("class","filter-field");
 		field_key = field.append("div").attr("class","filter-key").text("Device")
 		field_value = field.append("div").attr("class","filter-value");
+		dropdown_button = field_value.append("div").attr("class","filter-value-each")
+			.append("div").attr("class","filter-value-device").style("position","relative")
+			.on("mouseover",function (){
+				d3.select(this).select(".filter-value-dropdown").style("display","block");
+			})
+			.on("mouseout",function (){
+				d3.select(this).select(".filter-value-dropdown").style("display","none");
+			});
+		dropdown = dropdown_button.append("div").attr("class","filter-value-dropdown");
 		for (i in data.device) {
-			field_value.append("div").attr("class","filter-value-each")
+			dropdown.append("div").attr("class","filter-value-dropdown-each")
 				.text(""+data.device[i]);
 		}
 	}
@@ -144,11 +153,21 @@ function generateFilter(div_id, fields, callback) {
 		field = div.append("div").attr("class","filter-field");
 		field_key = field.append("div").attr("class","filter-key").text("Name")
 		field_value = field.append("div").attr("class","filter-value");
+		dropdown_button = field_value.append("div").attr("class","filter-value-each")
+			.append("div").attr("class","filter-value-scenario").style("position","relative")
+			.on("mouseover",function (){
+				d3.select(this).select(".filter-value-dropdown").style("display","block");
+			})
+			.on("mouseout",function (){
+				d3.select(this).select(".filter-value-dropdown").style("display","none");
+			});
+		dropdown = dropdown_button.append("div").attr("class","filter-value-dropdown");
 		for (i in data.name) {
-			field_value.append("div").attr("class","filter-value-each")
+			dropdown.append("div").attr("class","filter-value-dropdown-each")
 				.text(""+data.name[i]);
 		}
 	}
-	
+	field = div.append("div").attr("class","filter-submit");
+	field.append("input").attr("type","submit")
 	//})
 }
