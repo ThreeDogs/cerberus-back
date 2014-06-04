@@ -28,11 +28,11 @@ c = TestScenario.create!(description: "This is a Login Test", rank: 2, project_i
 d = TestScenario.create!(description: "This is a Login Test", rank: 3, project_id: @project.id)
 
 10.times do
-	a.motion_events.create!(activity_class: 'asd',
-	        param:  '123',
-	        view: 'view',
-	        sleep: 3000,
-	        action_type: 'Click',client_timestamp: 1237)
+     a.motion_events.create!(activity_class: 'asd',
+             param:  '123',
+             view: 'view',
+             sleep: 3000,
+             action_type: 'Click',client_timestamp: 1237)
 end
 
 @total_report.scenarioships.create!(test_scenario_id: a.id)
@@ -104,4 +104,3 @@ end
           view: 'view',
           sleep: 3000,
           action_type: 'Click',client_timestamp: 1237)
-

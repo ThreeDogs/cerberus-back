@@ -8,13 +8,13 @@
 			<div class="page-title">
 				<img src="/assets/starttest.png">Test Ready
 			</div>
-      <% if @apk.apk_conversion_done? -%>
+      
 				<div class="jumbotron">
 					<h3><%= @apk.apk_name %></h3>
 					<p>Package Name  <%= @apk.package_name %></p>
 					<p>Activity Name  <%= @apk.activity_name %></p>
 					<p>Minimum SDK  <%= @apk.min_sdk %></p>
-					<p>Test APK  <%= link_to @apk.test_apk_name, @apk.test_apk %></p>
+					<p>Test APK  test.apk</p>
 				</div>
 
 				<div class="total-report-form">
@@ -47,13 +47,7 @@
 						</div>
 					<% end %>
 				</div>
-			<% else %>
-				<div id="progress-circle">
-					<%= javascript_tag do %>
-						progressCircle();
-						requestDoneTime(<%= @apk.id %>);
-					<% end %>
-				</div>
-			<% end %>
+			
+			
 		</div>
 </div>

@@ -22,10 +22,12 @@
 			</div>
 
 			<span class="page-subtitle">Event Path</span>
-			<div class="event-flow">
-				<div id="event-flow-inner"></div>
-			</div>
-
+			<div>
+				<div class="event-flow">
+					<div id="event-flow-inner"></div>
+				</div>
+				<div id="event-detail">Click on event for more detail</div>
+			<div>
 			<div class="edit-button"></div>
 			<%= nested_form_for([@project, @test_scenario]) do |f| %>
 			  <table class="motion-events-table">

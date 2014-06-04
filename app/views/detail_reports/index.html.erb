@@ -21,44 +21,7 @@
         <% end %>
       <% end %>
 
-      <div class="filter">
-        <div class="filter-field">
-          <div class="filter-key">Rank</div>
-          <div class="filter-value">
-            <span class="filter-value-each"><input type="checkbox" name="rank" value="all">All</span>
-            <span class="filter-value-each"><input type="checkbox" name="rank" value="a">A</span>
-            <span class="filter-value-each"><input type="checkbox" name="rank" value="b">B</span>
-            <span class="filter-value-each"><input type="checkbox" name="rank" value="c">C</span>
-            <span class="filter-value-each"><input type="checkbox" name="rank" value="d">D</span>
-          </div>
-        </div>
-        <div class="filter-field">
-          <div class="filter-key">Status</div>
-          <div class="filter-value">
-          <span class="filter-value-each"><input type="checkbox" name="status" value="all">All</span>
-            <span class="filter-value-each"><input type="checkbox" name="status" value="fail">Fail</span>
-            <span class="filter-value-each"><input type="checkbox" name="status" value="warning">Warning</span>
-            <span class="filter-value-each"><input type="checkbox" name="status" value="pass">Pass</span>
-          </div>
-        </div>
-        <div class="filter-field">
-          <div class="filter-key">OS Version</div>
-          <div class="filter-value">
-            <span class="filter-value-each"><input type="checkbox" name="os_version" value="all">All</span>
-            <span class="filter-value-each"><input type="checkbox" name="os_version" value="pass">Pass</span>
-            <span class="filter-value-each"><input type="checkbox" name="os_version" value="pass">Pass</span>
-            <span class="filter-value-each"><input type="checkbox" name="os_version" value="pass">Pass</span>
-          </div>
-        </div>
-        <div class="filter-field">
-          <div class="filter-key">Device</div>
-          <div class="filter-value">blah4</div>
-        </div>
-        <div class="filter-field">
-          <div class="filter-key">Test Name</div>
-          <div class="filter-value">blah5</div>
-        </div>
-      </div>
+      <div id="detail-report-list-filter" class="filter"></div>
 
       <table id="test-result-list">
         <tr>
@@ -70,7 +33,6 @@
           <th>Running Time</th>
           <th>-</th>
         </tr>
-        
       </table>
     </div>
   </div>  

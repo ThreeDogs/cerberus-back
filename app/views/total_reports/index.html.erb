@@ -8,14 +8,14 @@
 			<div class="page-title">
 	    		<p><img src="/assets/Result.png">Test results</p>
 	    	</div>
-	    	<div class="page-table-header row">
+	    	<!-- <div class="page-table-header row">
 	    		<div class="col-md-2">Test Info</div>
 	    		<div class="col-md-2">App Version</div>
 	    		<div class="col-md-6">Test Success/Fail</div>
 	    		<div class="col-md-2">Full Report</div>
-	    	</div>
+	    	</div> -->
 			<% @total_reports.each do |total_report| %>
-			<div class="test-result row">
+			<div class="test-result">
 				<div class="col-md-2 app-info-box">
 					<p><%= total_report.apk_name %></p>
 					<p><%= total_report.test_date %></p>

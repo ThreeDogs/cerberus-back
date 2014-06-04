@@ -8,50 +8,54 @@
 			<div class="page-title">
 				<img src="/assets/Result.png">Crash Report
 			</div>
+			<div class="below-page-title">Test Result > Full Report > Crash Report</div>
 			<!-- TODO: subline // Test Results > Full Report -->
 
 			<span class="page-subtitle">Error Summary</span>
-			<div class="error-summary jumbotron">
-				<div class="test_app_icon">
-				</div>
-				<div>
+			<div class="error-summary">
+				<div class="status-icon"></div>
+				<div class="error-line">
 					<h5><%= @crash.error_name %></h5>
 					<span><%= @crash.error_line %></span>
 				</div>
 			</div>
 			
-			<div class="graph jumbotron">
+			<div class="crash-graph">
 				<p>Test rank Rate <%= @crash.test_rank_rate %></p>
 				<p>OS Version <%= @crash.os_version_rate %></p>
 				<p>Device <%= @crash.device_rate %></p>
 				<p>Country <%= @crash.country_rate %></p>
+				<div id="test-rank-rate" class="crash-graph-each">Test Rank</div>
+				<div id="os-version-rate" class="crash-graph-each">OS Version</div>
+				<div id="device-rate" class="crash-graph-each">Device</div>
+				<div id="country-rate" class="crash-graph-each">Country</div>
 			</div>
 			
 			<span class="page-subtitle">Stack Trace</span>
-			<div class="stack-trace jumbotron">
+			<div class="stack-trace">
 				<%= @crash.description %>
 			</div>
 			<span class="page-subtitle">Event Path</span>
-			<div class="event-path jumbotron">
+			<div class="event-path">
 			</div>
 
 			<span class="page-subtitle">Detail Reports</span>
-			<div class="detail-report-list jumbotron">
-				<table class="table">
+			<div class="detail-report-list">
+				<table class="detail-report-list-table">
 					<thead>
 						<tr>
-							<td>Rank</td>
-							<td>Test Name</td>
-							<td>OS Version</td>
-							<td>Device</td>
-							<td>Country</td>
-							<td></td>
+							<th>Rank</th>
+							<th>Test Name</th>
+							<th>OS Version</th>
+							<th>Device</th>
+							<th>Country</th>
+							<th></th>
 						</tr>
 					</thead>
 					<% @detail_reports.each do |detail_report| %>
 						<tbody>
 							<tr>
-								<td><%= detail_report.rank %></td>
+								<td><div class="rank <%= detail_report.rank %>"><%= detail_report.rank %></div></td>
 								<td><%= detail_report.test_scenario_name %></td>
 								<td><%= detail_report.os_version %></td>
 								<td><%= detail_report.device_name %></td>
@@ -65,3 +69,13 @@
 		</div>
 	</div>
 </div>
+
+<script>
+var testdata = {
+	"A": 3,
+	"B": 5,
+	"C": 7,
+	"D": 9
+}
+drawRatePieChart("test-rank-rate", testdata);
+</script>
