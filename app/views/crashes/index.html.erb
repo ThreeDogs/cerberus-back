@@ -1,15 +1,58 @@
-apk name : <%= @total_report.apk_name %>
-<br>
+<%= render "shared/header" %>
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<%= render 'shared/side_bar' %>	
+		<div class="col-md-12 contents">
+			<div class="page-title">
+				<img src="/assets/testresult.png">All Errors
+			</div>
+
+			<div class="error-top">
+				<div class="error-top-left">
+					<div class="total-report-brief">
+						<div class="apk-name"><b><%= @total_report.apk_name %></b></div>
+						<div class="brief-left">
+							<div class="app-version">
+								<p>App Version</p>
+								<p class="app-version-big"><%= @total_report.app_version %></p>
+							</div>
+						</div>
+						<div class="brief-right">
+							<p><%= @total_report.test_date %></p>
+							<p><%= @total_report.number_of_scenarios %> Test scenarios</p>
+							<p><%= @total_report.number_of_devices %> Devices</p>
+						</div>
+					</div>
+				</div>
+				<div class="error-top-right">
+					<div id="error-rank-rate"></div>
+					<%= javascript_tag do %>
+						d3.json("/api/v1/total_reports/<%= @total_report.id %>/test_rank_rate", function (data) {
+							drawRatePieChart("error-rank-rate",data);
+						});
+					<% end %>
+				</div>
+			</div>
+
+			<div id="all-errors-filter" class="filter"></div>
+
+			<table class="all-errors-table"></table>
+		</div>
+	</div>
+</div>
+
+<script>
+generateFilter("all-errors-filter",["rank","os_version"],"/api/v1/total_reports/<%= @total_report.id %>/filter");
+allErrorsTable("/api/v1/total_reports/<%= @total_report.id %>/test_errors");
+</script>
+
+<!-- apk name : <%= @total_report.apk_name %>
 app verison : <%= @total_report.app_version %>
-<br>
 test data : <%= @total_report.test_date %>
-<br>
 test scenarios : <%= @total_report.number_of_scenarios %>
-<br>
 devices : <%= @total_report.number_of_devices %>
-<br>
-<!-- Test Rank Rate Pie Chart-->
+Test Rank Rate Pie Chart
 /api/v1/total_reports/<%= @total_report.id %>/test_rank_rate
-<br>
-<!-- Test Errors Table List -->
-/api/v1/total_reports/<%= @total_report.id %>/test_errors
+Test Errors Table List
+/api/v1/total_reports/<%= @total_report.id %>/test_errors -->

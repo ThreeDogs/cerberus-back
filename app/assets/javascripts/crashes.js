@@ -5,6 +5,85 @@ d3.select(window).on("resize",function () {
 	}
 });
 
+function allErrorsTable(request_address) {
+	var table = d3.select(".all-errors-table");
+	var row = table.append("tr");
+	row.append("th").text("Rank");
+	row.append("th").text("Error Count");
+	row.append("th").text("Error Name");
+	row.append("th").text("OS Version");
+	d3.json(request_address, function (data) {
+		var row = table.selectAll("rows").data(data).enter().append("tr");
+		row.append("td").append("div").attr("class",function (d) {return "rank "+d.error_rank}).text(function (d) {return d.error_rank});
+		row.append("td").text(function (d) {return d.error_count});
+		row.append("td").text(function (d) {return d.error_name});
+		row.append("td").text(function (d) {
+			var os_ver_string = "";
+			for (i in d.os_versions) {
+				os_ver_string = os_ver_string + d.os_versions[i] + " ";
+			}
+			return os_ver_string;
+		});
+		sidebarHeightCorrect();
+	})
+}
+
+function allTestsTable(request_address) {
+	var table = d3.select(".all-tests-table");
+	var row = table.append("tr");
+	row.append("th").text("Rank");
+	row.append("th").text("Name");
+	row.append("th").text("Status");
+	row.append("th").text("Error");
+	row.append("th").text("Device Count");
+	row.append("th").text("Detail Report");
+	d3.json(request_address, function (data) {
+		var row = table.selectAll("rows").data(data).enter().append("tr");
+		row.append("td").append("div").attr("class",function (d) {return "rank "+d.get_rank}).text(function (d) {return d.get_rank});
+		row.append("td").text(function (d) {return d.name});
+		row.append("td").text(function (d) {return d.status});
+		row.append("td").selectAll("crash").data(function (d) {return d.crashes}).enter()
+			.append("p").text(function (d) {return d.error_name});
+		row.append("td").text(function (d) {return d.device_count});
+		row.append("td").text("link");
+
+		sidebarHeightCorrect();
+	})
+}
+
+function allDevicesTable(request_address) {
+	var div = d3.select(".device-error-list");
+	d3.json(request_address, function (data) {
+		var each = div.selectAll(".device-error-each").data(data).enter()
+					.append("div").attr("class","device-error-each");
+		var detail = each.append("div").attr("class","device-error-detail");
+		var table = each.append("div").attr("class","device-error-div")
+					.append("table").attr("class","all-devices-table");
+
+		detail.append("p").attr("class","device-name").append("u").text(function (d) {return d.model});
+		detail.append("p").text(function (d) {return "OS Version: "+d.os_version});
+		detail.append("p").text(function (d) {return "CPU: "+d.cpu});
+		detail.append("p").text(function (d) {return "Country: "+d.country});
+
+		var row = table.append("tr");
+		row.append("th").text("Rank");
+		row.append("th").text("Name");
+		row.append("th").text("Status");
+		row.append("th").text("Error");
+
+		row = table.selectAll("rows").data(function (d) {return d.detail_reports}).enter().append("tr");
+		row.append("td").text(function (d) {return d.rank});
+		row.append("td").text(function (d) {return d.test_scenario_name});
+		row.append("td").text(function (d) {
+			if (d.status==-1){return "Fail"}
+			else if (d.status==0){return "Warning"}
+			else if (d.status==1){return "Success"}
+		});
+		row.append("td").text(function (d) {return d.error_name});
+		sidebarHeightCorrect();
+	})
+}
+
 function drawRatePieChart(div_id, data) {
 	var width = d3.select("#"+div_id).style("width").split("px")[0];
 	var height = 200;

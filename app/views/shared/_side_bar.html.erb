@@ -6,13 +6,16 @@
 	
 	<div class="sidebar_menu">
 		<div class="divider"></div>
-		<div class="menu"><span class="image_span"><img src="/assets/dashboard.png"></span><%= link_to "Dashboard", project_path(@project) %></div>
+		<%= link_to project_path(@project) do %><div class="menu"><span class="image_span"><img src="/assets/dashboard.png"></span>Dashboard</div><% end %>
+		
 		<div class="divider"></div>
-		<div class="menu"><span class="image_span"><img src="/assets/starttest.png"></span><%= link_to "File Upload", new_project_apk_path(@project) %></div>
+		<%= link_to new_project_apk_path(@project) do %><div class="menu"><span class="image_span"><img src="/assets/starttest.png"></span>File Upload</div><% end %>
+		
 		<div class="divider"></div>
-		<div class="menu"><span class="image_span"><img src="/assets/testresult.png"></span><%= link_to "Test Results", project_total_reports_path(@project) %></div>
+		<%= link_to project_total_reports_path(@project) do %><div class="menu"><span class="image_span"><img src="/assets/testresult.png"></span>Test Results</div><% end %>
+		
 		<div class="divider"></div>
-		<div class="menu"><span class="image_span"><img src="/assets/scenario.png"></span><%= link_to "Test Scenarios", project_test_scenarios_path(@project) %></div>
+		<%= link_to project_test_scenarios_path(@project) do %><div class="menu"><span class="image_span"><img src="/assets/scenario.png"></span>Test Scenarios</div><% end %>
 		<div class="divider"></div>
 	</div>  
 </div>

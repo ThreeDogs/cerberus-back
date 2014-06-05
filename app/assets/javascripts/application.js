@@ -53,124 +53,91 @@ d3.selection.prototype.moveToFront = function() {
 	return this.each(function(){this.parentNode.appendChild(this);});
 };
 
-$(function () {
+function sidebarHeightCorrect() {
 	$(".sidebar").css("height",$(".container-fluid").css("height"));
-})
+};
+sidebarHeightCorrect();
 
-
-function generateFilter(div_id, fields, callback) {
-	fields = ["rank","status","os_version","device","name"];
-	filter_address = "http://127.0.0.1:3000/api/v1/total_reports/1/filter";
+function generateFilter(div_id, fields, filter_address) {
 	var div = d3.select("#"+div_id).append("form");
 
-	var data = {
-	    "name": [
-	        "TestScenario 2014-05-29T21:04:57+09:00",
-	        "TestScenario 2014-05-29T21:04:57+09:00",
-	        "TestScenario 2014-05-29T21:04:57+09:00",
-	        "TestScenario 2014-05-29T21:04:57+09:00"
-	    ],
-	    "device": [
-	        "Galaxy",
-	        "G2",
-	        "Nokia",
-	        "XaomiXXX",
-	        "GogolPhone"
-	    ],
-	    "rank": {
-	        "A": 15,
-	        "B": 15,
-	        "C": 10,
-	        "D": 11
-	    },
-	    "os_version": {
-	        "4.1": 10,
-	        "2.3": 10,
-	        "4.3": 11,
-	        "4.4": 10,
-	        "4.0": 10
-	    },
-	    "status": {
-	        "-1": 51
-	    }
-	};
-	//d3.json(filter_address, function (data) {
+	d3.json(filter_address, function (data) {
 	
-	var field, field_key, field_value, field_value_each, dropdown_button, dropdown;
-	if (fields.indexOf("rank")>-1) {
-		field = div.append("div").attr("class","filter-field");
-		field_key = field.append("div").attr("class","filter-key").text("Rank")
-		field_value = field.append("div").attr("class","filter-value");
-		for (i in data.rank) {
-			field_value.append("input").attr("type","checkbox");
-			field_value.append("span");
-			field_value.append("div").attr("class","filter-value-each")
-				.text(i+"("+data.rank[i]+")");
+		var field, field_key, field_value, field_value_each, dropdown_button, dropdown;
+		if (fields.indexOf("rank")>-1) {
+			field = div.append("div").attr("class","filter-field");
+			field_key = field.append("div").attr("class","filter-key").text("Rank")
+			field_value = field.append("div").attr("class","filter-value");
+			for (i in data.rank) {
+				field_value.append("input").attr("type","checkbox");
+				field_value.append("span");
+				field_value.append("div").attr("class","filter-value-each")
+					.text(i+"("+data.rank[i]+")");
+			}
 		}
-	}
-	if (fields.indexOf("status")>-1) {
-		field = div.append("div").attr("class","filter-field");
-		field_key = field.append("div").attr("class","filter-key").text("Status")
-		field_value = field.append("div").attr("class","filter-value");
-		for (i in data.status) {
-			var status;
-			if (i==-1) {status="Error"}
-			else if (i==0) {status="Warning"}
-			else if (i==1) {status="Pass"}
-			field_value.append("input").attr("type","checkbox");
-			field_value.append("span");
-			field_value.append("div").attr("class","filter-value-each")
-				.text(status+"("+data.status[i]+")");
+		if (fields.indexOf("status")>-1) {
+			field = div.append("div").attr("class","filter-field");
+			field_key = field.append("div").attr("class","filter-key").text("Status")
+			field_value = field.append("div").attr("class","filter-value");
+			for (i in data.status) {
+				var status;
+				if (i==-1) {status="Error"}
+				else if (i==0) {status="Warning"}
+				else if (i==1) {status="Pass"}
+				field_value.append("input").attr("type","checkbox");
+				field_value.append("span");
+				field_value.append("div").attr("class","filter-value-each")
+					.text(status+"("+data.status[i]+")");
+			}
 		}
-	}
-	if (fields.indexOf("os_version")>-1) {
-		field = div.append("div").attr("class","filter-field");
-		field_key = field.append("div").attr("class","filter-key").text("OS Version")
-		field_value = field.append("div").attr("class","filter-value");
-		for (i in data.os_version) {
-			field_value.append("input").attr("type","checkbox");
-			field_value.append("span");
-			field_value.append("div").attr("class","filter-value-each")
-				.text(i+"("+data.os_version[i]+")");
+		if (fields.indexOf("os_version")>-1) {
+			field = div.append("div").attr("class","filter-field");
+			field_key = field.append("div").attr("class","filter-key").text("OS Version")
+			field_value = field.append("div").attr("class","filter-value");
+			for (i in data.os_version) {
+				field_value.append("input").attr("type","checkbox");
+				field_value.append("span");
+				field_value.append("div").attr("class","filter-value-each")
+					.text(i+"("+data.os_version[i]+")");
+			}
 		}
-	}
-	if (fields.indexOf("device")>-1) {
-		field = div.append("div").attr("class","filter-field");
-		field_key = field.append("div").attr("class","filter-key").text("Device")
-		field_value = field.append("div").attr("class","filter-value");
-		dropdown_button = field_value.append("div").attr("class","filter-value-each")
-			.append("div").attr("class","filter-value-device").style("position","relative")
-			.on("mouseover",function (){
-				d3.select(this).select(".filter-value-dropdown").style("display","block");
-			})
-			.on("mouseout",function (){
-				d3.select(this).select(".filter-value-dropdown").style("display","none");
-			});
-		dropdown = dropdown_button.append("div").attr("class","filter-value-dropdown");
-		for (i in data.device) {
-			dropdown.append("div").attr("class","filter-value-dropdown-each")
-				.text(""+data.device[i]);
+		if (fields.indexOf("device")>-1) {
+			field = div.append("div").attr("class","filter-field");
+			field_key = field.append("div").attr("class","filter-key").text("Device")
+			field_value = field.append("div").attr("class","filter-value");
+			dropdown_button = field_value.append("div").attr("class","filter-value-each")
+				.append("div").attr("class","filter-value-device").style("position","relative")
+				.on("mouseover",function (){
+					d3.select(this).select(".filter-value-dropdown").style("display","block");
+				})
+				.on("mouseout",function (){
+					d3.select(this).select(".filter-value-dropdown").style("display","none");
+				});
+			dropdown = dropdown_button.append("div").attr("class","filter-value-dropdown");
+			for (i in data.device) {
+				dropdown.append("div").attr("class","filter-value-dropdown-each")
+					.text(""+data.device[i]);
+			}
 		}
-	}
-	if (fields.indexOf("name")>-1) {
-		field = div.append("div").attr("class","filter-field");
-		field_key = field.append("div").attr("class","filter-key").text("Name")
-		field_value = field.append("div").attr("class","filter-value");
-		dropdown_button = field_value.append("div").attr("class","filter-value-each")
-			.append("div").attr("class","filter-value-scenario").style("position","relative")
-			.on("mouseover",function (){
-				d3.select(this).select(".filter-value-dropdown").style("display","block");
-			})
-			.on("mouseout",function (){
-				d3.select(this).select(".filter-value-dropdown").style("display","none");
-			});
-		dropdown = dropdown_button.append("div").attr("class","filter-value-dropdown");
-		for (i in data.name) {
-			dropdown.append("div").attr("class","filter-value-dropdown-each")
-				.text(""+data.name[i]);
+		if (fields.indexOf("name")>-1) {
+			field = div.append("div").attr("class","filter-field");
+			field_key = field.append("div").attr("class","filter-key").text("Name")
+			field_value = field.append("div").attr("class","filter-value");
+			dropdown_button = field_value.append("div").attr("class","filter-value-each")
+				.append("div").attr("class","filter-value-scenario").style("position","relative")
+				.on("mouseover",function (){
+					d3.select(this).select(".filter-value-dropdown").style("display","block");
+				})
+				.on("mouseout",function (){
+					d3.select(this).select(".filter-value-dropdown").style("display","none");
+				});
+			dropdown = dropdown_button.append("div").attr("class","filter-value-dropdown");
+			for (i in data.name) {
+				dropdown.append("div").attr("class","filter-value-dropdown-each")
+					.text(""+data.name[i]);
+			}
 		}
-	}
-	field = div.append("div").attr("class","filter-submit");
-	field.append("input").attr("type","submit")
-	//})
+		field = div.append("div").attr("class","filter-submit");
+		field.append("input").attr("type","submit");
+	})
 }

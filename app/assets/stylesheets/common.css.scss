@@ -69,7 +69,8 @@
 .filter {
 	width: 100%;
 	background-color: #EFEEEE;
-	padding: 5px;
+	padding: 10px;
+	margin-top: 20px;
 	font-size: 12px;
 
 	.filter-field {
@@ -79,6 +80,7 @@
 	}
 	.filter-key {
 		width: 100px;
+		padding-left: 10px;
 		float: left;
 		height: 20px;
 		color: rgb(40,112,68);

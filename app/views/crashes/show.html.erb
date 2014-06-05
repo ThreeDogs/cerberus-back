@@ -21,10 +21,6 @@
 			</div>
 			
 			<div class="crash-graph">
-				<p>Test rank Rate <%= @crash.test_rank_rate %></p>
-				<p>OS Version <%= @crash.os_version_rate %></p>
-				<p>Device <%= @crash.device_rate %></p>
-				<p>Country <%= @crash.country_rate %></p>
 				<div id="test-rank-rate" class="crash-graph-each">Test Rank</div>
 				<div id="os-version-rate" class="crash-graph-each">OS Version</div>
 				<div id="device-rate" class="crash-graph-each">Device</div>
@@ -71,6 +67,10 @@
 </div>
 
 <script>
+// Test rank Rate <%= @crash.test_rank_rate %>
+// OS Version <%= @crash.os_version_rate %>
+// Device <%= @crash.device_rate %>
+// Country <%= @crash.country_rate %>
 var testdata = {
 	"A": 3,
 	"B": 5,
@@ -78,4 +78,7 @@ var testdata = {
 	"D": 9
 }
 drawRatePieChart("test-rank-rate", testdata);
+drawRatePieChart("os-version-rate", testdata);
+drawRatePieChart("device-rate", testdata);
+drawRatePieChart("country-rate", testdata);
 </script>
