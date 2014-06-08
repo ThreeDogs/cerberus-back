@@ -25,16 +25,21 @@
 							<p><%= @total_report.number_of_scenarios %> Test scenarios</p>
 							<p><%= @total_report.number_of_devices %> Devices</p>
 						</div>
-						<span class="more"><u>All Tests More</u></span>
+						<%= link_to total_report_detail_reports_path(@total_report) do %>
+							<span class="more"><u>All Reports More</u></span>
+						<% end %>
 					</div>
 					
 					<div class="total-report-test-result">
 						<p>Test Result</p>
 						<div id="band-graph"></div>
-						<% @recent_report.test_rank_status.each do |v, k| %>
+						<% @total_report.test_rank_status.each do |v, k| %>
 							<%=	javascript_tag do %>
 								addBandGraph("<%= v.to_s %>",<%= k[0] %>,<%= k[1] %>);
 							<% end %>
+						<% end %>
+						<%= link_to tests_total_report_path(@total_report) do %>
+							<span class="more"><u>All Tests More</u></span>
 						<% end %>
 					</div>
 				</div>
@@ -79,6 +84,9 @@
 						<tr><td>click on bar graph left for more detail</td></tr>
 					</table>
 				</div>
+				<%= link_to total_report_devices_path(@total_report) do %>
+					<span class="more"><u>All Devices More</u></span>
+				<% end %>
 			</div>
 
 			<span class="page-subtitle">Performance Average</span>

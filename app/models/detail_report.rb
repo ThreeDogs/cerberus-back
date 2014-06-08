@@ -25,6 +25,7 @@ class DetailReport < ActiveRecord::Base
   has_many :memory_infos
   has_many :cpu_infos
   has_many :motion_event_infos
+  has_many :battery_infos
 
   accepts_nested_attributes_for :memory_infos
   accepts_nested_attributes_for :cpu_infos

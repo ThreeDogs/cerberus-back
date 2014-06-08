@@ -48,8 +48,8 @@ gem 'sidekiq-limit_fetch'
 gem 'ransack'
 
 # db
-# gem 'mysql2'
-gem 'sqlite3'
+gem 'mysql2'
+# gem 'sqlite3'
 gem 'redis'
 
 # server
@@ -66,8 +66,6 @@ group :production do # heroku
 end
 
 group :development, :test do
-	# gem 'sqlite3'
-	# gem 'mysql2'
 	gem 'rails-erd', github: 'paulwittmann/rails-erd', branch: 'mavericks'
 	gem 'rspec-rails'
 	gem 'factory_girl_rails', '~> 4.0'
