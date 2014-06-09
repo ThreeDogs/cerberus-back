@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520034833) do
+ActiveRecord::Schema.define(version: 20140609053507) do
 
   create_table "apks", force: true do |t|
     t.string   "apk"
@@ -27,6 +27,19 @@ ActiveRecord::Schema.define(version: 20140520034833) do
   end
 
   add_index "apks", ["project_id"], name: "index_apks_on_project_id", using: :btree
+
+  create_table "battery_infos", force: true do |t|
+    t.integer  "wifi"
+    t.integer  "threeg"
+    t.integer  "lcd"
+    t.integer  "gps"
+    t.integer  "sound"
+    t.integer  "cpu"
+    t.integer  "client_timestamp"
+    t.integer  "detail_report_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "cpu_infos", force: true do |t|
     t.integer  "usage"
@@ -127,6 +140,15 @@ ActiveRecord::Schema.define(version: 20140520034833) do
     t.integer  "sleep"
     t.integer  "client_timestamp"
     t.integer  "test_scenario_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "network_infos", force: true do |t|
+    t.integer  "response_size"
+    t.integer  "request_size"
+    t.integer  "client_timestamp"
+    t.integer  "detail_report_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
