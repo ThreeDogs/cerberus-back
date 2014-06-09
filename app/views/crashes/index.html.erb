@@ -43,8 +43,16 @@
 </div>
 
 <script>
-generateFilter("all-errors-filter",["rank","os_version"],"/api/v1/total_reports/<%= @total_report.id %>/filter");
-allErrorsTable("/api/v1/total_reports/<%= @total_report.id %>/test_errors");
+generateFilter(
+	"all-errors-filter",
+	["rank","os_version","crashes"],
+	"/api/v1/total_reports/<%= @total_report.id %>/filter",
+	"/api/v1/total_reports/<%= @total_report.id %>/test_errors",
+	allErrorsTable
+);
+d3.json("/api/v1/total_reports/<%= @total_report.id %>/test_errors",function (err, data) {
+	allErrorsTable(data);
+});
 </script>
 
 <!-- apk name : <%= @total_report.apk_name %>

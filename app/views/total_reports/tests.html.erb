@@ -44,8 +44,15 @@
 </div>
 
 <script>
-generateFilter("all-tests-filter",["rank","status","name"],"/api/v1/total_reports/<%= @total_report.id %>/filter");
-allTestsTable("/api/v1/total_reports/<%= @total_report.id %>/test_report_list");
+generateFilter("all-tests-filter",
+	["rank","status","name"],
+	"/api/v1/total_reports/<%= @total_report.id %>/filter",
+	"/api/v1/total_reports/<%= @total_report.id %>/test_report_list",
+	allTestsTable
+);
+d3.json("/api/v1/total_reports/<%= @total_report.id %>/test_report_list",function (err, data) {
+	allTestsTable(data)
+});
 allTestsStyleChange();
 </script>
 

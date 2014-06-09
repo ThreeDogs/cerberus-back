@@ -9,7 +9,7 @@
 			</div>
 
 			<div id="scenario-list-filter" class="filter"></div>
-			<table class="scenario-list-table">
+			<table id="scenario-list" class="scenario-list-table">
 				<tr>
 					<th></th>
 					<th>Name</th>
@@ -38,6 +38,11 @@
 </div>
 
 <script>
-generateFilter("scenario-list-filter",["rank","name"],"/api/v1/total_reports/1/filter",);
-//TODO: need total report id properly provided
+// generateFilter(
+// 	"scenario-list-filter",
+// 	["rank","name"],
+// 	"/api/v1/total_reports/1/filter",
+// 	"/api/v1/total_reports/1/test_report_list",
+// 	);
+// //TODO: need total report id properly provided
 </script>

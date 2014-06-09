@@ -64,7 +64,7 @@ function generateFilter(div_id, fields, filter_address, query_address, filter_ca
 	var div = d3.select("#"+div_id).append("form").attr("name","filter_form");
 
 	d3.json(filter_address, function (data) {
-	
+		
 		var field, field_key, field_value, field_value_each, dropdown_button, dropdown;
 		if (fields.indexOf("rank")>-1) {
 			field = div.append("div").attr("class","filter-field");
@@ -124,8 +124,17 @@ function generateFilter(div_id, fields, filter_address, query_address, filter_ca
 				select.append("option").attr("value",data.name[i]).text(data.name[i]);
 			}
 		}
-		field = div.append("div").attr("class","filter-submit");
+		//exception for crashes index filter
+		if (fields.indexOf("crashes")>-1) {
+			var ranks = ["A","B","C","D"];
+			d3.selectAll("#rank").attr("id","error_ranks")
+			.attr("value", function () {
+				return ranks[parseInt(d3.select(this).attr("value"))];
+			});
+			d3.selectAll("#os_version").attr("id","os_versions");
+		}
 		
+		field = div.append("div").attr("class","filter-submit");
 		field.append("button").text("submit test").attr("type","button").on("click",filtercall);
 
 		function filtercall() {
@@ -136,16 +145,22 @@ function generateFilter(div_id, fields, filter_address, query_address, filter_ca
 					get_string += checkbox[index].id+"[]="+checkbox[index].value+"&";
 				}
 			}
-			if (filter_form.device_select.value!="all devices") {
+			if (filter_form.device_select && (filter_form.device_select.value!="all devices")) {
 				get_string += "model="+filter_form.device_select.value;
 			}
-			if (filter_form.name_select.value!="all scenarios") {
-				get_string += "model="+filter_form.name_select.value;
+			if (filter_form.name_select && (filter_form.name_select.value!="all scenarios")) {
+				get_string += "scenario_name="+filter_form.name_select.value;
 			}
+
+			//exceptional uri encoding
+			get_string = get_string.replace(/ /g,"%20");
+			get_string = get_string.replace(/\+/g,"%2B");
+
 			console.log(get_string);
-			d3.json(get_string,function (err,data) {
+			d3.json(get_string,function (err, data) {
 				filter_callback(data);
 			});
+
 		}
 	})
 }

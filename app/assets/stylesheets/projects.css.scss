@@ -157,9 +157,9 @@ body.modal-open .container {
 
 .dashboard-right {
 	background-color: #EFEEEE;
-	width: 65%;
+	width: 67%;
 	float: left;
-	margin-left: 5%;
+	margin-left: 3%;
 	padding: 0 20px;
 }
 
@@ -321,19 +321,19 @@ body.modal-open .container {
 	.failure-area {
 		stroke: none;
 		fill: #D87342;
-		opacity: 0.2;
+		opacity: 0.1;
 	}
 
 	.warning-area {
 		stroke: none;
 		fill: #E7CC2F;
-		opacity: 0.2;
+		opacity: 0.1;
 	}
 
 	.pass-area {
 		stroke: none;
 		fill: #5DBE88;
-		opacity: 0.2;
+		opacity: 0.1;
 	}
 
 	.max-path {
@@ -357,19 +357,19 @@ body.modal-open .container {
 	.max-area {
 		stroke: none;
 		fill: #D87342;
-		opacity: 0.2;
+		opacity: 0.05;
 	}
 
 	.avg-area {
 		stroke: none;
 		fill: #E7CC2F;
-		opacity: 0.2;
+		opacity: 0.1;
 	}
 
 	.min-area {
 		stroke: none;
 		fill: #5DBE88;
-		opacity: 0.2;
+		opacity: 0.1;
 	}
 
 	.failure-dot {
