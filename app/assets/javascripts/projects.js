@@ -18,7 +18,7 @@ function drawFailByDevice (data) {
 	var defs = svg.append("defs");
 	
 	function gradation(defs) {
-		console.log("WTF")
+
 		addGradation("grad-A","#EA7C4B","#C1633E");
 		addGradation("grad-B","#ED9FBD","#BF7593");
 		addGradation("grad-C","#52C4D0","#34989A");

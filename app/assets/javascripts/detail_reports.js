@@ -9,7 +9,9 @@ function detailReportList (data) {
 	var table = d3.select("#test-result-list");
 	var tr = table.selectAll("tr").data(data).enter().append("tr");
 
-	tr.append("td").text(function (d) {return d.rank});
+	tr.append("td").append("div")
+		.attr("class",function (d) {return "rank "+d.rank})
+		.text(function (d) {return d.rank});
 	tr.append("td").text(function (d) {return d.get_status});
 	tr.append("td").text(function (d) {return d.test_scenario_name});
 	tr.append("td").text(function (d) {return d.device_name});

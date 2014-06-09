@@ -9,16 +9,16 @@
 			</div>
 			<div class="below-page-title">Test Result > Full Report > Detail Report</div>
 
-			<div class="detail-report row">
-				<div class="event-screenshot col-md-8">
+			<div class="detail-report">
+				<div class="event-screenshot col-md-7">
 					<span class="page-subtitle">Event Path</span>
 					<div class="event-screenshot-wrapper">
 						<div id="event-screenshot-inner"></div>
 					</div>
 				</div>
-				<div class="summary-area col-md-4">
+				<div class="summary-area col-md-5">
 					<span class="page-subtitle">Report Overview</span>
-					<div class="row">
+					<div class="summary-row">
 						<div class="col-md-4">
 							<p class="summary-key">Scenario Name</p>
 							<p class="summary-value"><%= @detail_report.test_scenario_name %></p>
@@ -32,7 +32,7 @@
 							<p class="summary-value"><%= @detail_report.app_version %></p>
 						</div>
 					</div>
-					<div class="row">
+					<div class="summary-row">
 						<div class="col-md-4">
 							<p class="summary-key">Date&Time</p>
 							<p class="summary-value"><%= @detail_report.test_date %></p>
@@ -46,12 +46,42 @@
 							<p class="summary-value"><%= @detail_report.get_running_time %></p>
 						</div>
 					</div>
-					<div class="summary-block col-md-6">Memory Average : <%= @detail_report.memory_average %></div>
-					<div class="summary-block col-md-6">CPU Average : <%= @detail_report.cpu_average %></div>
-					<div class="summary-block col-md-6">Network Average : <%= @detail_report.network_average %></div>
-					<div class="summary-block col-md-6">Battery Average : <%= @detail_report.battery_consumption %></div>
-					<div class="summary-block col-md-6">Threads Average : <%= @detail_report.threads_average %></div>
-					<div class="summary-block col-md-6">Frame Draw Time : <%= @detail_report.frame_draw_time_average %></div>
+					<div class="row" style="margin-top: 10px;">
+						<div class="col-md-6">
+							<div class="summary-block">
+								<p class="summary-key">Memory Average</p><%= @detail_report.memory_average %>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="summary-block">
+								<p class="summary-key">CPU Average</p><%= @detail_report.cpu_average %>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="summary-block">
+								<p class="summary-key">Network Average</p><%= @detail_report.network_average %>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="summary-block">
+								<p class="summary-key">Battery Average</p><%= @detail_report.battery_consumption %>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="summary-block">
+								<p class="summary-key">Threads Average</p><%= @detail_report.threads_average %>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="summary-block">
+								<p class="summary-key">Frame Draw Time</p><%= @detail_report.frame_draw_time_average %>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="detail-report-charts">

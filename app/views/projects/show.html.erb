@@ -3,15 +3,14 @@
 	<div class="row-fluid">
 		<%= render 'shared/side_bar' %>	
 
-		<div class="contents">
+		<div class="col-md-12 contents">
 			<div class="page-title">
         		<img src="/assets/dashboard.png">Dashboard
         	</div>
 			
-
 			<% if @recent_report %>
-			<div class="row">
-				<div class="col-md-4">
+			<div class="dashboard">
+				<div class="dashboard-left">
 					<div class="total-report-brief">
 						<div class="apk-name"><b><%= @recent_report.apk_name %></b></div>
 						<div class="brief-left">
@@ -40,10 +39,10 @@
 						<% end %>
 					</div>
 				</div>
-				<div class="col-md-8">
+				<div class="dashboard-right">
 					<span class="page-subtitle">Test Errors</span>
 						<p class="more"><u>More Errors</u></p>
-					<div class="test-error">
+					<div class="dashboard-test-error">
 						<table class="test-error-table">
 							<thead>
 								<tr>
@@ -55,9 +54,9 @@
 							<tbody>
 								<% @recent_report.crashes.each do |crash| %>
 								<tr>
-									<th><%= crash.error_rank %></th>
-									<th><%= crash.error_count %></th>
-									<th><%= crash.error_name %><br/><%= crash.error_line %></th>
+									<td><div class="rank <%= crash.error_rank %>"><%= crash.error_rank %></div></td>
+									<td><%= crash.error_count %></td>
+									<td><%= crash.error_name %><br/><%= crash.error_line %></td>
 								</tr>
 								<% end %>
 							</tbody>
@@ -120,6 +119,11 @@ d3.json("/api/v1/total_reports/1/device_failure_detail", function(data){
 <% end %>
 
 <script>
+
+$(function () {
+	$(".dashboard-right").css("height",$(".dashboard-left").css("height"));
+})
+
 var data = {
 
 	"test_results_data": [

@@ -56,7 +56,9 @@ d3.selection.prototype.moveToFront = function() {
 function sidebarHeightCorrect() {
 	$(".sidebar").css("height",$(".container-fluid").css("height"));
 };
-sidebarHeightCorrect();
+$(function () {
+	sidebarHeightCorrect();
+});
 
 function generateFilter(div_id, fields, filter_address) {
 	var div = d3.select("#"+div_id).append("form");

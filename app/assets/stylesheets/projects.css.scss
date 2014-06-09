@@ -144,6 +144,53 @@ body.modal-open .container {
 
 //** projects/show.html.erb **//
 
+.dashboard {
+	display: inline-block;
+	width: 100%;
+}
+
+.dashboard-left {
+	background-color: #EFEEEE;
+	width: 30%;
+	float: left;
+}
+
+.dashboard-right {
+	background-color: #EFEEEE;
+	width: 65%;
+	float: left;
+	margin-left: 5%;
+	padding: 0 20px;
+}
+
+.dashboard-test-error {
+	width: 100%;
+	.test-error-table {
+		width: 90%;
+		margin: 15px 5%;
+		th {
+			padding: 5px;
+			color: #287044;
+			font-size: 12px;
+			text-align: center;
+			background-color: #A9D8B9;
+		}
+		td {
+			padding: 5px;
+			color: #5E5E5E;
+			font-size: 12px;
+			border: 1px solid #A9D8B9;
+			text-align: center;
+		}
+		tr {
+			background-color: white;
+		}
+		tr:hover {
+			background-color: #A9D8B9;
+		}
+	}
+}
+
 #test_fail_graph {
 	margin: 5px 0;
 	padding: 0;
@@ -224,6 +271,10 @@ body.modal-open .container {
 
 	p {
 		text-align: center;
+	}
+
+	.trend-div {
+		color: rgb(96,94,90);
 	}
 	
 	.axis path{

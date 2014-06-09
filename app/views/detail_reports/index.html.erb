@@ -23,19 +23,21 @@
 
       <div id="detail-report-list-filter" class="filter"></div>
 
-      <table id="test-result-list">
-        <tr>
-          <th>Rank</th>
-          <th>Status</th>
-          <th>Test Scenario</th>
-          <th>Device</th>
-          <th>OS Version</th>
-          <th>Running Time</th>
-          <th>-</th>
-        </tr>
-      </table>
+      <div class="table-wrapper">
+        <table id="test-result-list">
+          <tr>
+            <th>Rank</th>
+            <th>Status</th>
+            <th>Test Scenario</th>
+            <th>Device</th>
+            <th>OS Version</th>
+            <th>Running Time</th>
+            <th></th>
+          </tr>
+        </table>
+      </div>
     </div>
-  </div>  
+  </div>
 </div>
 
 
@@ -43,6 +45,5 @@
   $.getJSON('/api/v1/total_reports/<%= @total_report.id %>/detail_report_list',function(data){
     detailReportList(data);
   });
+  generateFilter("detail-report-list-filter",["rank","status","os_version","device","name"],"/api/v1/total_reports/<%= @total_report.id %>/filter");
 <% end %>
-
-</script>
