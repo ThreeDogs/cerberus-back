@@ -5,7 +5,7 @@
 #  id              :integer          not null, primary key
 #  name            :string(255)
 #  description     :string(255)
-#  rank            :integer
+#  rank            :integer          default(0)
 #  project_id      :integer
 #  scenarioship_id :integer
 #  created_at      :datetime

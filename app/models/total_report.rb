@@ -4,7 +4,6 @@
 #
 #  id            :integer          not null, primary key
 #  test_datetime :string(255)
-#  app_version   :string(255)
 #  status        :boolean          default(FALSE)
 #  apk_id        :integer
 #  project_id    :integer
@@ -12,6 +11,7 @@
 #  created_at    :datetime
 #  updated_at    :datetime
 #
+
 require 'net/http'
 
 class TotalReport < ActiveRecord::Base
