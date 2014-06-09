@@ -6,7 +6,10 @@ d3.select(window).on("resize",function () {
 });
 
 function detailReportList (data) {
-	var table = d3.select("#test-result-list");
+	var table = d3.select("#test-result-list").html("");
+	var th = ["Rank","Status","Test Scenario","Device","OS Version","Running Time",""];
+	table.append("tr").selectAll("th").data(th).enter().append("th").text(function (d) {return d});
+
 	var tr = table.selectAll("tr").data(data).enter().append("tr");
 
 	tr.append("td").append("div")
@@ -18,6 +21,8 @@ function detailReportList (data) {
 	tr.append("td").text(function (d) {return d.os_version});
 	tr.append("td").text(function (d) {return d.get_running_time});
 	tr.append("td").append("a").attr("href",function (d) {return d.link}).text("Show");
+
+	sidebarHeightCorrect();
 }
 
 
