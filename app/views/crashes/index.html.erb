@@ -29,7 +29,7 @@
 					<div id="error-rank-rate"></div>
 					<%= javascript_tag do %>
 						d3.json("/api/v1/total_reports/<%= @total_report.id %>/test_rank_rate", function (data) {
-							drawRatePieChart("error-rank-rate",data);
+							crashPieChart("error-rank-rate",data);
 						});
 					<% end %>
 				</div>

@@ -102,6 +102,7 @@
 		background-color: #EFEEEE;
 		margin-top: -20px;
 	}
+
 	input[type="checkbox"] {
 		float: left;
 		display: inline-block;
@@ -110,7 +111,7 @@
 		cursor: pointer;
 	}
 
-	span {
+	input[type="checkbox"] + span {
 		float: left;
 		width: 12px;
 		height: 12px;
@@ -123,6 +124,25 @@
 		background-image: url("/assets/select_click.png");
 	}
 }
+
+// input[type="checkbox"] {
+// 	display: inline-block;
+// 	margin-left: 5px;
+// 	opacity: 0;
+// 	cursor: pointer;
+// }
+
+// input[type="checkbox"] + span {
+// 	width: 12px;
+// 	height: 12px;
+// 	background-size: 12px 12px;
+// 	background-image: url("/assets/select.png");
+// 	margin: 0 5px 0 -12px;
+// }
+
+// input[type="checkbox"]:checked + span{
+// 	background-image: url("/assets/select_click.png");
+// }
 
 .more {
 	float: right;

@@ -33,32 +33,29 @@
 			</div>
 			<span class="page-subtitle">Event Path</span>
 			<div class="event-path">
+				//TODO: NEED EVENT PATH DATA
 			</div>
 
 			<span class="page-subtitle">Detail Reports</span>
 			<div class="detail-report-list">
-				<table class="detail-report-list-table">
-					<thead>
-						<tr>
-							<th>Rank</th>
-							<th>Test Name</th>
-							<th>OS Version</th>
-							<th>Device</th>
-							<th>Country</th>
-							<th></th>
-						</tr>
-					</thead>
+				<table class="all-errors-table">
+					<tr>
+						<th>Rank</th>
+						<th>Test Name</th>
+						<th>OS Version</th>
+						<th>Device</th>
+						<th>Country</th>
+						<th></th>
+					</tr>
 					<% @detail_reports.each do |detail_report| %>
-						<tbody>
-							<tr>
-								<td><div class="rank <%= detail_report.rank %>"><%= detail_report.rank %></div></td>
-								<td><%= detail_report.test_scenario_name %></td>
-								<td><%= detail_report.os_version %></td>
-								<td><%= detail_report.device_name %></td>
-								<td><%= detail_report.device_country %></td>
-								<td><%= link_to "Show", total_report_detail_report_path(@total_report,detail_report), class: "btn btn-primary" %></td>
-							</tr>
-						</tbody>
+						<tr>
+							<td><div class="rank <%= detail_report.rank %>"><%= detail_report.rank %></div></td>
+							<td><%= detail_report.test_scenario_name %></td>
+							<td><%= detail_report.os_version %></td>
+							<td><%= detail_report.device_name %></td>
+							<td><%= detail_report.device_country %></td>
+							<td><%= link_to total_report_detail_report_path(@total_report,detail_report) do %><div class="show-button"></div><% end %></td>
+						</tr>
 					<% end %>
 				</table>
 			</div>

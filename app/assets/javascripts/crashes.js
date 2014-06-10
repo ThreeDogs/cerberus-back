@@ -97,8 +97,11 @@ function drawRatePieChart(div_id, data) {
 	var pie_g = svg.append("g")
 				.attr("transform","translate("+width/2+","+(height/2+20)+")");
 
-	var palette = d3.scale.category10();
-
+	var palette = function (i) {
+		var colors = ["#EA7C4B","#ED9FBD","#52C4D0","#D6B6EF","#D36C44","#CE8AA6","#44ADB2","#B591D8"];
+		return colors[i%(colors.length)];
+	}
+	
 	var pieces = pie_g.selectAll(".arc").data(pie(keys)).enter()
 				.append("g").attr("class","arc")
 
@@ -128,6 +131,68 @@ function drawRatePieChart(div_id, data) {
 		width = d3.select("#"+div_id).style("width").split("px")[0];
 		svg.attr("width",width);
 		pie_g.attr("transform","translate("+width/2+","+(height/2+20)+")");
+		for (i in entries) {
+			entries[i].attr("transform","translate("+legendPosition(i)+")");
+		}
+	}
+	resizeFunctions.push(onResize);
+}
+
+function crashPieChart(div_id, data) {
+	var width = d3.select("#"+div_id).style("width").split("px")[0];
+	var height = 120;
+	var diameter = 120;
+	var keys = Object.keys(data);
+
+	var svg = d3.select("#"+div_id).append("svg")
+				.attr("width",width).attr("height",height);
+
+	var arc = d3.svg.arc().outerRadius(diameter/2).innerRadius(0);
+	var arc_text = d3.svg.arc().outerRadius(diameter/2).innerRadius(diameter/2-40);
+
+	var pie = d3.layout.pie().sort(null).value(function(d) {return data[d]});
+
+	var pie_g = svg.append("g")
+				.attr("transform","translate("+width*2/3+","+(height/2)+")");
+
+	var palette = function (i) {
+		var colors = ["#EA7C4B","#ED9FBD","#52C4D0","#D6B6EF","#D36C44","#CE8AA6","#44ADB2","#B591D8"];
+		return colors[i%(colors.length)];
+	}
+	//d3.scale.category10();
+
+	var pieces = pie_g.selectAll(".arc").data(pie(keys)).enter()
+				.append("g").attr("class","arc")
+
+	pieces.append("path").attr("d",arc).style("fill",function (d, i) {return palette(i)});
+
+	pieces.append("text").attr("class","piece-label")
+		.attr("transform", function(d) {return "translate("+arc_text.centroid(d)+")"; })
+		.attr("dy", ".35em").style("text-anchor", "middle")
+		.text(function(d) {return d.value});
+
+	var title = svg.append("text").text("Error rate by rank")
+		.attr("fill","#5E5E5E").attr("font-size","14px")
+		.attr("transform","translate("+(width/3-10)+",20)");
+
+	var legend = svg.append("g").attr("class","legend");
+	var entries = [];
+	for (i in keys) {
+		var entry = legend.append("g").attr("transform","translate("+legendPosition(i)+")");
+		entry.append("circle").attr("r",5).attr("fill",palette(i));
+		entry.append("text").attr("dx","10px").attr("dy","3px").text(keys[i]);
+		entries.push(entry);
+	}
+
+	function legendPosition (i) {
+		return ""+(width/3 + i*40)+",80";
+	}
+
+	function onResize() {
+		width = d3.select("#"+div_id).style("width").split("px")[0];
+		svg.attr("width",width);
+		title.attr("transform","translate("+(width/3-10)+",20)");
+		pie_g.attr("transform","translate("+width*2/3+","+(height/2)+")");
 		for (i in entries) {
 			entries[i].attr("transform","translate("+legendPosition(i)+")");
 		}
