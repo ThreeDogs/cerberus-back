@@ -8,6 +8,12 @@ d3.select(window).on("resize",function () {
 
 function drawFailByDevice (data) {
 
+	//IF NO ERROR
+	if (data.length == 0) {
+		d3.select(".dashboard-test-error").html("");
+		
+	}
+
 	var width = d3.select("#test_fail_bar_graph").style("width").split("px")[0];
 	var height = d3.select("#test_fail_bar_graph").style("height").split("px")[0];
 	var margin = {top: 10, right: 10, bottom: 30, left: 100};

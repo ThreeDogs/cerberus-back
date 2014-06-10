@@ -24,7 +24,7 @@
 							<p><%= @recent_report.number_of_scenarios %> Test scenarios</p>
 							<p><%= @recent_report.number_of_devices %> Devices</p>
 						</div>
-						<span class="more"><%= link_to project_total_report_path(@project, @recent_report) do %>
+						<%= link_to project_total_report_path(@project, @recent_report) do %><span class="more"><u>All Reports More</u></span>
 						<div class="full-report"></div>
 					<% end %></span>
 					</div>
@@ -35,16 +35,16 @@
 						<% @recent_report.test_rank_status.each do |v, k| %>
 							<%=	javascript_tag do %>
 								addBandGraph("<%= v.to_s %>",<%= k[1] %>,<%= k[0] %>);
-							<% end %>
+							<% end %>+
 						<% end %>
 						<div class="band-graph-legend">
 							<img src="/assets/legend1.png">
 						</div>
+						<div style="padding-right: 15px;"><span class="more"><u>All Tests More</u></span></div>
 					</div>
 				</div>
 				<div class="dashboard-right">
-					<span class="page-subtitle">Test Errors</span>
-						<p class="more"><u>More Errors</u></p>
+					<div class="subtitle-exception"><span class="page-subtitle">Test Errors</span></div>
 					<div class="dashboard-test-error">
 						<table class="test-error-table">
 							<thead>
@@ -64,6 +64,7 @@
 								<% end %>
 							</tbody>
 						</table>
+						<span class="more"><u>More Errors</u></span>
 					</div>
 				</div>
 			</div>
@@ -147,6 +148,7 @@
 
 d3.json("/api/v1/total_reports/1/device_failure_detail", function(data){
 	var data = data;
+	console.log(data);
 	drawFailByDevice(data.device_failure_detail);
 });
 
