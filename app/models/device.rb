@@ -61,4 +61,13 @@ class Device < ActiveRecord::Base
   def fail_get_ranks
   	detail_reports.collect{|d| d.rank}.uniq
   end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |crash|
+        csv << crash.attributes.values_at(*column_names)
+      end
+    end
+  end
 end

@@ -1,0 +1,29 @@
+<h1>Tests</h1>
+<table>
+  <tr>
+    <th>Rank</th>
+    <th>Name</th>
+    <th>description</th>
+    <th>Status</th>
+    <th>Error</th>
+    <th>Devices</th>
+  </tr>
+  <% @test_scenarios.each do |test_scenario| %>
+    <tr>
+      <td><%= test_scenario.get_rank %></td>
+      <td><%= test_scenario.name %></td>
+      <td><%= test_scenario.description %></td>
+      <td><%= test_scenario.status %></td>
+      <td>
+        <% test_scenario.errors.each do |e| %>
+          <%= e.error_name %>(<%= e.error_line %>)
+        <% end %>
+      </td>
+      <td>
+        <% test_scenario.devices.each do |d| %>
+          <%= d.model %>(<%= d.os_version %>)<br>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

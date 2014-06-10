@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140609053507) do
+ActiveRecord::Schema.define(version: 20140610043535) do
 
   create_table "apks", force: true do |t|
     t.string   "apk"
@@ -50,6 +50,20 @@ ActiveRecord::Schema.define(version: 20140609053507) do
   end
 
   add_index "cpu_infos", ["detail_report_id"], name: "index_cpu_infos_on_detail_report_id", using: :btree
+
+  create_table "cpu_methods", force: true do |t|
+    t.integer  "tree_key"
+    t.integer  "parent_key"
+    t.string   "class_name"
+    t.string   "method_name"
+    t.integer  "start_timestamp"
+    t.integer  "end_timestamp"
+    t.integer  "detail_report_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cpu_methods", ["detail_report_id"], name: "index_cpu_methods_on_detail_report_id", using: :btree
 
   create_table "crashes", force: true do |t|
     t.string   "error_name"
@@ -102,6 +116,18 @@ ActiveRecord::Schema.define(version: 20140609053507) do
 
   add_index "deviceships", ["device_id"], name: "index_deviceships_on_device_id", using: :btree
   add_index "deviceships", ["total_report_id"], name: "index_deviceships_on_total_report_id", using: :btree
+
+  create_table "frame_draw_times", force: true do |t|
+    t.string   "type"
+    t.integer  "load_start_timestamp"
+    t.integer  "load_finish_timestamp"
+    t.string   "view_id"
+    t.integer  "detail_report_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "frame_draw_times", ["detail_report_id"], name: "index_frame_draw_times_on_detail_report_id", using: :btree
 
   create_table "memory_infos", force: true do |t|
     t.integer  "mem_total"

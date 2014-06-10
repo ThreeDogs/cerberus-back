@@ -1,0 +1,21 @@
+<h1>Detail Reports</h1>
+<table>
+  <tr>
+    <th>Rank</th>
+    <th>Status</th>
+    <th>Test Scenario</th>
+    <th>Device</th>
+    <th>OS Version</th>
+    <th>Running Time</th>
+  </tr>
+  <% @detail_reports.each do |detail_report| %>
+    <tr>
+      <td><%= detail_report.rank %></td>
+      <td><%= detail_report.get_status %></td>
+      <td><%= detail_report.test_scenario_name %></td>
+      <td><%= detail_report.device_name %></td>
+      <td><%= detail_report.os_version %></td>
+      <td><%= detail_report.get_running_time %></td>
+    </tr>
+  <% end %>
+</table>

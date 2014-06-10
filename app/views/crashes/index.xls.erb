@@ -1,0 +1,21 @@
+<h1>Test Errors</h1>
+<table>
+  <tr>
+    <th>Rank</th>
+    <th>Error Count</th>
+    <th>Error Name</th>
+    <th>Error Line</th>
+    <th>Error Description</th>
+    <th>OS Version</th>
+  </tr>
+  <% @crashes.each do |crash| %>
+    <tr>
+      <td><%= crash.error_rank %></td>
+      <td><%= crash.error_count %></td>
+      <td><%= crash.error_name %></td>
+      <td><%= crash.error_line %></td>
+      <td><%= crash.description %></td>
+      <td><%= crash.os_version_rate.keys %></td>
+    </tr>
+  <% end %>
+</table>

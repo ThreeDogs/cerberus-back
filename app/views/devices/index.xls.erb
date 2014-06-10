@@ -1,0 +1,24 @@
+<h1>Devices</h1>
+<% @devices.each do |device| %>
+	<h3><%= device.model %></h3>
+	<span><%= device.os_version %></span>
+	<span><%= device.cpu %></span>
+	<span><%= device.country %></span>
+	<h4><%= device.model %> Detail Reports</h4>
+	<table>
+		<tr>
+			<th>Rank</th>
+			<th>Test Scenario Name</th>
+			<th>Status</th>
+			<th>Error</th>
+		</tr>
+		<% device.detail_reports.each do |d| %>
+			<tr>
+				<td><%= d.rank %></td>
+				<td><%= d.test_scenario_name %></td>
+				<td><%= d.get_status %></td>
+				<td><%= d.error_name %></td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>

@@ -52,4 +52,14 @@ class Crash < ActiveRecord::Base
 		end
 		false
 	end
+
+	def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      # column_names = ["app_version","status","running_time"]
+      csv << column_names
+      all.each do |crash|
+        csv << crash.attributes.values_at(*column_names)
+      end
+    end
+  end
 end

@@ -20,7 +20,7 @@ test_path_to_file = "#{Rails.root}/lib/test_apk_generator/NewTestTestAndroid.apk
 @apk.project_id = @project.id
 @apk.save!
 
-@total_report = @apk.total_reports.create!(status: true, created_at: 1.seconds.ago, project_id: 1, test_datetime: "recent")
+@total_report = @apk.total_reports.create!(status: true, created_at: 1.seconds.ago, project_id: 1)
 
 a = TestScenario.create!(description: "This is a Login Test", rank: 0, project_id: @project.id)
 b = TestScenario.create!(description: "This is a Login Test", rank: 1, project_id: @project.id)
@@ -54,19 +54,19 @@ crash_5 = @total_report.crashes.create!(error_name: "NullPointerException", erro
 
 
 (2..6).each do |i|
-@total_report.detail_reports.create!(crash_id: crash_1.id,app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: -1, running_time: 1200, test_scenario_id: a.id, device_key: "A#{i}BVDWE")
-@total_report.detail_reports.create!(crash_id: crash_1.id,app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: -1, running_time: 1200, test_scenario_id: a.id, device_key: "A#{i}BVDWE")
-@total_report.detail_reports.create!(crash_id: crash_2.id,app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: -1, running_time: 1200, test_scenario_id: a.id, device_key: "A#{i}BVDWE")
-@total_report.detail_reports.create!(crash_id: crash_3.id,app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: -1, running_time: 1200, test_scenario_id: b.id, device_key: "A#{i}BVDWE")
-@total_report.detail_reports.create!(crash_id: crash_4.id,app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: -1, running_time: 1200, test_scenario_id: b.id, device_key: "A#{i}BVDWE")
-@total_report.detail_reports.create!(crash_id: crash_5.id,app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: -1, running_time: 1200, test_scenario_id: b.id, device_key: "A#{i}BVDWE")
-@total_report.detail_reports.create!(crash_id: crash_1.id,app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: -1, running_time: 1200, test_scenario_id: c.id, device_key: "A#{i}BVDWE")
-@total_report.detail_reports.create!(crash_id: crash_2.id,app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: -1, running_time: 1200, test_scenario_id: c.id, device_key: "A#{i}BVDWE")
-@total_report.detail_reports.create!(crash_id: crash_4.id,app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: -1, running_time: 1200, test_scenario_id: d.id, device_key: "A#{i}BVDWE")
-@total_report.detail_reports.create!(crash_id: crash_5.id,app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: -1, running_time: 1200, test_scenario_id: d.id, device_key: "A#{i}BVDWE")
+@total_report.detail_reports.create!(crash_id: crash_1.id,app_version: "1.0", status: -1, running_time: 1200, test_scenario_id: a.id, device_key: "A#{i}BVDWE")
+@total_report.detail_reports.create!(crash_id: crash_1.id,app_version: "1.0", status: -1, running_time: 1200, test_scenario_id: a.id, device_key: "A#{i}BVDWE")
+@total_report.detail_reports.create!(crash_id: crash_2.id,app_version: "1.0", status: -1, running_time: 1200, test_scenario_id: a.id, device_key: "A#{i}BVDWE")
+@total_report.detail_reports.create!(crash_id: crash_3.id,app_version: "1.0", status: -1, running_time: 1200, test_scenario_id: b.id, device_key: "A#{i}BVDWE")
+@total_report.detail_reports.create!(crash_id: crash_4.id,app_version: "1.0", status: -1, running_time: 1200, test_scenario_id: b.id, device_key: "A#{i}BVDWE")
+@total_report.detail_reports.create!(crash_id: crash_5.id,app_version: "1.0", status: -1, running_time: 1200, test_scenario_id: b.id, device_key: "A#{i}BVDWE")
+@total_report.detail_reports.create!(crash_id: crash_1.id,app_version: "1.0", status: -1, running_time: 1200, test_scenario_id: c.id, device_key: "A#{i}BVDWE")
+@total_report.detail_reports.create!(crash_id: crash_2.id,app_version: "1.0", status: -1, running_time: 1200, test_scenario_id: c.id, device_key: "A#{i}BVDWE")
+@total_report.detail_reports.create!(crash_id: crash_4.id,app_version: "1.0", status: -1, running_time: 1200, test_scenario_id: d.id, device_key: "A#{i}BVDWE")
+@total_report.detail_reports.create!(crash_id: crash_5.id,app_version: "1.0", status: -1, running_time: 1200, test_scenario_id: d.id, device_key: "A#{i}BVDWE")
 end
 
-@total_report.detail_reports.create!(crash_id: crash_5.id,app_version: "1.0", test_datetime: "2013/03/03 3:00pm", status: -1, running_time: 1200, test_scenario_id: d.id, device_key: "A2BVDWE")
+@total_report.detail_reports.create!(crash_id: crash_5.id,app_version: "1.0", status: -1, running_time: 1200, test_scenario_id: d.id, device_key: "A2BVDWE")
 
 DetailReport.all.each do |d|
   d.memory_infos.create!(

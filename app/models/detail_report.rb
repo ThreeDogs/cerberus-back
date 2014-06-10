@@ -27,17 +27,22 @@ class DetailReport < ActiveRecord::Base
   has_many :motion_event_infos
   has_many :battery_infos
   has_many :network_infos
+  has_many :cpu_methods
+  has_many :frame_draw_times
 
   accepts_nested_attributes_for :memory_infos
   accepts_nested_attributes_for :cpu_infos
   accepts_nested_attributes_for :motion_event_infos
   accepts_nested_attributes_for :battery_infos
   accepts_nested_attributes_for :network_infos
+  accepts_nested_attributes_for :cpu_methods
+  accepts_nested_attributes_for :frame_draw_times
+
 
   # validates :app_version, presence: true
 
   def error_name
-    crash.error_name
+    crash.error_name if crash
   end
 
   def rank
@@ -120,5 +125,15 @@ class DetailReport < ActiveRecord::Base
 
   def project_id
   	total_report.project.id
+  end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      # column_names = ["app_version","status","running_time"]
+      csv << column_names
+      all.each do |detail_report|
+        csv << detail_report.attributes.values_at(*column_names)
+      end
+    end
   end
 end

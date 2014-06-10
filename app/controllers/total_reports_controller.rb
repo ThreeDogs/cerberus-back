@@ -13,6 +13,13 @@ class TotalReportsController < ServiceController
   def tests
     @total_report = TotalReport.find(params[:id])
     @project = @total_report.project
+    @test_scenarios = @total_report.test_scenarios
+
+    respond_to do |format|
+      format.html
+      format.csv {render text: @test_scenarios.to_csv}
+      format.xls
+    end
   end
 
   def show
