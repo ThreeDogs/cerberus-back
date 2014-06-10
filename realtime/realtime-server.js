@@ -15,6 +15,10 @@ redis.subscribe('rt-change');
 
 
 io.sockets.on('connection', function(socket){
+	socket.on('chat message', function(msg){
+		console.log('message: ' + msg);
+	});
+
   redis.on('message', function(channel, message){
     socket.emit('rt-change', JSON.parse(message));
   });
