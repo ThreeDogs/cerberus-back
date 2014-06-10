@@ -58,8 +58,43 @@ p {
 		width: 240px;
 		height: 50px;
 		text-align: center;
+		float: left;
 		img {
 			padding-top: 12px;
 		}
+	}
+
+	.login-status {
+		background-color: #5DBE88;
+		height: 50px;
+		float: right;
+		position: relative;
+		z-index: 10;
+	}
+
+	#user-name {
+		width: 180px;
+		height: 25px;
+		text-align: center;
+		margin: 12px;
+		color: #287044;
+		font-size: 12px;
+		line-height: 25px;
+		vertical-align: center;
+		background-image: url("/assets/username_empty.png");
+		background-size: 180px 25px;
+		background-repeat: none;
+	}
+		
+	#login-dropdown {
+		display: none;
+		position: absolute;
+		top: 50px;
+		width: 180px;
+		height: 300px;
+		border-bottom-left-radius: 20px;
+		border-bottom-right-radius: 20px;
+		background-color: #A9D8B9;//#5DBE88;
+		z-index: 20;
 	}
 }

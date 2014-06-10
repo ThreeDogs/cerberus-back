@@ -4,4 +4,18 @@
 			<%= image_tag "/assets/Logo.png" %>
 		<% end %>
 	</div>
+	<div class="login-status">
+		<div id="user-name">
+			<p>foobar@foobar.com</p>
+			<div id="login-dropdown"></div>
+		</div>
+	</div>
 </div>
+
+<script>
+$(".login-status").mouseover(function () {
+	$("#login-dropdown").css("display","block");
+}).mouseout(function () {
+	$("#login-dropdown").css("display","none");
+})
+</script>
