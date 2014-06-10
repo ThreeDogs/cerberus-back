@@ -70,7 +70,7 @@
 	width: 100%;
 	background-color: #EFEEEE;
 	padding: 10px;
-	margin-top: 20px;
+	margin: 20px 0;
 	font-size: 12px;
 
 	.filter-field {
@@ -97,40 +97,12 @@
 		background-color: #EFEEEE;
 		padding-right: 30px;
 	}
-	.filter-value-dropdown {
-		position: absolute;
-		z-index: 10;
-		top: 20px;
-		left: 0px;
-		width: 120px;
-		border: solid 1px;
-		max-height: 300px;
-		display: none;
+	.filter-submit {
+		float: right;
 		background-color: #EFEEEE;
+		margin-top: -20px;
 	}
-	.filter-value-dropdown-each {
-		width: 120px;
-		height: 20px;
-		overflow: hidden;
-	}
-	.filter-value-scenario {
-		width: 123px;
-		height: 20px;
-		background-size: 123px 20px;
-		background-image: url("/assets/scenarioname.png");
-	}
-	.filter-value-scenario:hover {
-		background-image: url("/assets/scenarioname_click.png");
-	}
-	.filter-value-device {
-		width: 123px;
-		height: 20px;
-		background-size: 123px 20px;
-		background-image: url("/assets/devicename.png");
-	}
-	.filter-value-device:hover {
-		background-image: url("/assets/devicename_click.png");
-	}
+
 	input[type="checkbox"] {
 		float: left;
 		display: inline-block;
@@ -139,7 +111,7 @@
 		cursor: pointer;
 	}
 
-	span {
+	input[type="checkbox"] + span {
 		float: left;
 		width: 12px;
 		height: 12px;
@@ -152,6 +124,25 @@
 		background-image: url("/assets/select_click.png");
 	}
 }
+
+// input[type="checkbox"] {
+// 	display: inline-block;
+// 	margin-left: 5px;
+// 	opacity: 0;
+// 	cursor: pointer;
+// }
+
+// input[type="checkbox"] + span {
+// 	width: 12px;
+// 	height: 12px;
+// 	background-size: 12px 12px;
+// 	background-image: url("/assets/select.png");
+// 	margin: 0 5px 0 -12px;
+// }
+
+// input[type="checkbox"]:checked + span{
+// 	background-image: url("/assets/select_click.png");
+// }
 
 .more {
 	float: right;
@@ -175,4 +166,9 @@
 	text-align: center;
 	padding-top: 5px;
 	color: #287044;
+}
+
+.table-wrapper {
+	padding: 20px;
+	background-color: #EFEEEE;
 }

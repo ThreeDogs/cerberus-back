@@ -1,3 +1,13 @@
+function testScenarioList (data) {
+	var table = d3.select("#scenario-list").html("");
+	var th = ["","Name","Description","Recently tested on",""];
+	table.append("tr").selectAll("th").data(th).enter().append("th").text(function (d) {return d});
+
+	var tr = table.selectAll("tr").data(data).enter().append("tr");
+
+	sidebarHeightCorrect();
+}
+
 function drawEventFlow (data) {
 
 	function dataProcess(data) {

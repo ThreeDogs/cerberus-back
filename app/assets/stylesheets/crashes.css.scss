@@ -32,6 +32,13 @@
 		text-align: center;
 	}
 
+	tr:hover {
+		background-color: #5DBE88;
+		td {
+			color: white;
+		}
+	}
+
 	td {
 		color: #5E5E5E;
 		font-size: 12px;
@@ -52,6 +59,13 @@
 		border: solid 1px #A9D8B9;
 		padding: 5px;
 		text-align: center;
+	}
+
+	tr:hover {
+		background-color: #5DBE88;
+		td {
+			color: white;
+		}
 	}
 
 	td {

@@ -26,12 +26,9 @@
 					</div>
 				</div>
 				<div class="error-top-right">
-					<div id="band-graph">Test Result</div>
-					<% @total_report.test_rank_status.each do |v, k| %>
-						<%=	javascript_tag do %>
-							addBandGraph("<%= v.to_s %>",<%= k[1] %>,<%= k[0] %>);
-						<% end %>
-					<% end %>
+					<div id="band-graph">
+						<div>Test Result</div>
+					</div>
 				</div>
 			</div>
 
@@ -44,9 +41,22 @@
 </div>
 
 <script>
-generateFilter("all-tests-filter",["rank","status","name"],"/api/v1/total_reports/<%= @total_report.id %>/filter");
-allTestsTable("/api/v1/total_reports/<%= @total_report.id %>/test_report_list");
-allTestsStyleChange();
+generateFilter("all-tests-filter",
+	["rank","status","name"],
+	"/api/v1/total_reports/<%= @total_report.id %>/filter",
+	"/api/v1/total_reports/<%= @total_report.id %>/test_report_list",
+	allTestsTable
+);
+d3.json("/api/v1/total_reports/<%= @total_report.id %>/test_report_list",function (err, data) {
+	allTestsTable(data)
+});
+
+var temporary = {};
+<% @total_report.test_rank_status.each do |v, k| %>
+	temporary.<%= v.to_s %> = [<%= k[1] %>,<%= k[0] %>];
+<% end %>
+addColoredBandGraph("band-graph",temporary);
+
 </script>
 
 <!-- apk name : <%= @total_report.apk_name %>

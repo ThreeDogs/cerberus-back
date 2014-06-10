@@ -36,8 +36,15 @@
 </div>
 
 <script>
-generateFilter("all-device-filter",["os_version","device"],"/api/v1/total_reports/<%= @total_report.id %>/filter");
-allDevicesTable("/api/v1/total_reports/<%= @total_report.id %>/device_report_list");
+generateFilter("all-device-filter",
+	["os_version","device"],
+	"/api/v1/total_reports/<%= @total_report.id %>/filter",
+	"/api/v1/total_reports/<%= @total_report.id %>/device_report_list",
+	allDevicesTable
+);
+d3.json("/api/v1/total_reports/<%= @total_report.id %>/device_report_list",function (err, data) {
+	allDevicesTable(data)
+});
 </script>
 
 <!-- apk name : <%= @total_report.apk_name %>

@@ -3,15 +3,14 @@
 	<div class="row-fluid">
 		<%= render 'shared/side_bar' %>	
 
-		<div class="contents">
+		<div class="col-md-12 contents">
 			<div class="page-title">
         		<img src="/assets/dashboard.png">Dashboard
         	</div>
 			
-
 			<% if @recent_report %>
-			<div class="row">
-				<div class="col-md-4">
+			<div class="dashboard">
+				<div class="dashboard-left">
 					<div class="total-report-brief">
 						<div class="apk-name"><b><%= @recent_report.apk_name %></b></div>
 						<div class="brief-left">
@@ -38,12 +37,15 @@
 								addBandGraph("<%= v.to_s %>",<%= k[1] %>,<%= k[0] %>);
 							<% end %>
 						<% end %>
+						<div class="band-graph-legend">
+							<img src="/assets/legend1.png">
+						</div>
 					</div>
 				</div>
-				<div class="col-md-8">
+				<div class="dashboard-right">
 					<span class="page-subtitle">Test Errors</span>
 						<p class="more"><u>More Errors</u></p>
-					<div class="test-error">
+					<div class="dashboard-test-error">
 						<table class="test-error-table">
 							<thead>
 								<tr>
@@ -55,9 +57,9 @@
 							<tbody>
 								<% @recent_report.crashes.each do |crash| %>
 								<tr>
-									<th><%= crash.error_rank %></th>
-									<th><%= crash.error_count %></th>
-									<th><%= crash.error_name %><br/><%= crash.error_line %></th>
+									<td><div class="rank <%= crash.error_rank %>"><%= crash.error_rank %></div></td>
+									<td><%= crash.error_count %></td>
+									<td><%= crash.error_name %><br/><%= crash.error_line %></td>
 								</tr>
 								<% end %>
 							</tbody>
@@ -69,6 +71,9 @@
 			<span class="page-subtitle">Device Fail</span>
 			<div class="device-fail">
 				<div id="test_fail_bar_graph">
+				</div>
+				<div class="test_fail_bar_graph_legend">
+					<img src="/assets/legend2.png">
 				</div>
 				<div id="test_fail_chart">
 					<div class="table_title">
@@ -84,26 +89,54 @@
 
 			<span class="page-subtitle">Project Trends</span>
 			<div id="project-trends" class="row">
-				<div id="test-results" class="trend-div col-md-12">
-					<p>Test results</p>
+				<div class="trend-div col-md-12">
+					<div id="test-results"><p>Test results</p>
+					</div>
+					<div id="test-results-legend">
+						<img src="/assets/legend_pwf.png">
+					</div>
 				</div>
-				<div id="cpu-trend" class="trend-div col-md-4">
+				<div class="trend-div col-md-4">
 					<p>CPU usage trend</p>
+					<div id="cpu-trend"></div>
+					<div class="trend-avg-legend">
+						<img src="/assets/legend_mam.png">
+					</div>
 				</div>
-				<div id="mem-trend" class="trend-div col-md-4">
+				<div class="trend-div col-md-4">
 					<p>Memory usage trend</p>
+					<div id="mem-trend"></div>
+					<div class="trend-avg-legend">
+						<img src="/assets/legend_mam.png">
+					</div>
 				</div>
-				<div id="network-trend" class="trend-div col-md-4">
+				<div class="trend-div col-md-4">
 					<p>Network response time trend</p>
+					<div id="network-trend"></div>
+					<div class="trend-avg-legend">
+						<img src="/assets/legend_mam.png">
+					</div>
 				</div>
-				<div id="battery-trend" class="trend-div col-md-4">
+				<div class="trend-div col-md-4">
 					<p>Battery consumption trend</p>
+					<div id="battery-trend"></div>
+					<div class="trend-avg-legend">
+						<img src="/assets/legend_mam.png">
+					</div>
 				</div>
-				<div id="thread-trend" class="trend-div col-md-4">
+				<div class="trend-div col-md-4">
 					<p>Thread trend</p>
+					<div id="thread-trend"></div>
+					<div class="trend-avg-legend">
+						<img src="/assets/legend_mam.png">
+					</div>
 				</div>
-				<div id="frame-trend" class="trend-div col-md-4">
+				<div class="trend-div col-md-4">
 					<p>Frame draw time trend</p>
+					<div id="frame-trend"></div>
+					<div class="trend-avg-legend">
+						<img src="/assets/legend_mam.png">
+					</div>
 				</div>
 			<% end %>
 		</div>
@@ -120,6 +153,11 @@ d3.json("/api/v1/total_reports/1/device_failure_detail", function(data){
 <% end %>
 
 <script>
+
+$(function () {
+	$(".dashboard-right").css("height",$(".dashboard-left").css("height"));
+})
+
 var data = {
 
 	"test_results_data": [

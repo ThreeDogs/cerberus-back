@@ -6,15 +6,6 @@
 	}
 }
 
-.apk-upload-head {
-	margin: 40px 0;
-	color: rgb(40,112,68);
-	font-size: 26px; 
-	img {
-		margin-right: 16px;
-	}
-}
-
 #progress-circle{
 	padding-top: 300px;
 }
@@ -57,5 +48,28 @@ input#upload-field{
 		border: solid 1px;
 		border-color: #A9D8B9;
 		padding: 5px;
+	}
+}
+
+.apk-head {
+	width: 100%;
+	padding: 20px;
+	background-color: #EFEEEE;
+	margin-bottom: 20px;
+	h3 {
+		color: #287044;
+		font-size: 14px;
+	}
+	p {
+		color: #605E5A;
+		font-size: 13px;
+	}
+}
+
+.test-options-list {
+	background-color: #EFEEEE;
+	.test-list {
+		background-color: #EFEEEE;
+		padding: 20px;
 	}
 }

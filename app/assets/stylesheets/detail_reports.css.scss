@@ -19,15 +19,15 @@
 		color: #5E5E5E;
 		font-size: 11px;
 		border: 1px solid #A9D8B9;
+		text-align: center;
 	}
 	tr {
-		background-color: #EFEEEE; 
+		background-color: white;
 	}
 	tr:hover {
 		background-color: #A9D8B9;
 	}
 }
-
 
 // show
 
@@ -36,6 +36,7 @@
 	width: 100%;
 	font-size: 12px;
 	margin-top: 20px;
+	display: inline-block;
 
 	.activity {
 		display: inline-block;
@@ -99,21 +100,29 @@
 
 		.event-screenshot-wrapper {
 			width: 100%;
-			height: 290px;
+			height: 310px;
 			overflow-x: scroll;
 			overflow-y: hidden;
 			padding-top: 5px;
+			background-color: #EFEEEE;
 		}
 
 		.event-screenshot-inner {
-			height: 260px;
+			height: 280px;
+			background-color: #EFEEEE;
 		}
 	}
 
 	.summary-area {
-		height: 320px;
+		height: 340px;
 		margin: 0;
 		padding: 0 0 0 10px;
+	}
+
+	.summary-row {
+		width: 100%;
+		display: inline-block;
+		background-color: #EFEEEE;
 	}
 
 	.summary-key {
@@ -128,27 +137,28 @@
 	}
 
 	.summary-block {
-		height: 40px;
-		padding: 2px 5px;
+		height: 45px;
 		text-align: center;
 		background-color: #EFEEEE;
 	}
 }
 
 .detail-report-charts {
-	height: 200px;
+	height: 220px;
+	margin: 10px 0px;
 	background-color: #EFEEEE;
 	.chart-title {
 		height: 15px;
 		font-size: 14px;
 		text-align: center;
 		background-color: #EFEEEE;
+		color: rgb(96,94,90);
 	}
 
 	#cpu-chart {
-		height: 200px;
+		height: 220px;
 		margin: 0;
-		padding: 0;
+		padding-top: 20px;
 		.cpu-line {
 			stroke: #5DBE88;
 			stroke-width: 2;
@@ -161,9 +171,9 @@
 	}
 	
 	#mem-chart {
-		height: 200px;
+		height: 220px;
 		margin: 0;
-		padding: 0;
+		padding-top: 20px;
 		.mem-line {
 			stroke: #F7CE25;
 			stroke-width: 2;

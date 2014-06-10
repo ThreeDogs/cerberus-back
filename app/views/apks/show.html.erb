@@ -9,20 +9,21 @@
 				<img src="/assets/starttest.png">Test Ready
 			</div>
       
-				<div class="jumbotron">
+				<div class="apk-head">
 					<h3><%= @apk.apk_name %></h3>
-					<p>Package Name  <%= @apk.package_name %></p>
-					<p>Activity Name  <%= @apk.activity_name %></p>
-					<p>Minimum SDK  <%= @apk.min_sdk %></p>
-					<p>Test APK  test.apk</p>
+					<p>Package Name: <%= @apk.package_name %></p>
+					<p>Activity Name: <%= @apk.activity_name %></p>
+					<p>Minimum SDK: <%= @apk.min_sdk %></p>
+					<p>Test APK: test.apk</p>
 				</div>
 
-				<div class="total-report-form">
+				<span class="page-subtitle">Test List</span>
+				<div class="test-options-list">
 					<%= form_for [@apk, @total_report] do |f| %>
-						<div class="col-md-6 jumbotron test-scenario-list">
+						<div class="col-md-6 test-list">
 							<%= f.fields_for "test_scenario_ids" do |form| %>
 								<div>
-									<h3>Test Scenario Choice</h3>
+									<h4>Test Scenario Choice</h4>
 									<p><label><input type="checkbox" id="checkAll"/>All</label></p>
 								</div>
 								<% @test_scenarios.each do |test_scenario| %>
@@ -33,7 +34,7 @@
 								<% end %>
 							<% end %>
 						</div>
-						<div class="col-md-6 jumbotron device-list">
+						<div class="col-md-6 device-list">
 							<% if @device_list %>
 								<% @device_list.each do |device| %>
 									<div class="device-item">
