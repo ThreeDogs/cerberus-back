@@ -281,7 +281,7 @@ function drawTestResults(test_results_data) {
 function drawCPUusage(cpu_trend_data) {
 
 	var width = d3.select("#cpu-trend").style("width").split("px")[0];
-	var height = d3.select("#cpu-trend").style("height").split("px")[0]-40;
+	var height = d3.select("#cpu-trend").style("height").split("px")[0];
 	var margin = {top:10,right:40,bottom:20,left:40};
 
 	var cpu_trend_svg = d3.select("#cpu-trend")
@@ -401,7 +401,7 @@ function drawCPUusage(cpu_trend_data) {
 function drawMemUsage(mem_trend_data) {
 
 	var width = d3.select("#mem-trend").style("width").split("px")[0];
-	var height = d3.select("#mem-trend").style("height").split("px")[0]-40;
+	var height = d3.select("#mem-trend").style("height").split("px")[0];
 	var margin = {top:10,right:40,bottom:20,left:40};
 
 	var mem_trend_svg = d3.select("#mem-trend")
@@ -523,7 +523,7 @@ function drawMemUsage(mem_trend_data) {
 function drawNetworkTrend(network_trend_data) {
 
 	var width = d3.select("#network-trend").style("width").split("px")[0];
-	var height = d3.select("#network-trend").style("height").split("px")[0]-40;
+	var height = d3.select("#network-trend").style("height").split("px")[0];
 	var margin = {top:10,right:40,bottom:20,left:40};
 
 	var network_trend_svg = d3.select("#network-trend")
@@ -645,7 +645,7 @@ function drawNetworkTrend(network_trend_data) {
 function drawBatteryTrend(battery_trend_data) {
 
 	var width = d3.select("#battery-trend").style("width").split("px")[0];
-	var height = d3.select("#battery-trend").style("height").split("px")[0]-40;
+	var height = d3.select("#battery-trend").style("height").split("px")[0];
 	var margin = {top:10,right:40,bottom:20,left:40};
 
 	var battery_trend_svg = d3.select("#battery-trend")
@@ -767,7 +767,7 @@ function drawBatteryTrend(battery_trend_data) {
 function drawThreadTrend(thread_trend_data) {
 
 	var width = d3.select("#thread-trend").style("width").split("px")[0];
-	var height = d3.select("#thread-trend").style("height").split("px")[0]-40;
+	var height = d3.select("#thread-trend").style("height").split("px")[0];
 	var margin = {top:10,right:40,bottom:20,left:40};
 
 	var thread_trend_svg = d3.select("#thread-trend")
@@ -889,7 +889,7 @@ function drawThreadTrend(thread_trend_data) {
 function drawFrameTrend(frame_trend_data) {
 
 	var width = d3.select("#frame-trend").style("width").split("px")[0];
-	var height = d3.select("#frame-trend").style("height").split("px")[0]-40;
+	var height = d3.select("#frame-trend").style("height").split("px")[0];
 	var margin = {top:10,right:40,bottom:20,left:40};
 
 	var frame_trend_svg = d3.select("#frame-trend")

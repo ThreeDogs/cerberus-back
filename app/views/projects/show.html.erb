@@ -37,6 +37,9 @@
 								addBandGraph("<%= v.to_s %>",<%= k[1] %>,<%= k[0] %>);
 							<% end %>
 						<% end %>
+						<div class="band-graph-legend">
+							<img src="/assets/legend1.png">
+						</div>
 					</div>
 				</div>
 				<div class="dashboard-right">
@@ -69,6 +72,9 @@
 			<div class="device-fail">
 				<div id="test_fail_bar_graph">
 				</div>
+				<div class="test_fail_bar_graph_legend">
+					<img src="/assets/legend2.png">
+				</div>
 				<div id="test_fail_chart">
 					<div class="table_title">
 						<span id="table_title_rank" class="test_rank"></span>
@@ -83,26 +89,54 @@
 
 			<span class="page-subtitle">Project Trends</span>
 			<div id="project-trends" class="row">
-				<div id="test-results" class="trend-div col-md-12">
-					<p>Test results</p>
+				<div class="trend-div col-md-12">
+					<div id="test-results"><p>Test results</p>
+					</div>
+					<div id="test-results-legend">
+						<img src="/assets/legend_pwf.png">
+					</div>
 				</div>
-				<div id="cpu-trend" class="trend-div col-md-4">
+				<div class="trend-div col-md-4">
 					<p>CPU usage trend</p>
+					<div id="cpu-trend"></div>
+					<div class="trend-avg-legend">
+						<img src="/assets/legend_mam.png">
+					</div>
 				</div>
-				<div id="mem-trend" class="trend-div col-md-4">
+				<div class="trend-div col-md-4">
 					<p>Memory usage trend</p>
+					<div id="mem-trend"></div>
+					<div class="trend-avg-legend">
+						<img src="/assets/legend_mam.png">
+					</div>
 				</div>
-				<div id="network-trend" class="trend-div col-md-4">
+				<div class="trend-div col-md-4">
 					<p>Network response time trend</p>
+					<div id="network-trend"></div>
+					<div class="trend-avg-legend">
+						<img src="/assets/legend_mam.png">
+					</div>
 				</div>
-				<div id="battery-trend" class="trend-div col-md-4">
+				<div class="trend-div col-md-4">
 					<p>Battery consumption trend</p>
+					<div id="battery-trend"></div>
+					<div class="trend-avg-legend">
+						<img src="/assets/legend_mam.png">
+					</div>
 				</div>
-				<div id="thread-trend" class="trend-div col-md-4">
+				<div class="trend-div col-md-4">
 					<p>Thread trend</p>
+					<div id="thread-trend"></div>
+					<div class="trend-avg-legend">
+						<img src="/assets/legend_mam.png">
+					</div>
 				</div>
-				<div id="frame-trend" class="trend-div col-md-4">
+				<div class="trend-div col-md-4">
 					<p>Frame draw time trend</p>
+					<div id="frame-trend"></div>
+					<div class="trend-avg-legend">
+						<img src="/assets/legend_mam.png">
+					</div>
 				</div>
 			<% end %>
 		</div>
