@@ -5,6 +5,13 @@ function testScenarioList (data) {
 
 	var tr = table.selectAll("tr").data(data).enter().append("tr");
 
+	tr.append("td").append("div").attr("class",function (d) {return "rank "+d.get_rank})
+		.text(function (d) {return d.get_rank});
+	tr.append("td").text(function (d) {return d.name});
+	tr.append("td").text(function (d) {return d.description});
+	tr.append("td").text(function (d) {return d.recent_test_date});
+	tr.append("td").append("a").attr("href",function (d) {return d.link})
+		.append("div").attr("class","show-button");
 	sidebarHeightCorrect();
 }
 
