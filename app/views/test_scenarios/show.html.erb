@@ -23,12 +23,14 @@
 			</div>
 
 			<span class="page-subtitle">Event Path</span>
-			<div>
+			<div class="event-flow-row">
 				<div class="event-flow">
 					<div id="event-flow-inner"></div>
 				</div>
 				<div id="event-detail">Click on event for more detail</div>
 			<div>
+			
+			<div class="table-wrapper">
 			<div class="edit-button"></div>
 			<%= nested_form_for([@project, @test_scenario]) do |f| %>
 			  <table class="motion-events-table">
@@ -47,11 +49,8 @@
 				  	</tr>
 					<% end %>
 			  </table>
-
-			  <div class="actions">
-			    <%= f.submit 'Save Changes', class: "btn btn-info event-edit-button" %>
-			  </div>
 			<% end %>
+			</div>
 		</div>
 	</div>
 	

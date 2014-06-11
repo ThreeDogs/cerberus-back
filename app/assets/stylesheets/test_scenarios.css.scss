@@ -48,7 +48,7 @@
 
 .scenario-info {
 	padding: 10px 30px;
-	margin: 10px 0;
+	margin: 10px 0 20px 0;
 	background-color: rgb(239,239,239);
 	.scenario-info-title {
 		width: 100%;
@@ -97,8 +97,6 @@
 
 .motion-events-table {
 	width: 100%;
-	margin-top: 20px;
-
 	th {
 		background-color: #A9D8B9;
 		color: #287044;
@@ -107,7 +105,6 @@
 		padding: 5px;
 		text-align: center;
 	}
-
 	td {
 		color: #5E5E5E;
 		font-size: 12px;
@@ -117,6 +114,11 @@
 
 .event-edit-button {
 	float: right;
+}
+
+.event-flow-row {
+	width: 100%;
+	margin-bottom: 20px;
 }
 
 .event-flow {

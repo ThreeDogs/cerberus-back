@@ -1,24 +1,39 @@
-<h1>Editing Motion Event Params</h1>
+<%= render "shared/header" %>
 
-<%= nested_form_for([@project, @test_scenario]) do |f| %>
-  <table class="table">
-  	<tr>
-  		<th>Activity</th>
-  		<th>View</th>
-  		<th>Event Type</th>
-  		<th>Parameter</th>
-  	</tr>
-		<%= f.fields_for :motion_events do |builder| %>
-			<tr>
-	  		<th><%= builder.object.activity_class %></th>
-	  		<th><%= builder.object.view %></th>
-	  		<th><%= builder.object.action_type %></th>
-	  		<th><%= builder.text_field :param %></th>
-	  	</tr>
-		<% end %>
-  </table>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <%= render 'shared/side_bar' %>
+    
+    <div class="col-md-12 contents">
+      <div class="page-title">
+        <img src="/assets/scenario.png">Test Scenario Edit
+      </div>
+      <div class="below-page-title">Test Scenarios > Test Scenario > Edit</div>
 
-  <div class="actions">
-    <%= f.submit 'Update', class: "btn btn-info" %>
+      <%= nested_form_for([@project, @test_scenario]) do |f| %>
+        <table class="motion-events-table">
+          <tr>
+            <th>Activity</th>
+            <th>View</th>
+            <th>Event Type</th>
+            <th>Parameter</th>
+          </tr>
+          <%= f.fields_for :motion_events do |builder| %>
+            <tr>
+              <th><%= builder.object.activity_class %></th>
+              <th><%= builder.object.view %></th>
+              <th><%= builder.object.action_type %></th>
+              <th><%= builder.text_field :param %></th>
+            </tr>
+          <% end %>
+        </table>
+
+        <div class="pull-right">
+          <div class="btn-start-test"><%= f.submit 'Update' %></div>
+        </div>
+      <% end %>
+
+    </div>
   </div>
-<% end %>
+  
+</div>
