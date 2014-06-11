@@ -10,8 +10,11 @@ function drawFailByDevice (data) {
 
 	//IF NO ERROR
 	if (data.length == 0) {
-		d3.select(".dashboard-test-error").html("");
-		
+		var all_pass_div = d3.select(".dashboard-right").html("")
+							.append("div").attr("class","all-pass");
+		all_pass_div.append("img").attr("src","/assets/pass.png");
+		all_pass_div.append("span").text("All tests passed.");
+		d3.select("#device-fail-all").html("");
 	}
 
 	var width = d3.select("#test_fail_bar_graph").style("width").split("px")[0];

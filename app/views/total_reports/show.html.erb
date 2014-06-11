@@ -75,25 +75,27 @@
 				</div>
 			</div>
 
-			<span class="page-subtitle">Device Fail</span>
-			<div class="device-fail">
-				<div id="test_fail_bar_graph">
-				</div>
-				<div class="test_fail_bar_graph_legend">
-					<img src="/assets/legend2.png">
-				</div>
-				<div id="test_fail_chart">
-					<div class="table_title">
-						<span id="table_title_rank" class="test_rank"></span>
-						<span id="table_title_device_name" class="device_name"></span>
+			<div id="device-fail-all">
+				<span class="page-subtitle">Device Fail</span>
+				<div class="device-fail">
+					<div id="test_fail_bar_graph">
 					</div>
-					<table id="detail_table" class="detail_table">
-						<tr><td>click on bar graph left for more detail</td></tr>
-					</table>
+					<div class="test_fail_bar_graph_legend">
+						<img src="/assets/legend2.png">
+					</div>
+					<div id="test_fail_chart">
+						<div class="table_title">
+							<span id="table_title_rank" class="test_rank"></span>
+							<span id="table_title_device_name" class="device_name"></span>
+						</div>
+						<table id="detail_table" class="detail_table">
+							<tr><td>click on bar graph left for more detail</td></tr>
+						</table>
+					</div>
+					<%= link_to total_report_devices_path(@total_report) do %>
+						<span class="more"><u>All Devices More</u></span>
+					<% end %>
 				</div>
-				<%= link_to total_report_devices_path(@total_report) do %>
-					<span class="more"><u>All Devices More</u></span>
-				<% end %>
 			</div>
 
 			<span class="page-subtitle">Performance Average</span>
@@ -171,6 +173,10 @@ d3.json("/api/v1/total_reports/<%= @total_report.id %>/device_failure_detail", f
 
 
 <script>
+
+$(function () {
+	$(".dashboard-right").css("height",$(".dashboard-left").css("height"));
+})
 
 // var testdata = {"A": [1,1],"C": [1,1]};
 // drawBandGraph(testdata);

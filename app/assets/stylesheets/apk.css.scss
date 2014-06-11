@@ -68,9 +68,32 @@ input#upload-field{
 }
 
 .test-options-list {
+	width: 100%;
 	background-color: #EFEEEE;
 	.test-list {
+		width: 50%;
 		background-color: #EFEEEE;
 		padding: 20px;
+	}
+	.device-list {
+		width: 50%;
+		background-color: #EFEEEE;
+		padding: 20px;
+	}
+}
+
+.btn-start-test {
+	text-align: center;
+	font-size: 14px;
+	color: #287044;
+	width: 100px;
+	height: 30px;
+	input {
+		background:url("/assets/button.png") no-repeat;
+		cursor: pointer;
+		width: 100px;
+		height: 30px;
+		background-size: 100px 30px;
+		border: none;
 	}
 }

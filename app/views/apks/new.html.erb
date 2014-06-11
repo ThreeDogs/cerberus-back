@@ -42,8 +42,8 @@
 								<td>trasforming...</td>
 							<% end %>								
 							<td><%= apk.upload_date %></td>
-							<td><%= link_to "Start Test", project_apk_path(@project, apk), class: "btn btn-large btn-primary" %></td>
-							<td><%= link_to "Delete", project_apk_path(@project, apk), data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-danger" %></td>
+							<td><%= link_to project_apk_path(@project, apk) do %><div class="green-button">Start Test</div><% end %></td>
+							<td><%= link_to project_apk_path(@project, apk), data: {confirm: "Are you sure?"}, method: :delete do %><div class="green-button">Delete</div><% end %></td>
 						</tr>
 					<% end %>
 			</table>

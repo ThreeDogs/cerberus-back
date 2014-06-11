@@ -20,21 +20,23 @@
 				<span class="page-subtitle">Test List</span>
 				<div class="test-options-list">
 					<%= form_for [@apk, @total_report] do |f| %>
-						<div class="col-md-6 test-list">
+						<div class="test-list">
 							<%= f.fields_for "test_scenario_ids" do |form| %>
+								<h4>Test Scenario Choice</h4>
 								<div>
-									<h4>Test Scenario Choice</h4>
-									<p><label><input type="checkbox" id="checkAll"/>All</label></p>
+									<input type="checkbox" id="checkAll"><span></span>
+									<label for="checkAll">All</label>
 								</div>
 								<% @test_scenarios.each do |test_scenario| %>
 									<div class="test-scenario-item">
 										<%= form.check_box test_scenario.id %>
+										<span></span>
 										<%= test_scenario.name %>
 									</div>
 								<% end %>
 							<% end %>
 						</div>
-						<div class="col-md-6 device-list">
+						<div class="device-list">
 							<% if @device_list %>
 								<% @device_list.each do |device| %>
 									<div class="device-item">
@@ -44,7 +46,7 @@
 							<% end %>
 						</div>
 						<div class="pull-right">
-							<%= f.submit "Start Test", class: "btn btn-large btn-primary" %>
+							<div class="btn-start-test"><%= f.submit "Start Test" %></div>
 						</div>
 					<% end %>
 				</div>
