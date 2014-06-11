@@ -46,7 +46,6 @@ class Apk < ActiveRecord::Base
 
   def apk_conversion_done?
   	test_apk != nil && test_bed_apk != nil
-  	true	
   end
 
   def generate_test_apk
