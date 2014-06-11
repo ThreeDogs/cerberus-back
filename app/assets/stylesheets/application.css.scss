@@ -96,11 +96,27 @@ p {
 		position: absolute;
 		top: 50px;
 		width: 180px;
-		height: 300px;
+		height: 90px;
 		border-bottom-left-radius: 20px;
 		border-bottom-right-radius: 20px;
 		background-color: #A9D8B9;//#5DBE88;
 		z-index: 20;
+
+		.login-dropdown-each {
+			color: #605E5A;
+			font-size: 14px;
+			height: 35px;
+			line-height: 35px;
+			width: 180px;
+			text-align: center;
+		}
+		.divider {
+			width: 200px;
+			height: 2px;
+			background-image: url('/assets/line.png');
+			background-size: 180px 2px;
+			background-repeat: no-repeat;
+		}
 	}
 
 	#alert-button {
