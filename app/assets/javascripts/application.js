@@ -143,7 +143,8 @@ function generateFilter(div_id, fields, filter_address, query_address, filter_ca
 		}
 		
 		field = div.append("div").attr("class","filter-submit");
-		field.append("button").text("submit test").attr("type","button").on("click",filtercall);
+		field.append("div").attr("class","submit-button")
+			.append("button").text("Search").attr("type","button").on("click",filtercall);
 
 		function filtercall() {
 			var get_string;
