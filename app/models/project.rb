@@ -57,4 +57,17 @@ class Project < ActiveRecord::Base
     return "color_band_warning" if recent_report_rank_status["B"][1] >= 1 or recent_report_rank_status["C"][1] >= 1 or recent_report_rank_status["D"][1] >= 1
     "color_band"
   end
+
+  def test_names
+    test_scenarios.collect{|t| t.name}
+  end
+
+  def test_ranks
+    result = {}
+    keys = (ranks = test_scenarios.collect{|t| t.get_rank}).uniq
+    keys.each do |k|
+      result["#{k}"] = ranks.select{|r| r == k}.length
+    end
+    result
+  end
 end

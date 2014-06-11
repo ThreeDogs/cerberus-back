@@ -145,7 +145,7 @@
 
 <%= javascript_tag do %>
 
-d3.json("/api/v1/total_reports/1/device_failure_detail", function(data){
+d3.json("/api/v1/total_reports/<%= @recent_report.id %>/device_failure_detail", function(data){
 	var data = data;
 	drawFailByDevice(data.device_failure_detail);
 });
