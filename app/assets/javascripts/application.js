@@ -138,7 +138,12 @@ function generateFilter(div_id, fields, filter_address, query_address, filter_ca
 		field.append("button").text("submit test").attr("type","button").on("click",filtercall);
 
 		function filtercall() {
-			var get_string = query_address+"?";
+			var get_string;
+			if (query_address.indexOf("?")>-1) {
+				get_string = query_address + "&";
+			} else {
+				get_string = query_address + "?";
+			}
 			var checkbox = document.filter_form.checkbox;
 			for(index in checkbox) {
 				if (checkbox[index].checked) {

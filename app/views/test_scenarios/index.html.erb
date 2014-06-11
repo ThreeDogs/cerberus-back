@@ -9,42 +9,25 @@
 			</div>
 
 			<div id="scenario-list-filter" class="filter"></div>
-			<table id="scenario-list" class="scenario-list-table">
-				<tr>
-					<th></th>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Recently tested on</th>
-					<th></th>
-				</tr>
-				<!-- LOOP -->
-				<% @test_scenarios.each do |test_scenario| %>
-					<tr>
-						<td><div class="rank <%= test_scenario.get_rank %>"><%= test_scenario.get_rank %></div></td>
-						<td style="text-align: center;"><%= test_scenario.name %></td>
-						<td><%= test_scenario.description %></td>
-						<td style="text-align: center;"><%= test_scenario.recent_test_date %></td>
-						<td>
-							<%= link_to project_test_scenario_path(@project, test_scenario) do %>
-								<div class="show-button"></div>
-							<% end %>
-						</td>
-					</tr>
-				<% end %>
-				<!-- END LOOP -->
-			</table>
+			<div class="table-wrapper">
+			<table id="scenario-list" class="scenario-list-table"></table>
+			</div>
 		</div>
 	</div>
 </div>
 
 <script>
-// generateFilter(
-// 	"scenario-list-filter",
-// 	["rank","name"],
-// 	"/api/v1/total_reports/1/filter",
-// 	"/api/v1/total_reports/1/test_report_list",
-// 	);
-// //TODO: need total report id properly provided
+d3.json("/api/v1/test_scenarios?project_id=<%= @project.id %>", function (err, data) {
+	console.log(data);
+	testScenarioList(data);
+})
+generateFilter(
+	"scenario-list-filter",
+	["rank","name"],
+	"/api/v1/test_scenarios/filter?project_id=<%= @project.id %>",
+	"/api/v1/test_scenarios?project_id=<%= @project.id %>",
+	testScenarioList
+);
 
 // filter /api/v1/test_scenarios/filter?project_id=<%= @project.id %>
 // getJSON /api/v1/test_scenarios?project_id=<%= @project.id %>

@@ -10,8 +10,8 @@
 			</div>
 			<div class="below-page-title">Test Results > Full Report</div>
 
-			<div class="row">
-				<div class="col-md-4">
+			<div class="dashboard">
+				<div class="dashboard-left">
 					<div class="total-report-brief">
 						<div class="apk-name"><b><%= @total_report.apk_name %></b></div>
 						<div class="brief-left">
@@ -38,15 +38,18 @@
 								addBandGraph("<%= v.to_s %>",<%= k[0] %>,<%= k[1] %>);
 							<% end %>
 						<% end %>
+						<div class="band-graph-legend">
+							<img src="/assets/legend1.png">
+						</div>
 						<%= link_to tests_total_report_path(@total_report) do %>
-							<span class="more"><u>All Tests More</u></span>
+							<div style="padding-right: 15px;"><span class="more"><u>All Tests More</u></span></div>
 						<% end %>
 					</div>
 				</div>
-				<div class="col-md-8">
-					<span class="page-subtitle">Test Errors</span>
-					<p class="more"><u><%= link_to "More Errors", total_report_crashes_path(@total_report) %></u></p>
-					<div class="test-error">
+				<div class="dashboard-right">
+					<div class="subtitle-exception">
+					<span class="page-subtitle">Test Errors</span></div>
+					<div class="dashboard-test-error">
 						<table class="test-error-table">
 							<thead>
 								<tr>
@@ -67,26 +70,32 @@
 								<% end %>
 							</tbody>
 						</table>
+						<%= link_to total_report_crashes_path(@total_report) do %><p class="more"><u>More Errors</u></p><% end %>
 					</div>
 				</div>
 			</div>
 
-			<span class="page-subtitle">Device Fail</span>
-			<div class="device-fail">
-				<div id="test_fail_bar_graph">
-				</div>
-				<div id="test_fail_chart">
-					<div class="table_title">
-						<span id="table_title_rank" class="test_rank"></span>
-						<span id="table_title_device_name" class="device_name"></span>
+			<div id="device-fail-all">
+				<span class="page-subtitle">Device Fail</span>
+				<div class="device-fail">
+					<div id="test_fail_bar_graph">
 					</div>
-					<table id="detail_table" class="detail_table">
-						<tr><td>click on bar graph left for more detail</td></tr>
-					</table>
+					<div class="test_fail_bar_graph_legend">
+						<img src="/assets/legend2.png">
+					</div>
+					<div id="test_fail_chart">
+						<div class="table_title">
+							<span id="table_title_rank" class="test_rank"></span>
+							<span id="table_title_device_name" class="device_name"></span>
+						</div>
+						<table id="detail_table" class="detail_table">
+							<tr><td>click on bar graph left for more detail</td></tr>
+						</table>
+					</div>
+					<%= link_to total_report_devices_path(@total_report) do %>
+						<span class="more"><u>All Devices More</u></span>
+					<% end %>
 				</div>
-				<%= link_to total_report_devices_path(@total_report) do %>
-					<span class="more"><u>All Devices More</u></span>
-				<% end %>
 			</div>
 
 			<span class="page-subtitle">Performance Average</span>
@@ -155,15 +164,19 @@
 
 <%= javascript_tag do %>
 
-/*d3.json("/api/v1/total_reports/<%= @total_report.id %>/device_failure_detail", function(data){
+d3.json("/api/v1/total_reports/<%= @total_report.id %>/device_failure_detail", function(data){
 	var total_reports_show_data = data;
 	drawDeviceFail(total_reports_show_data.device_failure_detail);
-});*/
+});
 
 <% end %>
 
 
 <script>
+
+$(function () {
+	$(".dashboard-right").css("height",$(".dashboard-left").css("height"));
+})
 
 // var testdata = {"A": [1,1],"C": [1,1]};
 // drawBandGraph(testdata);
@@ -300,7 +313,4 @@ var device_failure_detail = [
 		}
 	}
 ]
-
-drawDeviceFail(device_failure_detail);
-
 </script>

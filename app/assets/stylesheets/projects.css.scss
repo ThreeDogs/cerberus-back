@@ -160,6 +160,23 @@ body.modal-open .container {
 	float: left;
 	margin-left: 3%;
 	padding: 0 20px;
+	.subtitle-exception {
+		background-color: white;
+		margin-left: -20px;
+		width: calc(100% + 40px);
+		height: 27px;
+	}
+	.all-pass {
+		margin-top: 60px;
+		text-align: center;
+		color: #5DBE88;
+		font-size: 18px;
+		img {
+			display: inline-block;
+			height: 100px;
+			margin-right: 30px;
+		}
+	}
 }
 
 .dashboard-test-error {
@@ -167,6 +184,7 @@ body.modal-open .container {
 	.test-error-table {
 		width: 90%;
 		margin: 15px 5%;
+		background-color: white;
 		th {
 			padding: 5px;
 			color: #287044;
@@ -181,11 +199,11 @@ body.modal-open .container {
 			border: 1px solid #A9D8B9;
 			text-align: center;
 		}
-		tr {
-			background-color: white;
-		}
 		tr:hover {
-			background-color: #A9D8B9;
+			background-color: #5DBE88;
+			td {
+				color: white;
+			}
 		}
 	}
 }
