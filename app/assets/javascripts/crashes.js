@@ -6,78 +6,138 @@ d3.select(window).on("resize",function () {
 });
 
 function allErrorsTable(data) {
-	var table = d3.select(".all-errors-table").html("");
-	var row = table.append("tr");
-	row.append("th").text("Rank");
-	row.append("th").text("Error Count");
-	row.append("th").text("Error Name");
-	row.append("th").text("OS Version");
+
+	var page_max = 15;
+	var data_array = arrayChunk(data,page_max);
+	var page_array = [];
+	for (i in data_array) {page_array.push(parseInt(i))};
 	
-	row = table.selectAll("rows").data(data).enter().append("tr");
-	row.append("td").append("div").attr("class",function (d) {return "rank "+d.error_rank}).text(function (d) {return d.error_rank});
-	row.append("td").text(function (d) {return d.error_count});
-	row.append("td").text(function (d) {return d.error_name});
-	row.append("td").text(function (d) {
-		var os_ver_string = "";
-		for (i in d.os_versions) {
-			os_ver_string = os_ver_string + d.os_versions[i] + " ";
-		}
-		return os_ver_string;
-	})
-	sidebarHeightCorrect();
+	renew(data_array[0]);
+
+	d3.select(".paginator_list").html("").selectAll("index").data(page_array).enter()
+		.append("span").text(function (d) {return d+1})
+		.on("click",function (d) {
+			d3.select(".paginator_selected").attr("class","");
+			renew(data_array[d]);
+			d3.select(this).attr("class","paginator_selected");
+		});
+
+	d3.select(".paginator_list").select("span").attr("class","paginator_selected");
+
+	function renew(data) {
+		var table = d3.select(".all-errors-table").html("");
+		var row = table.append("tr");
+		row.append("th").text("Rank");
+		row.append("th").text("Error Count");
+		row.append("th").text("Error Name");
+		row.append("th").text("OS Version");
+		
+		row = table.selectAll("rows").data(data).enter().append("tr");
+		row.append("td").append("div").attr("class",function (d) {return "rank "+d.error_rank}).text(function (d) {return d.error_rank});
+		row.append("td").text(function (d) {return d.error_count});
+		row.append("td").text(function (d) {return d.error_name});
+		row.append("td").text(function (d) {
+			var os_ver_string = "";
+			for (i in d.os_versions) {
+				os_ver_string = os_ver_string + d.os_versions[i] + " ";
+			}
+			return os_ver_string;
+		})
+		sidebarHeightCorrect();
+	}
 }
 
 function allTestsTable(data) {
-	var table = d3.select(".all-tests-table").html("");
-	var row = table.append("tr");
-	row.append("th").text("Rank");
-	row.append("th").text("Name");
-	row.append("th").text("Status");
-	row.append("th").text("Error");
-	row.append("th").text("Device Count");
-	row.append("th").text("Detail Report");
-	
-	row = table.selectAll("rows").data(data).enter().append("tr");
-	row.append("td").append("div").attr("class",function (d) {return "rank "+d.get_rank}).text(function (d) {return d.get_rank});
-	row.append("td").text(function (d) {return d.name});
-	row.append("td").text(function (d) {return d.status});
-	row.append("td").selectAll("crash").data(function (d) {return d.crashes}).enter()
-		.append("p").text(function (d) {return d.error_name});
-	row.append("td").text(function (d) {return d.device_count});
-	row.append("td").text("link");
 
-	sidebarHeightCorrect();
+	var page_max = 15;
+	var data_array = arrayChunk(data,page_max);
+	var page_array = [];
+	for (i in data_array) {page_array.push(parseInt(i))};
+	
+	renew(data_array[0]);
+
+	d3.select(".paginator_list").html("").selectAll("index").data(page_array).enter()
+		.append("span").text(function (d) {return d+1})
+		.on("click",function (d) {
+			d3.select(".paginator_selected").attr("class","");
+			renew(data_array[d]);
+			d3.select(this).attr("class","paginator_selected");
+		});
+
+	d3.select(".paginator_list").select("span").attr("class","paginator_selected");
+
+	function renew(data) {
+		var table = d3.select(".all-tests-table").html("");
+		var row = table.append("tr");
+		row.append("th").text("Rank");
+		row.append("th").text("Name");
+		row.append("th").text("Status");
+		row.append("th").text("Error");
+		row.append("th").text("Device Count");
+		row.append("th").text("Detail Report");
+		
+		row = table.selectAll("rows").data(data).enter().append("tr");
+		row.append("td").append("div").attr("class",function (d) {return "rank "+d.get_rank}).text(function (d) {return d.get_rank});
+		row.append("td").text(function (d) {return d.name});
+		row.append("td").text(function (d) {return d.status});
+		row.append("td").selectAll("crash").data(function (d) {return d.crashes}).enter()
+			.append("p").text(function (d) {return d.error_name});
+		row.append("td").text(function (d) {return d.device_count});
+		row.append("td").text("link");
+
+		sidebarHeightCorrect();
+	}
 }
 
 function allDevicesTable(data) {
-	var div = d3.select(".device-error-list").html("");
-	var each = div.selectAll(".device-error-each").data(data).enter()
-				.append("div").attr("class","device-error-each");
-	var detail = each.append("div").attr("class","device-error-detail");
-	var table = each.append("div").attr("class","device-error-div")
-				.append("table").attr("class","all-devices-table");
 
-	detail.append("p").attr("class","device-name").append("u").text(function (d) {return d.model});
-	detail.append("p").text(function (d) {return "OS Version: "+d.os_version});
-	detail.append("p").text(function (d) {return "CPU: "+d.cpu});
-	detail.append("p").text(function (d) {return "Country: "+d.country});
+	var page_max = 15;
+	var data_array = arrayChunk(data,page_max);
+	var page_array = [];
+	for (i in data_array) {page_array.push(parseInt(i))};
+	
+	renew(data_array[0]);
 
-	var row = table.append("tr");
-	row.append("th").text("Rank");
-	row.append("th").text("Name");
-	row.append("th").text("Status");
-	row.append("th").text("Error");
+	d3.select(".paginator_list").html("").selectAll("index").data(page_array).enter()
+		.append("span").text(function (d) {return d+1})
+		.on("click",function (d) {
+			d3.select(".paginator_selected").attr("class","");
+			renew(data_array[d]);
+			d3.select(this).attr("class","paginator_selected");
+		});
 
-	row = table.selectAll("rows").data(function (d) {return d.detail_reports}).enter().append("tr");
-	row.append("td").text(function (d) {return d.rank});
-	row.append("td").text(function (d) {return d.test_scenario_name});
-	row.append("td").text(function (d) {
-		if (d.status==-1){return "Fail"}
-		else if (d.status==0){return "Warning"}
-		else if (d.status==1){return "Success"}
-	});
-	row.append("td").text(function (d) {return d.error_name});
-	sidebarHeightCorrect();
+	d3.select(".paginator_list").select("span").attr("class","paginator_selected");
+
+	function renew(data) {
+		var div = d3.select(".device-error-list").html("");
+		var each = div.selectAll(".device-error-each").data(data).enter()
+					.append("div").attr("class","device-error-each");
+		var detail = each.append("div").attr("class","device-error-detail");
+		var table = each.append("div").attr("class","device-error-div")
+					.append("table").attr("class","all-devices-table");
+
+		detail.append("p").attr("class","device-name").append("u").text(function (d) {return d.model});
+		detail.append("p").text(function (d) {return "OS Version: "+d.os_version});
+		detail.append("p").text(function (d) {return "CPU: "+d.cpu});
+		detail.append("p").text(function (d) {return "Country: "+d.country});
+
+		var row = table.append("tr");
+		row.append("th").text("Rank");
+		row.append("th").text("Name");
+		row.append("th").text("Status");
+		row.append("th").text("Error");
+
+		row = table.selectAll("rows").data(function (d) {return d.detail_reports}).enter().append("tr");
+		row.append("td").text(function (d) {return d.rank});
+		row.append("td").text(function (d) {return d.test_scenario_name});
+		row.append("td").text(function (d) {
+			if (d.status==-1){return "Fail"}
+			else if (d.status==0){return "Warning"}
+			else if (d.status==1){return "Success"}
+		});
+		row.append("td").text(function (d) {return d.error_name});
+		sidebarHeightCorrect();
+	}
 }
 
 function drawRatePieChart(div_id, data) {

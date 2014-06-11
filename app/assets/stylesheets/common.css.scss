@@ -126,6 +126,23 @@
 	}
 }
 
+.paginator {
+	text-align: center;
+	font-size: 12px;
+	color: #287044;
+	span {
+		margin: 0 5px;
+		cursor: pointer;
+	}
+	span:hover {
+		color: #153F24;
+	}
+	.paginator_selected {
+		color: #153F24;
+		text-decoration: underline;
+	}
+}
+
 input[type="checkbox"] {
 	display: inline-block;
 	margin-left: 5px;
