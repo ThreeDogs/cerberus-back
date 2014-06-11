@@ -13,10 +13,16 @@ redis.subscribe('rt-change');
 //   io.set("polling duration", 10); 
 // });
 
+var rooms = [];
 
 io.sockets.on('connection', function(socket){
 	socket.on('chat message', function(msg){
 		console.log('message: ' + msg);
+	});
+
+	socket.on('create', function(room){
+		rooms.push(room);
+		socket.emit('updateromms', rooms, socket.room);
 	});
 
   redis.on('message', function(channel, message){
