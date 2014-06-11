@@ -36,9 +36,12 @@ CerberusBack::Application.routes.draw do
         end
       end
 
-      resources :test_scenarios, only: [:create] do
+      resources :test_scenarios, only: [:create, :index] do
         member do
           get "motion_event_list"
+        end
+        collection do
+          get 'filter'
         end
       end
       
