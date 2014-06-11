@@ -48,8 +48,8 @@ gem 'sidekiq-limit_fetch'
 gem 'ransack'
 
 # db
-# gem 'mysql2'
-gem 'sqlite3'
+gem 'mysql2'
+# gem 'sqlite3'
 gem 'redis'
 
 # server

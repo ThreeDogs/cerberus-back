@@ -8,24 +8,24 @@
 			<div class="page-title">
 				<img src="/assets/starttest.png">Test Ready
 			</div>
-      
-				<div class="apk-head">
+      <% if @apk.apk_conversion_done? -%>
+				<div class="jumbotron">
 					<h3><%= @apk.apk_name %></h3>
-					<p>Package Name: <%= @apk.package_name %></p>
-					<p>Activity Name: <%= @apk.activity_name %></p>
-					<p>Minimum SDK: <%= @apk.min_sdk %></p>
-					<p>Test APK: test.apk</p>
+					<p>Package Name  <%= @apk.package_name %></p>
+					<p>Activity Name  <%= @apk.activity_name %></p>
+					<p>Minimum SDK  <%= @apk.min_sdk %></p>
+					<p>Test APK  <%= link_to @apk.test_apk_name, @apk.test_apk %></p>
 				</div>
 
-				<span class="page-subtitle">Test List</span>
-				<div class="test-options-list">
+				<div class="total-report-form">
 					<%= form_for [@apk, @total_report] do |f| %>
-						<div class="test-list">
+
+						<div class="col-md-6 test-list">
 							<%= f.fields_for "test_scenario_ids" do |form| %>
 								<h4>Test Scenario Choice</h4>
 								<div>
-									<input type="checkbox" id="checkAll"><span></span>
-									<label for="checkAll">All</label>
+									<h3>Test Scenario Choice</h3>
+									<p><label><input type="checkbox" id="checkAll"/>All</label></p>
 								</div>
 								<% @test_scenarios.each do |test_scenario| %>
 									<div class="test-scenario-item">
@@ -36,7 +36,8 @@
 								<% end %>
 							<% end %>
 						</div>
-						<div class="device-list">
+
+						<div class="col-md-6 device-list">
 							<% if @device_list %>
 								<% @device_list.each do |device| %>
 									<div class="device-item">
@@ -50,7 +51,13 @@
 						</div>
 					<% end %>
 				</div>
-			
-			
+			<% else %>
+				<div id="progress-circle">
+					<%= javascript_tag do %>
+						progressCircle();
+						requestDoneTime(<%= @apk.id %>);
+					<% end %>
+				</div>
+			<% end %>
 		</div>
 </div>

@@ -9,7 +9,7 @@ class ApksController < ServiceController
 
 	def create
 		if @apk = set_project.apks.create(apk_params)
-			# ApkUploadWorker.perform_asyn	c(@apk.id)
+			ApkUploadWorker.perform_async(@apk.id)
 			render json: [set_project.id, @apk.id]
 		else
 			render 'new'

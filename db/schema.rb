@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 20140610043535) do
   add_index "deviceships", ["total_report_id"], name: "index_deviceships_on_total_report_id"
 
   create_table "frame_draw_times", force: true do |t|
-    t.string   "type"
+    t.string   "view_type"
     t.integer  "load_start_timestamp"
     t.integer  "load_finish_timestamp"
     t.string   "view_id"
