@@ -63,6 +63,11 @@ class Project < ActiveRecord::Base
   end
 
   def test_ranks
-    test_scenarios.collect{|t| t.get_rank}.uniq
+    result = {}
+    keys = (ranks = test_scenarios.collect{|t| t.get_rank}).uniq
+    keys.each do |k|
+      result["#{k}"] = ranks.select{|r| r == k}.length
+    end
+    result
   end
 end
