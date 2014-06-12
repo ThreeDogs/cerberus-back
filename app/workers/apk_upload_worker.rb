@@ -1,6 +1,6 @@
 class ApkUploadWorker
 	include Sidekiq::Worker
-	sidekiq_options queue: :apk, backtrace: true
+	sidekiq_options queue: :apk, backtrace: true, retry: false
 
 	def perform(apk_id)
 		apk = Apk.find(apk_id)

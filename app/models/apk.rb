@@ -17,7 +17,7 @@
 
 class Apk < ActiveRecord::Base
 	default_scope {order('created_at DESC')}
-	# before_create :make_test_apk_folder
+	before_create :make_test_apk_folder
 
 	belongs_to :project
 	has_many :total_reports

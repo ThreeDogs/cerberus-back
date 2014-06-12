@@ -15,4 +15,29 @@ class DetailReportsController < ServiceController
     @detail_report = DetailReport.find(params[:id])
     @project = set_project_id(@detail_report.project_id)
   end
+
+  def memory
+    @detail_report = DetailReport.find(params[:id])
+    @project = set_project_id(@detail_report.project_id)
+  end
+
+  def cpu
+    @detail_report = DetailReport.find(params[:id])
+    @project = set_project_id(@detail_report.project_id)
+  end
+
+  def network
+    @detail_report = DetailReport.find(params[:id])
+    @project = set_project_id(@detail_report.project_id)
+  end
+
+  def battery
+    @detail_report = DetailReport.find(params[:id])
+    @project = set_project_id(@detail_report.project_id)
+  end
+
+  def frame_draw_time
+    @detail_report = DetailReport.find(params[:id])
+    @project = set_project_id(@detail_report.project_id)
+  end
 end

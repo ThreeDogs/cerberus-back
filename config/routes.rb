@@ -33,6 +33,11 @@ CerberusBack::Application.routes.draw do
         end
         member do
           get 'get_report_infos'
+          get 'get_memory_infos'
+          get 'get_cpu_infos'
+          get 'get_network_infos'
+          get 'get_battery_infos'
+          get 'get_frame_draw_times'
         end
       end
 
@@ -66,6 +71,16 @@ CerberusBack::Application.routes.draw do
     member do
       get 'start_test'
       get 'tests'
+    end
+  end
+
+  resources :detail_reports, only: [] do
+    member do
+      get 'memory'
+      get 'cpu'
+      get 'battery'
+      get 'network'
+      get 'frame_draw_time'
     end
   end
 
