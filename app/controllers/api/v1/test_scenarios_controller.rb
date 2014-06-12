@@ -4,7 +4,7 @@ class Api::V1::TestScenariosController < ApplicationController
 
 	def create
 		@project = Project.find(params[:project_id])
-		@test_scenario = @project.test_scenarios.build
+		@test_scenario = @project.test_scenarios.build(activity_name: params[:activity_name], package_name: params[:package_name])
 
 		if @test_scenario.save
 			render status: :created, json: {response: "test_scenario_id: #{@test_scenario.id}"}

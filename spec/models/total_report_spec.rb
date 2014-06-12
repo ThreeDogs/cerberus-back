@@ -3,7 +3,6 @@
 # Table name: total_reports
 #
 #  id            :integer          not null, primary key
-#  test_datetime :string(255)
 #  status        :boolean          default(FALSE)
 #  apk_id        :integer
 #  project_id    :integer

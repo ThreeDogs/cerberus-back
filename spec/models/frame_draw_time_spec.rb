@@ -3,7 +3,7 @@
 # Table name: frame_draw_times
 #
 #  id                    :integer          not null, primary key
-#  type                  :string(255)
+#  view_type             :string(255)
 #  load_start_timestamp  :integer
 #  load_finish_timestamp :integer
 #  view_id               :string(255)
