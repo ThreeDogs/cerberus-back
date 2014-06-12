@@ -214,20 +214,20 @@ function drawDetailReports (data) {
 
 		function Field (field_name) {
 			var area = d3.svg.area()
-						.x(function (d) {return d.client_timestamp})
+						.x(function (d) {return x_scale(d.client_timestamp)})
 						.y0(function (d) {
 							var sum = 0;
-							for(var i=0; i<fields.indexOf(field_name)-1; i++) {
-								sum += d[field_name[i]];
+							for(var i=0; i<fields.indexOf(field_name); i++) {
+								sum += d[fields[i]];
 							}
-							return (sum/d.sum) * 100;
+							return y_scale((sum/d.sum) * 100);
 						})
 						.y1(function (d) {
 							var sum = 0;
-							for(var i=0; i<fields.indexOf(field_name); i++) {
-								sum += d[field_name[i]];
+							for(var i=0; i<=fields.indexOf(field_name); i++) {
+								sum += d[fields[i]];
 							}
-							return (sum/d.sum) * 100;
+							return y_scale((sum/d.sum) * 100);
 						})
 			var path = svg.append("path").attr("class","battery-"+field_name)
 						.attr("d",area(data));
