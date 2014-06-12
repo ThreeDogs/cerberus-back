@@ -175,6 +175,85 @@ function drawDetailReports (data) {
 		resizeFunctions.push(onResize);
 	}
 
+	function drawBatteryChart (data) {
+
+		var width = d3.select('#battery-chart').style('width').split("px")[0];
+		var height = d3.select('#battery-chart').style('height').split("px")[0];
+		var margin = {top:10, right: 10, bottom: 30, left: 60};
+		var svg = d3.select('#battery-chart').append('svg')
+					.attr('width',width).attr('height',height);
+
+		data.forEach(function(element, index, array) {
+			elemement.sum = element.cpu + element.gps + element.wifi + element.threeg + element.sound;
+		})
+
+		var x_extent = d3.extent(data, function (d) { return d.client_timestamp });
+		var y_extent = [0, 100];
+
+		var x_scale = d3.scale.linear().domain(x_extent).range([margin.left,width-margin.right]);
+		var y_scale = d3.scale.linear().domain(y_extent).range([height-margin.bottom,margin.top]);
+
+		var x_axis = d3.svg.axis().scale(x_scale).orient('bottom').innerTickSize(3).outerTickSize([0]);
+		var y_axis = d3.svg.axis().scale(y_scale).orient('left').innerTickSize(3).outerTickSize([0]);
+	
+		var battery_x_axis = svg.append("g").attr("class", "x axis")
+				.attr("transform", "translate(0,"+(height-margin.bottom)+")")
+				.call(x_axis);
+
+		var battery_y_axis = svg.append("g").attr("class", "y axis")
+				.attr("transform", "translate("+margin.left+",0)")
+				.call(y_axis);
+
+		var fields = ["cpu","gps","wifi","threeg","sound"];
+
+		var cpu_field = new Field("cpu");
+		var gps_field = new Field("gps");
+		var wifi_field = new Field("wifi");
+		var threeg_field = new Field("threeg");
+		var sound_field = new Field("sound");
+
+		function Field (field_name) {
+			var area = d3.svg.area()
+						.x(function (d) {return d.client_timestamp})
+						.y0(function (d) {
+							var sum = 0;
+							for(var i=0; i<fields.indexOf(field_name)-1; i++) {
+								sum += d[field_name[i]];
+							}
+							return (sum/d.sum) * 100;
+						})
+						.y1(function (d) {
+							var sum = 0;
+							for(var i=0; i<fields.indexOf(field_name); i++) {
+								sum += d[field_name[i]];
+							}
+							return (sum/d.sum) * 100;
+						})
+			var path = svg.append("path").attr("class","battery-"+field_name)
+						.attr("d",area(data));
+
+			var resize = function () {
+				path.attr("d",area(data));
+			}
+
+			return {area:area, path:path, resize:resize};
+		}
+
+		function onResize () {
+			width = d3.select('#battery-chart').style('width').split("px")[0];
+			svg.attr("width",width);
+			x_scale.range([margin.left,width-margin.right]);
+			x_axis.scale(x_scale);
+			battery_x_axis.call(x_axis);
+			cpu_field.resize();
+			gps_field.resize();
+			wifi_field.resize();
+			threeg_field.resize();
+			sound_field.resize();
+		}
+		resizeFunctions.push(onResize);
+	}
+
 	function dataProcess(data) {
 		data.sort(function (a, b) {
 			if (a.client_timestamp < b.client_timestamp){
