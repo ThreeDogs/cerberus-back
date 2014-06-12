@@ -102,16 +102,12 @@ function drawDetailReports (data) {
 		var svg = d3.select('#draw-time-chart').append('svg')
 					.attr('width',width).attr('height',height);
 
-		console.log(data);
-
 		var zero = data[0].load_start_timestamp;
 		for (index in data) {
 			var one = data[index];
 			one.client_timestamp = (one.load_start_timestamp - zero) /1000;
 			one.delta = one.load_finish_timestamp - one.load_start_timestamp;
 		}
-
-		console.log(data);
 
 		var x_extent = d3.extent(data, function (d) { return d.client_timestamp });
 		var y_extent = [0,d3.max(data, function (d) { return d.delta * 1.1})];
@@ -137,7 +133,7 @@ function drawDetailReports (data) {
 				.attr("y2",function (d) {return y_scale(d.delta)})	
 				.attr("x1",function (d) {return x_scale(d.client_timestamp)})
 				.attr("x2",function (d) {return x_scale(d.client_timestamp)})
-				
+
 		function onResize () {
 
 		}
@@ -167,4 +163,53 @@ function drawDetailReports (data) {
 
 	drawBatteryChart(dataProcess(data.battery_infos_attributes));
 	drawDrawTimeChart(data.frame_draw_times_attributes);
+}
+
+function methodProfiling (data) {
+
+	data.sort(function (a, b) {
+		if (a.tree_key < b.tree_key){
+			return -1;
+		} else if (a.tree_key > b.tree_key){
+			return 1;
+		} else {
+			return 0;
+		}
+	});
+
+	for (index in data) {
+		data[index].children = [];
+	}
+
+	var parent_key;
+	for (index in data) {
+		parent_key = data[index].parent_key;
+		if (parent_key !=0) {
+			data[parent_key-1].children.push(data[index]);
+		}
+	}
+
+	data = data.filter(function (d) {
+		if (d.parent_key == 0) {return true}
+		else {return false}
+	})
+
+	var root = d3.select("#method-profile-div").append("ul");
+	var root_selection = root.selectAll("li").data(data).enter();
+
+	appendLi(root_selection);
+		
+	function appendLi (selection) {
+		var sub_selection = selection.append("li").text(function (d) {
+								return d.tree_key + " // " + d.class_name + " // " + d.method_name
+							})
+							.append("ul").selectAll("li").data(function (d) {
+								console.log(d);
+								return d.children;
+							})
+							.enter();
+		if (!sub_selection.empty()) { appendLi(sub_selection) }
+	}
+
+
 }

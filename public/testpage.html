@@ -13,13 +13,14 @@
 	<div id="battery-chart" style="width:50%;height:200px;background-color:#EFEEEE;"></div>
 	
 	<div id="draw-time-chart" style="width:50%;height:200px;background-color:#EFEEEE;"></div>
-
+	<div id="method-profile-div"></div>
 
 </body>
 
 <script>
 d3.json("pe.json",function (err, data) {
 	drawDetailReports(data.detail_report);
+	methodProfiling(data.detail_report.cpu_methods_attributes);
 });
 </script>
 
