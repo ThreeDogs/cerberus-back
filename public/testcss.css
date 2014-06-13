@@ -31,3 +31,25 @@
 	stroke-width: 3;
 	stroke: blue;
 }
+
+.method-list {
+
+}
+
+.method-list-row {
+
+}
+
+.method-list .activity-method {
+	
+}
+
+.method-list .incl {
+	width: 100px;
+	float: right;
+}
+
+.method-list .excl {
+	width: 100px;
+	float: right;
+}

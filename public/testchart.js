@@ -197,23 +197,23 @@ function methodProfiling (data) {
 		else {return false}
 	})
 
-	var root = d3.select("#method-profile-div").append("ul");
+	var root = d3.select("#method-profile-div").append("ul").attr("class","method-list");
 	var root_selection = root.selectAll("li").data(data).enter();
 
 	appendLi(root_selection);
 		
 	function appendLi (selection) {
-		var sub_selection = selection.append("li").text(function (d) {
-								return d.tree_key + " // " + d.class_name + " // " + d.method_name
-									+ " // incl: " + d.delta + " // excl: " + (d.delta - d.children_time);
-							})
-							.append("ul").selectAll("li").data(function (d) {
-								console.log(d);
-								return d.children;
-							})
-							.enter();
+		var row = selection.append("li").attr("class","method-list-row")
+		row.append("span").attr("class","activity-method").text(function (d) {return d.tree_key + " " + d.class_name + " " +d.method_name});
+		row.append("span").attr("class","incl").text(function (d) {return d.delta});
+		row.append("span").attr("class","excl").text(function (d) {return d.delta-d.children_time});
+		var sub_selection = row.append("ul").selectAll("li").data(function (d) {return d.children}).enter();
+
+		row.on("click",function (d) {
+			event.stopPropagation();
+			$("ul", this).toggle();
+		})
+
 		if (!sub_selection.empty()) { appendLi(sub_selection) }
 	}
-
-
 }

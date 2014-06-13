@@ -7,6 +7,7 @@
 	<link href="testcss.css" rel="stylesheet" type="text/css">
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<script src="testchart.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 
 <body>
@@ -22,6 +23,7 @@ d3.json("pe.json",function (err, data) {
 	drawDetailReports(data.detail_report);
 	methodProfiling(data.detail_report.cpu_methods_attributes);
 });
+
 </script>
 
 </html>
