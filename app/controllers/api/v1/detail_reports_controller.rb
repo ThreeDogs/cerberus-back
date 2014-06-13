@@ -27,8 +27,42 @@ class Api::V1::DetailReportsController < ApplicationController
 		@detail_report = DetailReport.find(params[:id])
 		@memory_infos = @detail_report.memory_infos
 		@cpu_infos = @detail_report.cpu_infos
+		@network_infos = @detail_report.network_infos
+		@battery_infos = @detail_report.battery_infos
+		@frame_draw_times = @detail_report.frame_draw_times
 		@motion_event_infos = @detail_report.motion_event_infos
 		render 'detail_reports/api/get_report_infos'
+	end
+
+	def get_memory_infos
+		@detail_report = DetailReport.find(params[:id])
+		@memory_infos = @detail_report.memory_infos
+		render 'detail_reports/api/get_memory_infos'
+	end
+
+	def get_cpu_infos
+		@detail_report = DetailReport.find(params[:id])
+		@cpu_infos = @detail_report.cpu_infos
+		@cpu_methods = @detail_report.cpu_methods
+		render 'detail_reports/api/get_cpu_infos'
+	end
+
+	def get_network_infos
+		@detail_report = DetailReport.find(params[:id])
+		@network_infos = @detail_report.network_infos
+		render 'detail_reports/api/get_network_infos'
+	end
+
+	def get_battery_infos
+		@detail_report = DetailReport.find(params[:id])
+		@battery_infos = @detail_report.battery_infos
+		render 'detail_reports/api/get_battery_infos'
+	end
+
+	def get_frame_draw_times
+		@detail_report = DetailReport.find(params[:id])
+		@frame_draw_times = @detail_report.frame_draw_times
+		render 'detail_reports/api/get_frame_draw_times'
 	end
 
 	def finish_test

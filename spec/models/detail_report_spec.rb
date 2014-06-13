@@ -4,7 +4,6 @@
 #
 #  id               :integer          not null, primary key
 #  app_version      :string(255)
-#  test_datetime    :string(255)
 #  status           :integer
 #  running_time     :float
 #  device_key       :string(255)

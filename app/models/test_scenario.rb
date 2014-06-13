@@ -5,6 +5,9 @@
 #  id              :integer          not null, primary key
 #  name            :string(255)
 #  description     :string(255)
+#  export_code     :string(255)
+#  activity_name   :string(255)
+#  package_name    :string(255)
 #  rank            :integer          default(0)
 #  project_id      :integer
 #  scenarioship_id :integer
@@ -14,6 +17,7 @@
 
 class TestScenario < ActiveRecord::Base
   before_validation :name_generate
+  before_create :make_export_code_folder
 	default_scope {order('created_at DESC')}
   belongs_to :project
 
@@ -59,9 +63,21 @@ class TestScenario < ActiveRecord::Base
     detail_reports.first.test_date unless detail_reports.blank?
   end
 
+  def export_code_generate
+    code_export_folder_path = "#{Rails.root}/lib/codeExport"
+    target_path = "/uploads/#{self.class.to_s.underscore}/export_code/#{self.id}/" 
+    target_folder_full_path = "#{Rails.root}/public#{target_path}"
+    `java -classpath #{code_export_folder_path}/codeExport.jar:#{code_export_folder_path}/gson-2.2.4.jar:#{code_export_folder_path}/httpclient-4.3.3.jar:#{code_export_folder_path}/httpcore-4.3.2.jar:#{code_export_folder_path}/httpmine-4.3.3.jar manifest_edit.cerberus.manifest.Main #{activity_name} #{package_name} #{id} #{target_folder_full_path}`
+  end
+
   private 
 
   def name_generate
     self.name ||= "TestScenario #{DateTime.now.to_s}"
+  end
+
+  def make_export_code_folder
+    `mkdir #{Rails.root}/public/uploads/#{self.class.to_s.underscore}/`
+    `mkdir #{Rails.root}/public/uploads/#{self.class.to_s.underscore}/export_code/`
   end
 end

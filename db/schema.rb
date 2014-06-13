@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140610043535) do
     t.datetime "updated_at"
   end
 
-  add_index "apks", ["project_id"], name: "index_apks_on_project_id"
+  add_index "apks", ["project_id"], name: "index_apks_on_project_id", using: :btree
 
   create_table "battery_infos", force: true do |t|
     t.integer  "wifi"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20140610043535) do
     t.datetime "updated_at"
   end
 
-  add_index "cpu_infos", ["detail_report_id"], name: "index_cpu_infos_on_detail_report_id"
+  add_index "cpu_infos", ["detail_report_id"], name: "index_cpu_infos_on_detail_report_id", using: :btree
 
   create_table "cpu_methods", force: true do |t|
     t.integer  "tree_key"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20140610043535) do
     t.datetime "updated_at"
   end
 
-  add_index "cpu_methods", ["detail_report_id"], name: "index_cpu_methods_on_detail_report_id"
+  add_index "cpu_methods", ["detail_report_id"], name: "index_cpu_methods_on_detail_report_id", using: :btree
 
   create_table "crashes", force: true do |t|
     t.string   "error_name"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20140610043535) do
     t.datetime "updated_at"
   end
 
-  add_index "crashes", ["total_report_id"], name: "index_crashes_on_total_report_id"
+  add_index "crashes", ["total_report_id"], name: "index_crashes_on_total_report_id", using: :btree
 
   create_table "detail_reports", force: true do |t|
     t.string   "app_version"
@@ -88,9 +88,9 @@ ActiveRecord::Schema.define(version: 20140610043535) do
     t.datetime "updated_at"
   end
 
-  add_index "detail_reports", ["crash_id"], name: "index_detail_reports_on_crash_id"
-  add_index "detail_reports", ["test_scenario_id"], name: "index_detail_reports_on_test_scenario_id"
-  add_index "detail_reports", ["total_report_id"], name: "index_detail_reports_on_total_report_id"
+  add_index "detail_reports", ["crash_id"], name: "index_detail_reports_on_crash_id", using: :btree
+  add_index "detail_reports", ["test_scenario_id"], name: "index_detail_reports_on_test_scenario_id", using: :btree
+  add_index "detail_reports", ["total_report_id"], name: "index_detail_reports_on_total_report_id", using: :btree
 
   create_table "devices", force: true do |t|
     t.string   "brand"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20140610043535) do
     t.datetime "updated_at"
   end
 
-  add_index "devices", ["total_report_id"], name: "index_devices_on_total_report_id"
+  add_index "devices", ["total_report_id"], name: "index_devices_on_total_report_id", using: :btree
 
   create_table "deviceships", force: true do |t|
     t.integer  "total_report_id"
@@ -113,11 +113,11 @@ ActiveRecord::Schema.define(version: 20140610043535) do
     t.datetime "updated_at"
   end
 
-  add_index "deviceships", ["device_id"], name: "index_deviceships_on_device_id"
-  add_index "deviceships", ["total_report_id"], name: "index_deviceships_on_total_report_id"
+  add_index "deviceships", ["device_id"], name: "index_deviceships_on_device_id", using: :btree
+  add_index "deviceships", ["total_report_id"], name: "index_deviceships_on_total_report_id", using: :btree
 
   create_table "frame_draw_times", force: true do |t|
-    t.string   "type"
+    t.string   "view_type"
     t.integer  "load_start_timestamp"
     t.integer  "load_finish_timestamp"
     t.string   "view_id"
@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(version: 20140610043535) do
     t.datetime "updated_at"
   end
 
-  add_index "frame_draw_times", ["detail_report_id"], name: "index_frame_draw_times_on_detail_report_id"
+  add_index "frame_draw_times", ["detail_report_id"], name: "index_frame_draw_times_on_detail_report_id", using: :btree
 
   create_table "memory_infos", force: true do |t|
     t.integer  "mem_total"
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 20140610043535) do
     t.datetime "updated_at"
   end
 
-  add_index "memory_infos", ["detail_report_id"], name: "index_memory_infos_on_detail_report_id"
+  add_index "memory_infos", ["detail_report_id"], name: "index_memory_infos_on_detail_report_id", using: :btree
 
   create_table "motion_event_infos", force: true do |t|
     t.string   "activity_class"
@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(version: 20140610043535) do
     t.datetime "updated_at"
   end
 
-  add_index "motion_event_infos", ["detail_report_id"], name: "index_motion_event_infos_on_detail_report_id"
+  add_index "motion_event_infos", ["detail_report_id"], name: "index_motion_event_infos_on_detail_report_id", using: :btree
 
   create_table "motion_events", force: true do |t|
     t.string   "activity_class"
@@ -193,8 +193,8 @@ ActiveRecord::Schema.define(version: 20140610043535) do
     t.datetime "updated_at"
   end
 
-  add_index "scenarioships", ["test_scenario_id"], name: "index_scenarioships_on_test_scenario_id"
-  add_index "scenarioships", ["total_report_id"], name: "index_scenarioships_on_total_report_id"
+  add_index "scenarioships", ["test_scenario_id"], name: "index_scenarioships_on_test_scenario_id", using: :btree
+  add_index "scenarioships", ["total_report_id"], name: "index_scenarioships_on_total_report_id", using: :btree
 
   create_table "screens", force: true do |t|
     t.string   "image"
@@ -207,6 +207,9 @@ ActiveRecord::Schema.define(version: 20140610043535) do
   create_table "test_scenarios", force: true do |t|
     t.string   "name"
     t.string   "description"
+    t.string   "export_code"
+    t.string   "activity_name"
+    t.string   "package_name"
     t.integer  "rank",            default: 0
     t.integer  "project_id"
     t.integer  "scenarioship_id"
@@ -214,7 +217,7 @@ ActiveRecord::Schema.define(version: 20140610043535) do
     t.datetime "updated_at"
   end
 
-  add_index "test_scenarios", ["project_id"], name: "index_test_scenarios_on_project_id"
+  add_index "test_scenarios", ["project_id"], name: "index_test_scenarios_on_project_id", using: :btree
 
   create_table "total_reports", force: true do |t|
     t.boolean  "status",        default: false
@@ -225,8 +228,8 @@ ActiveRecord::Schema.define(version: 20140610043535) do
     t.datetime "updated_at"
   end
 
-  add_index "total_reports", ["apk_id"], name: "index_total_reports_on_apk_id"
-  add_index "total_reports", ["project_id"], name: "index_total_reports_on_project_id"
+  add_index "total_reports", ["apk_id"], name: "index_total_reports_on_apk_id", using: :btree
+  add_index "total_reports", ["project_id"], name: "index_total_reports_on_project_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -243,7 +246,7 @@ ActiveRecord::Schema.define(version: 20140610043535) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

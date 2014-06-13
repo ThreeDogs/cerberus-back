@@ -12,3 +12,15 @@ end
 child @cpu_infos, object_root: false do
 	attributes :id, :usage, :client_timestamp
 end
+
+child @network_infos, object_root: false do
+	attributes :id, :response_size, :request_size, :client_timestamp
+end
+
+child @battery_infos, object_root: false do
+	attributes :id, :wifi, :threeg, :lcd, :gps, :sound, :cpu, :client_timestamp
+end
+
+child @frame_draw_times, object_root: false do
+	attributes :id, :view_type, :load_start_timestamp, :load_finish_timestamp, :view_id
+end
