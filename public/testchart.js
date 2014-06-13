@@ -179,6 +179,8 @@ function methodProfiling (data) {
 
 	for (index in data) {
 		data[index].children = [];
+		data[index].children_time = 0;
+		data[index].delta = data[index].end_timestamp - data[index].start_timestamp;
 	}
 
 	var parent_key;
@@ -186,6 +188,7 @@ function methodProfiling (data) {
 		parent_key = data[index].parent_key;
 		if (parent_key !=0) {
 			data[parent_key-1].children.push(data[index]);
+			data[parent_key-1].children_time += data[index].delta;
 		}
 	}
 
@@ -202,6 +205,7 @@ function methodProfiling (data) {
 	function appendLi (selection) {
 		var sub_selection = selection.append("li").text(function (d) {
 								return d.tree_key + " // " + d.class_name + " // " + d.method_name
+									+ " // incl: " + d.delta + " // excl: " + (d.delta - d.children_time);
 							})
 							.append("ul").selectAll("li").data(function (d) {
 								console.log(d);
