@@ -13,14 +13,14 @@ test_path_to_file = "#{Rails.root}/lib/test_apk_generator/NewTestTestAndroid.apk
 
 @project = @user.projects.create!(name: "First App")
 
-# @apk = @project.apks.create
-# @uploader = ApkUploader.new(@apk, :apk)
-# @uploader.store!(File.open(path_to_file))
-# @apk.apk = @uploader
-# @apk.project_id = @project.id
-# @apk.save!
+@apk = @project.apks.create
+@uploader = ApkUploader.new(@apk, :apk)
+@uploader.store!(File.open(path_to_file))
+@apk.apk = @uploader
+@apk.project_id = @project.id
+@apk.save!
 
-@total_report = TotalReport.create!(status: true, created_at: 1.seconds.ago, project_id: 1)
+@total_report = @apk.test_scenarios.create!(status: true, created_at: 1.seconds.ago, project_id: 1)
 
 a = TestScenario.create!(description: "This is a Login Test", rank: 0, project_id: @project.id)
 b = TestScenario.create!(description: "This is a Login Test", rank: 1, project_id: @project.id)
