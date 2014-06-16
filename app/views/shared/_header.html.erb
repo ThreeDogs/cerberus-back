@@ -7,12 +7,11 @@
 	<div style="float:right;">
 		<div class="login-status">
 			<div id="user-name"><%= current_user.email %></div>
-			<div id="login-dropdown">
+			<div id="login-dropdown" style="height:40px;">
 				<div class="divider"></div>
-				<div class="login-dropdown-each">Settings</div>
-				<div class="divider"></div>
-				<div class="login-dropdown-each">Log Out</div>
-				<div class="divider"></div>
+				<div class="login-dropdown-each">
+					<%= link_to "Log Out", destroy_user_session_path(current_user), method: :delete %>
+				</div>
 			</div>
 		</div>
 		<div id="alert-button"></div>

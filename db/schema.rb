@@ -208,9 +208,12 @@ ActiveRecord::Schema.define(version: 20140610043535) do
     t.string   "name"
     t.string   "description"
     t.string   "export_code"
+    t.string   "import_code_java"
+    t.string   "import_code_class"
     t.string   "activity_name"
     t.string   "package_name"
-    t.integer  "rank",            default: 0
+    t.boolean  "file_type"
+    t.integer  "rank",              default: 0
     t.integer  "project_id"
     t.integer  "scenarioship_id"
     t.datetime "created_at"

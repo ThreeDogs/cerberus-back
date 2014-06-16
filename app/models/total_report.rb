@@ -129,14 +129,21 @@ class TotalReport < ActiveRecord::Base
     apk_url = self.apk.test_bed_apk
     total_report_id = self.id
     test_scenario_motion_events = []
+    test_scenario_files = []
+
+    # file name, scenario key
 
     self.test_scenarios.each do |t|
-      test_scenario_motion_events << {"#{t.id}" => t.motion_events}
+      if t.file_type
+        test_scenario_files << {"#{t.id}" => t.import_code_file_name}
+      else
+        test_scenario_motion_events << {"#{t.id}" => t.motion_events}
+      end
     end
 
     uri = URI("#{test_bed_url}/StartDevice")
     req = Net::HTTP::Post.new(uri, initheader = {'Content-Type' =>'application/json'})
-    req.body = {apk_url: apk_url, total_report_id: total_report_id, test_scenarios: test_scenario_motion_events, package_name: package_name, activity_name: activity_name}.to_json
+    req.body = {apk_url: apk_url, total_report_id: total_report_id, test_scenarios_json: test_scenario_motion_events, test_scenarios_file: test_scenario_files ,package_name: package_name, activity_name: activity_name}.to_json
     puts req.body
     res = Net::HTTP.start(uri.hostname, uri.port) do |http|
       http.request(req)

@@ -1,3 +1,14 @@
+# 1 target apk
+# 2 scenario result apk
+# 3 home path
+# 4 nothing
+# 5 apk key
+# 6 profiling result apk
+# 7 nothing
+# 8 main activity
+# 9 package name
+# 10 testCodeClass with token
+
 mkdir $4
 mkdir $7
 
@@ -38,8 +49,8 @@ tar xf $3/temp/jarfile.jar -C $3/temp/newclz
 
 echo $PWD
 
-java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/asm.jar scenario.org.cerberus.jarasm.JarAsmTest $3/temp/newclz $5 $9
-java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/test.jar org.cerberus.test.TestRunnerAsm $3 172.16.101.163 $8 $9 
+java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/asm.jar scenario.org.cerberus.jarasm.JarAsmTest $3/temp/newclz $5 $9 $8
+java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/test.jar org.cerberus.test.TestRunnerAsm $3 172.16.101.126 $8 $9 
 echo "1-----------------------------------------------------------------"
 cp -r $3/lib/org $3/temp/newclz/
 cp -r $3/lib/com $3/temp/newclz/
@@ -134,7 +145,7 @@ echo $PWD
 
 java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/asm2.jar profiling.org.cerberus.jarasm.JarAsmTest $3/temp/newclz $5 $9
 
-java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/test.jar org.cerberus.test.TestRunnerAsm $3 172.16.101.163 $8 $9 
+java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/test.jar org.cerberus.test.TestRunnerAsm $3 172.16.101.126 $8 $9 
 
 		# String path = args[0];
 		# String ip = args[1];
@@ -144,6 +155,9 @@ java -classpath $3/asm-all-4.2.jar:$3/gson-2.2.4.jar:$3/test.jar org.cerberus.te
 cp -r $3/lib/org $3/temp/newclz/
 cp -r $3/lib/com $3/temp/newclz/
 cp -r $3/lib/edu $3/temp/newclz/
+
+java -classpath $3/tokencopy.jar filecopy.cerberus.Main $10 $3/temp/newclz/org/cerberus/test
+
 #mkdir $3/temp/newclz/org/cerberus/test
 
 #mv CerberusTestRunner.class temp/newclz/org/cerberus/test/CerberusTestRunner.class

@@ -16,10 +16,15 @@
 #
 
 class TestScenario < ActiveRecord::Base
+  mount_uploader :import_code_java, CodeUploader
+  
   before_validation :name_generate
   before_create :make_export_code_folder
 	default_scope {order('created_at DESC')}
   belongs_to :project
+
+  scope :code, -> { where(file_type: true) }
+  scope :json, -> { where(file_type: false) }
 
   has_many :motion_events, dependent: :destroy
   accepts_nested_attributes_for :motion_events
@@ -41,6 +46,10 @@ class TestScenario < ActiveRecord::Base
       "Pass"
     end
   end
+
+  def import_code_file_name(code_url = import_code_class.to_s)
+    code_url.split("/").last
+  end 
 
   def errors
     detail_reports.collect{|d| d.crash }.uniq
@@ -65,9 +74,34 @@ class TestScenario < ActiveRecord::Base
 
   def export_code_generate
     code_export_folder_path = "#{Rails.root}/lib/codeExport"
-    target_path = "/uploads/#{self.class.to_s.underscore}/export_code/#{self.id}/" 
+    target_path = "/uploads/#{self.class.to_s.underscore}/export_code/#{self.id}/"
     target_folder_full_path = "#{Rails.root}/public#{target_path}"
-    `java -classpath #{code_export_folder_path}/codeExport.jar:#{code_export_folder_path}/gson-2.2.4.jar:#{code_export_folder_path}/httpclient-4.3.3.jar:#{code_export_folder_path}/httpcore-4.3.2.jar:#{code_export_folder_path}/httpmine-4.3.3.jar manifest_edit.cerberus.manifest.Main #{activity_name} #{package_name} #{id} #{target_folder_full_path}`
+    sysout = `java -classpath #{code_export_folder_path}/codeExport.jar:#{code_export_folder_path}/gson-2.2.4.jar:#{code_export_folder_path}/httpclient-4.3.3.jar:#{code_export_folder_path}/httpcore-4.3.2.jar:#{code_export_folder_path}/httpmine-4.3.3.jar manifest_edit.cerberus.manifest.Main #{activity_name} #{package_name} #{id} #{target_folder_full_path}`
+    result = sysout.match(/~~\S*~~/)[0]
+
+    if result
+      update!(export_code: "#{target_path}#{result}")
+      puts "Success"
+    else
+      puts "Exception File Name is Error"
+    end
+  end
+
+  def import_code_java_generate
+    code_import_folder_path = "#{Rails.root}/lib/codeImport"
+    target_path = "/uploads/#{self.class.to_s.underscore}/import_code_class/#{self.id}/"
+    target_folder_full_path = "#{Rails.root}/public#{target_path}"
+    compile_sh = "#{code_import_folder_path}/compile.sh"
+    apk = Apk.all.first.apk.to_s
+    sysout = `echo #{secret_password} | sudo -S sh #{compile_sh} #{code_import_folder_path} #{apk} #{import_code_java.to_s} #{id} #{target_folder_full_path}`
+    result = sysout.match(/~~\S*~~/)[0]
+
+    if result
+      update!(impord_code_class: "#{target_path}#{result}")
+      puts "Success"
+    else
+      puts "Exception File Name is Error"
+    end
   end
 
   private 
