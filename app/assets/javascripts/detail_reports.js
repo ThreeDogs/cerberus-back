@@ -254,7 +254,12 @@ function drawDetailReports (data) {
 		resizeFunctions.push(onResize);
 	}
 
-	function dataProcess(data) {
+	drawEventScreenshot(dataProcess(data.motion_event_infos));
+	drawCPUChart(dataProcess(data.cpu_infos));
+	drawMemChart(dataProcess(data.memory_infos));
+}
+
+function dataProcess(data) {
 		data.sort(function (a, b) {
 			if (a.client_timestamp < b.client_timestamp){
 				return -1;
@@ -275,7 +280,299 @@ function drawDetailReports (data) {
 		return data;
 	}
 
-	drawEventScreenshot(dataProcess(data.motion_event_infos));
-	drawCPUChart(dataProcess(data.cpu_infos));
-	drawMemChart(dataProcess(data.memory_infos));
+function methodProfiling (data) {
+
+	data.sort(function (a, b) {
+		if (a.tree_key < b.tree_key){
+			return -1;
+		} else if (a.tree_key > b.tree_key){
+			return 1;
+		} else {
+			return 0;
+		}
+	});
+
+	for (index in data) {
+		data[index].children = [];
+		data[index].children_time = 0;
+		data[index].delta = data[index].end_timestamp - data[index].start_timestamp;
+	}
+
+	var parent_key;
+	for (index in data) {
+		parent_key = data[index].parent_key;
+		if (parent_key !=0) {
+			data[parent_key-1].children.push(data[index]);
+			data[parent_key-1].children_time += data[index].delta;
+		}
+	}
+
+	data = data.filter(function (d) {
+		if (d.parent_key == 0) {return true}
+		else {return false}
+	})
+
+	var root = d3.select("#cpu-method").append("ul").attr("class","method-list");
+	var root_selection = root.selectAll("li").data(data).enter();
+
+	appendLi(root_selection);
+		
+	function appendLi (selection) {
+		var row = selection.append("li").attr("class","method-list-row")
+		row.append("span").attr("class","activity-method").text(function (d) {return d.tree_key + " " + d.class_name + " " +d.method_name});
+		row.append("span").attr("class","incl").text(function (d) {return d.delta});
+		row.append("span").attr("class","excl").text(function (d) {return d.delta-d.children_time});
+		var sub_selection = row.append("ul").selectAll("li").data(function (d) {return d.children}).enter();
+
+		row.on("click",function (d) {
+			event.stopPropagation();
+			$("ul", this).toggle();
+		})
+
+		if (!sub_selection.empty()) { appendLi(sub_selection) }
+	}
+}
+
+function drawCPUDeeper(cpudata) {
+	var margin = {top: 10, right: 10, bottom: 30, left: 50};
+	var width = d3.select('#cpu-deeper').style('width').split("px")[0]-80;
+	var height = 420;
+
+	var cpu_svg = d3.select("#cpu-deeper").append("svg")
+					.attr("id","cpu_svg")
+					.attr("height",height+margin.top+margin.bottom)
+					.attr("width",width+margin.left+margin.right)
+					.append("g")
+					.attr("transform","translate("+margin.left+","+margin.top+")");
+
+	var x = d3.scale.linear().range([0, width]);
+	var y = d3.scale.linear().range([height, 0]);
+
+	x_extent = [0, cpudata[cpudata.length-1].client_timestamp];
+	y_extent = [0, 100];
+	x.domain(x_extent);
+	y.domain(y_extent);
+
+	var xAxis = d3.svg.axis().scale(x).orient("bottom")
+				    .tickSize(-height, 0).tickPadding(6);
+
+	var yAxis = d3.svg.axis().scale(y).orient("left")
+				    .tickSize(-width).tickPadding(6);
+
+	cpu_svg.append("clipPath").attr("id","cpu_clip")
+			.append("rect").attr("id","cpu_clip_rect")
+			.attr("width",width).attr("height",height);
+
+	var detail_box = d3.select("#cpu_graph_detail_info");
+
+	var zoom = d3.behavior.zoom().on("zoom", onZoom)
+				.scaleExtent([0.1,4]).x(x);
+
+	var pane = cpu_svg.append("rect").attr("class", "pane")
+	    .attr("width", width).attr("height", height).call(zoom);
+
+	var line = d3.svg.line().interpolate("monotone")
+					.x(function(d){return x(d.client_timestamp)})
+					.y(function(d){return y(d.usage)});
+
+	var cpu_usage = cpu_svg.append("path").attr("class","line")
+							.attr("clip-path", "url(#cpu_clip)")
+							.attr("id","cpu_usage")
+							.attr("d", line(cpudata));
+
+	var cpu_usage_dots = cpu_svg.append("g").attr("clip-path", "url(#cpu_clip)")
+							.attr("id","dots")
+							.selectAll("dots").data(cpudata).enter()
+							.append("circle").attr("class","dot").attr("r",2)
+							.attr("transform",function (d) {
+								return "translate("+x(d.client_timestamp)+","+y(d.usage)+")";
+							})
+							.on("click",function (d) {
+								detail_box.selectAll("div").remove();
+								detail_box.append("div")
+									.text("cpu usage: "+d.usage);
+							});
+
+	cpu_svg.append("g").attr("class", "y axis")
+
+	cpu_svg.append("g").attr("class", "x axis")
+	    .attr("transform", "translate(0,"+height+")");
+
+	onZoom();
+
+	function onZoom() {
+		yAxis.tickSize(-width);
+		cpu_svg.select("g.x.axis").call(xAxis);
+		cpu_svg.select("g.y.axis").call(yAxis);
+		cpu_svg.select("#cpu_usage").attr("d",line(cpudata));
+		cpu_svg.selectAll("circle.dot").attr("transform",function (d) {
+			return "translate("+x(d.client_timestamp)+","+y(d.usage)+")";
+		});
+	}
+
+	var legend_width = 80;
+	var legend_height = 30;
+	var legend_margin = {top: 10, bottom: 10, left: 10, right: 10};
+
+	var legend = cpu_svg.append("g")
+			.attr("class", "legend")
+			.attr("transform", "translate("+(width-legend_width-legend_margin.right)+","+legend_margin.top+")");
+
+	legend.append("rect")
+			.attr("class", "legend_bg")
+			.attr("width",legend_width)
+			.attr("height",legend_height)
+			.attr("stroke","none")
+			.attr("fill","#eeeeee");
+
+	var field_list = legend.append("g").attr("class","field_list");
+
+	field_list.append("rect").attr("width",5).attr("height",5)
+				.attr("x",5).attr("y",5)
+				.attr("stroke","none").attr("fill","#111111");
+
+	field_list.append("text")
+				.attr("x",15).attr("y",10)
+				.text("cpu usage");
+
+	var cpu_graph_resize = function onResize() {
+		width = d3.select('#cpu-deeper').style('width').split("px")[0]-80;
+		d3.select("#cpu_svg").attr("width",width+margin.left+margin.right);
+		pane.attr("width",width);
+		d3.select("#cpu_clip_rect").attr("width",width);
+		x.range([0,width]);
+		onZoom();
+		legend.attr("transform", "translate("+(width-legend_width-legend_margin.right)+","+legend_margin.top+")");
+	}
+
+	resizeFunctions.push(cpu_graph_resize);
+
+}
+
+function drawMemDeeper(memdata) {
+	var margin = {top: 10, right: 10, bottom: 30, left: 50};
+	var width = window_x-600;
+	var height = 300;
+
+	var mem_svg = d3.select("#mem_graph").append("svg")
+					.attr("id","mem_svg")
+					.attr("height",height+margin.top+margin.bottom)
+					.attr("width",width+margin.left+margin.right)
+					.append("g")
+					.attr("transform","translate("+margin.left+","+margin.top+")");
+
+	var x = d3.scale.linear().range([0, width]);
+	var y = d3.scale.linear().range([height, 0]);
+
+	x_extent = [0, memdata[memdata.length-1].client_timestamp];
+	y_extent = [0, d3.max(memdata, function(d) { return d.mem_total; })];
+	x.domain(x_extent);
+	y.domain(y_extent);
+
+	var xAxis = d3.svg.axis().scale(x).orient("bottom")
+				    .tickSize(-height, 0).tickPadding(6);
+
+	var yAxis = d3.svg.axis().scale(y).orient("left")
+				    .tickSize(-width).tickPadding(6);
+
+	var clip = mem_svg.append("clipPath").attr("id", "mem_lip")
+			.append("rect").attr("id","#mem_clip_rect")
+			.attr("width",width).attr("height",height);
+
+	var zoom = d3.behavior.zoom().on("zoom", onZoom)
+				.scaleExtent([0.1,4]).x(x);
+
+	mem_svg.append("g").attr("class", "y axis")
+
+	mem_svg.append("g").attr("class", "x axis").attr("transform", "translate(0,"+height+")");
+
+	var pane = mem_svg.append("rect").attr("class", "pane")
+	    .attr("width", width).attr("height", height).call(zoom);
+
+	function MemGraph (value_name) {
+
+		var detail_box = d3.select("#mem_graph_detail_info");
+
+		var line = d3.svg.line().interpolate("monotone")
+					.x(function(d){return x(d.client_timestamp)})
+					.y(function(d){return y(d[value_name])});
+
+		var path = mem_svg.append("path")
+					.attr("class","line")
+					.attr("clip-path","url(#mem_clip)")
+					.attr("id",value_name)
+					.attr("d",line(memdata));
+
+		var dots = mem_svg.append("g")
+					.attr("clip-path", "url(#mem_clip)")
+					.attr("id",value_name+"dots")
+					.selectAll(value_name+"dots")
+					.data(memdata)
+					.enter()
+					.append("circle")
+					.attr("class",value_name+"dot dot")
+					.attr("r",2)
+					.attr("transform",function (d) {
+						return "translate("+x(d.client_timestamp)+","+y(d[value_name])+")";
+					})
+					.on("click",function (d) {
+						detail_box.selectAll("div").remove();
+						detail_box.append("div")
+							.text(value_name+" "+d[value_name]);
+					});
+
+		function transparent() {
+			path.transition().attr("opacity",0);
+			dots.transition().attr("opacity",0);
+		}
+
+		function visible() {
+			path.transition().attr("opacity",1);
+			dots.transition().attr("opacity",1);
+		}
+
+		function renew() {
+			path.attr("d",line(memdata));
+			mem_svg.selectAll("."+value_name+"dot").attr("transform",function (d) {
+				return "translate("+x(d.client_timestamp)+","+y(d[value_name])+")";
+			});
+		}
+
+		var returnObj = new Object();
+		returnObj.transparent = transparent;
+		returnObj.visible = visible;
+		returnObj.renew = renew;
+
+		return returnObj;
+	}
+
+	var native_heap_size = new MemGraph('native_heap_size');
+	var native_heap_alloc = new MemGraph('native_heap_alloc');
+	var dalvik_heap_size = new MemGraph('dalvik_heap_size');
+	var dalvik_heap_alloc = new MemGraph('dalvik_heap_alloc');
+	var mem_total =	new MemGraph('mem_total');
+	var mem_alloc = new MemGraph('mem_alloc');
+
+	function onZoom() {
+		yAxis.tickSize(-width);
+		mem_svg.select("g.x.axis").call(xAxis);
+		mem_svg.select("g.y.axis").call(yAxis);
+		native_heap_size.renew();
+		native_heap_alloc.renew();
+		dalvik_heap_size.renew();
+		dalvik_heap_alloc.renew();
+		mem_total.renew();
+		mem_alloc.renew();
+	}
+	onZoom();
+
+	mem_graph_resize = function onResize() {
+		width = window_x-600;
+		d3.select("#mem_svg").attr("width",width+margin.left+margin.right);
+		pane.attr("width",width);
+		clip.attr("width",width);
+		x.range([0,width]);
+		onZoom();
+		legend.transform();
+	}
 }
