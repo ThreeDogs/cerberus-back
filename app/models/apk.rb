@@ -70,7 +70,7 @@ class Apk < ActiveRecord::Base
 		test_apk_target = "#{target_folder_full_path}#{test_apk_file_name}"
 		test_bed_apk_target = "#{target_bed_folder_full_path}#{test_bed_apk_file_name}"
 
-		result = `echo #{secret_password} | sudo -S sh #{play_all_sh} #{apk_url} #{test_apk_target} #{shell_path} #{target_folder_full_path} #{project_id} #{test_bed_apk_target} #{target_bed_folder_full_path} #{activity_name} #{package_name}`
+		result = `echo #{secret_password} | sudo -S sh #{play_all_sh} #{apk_url} #{test_apk_target} #{shell_path} #{target_folder_full_path} #{project_id} #{test_bed_apk_target} #{target_bed_folder_full_path} #{activity_name} #{package_name} #{get_import_class_code}`
 
 		# if succeed 
 		test_apk_url = "#{target_path}#{test_apk_file_name}"
@@ -98,6 +98,10 @@ class Apk < ActiveRecord::Base
 		package_name = package_name_result.gsub(/\n/,'')
 
 		update!(package_name: package_name, activity_name: main_activity, min_sdk: min_sdk_version, target_sdk: target_sdk_version)
+  end
+
+  def get_import_class_code
+  	TestScenario.code.collect{|t| "#{Rails.root}/public#{t.import_code_class}" }.join("|")
   end
 
   private

@@ -1,6 +1,7 @@
 class ServiceController < ApplicationController
   layout "service"
   before_action :authenticate_user!
+  respond_to :html, :json
   
   protected
 
