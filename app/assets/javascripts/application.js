@@ -51,6 +51,14 @@ d3.selection.prototype.moveToFront = function() {
 	return this.each(function(){this.parentNode.appendChild(this);});
 };
 
+//a helper function for pagination
+var arrayChunk = function(array, chunkSize) {
+    var R = [];
+    for (var i=0; i<array.length; i+=chunkSize)
+        R.push(array.slice(i,i+chunkSize));
+    return R;
+}
+
 function sidebarHeightCorrect() {
 	$(".sidebar").css("height",$(".container-fluid").css("height"));
 };
@@ -133,7 +141,8 @@ function generateFilter(div_id, fields, filter_address, query_address, filter_ca
 		}
 		
 		field = div.append("div").attr("class","filter-submit");
-		field.append("button").text("submit test").attr("type","button").on("click",filtercall);
+		field.append("div").attr("class","submit-button")
+			.append("button").text("Search").attr("type","button").on("click",filtercall);
 
 		function filtercall() {
 			var get_string;

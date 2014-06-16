@@ -6,43 +6,24 @@
 	<meta charset="utf-8">
 	<link href="testcss.css" rel="stylesheet" type="text/css">
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-	<script src="d3charts.js"></script>
+	<script src="testchart.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 
 <body>
-	<button id="toggle">toggle</button><br>
-	<div class="chart_wrapper">
-		<div id="event_chart_label">E<br>V<br>E<br>N<br>T<br>S</div>
-		<div id="event_chart"></div>
-		<div id="event_specifics"></div>
-	</div>
-
-	<div class="chart_wrapper">
-		<div id="cpu_chart_label">C<br>P<br>U</div>
-		<div id="cpu_chart"></div>
-	</div>
-	<div class="chart_wrapper">
-		<div id="mem_chart_label">M<br>E<br>M<br>O<br>R<br>Y</div>
-		<div id="mem_chart"></div>
-	</div>
+	<div id="battery-chart" style="width:50%;height:200px;background-color:#EFEEEE;"></div>
 	
-	<script>
-		d3.json("testdata.json",drawCharts);
-		
-		$('#event_chart').scroll(function () {
-			$('#cpu_chart').scrollLeft($(this).scrollLeft());
-			$('#mem_chart').scrollLeft($(this).scrollLeft());
-		});
-		$('#cpu_chart').scroll(function () {
-			$('#event_chart').scrollLeft($(this).scrollLeft());
-			$('#mem_chart').scrollLeft($(this).scrollLeft());
-		});
-		$('#mem_chart').scroll(function () {
-			$('#cpu_chart').scrollLeft($(this).scrollLeft());
-			$('#event_chart').scrollLeft($(this).scrollLeft());
-		});
+	<div id="draw-time-chart" style="width:50%;height:200px;background-color:#EFEEEE;"></div>
+	<div id="method-profile-div"></div>
 
-	</script>
 </body>
+
+<script>
+d3.json("pe.json",function (err, data) {
+	drawDetailReports(data.detail_report);
+	methodProfiling(data.detail_report.cpu_methods_attributes);
+});
+
+</script>
 
 </html>

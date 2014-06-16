@@ -144,9 +144,11 @@
 }
 
 .detail-report-charts {
-	height: 220px;
+	height: 480px;
 	margin: 10px 0px;
+	width: 100%;
 	background-color: #EFEEEE;
+	
 	.chart-title {
 		height: 15px;
 		font-size: 14px;
@@ -155,10 +157,14 @@
 		color: rgb(96,94,90);
 	}
 
-	#cpu-chart {
+	.detail-report-chart-each {
 		height: 220px;
-		margin: 0;
-		padding-top: 20px;
+		margin-top: 20px;
+		width: 33.3%;
+		float: left;
+	}
+
+	#cpu-chart {
 		.cpu-line {
 			stroke: #5DBE88;
 			stroke-width: 2;
@@ -171,9 +177,6 @@
 	}
 	
 	#mem-chart {
-		height: 220px;
-		margin: 0;
-		padding-top: 20px;
 		.mem-line {
 			stroke: #F7CE25;
 			stroke-width: 2;
@@ -182,6 +185,24 @@
 		.mem-area {
 			fill: #F7CE25;
 			opacity: 0.2;
+		}
+	}
+
+	#battery-chart {
+		.battery-cpu {
+			fill: blue;
+		}
+		.battery-wifi {
+			fill: green;
+		}
+		.battery-gps {
+			fill: red;
+		}
+		.battery-threeg {
+			fill: purple;
+		}
+		.battery-sound {
+			fill: yellow;
 		}
 	}
 
@@ -194,3 +215,94 @@
 	}
 }
 
+.deeper {
+	width: 100%;
+	height: 500px;
+	background-color: #EFEEEE;
+	.deeper-view {
+		padding: 20px;
+		height: 100%;
+		width: 80%;
+		float: left;
+		background-color: #EFEEEE;
+	}
+	.deeper-legend {
+		padding: 20px;
+		float: left;
+		height: 100%;
+		width: 20%;
+		background-color: #EFEEEE;
+	}
+
+	svg {
+    	font: 10px sans-serif;
+	}
+
+	.axis path, .axis line {
+		fill: none;
+		stroke-width: 1px;
+	}
+
+	.x.axis path {
+		stroke: black;
+	}
+
+	.x.axis line {
+		stroke: black;
+		stroke-opacity: .5;
+	}
+
+	.y.axis line {
+		stroke: #ddd;
+	}
+
+	path.line {
+		fill: none;
+		stroke: black;
+		stroke-width: .5px;
+	}
+
+	rect.pane {
+		cursor: move;
+		fill: none;
+		pointer-events: all;
+	}
+
+	.dot {
+		stroke: black;
+		stroke-width: 2;
+		fill: white;
+		cursor: help; //possible alternatives: pointer
+	}
+
+	.legend {
+		font: 12px sans-serif;
+	}
+}
+
+#cpu-method {
+	height: 440px;
+	overflow-y: scroll;		
+}
+
+.method-list-header {
+	padding: 10px;
+	background-color: #C7E5CF;
+	color: #A7A7A7;
+	font-size: 14px;
+}
+
+.method-list-row {
+	.incl {
+		width: 100px;
+		float: right;
+	}
+
+	.excl {
+		width: 100px;
+		float: right;
+	}
+	.activity-method {
+		display: inline-block;
+	}
+}

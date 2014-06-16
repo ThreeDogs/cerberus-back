@@ -1,18 +1,38 @@
 function testScenarioList (data) {
-	var table = d3.select("#scenario-list").html("");
-	var th = ["","Name","Description","Recently tested on",""];
-	table.append("tr").selectAll("th").data(th).enter().append("th").text(function (d) {return d});
 
-	var tr = table.selectAll("rows").data(data).enter().append("tr");
+	var page_max = 15;
+	var data_array = arrayChunk(data,page_max);
+	var page_array = [];
+	for (i in data_array) {page_array.push(parseInt(i))};
 	
-	tr.append("td").append("div").attr("class",function (d) {return "rank "+d.get_rank})
-		.text(function (d) {return d.get_rank});
-	tr.append("td").text(function (d) {return d.name});
-	tr.append("td").text(function (d) {return d.description});
-	tr.append("td").text(function (d) {return d.recent_test_date});
-	tr.append("td").append("a").attr("href",function (d) {return d.link})
-		.append("div").attr("class","show-button");
-	sidebarHeightCorrect();
+	renew(data_array[0]);
+
+	d3.select(".paginator_list").html("").selectAll("index").data(page_array).enter()
+		.append("span").text(function (d) {return d+1})
+		.on("click",function (d) {
+			d3.select(".paginator_selected").attr("class","");
+			renew(data_array[d]);
+			d3.select(this).attr("class","paginator_selected");
+		});
+
+	d3.select(".paginator_list").select("span").attr("class","paginator_selected");
+
+	function renew(data) {
+		var table = d3.select("#scenario-list").html("");
+		var th = ["","Name","Description","Recently tested on",""];
+		table.append("tr").selectAll("th").data(th).enter().append("th").text(function (d) {return d});
+
+		var tr = table.selectAll("rows").data(data).enter().append("tr");
+		
+		tr.append("td").append("div").attr("class",function (d) {return "rank "+d.get_rank})
+			.text(function (d) {return d.get_rank});
+		tr.append("td").text(function (d) {return d.name});
+		tr.append("td").text(function (d) {return d.description});
+		tr.append("td").text(function (d) {return d.recent_test_date});
+		tr.append("td").append("a").attr("href",function (d) {return d.link})
+			.append("div").attr("class","show-button");
+		sidebarHeightCorrect();
+	}
 }
 
 function drawEventFlow (data) {

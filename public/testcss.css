@@ -1,122 +1,55 @@
-/* axis css */
-.axis path{
-	fill: none;
-	stroke: black;
-}
 .axis {
-	font-size: 8pt;
-	font-family: sans-serif;
-}
-.tick {
+	font-size: 10px;
 	fill: none;
-	stroke: black;
+	color: #A1A1A1;
+	stroke: #A1A1A1;
+	shape-rendering: crispEdges;
 }
 
-.event_text {
-	font-size: 8pt;
-	font-family: sans-serif;
+.battery-cpu {
+	fill: blue;
+}
+.battery-wifi {
+	fill: green;
+}
+.battery-gps {
+	fill: red;
+}
+.battery-threeg {
+	fill: purple;
+}
+.battery-sound {
+	fill: yellow;
 }
 
-/* graph css */
-
-.cpu_path {
-	fill: none;
-	stroke: #0aa;
-	stroke-width: 2px;
+.activity-line {
+	stroke-width: 3;
+	stroke: green;
 }
 
-.mem_path {
-	fill: none;
-	stroke: #a0a;
-	stroke-width: 2px;
+.image-line {
+	stroke-width: 3;
+	stroke: blue;
 }
 
-.area {
-    fill: lightsteelblue;
-    stroke-width: 0;
+.method-list {
+
 }
 
-.tooltip {
-	border: dotted;
-	border-width: 1px;
+.method-list-row {
+
+}
+
+.method-list .activity-method {
+	
+}
+
+.method-list .incl {
 	width: 100px;
-	height: 30px;
-	font-size: 8pt;
-	font-family: sans-serif;
-	overflow: hidden;
-	background-color: rgba(200,200,200,20);
+	float: right;
 }
 
-/* html layout css */
-
-.chart_wrapper {
-	float: left;
-}
-
-#event_chart_label {
-	float: left;
-	width: 20px;
-	height: 130px;
-	border: solid;
-	border-width: 1px;
-	background-color: rgba(250,250,200,20);
-}
-
-#cpu_chart_label {
-	float: left;
-	height: 160px;
-	width: 20px;
-	border: solid;
-	border-width: 1px;
-	background-color: rgba(200,250,250,20);
-}
-
-#mem_chart_label {
-	float: left;
-	height: 160px;
-	width: 20px;
-	border: solid;
-	border-width: 1px;
-	background-color: rgba(250,200,250,20);
-}
-
-#event_chart {
-	float: left;
-	height: 130px;
-	width: 1000px;
-	overflow-x: auto;
-	overflow-y: hidden;
-	border: dotted;
-	border-width: 1px;
-	margin-bottom: 10px;
-}
-
-#cpu_chart {
-	float: left;
-	height: 160px;
-	width: 1000px;
-	overflow-x: auto;
-	overflow-y: hidden;
-	border: dotted;
-	border-width: 1px;
-	margin-bottom: 10px;
-}
-
-#mem_chart {
-	float: left;
-	height: 160px;
-	width: 1000px;
-	overflow-x: auto;
-	overflow-y: hidden;
-	border: dotted;
-	border-width: 1px;
-	margin-bottom: 10px;
-}
-
-#event_specifics {
-	float: left;
-	height: 130px;
-	width: 200px;
-	border: dotted;
-	border-width: 1px;
+.method-list .excl {
+	width: 100px;
+	float: right;
 }

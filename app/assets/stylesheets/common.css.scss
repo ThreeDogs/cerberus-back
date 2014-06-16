@@ -124,6 +124,39 @@
 	input[type="checkbox"]:checked + span{
 		background-image: url("/assets/select_click.png");
 	}
+
+	.submit-button {
+		text-align: center;
+		font-size: 12px;
+		color: #287044;
+		width: 80px;
+		height: 20px;
+		button {
+			background:url("/assets/button.png") no-repeat;
+			cursor: pointer;
+			width: 80px;
+			height: 20px;
+			background-size: 80px 20px;
+			border: none;
+		}
+	}
+}
+
+.paginator {
+	text-align: center;
+	font-size: 12px;
+	color: #287044;
+	span {
+		margin: 0 5px;
+		cursor: pointer;
+	}
+	span:hover {
+		color: #153F24;
+	}
+	.paginator_selected {
+		color: #153F24;
+		text-decoration: underline;
+	}
 }
 
 input[type="checkbox"] {
