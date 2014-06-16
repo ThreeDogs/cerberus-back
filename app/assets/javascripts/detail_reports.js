@@ -576,3 +576,16 @@ function drawMemDeeper(memdata) {
 		legend.transform();
 	}
 }
+
+function makeRawTable(div_id, data, field_list, field_label_list) {
+
+	var table = d3.select("#"+div_id).append("table").attr("class","raw-data-table");
+
+	var tr = table.append("tr");
+	tr.selectAll("th").data(field_label_list).enter().append("th").text(function (d) {return d});
+
+	tr = table.selectAll("row").data(data).enter().append("tr");
+	for (index in field_list) {
+		tr.append("td").text(function (d) {return d[field_list[index]]});
+	}
+}

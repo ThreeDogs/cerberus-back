@@ -8,9 +8,23 @@
 				<img src="/assets/Result.png">Test Result
 			</div>
 			<div class="below-page-title">Test Result > Full Report > Detail Report</div>
+
+			<div class="deeper">
+				<div id="draw-time-raw-data"></div>
+			</div>
 			
 		</div>
 	</div>
 </div>
 
-/api/v1/detail_reports/<%= @detail_report.id %>/get_frame_draw_times
+<script>
+d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_frame_draw_times", function (err, data) {
+
+	makeRawTable(
+		"draw-time-raw-data",
+		data,
+		["id","usage","client_timestamp"],
+		["id","cpu usage (percentage)", "timestamp"]
+	);
+})
+</script>

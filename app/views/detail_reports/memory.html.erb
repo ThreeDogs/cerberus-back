@@ -19,6 +19,11 @@
 					<div id="memory-deeper-detail"></div>
 				</div>
 			</div>
+
+			<div class="deeper">
+				<div id="memory-raw-data"></div>
+			</div>
+
 		</div>
 	</div>
 </div>
@@ -27,8 +32,13 @@
 
 d3.json("/testdata.json",function (err, data) {
 	drawMemDeeper(dataProcess(data.memory_infos));
+	makeRawTable(
+		"memory-raw-data",
+		data.memory_infos,
+		["id","mem_total","mem_alloc","dalvik_heap_size","dalvik_heap_alloc","native_heap_size","native_heap_alloc","client_timestamp"],
+		["id","mem_total","mem_alloc","dalvik_heap_size","dalvik_heap_alloc","native_heap_size","native_heap_alloc","timestamp"]
+	);
 })
-
+///api/v1/detail_reports/<%= @detail_report.id %>/get_memory_infos
 </script>
 
-/api/v1/detail_reports/<%= @detail_report.id %>/get_memory_infos

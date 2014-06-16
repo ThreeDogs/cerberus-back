@@ -23,6 +23,9 @@
 				</div>
 				<div id="cpu-method" class="deeper"></div>
 			</div>
+			<div class="deeper">
+				<div id="cpu-raw-data"></div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -30,10 +33,17 @@
 <script>
 d3.json("/testdata.json", function (err, data) {
 	drawCPUDeeper(dataProcess(data.cpu_infos));
+	makeRawTable(
+		"cpu-raw-data",
+		data.cpu_infos,
+		["id","usage","client_timestamp"],
+		["id","cpu usage (percentage)","timestamp"]
+	);
 })
 d3.json("/pe.json", function (err, data) {
 	methodProfiling(data.detail_report.cpu_methods_attributes);
 })
+
 </script>
 
 /api/v1/detail_reports/<%= @detail_report.id %>/get_cpu_infos 
