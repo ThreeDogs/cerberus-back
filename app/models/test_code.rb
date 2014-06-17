@@ -38,9 +38,10 @@ class TestCode < ActiveRecord::Base
     import_code_java_path = "#{Rails.root}/public#{import_code_java.to_s}"
     sysout = `echo #{secret_password} | sudo -S sh #{compile_sh} #{code_import_folder_path} #{apk} #{import_code_java_path} #{id} #{target_folder_full_path}`
     result = sysout.match(/~~\S*~~/)[0]
+    result = result.gsub(/~~/,'')
 
     if result
-      update!(import_code_class: "#{target_path}#{result}")
+      update!(import_code_class: result)
       puts "Success"
     else
       puts "Exception File Name is Error"

@@ -17,6 +17,7 @@
 class TestScenario < ActiveRecord::Base
   before_validation :name_generate
   before_create :make_export_code_folder
+  after_create :export_code_generate_callback
 	default_scope {order('created_at DESC')}
   belongs_to :project
 
@@ -61,6 +62,10 @@ class TestScenario < ActiveRecord::Base
   def recent_test_date
     detail_reports.first.test_date unless detail_reports.blank?
   end
+  
+  def export_code_generate_callback
+    ExportCodeWorker.perform_async(id)
+  end
 
   def export_code_generate
     code_export_folder_path = "#{Rails.root}/lib/codeExport"
@@ -68,9 +73,10 @@ class TestScenario < ActiveRecord::Base
     target_folder_full_path = "#{Rails.root}/public#{target_path}"
     sysout = `java -classpath #{code_export_folder_path}/codeExport.jar:#{code_export_folder_path}/gson-2.2.4.jar:#{code_export_folder_path}/httpclient-4.3.3.jar:#{code_export_folder_path}/httpcore-4.3.2.jar:#{code_export_folder_path}/httpmine-4.3.3.jar manifest_edit.cerberus.manifest.Main #{activity_name} #{package_name} #{id} #{target_folder_full_path}`
     result = sysout.match(/~~\S*~~/)[0]
+    result = result.gsub(/~~/,'')
 
     if result
-      update!(export_code: "#{target_path}#{result}")
+      update!(export_code: result)
       puts "Success"
     else
       puts "Exception File Name is Error"
