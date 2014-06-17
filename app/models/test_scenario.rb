@@ -64,7 +64,7 @@ class TestScenario < ActiveRecord::Base
   end
   
   def export_code_generate_callback
-    ExportCodeWorker.perform_async(id)
+    ExportCodeWorker.perform_async(self.id)
   end
 
   def export_code_generate
@@ -72,7 +72,7 @@ class TestScenario < ActiveRecord::Base
     target_path = "/uploads/#{self.class.to_s.underscore}/export_code/#{self.id}/"
     target_folder_full_path = "#{Rails.root}/public#{target_path}"
     sysout = `java -classpath #{code_export_folder_path}/codeExport.jar:#{code_export_folder_path}/gson-2.2.4.jar:#{code_export_folder_path}/httpclient-4.3.3.jar:#{code_export_folder_path}/httpcore-4.3.2.jar:#{code_export_folder_path}/httpmine-4.3.3.jar manifest_edit.cerberus.manifest.Main #{activity_name} #{package_name} #{id} #{target_folder_full_path}`
-    result = sysout.match(/~~\S*~~/)[0]
+    result = sysout.force_encoding('UTF-8').match(/~~\S*~~/)[0]
     result = result.gsub(/~~/,'')
 
     if result

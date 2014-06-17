@@ -2,7 +2,7 @@ require "json"
 
 class ExportCodeWorker
 	include Sidekiq::Worker
-	sidekiq_options queue: :apk, backtrace: true
+	sidekiq_options queue: :apk, backtrace: true, retry: false
 
 	def perform(id)
 		test_scenario = TestScenario.find(id)
