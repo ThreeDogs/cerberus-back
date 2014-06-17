@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617013848) do
+ActiveRecord::Schema.define(version: 20140617063652) do
 
   create_table "apks", force: true do |t|
     t.string   "apk"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 20140617013848) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "codeships", force: true do |t|
+    t.integer  "test_code_id"
+    t.integer  "total_report_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "codeships", ["test_code_id"], name: "index_codeships_on_test_code_id"
+  add_index "codeships", ["total_report_id"], name: "index_codeships_on_total_report_id"
 
   create_table "cpu_infos", force: true do |t|
     t.integer  "usage"

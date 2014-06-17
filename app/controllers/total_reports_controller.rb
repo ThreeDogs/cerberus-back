@@ -42,6 +42,11 @@ class TotalReportsController < ServiceController
       begin
         raise "test scenario choice" if test_scenario_ids.length < 1
         @total_report.save!
+        
+        TestCode.all.each do |test_code|
+          @total_report.codeships.create!(test_code_id: test_code.id)
+        end
+
         test_scenario_ids.each do |test_scenario_id|
           @total_report.scenarioships.create!(test_scenario_id: test_scenario_id)
         end
