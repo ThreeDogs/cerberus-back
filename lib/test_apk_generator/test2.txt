@@ -1,0 +1,1 @@
+[/Users/nohsunghyun/SoftwareMaestro/cerberus-back/lib/test_apk_generator/temp/newclz, 1, com.autoschedule.proto, com.autoschedule.proto.SplashActivity]
