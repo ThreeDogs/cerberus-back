@@ -41,7 +41,7 @@ class TestCode < ActiveRecord::Base
     result = result.gsub(/~~/,'')
 
     if result
-      update!(import_code_class: "#{target_path}#{result}")
+      update!(import_code_class: result)
       puts "Success"
     else
       puts "Exception File Name is Error"

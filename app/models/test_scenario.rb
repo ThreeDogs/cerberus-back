@@ -76,7 +76,7 @@ class TestScenario < ActiveRecord::Base
     result = result.gsub(/~~/,'')
 
     if result
-      update!(export_code: "#{target_path}#{result}")
+      update!(export_code: result)
       puts "Success"
     else
       puts "Exception File Name is Error"

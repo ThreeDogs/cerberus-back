@@ -24,3 +24,6 @@ lib/.DS_Store
 lib/test_apk_generator/.DS_Store
 lib/test_apk_generator/lib/org/.DS_Store
 lib/test_apk_generator/lib/org/cerberus/.DS_Store
+
+lib/codeImport/temp2/
+lib/codeImport/temp3/
