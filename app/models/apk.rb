@@ -101,7 +101,7 @@ class Apk < ActiveRecord::Base
   end
 
   def get_import_class_code
-  	TestCode.all {|t| "#{Rails.root}/public#{t.import_code_class}" if t.import_code_class}.join("|")
+  	TestCode.all.collect {|t| "#{Rails.root}/public#{t.import_code_class}" if t.import_code_class}.join("|")
   end
 
   private

@@ -2,17 +2,16 @@
 #
 # Table name: test_scenarios
 #
-#  id              :integer          not null, primary key
-#  name            :string(255)
-#  description     :string(255)
-#  export_code     :string(255)
-#  activity_name   :string(255)
-#  package_name    :string(255)
-#  rank            :integer          default(0)
-#  project_id      :integer
-#  scenarioship_id :integer
-#  created_at      :datetime
-#  updated_at      :datetime
+#  id            :integer          not null, primary key
+#  name          :string(255)
+#  description   :string(255)
+#  export_code   :string(255)
+#  activity_name :string(255)
+#  package_name  :string(255)
+#  rank          :integer          default(0)
+#  project_id    :integer
+#  created_at    :datetime
+#  updated_at    :datetime
 #
 
 require 'spec_helper'
