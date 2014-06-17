@@ -134,11 +134,7 @@ class TotalReport < ActiveRecord::Base
     # file name, scenario key
 
     self.test_scenarios.each do |t|
-      if t.file_type
-        test_scenario_files << {"#{t.id}" => t.import_code_file_name}
-      else
-        test_scenario_motion_events << {"#{t.id}" => t.motion_events}
-      end
+      test_scenario_motion_events << {"#{t.id}" => t.motion_events}
     end
 
     uri = URI("#{test_bed_url}/StartDevice")

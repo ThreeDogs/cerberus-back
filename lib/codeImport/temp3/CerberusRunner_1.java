@@ -14,10 +14,10 @@ import com.robotium.solo.Solo;
 // Referenced classes of package org.cerberus.test:
 //            CerberusActivityInstrumentation, CerberusTestRunner
 
-public class CerberusRunner_10 extends CerberusActivityInstrumentation
+public class CerberusRunner_1 extends CerberusActivityInstrumentation
 {
 
-    public CerberusRunner_10()
+    public CerberusRunner_1()
     {
         super(launcherActivityClass);
     }
