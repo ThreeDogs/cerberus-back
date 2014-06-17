@@ -12,6 +12,7 @@
 
 class TestCode < ActiveRecord::Base
   after_create :import_code_class_callback
+  before_create :make_import_code_folder
   belongs_to :project
   mount_uploader :import_code_java, CodeUploader
 
@@ -33,8 +34,9 @@ class TestCode < ActiveRecord::Base
     target_path = "/uploads/#{self.class.to_s.underscore}/import_code_class/#{self.id}/"
     target_folder_full_path = "#{Rails.root}/public#{target_path}"
     compile_sh = "#{code_import_folder_path}/compile.sh"
-    apk = Apk.all.first.apk.to_s
-    sysout = `echo #{secret_password} | sudo -S sh #{compile_sh} #{code_import_folder_path} #{apk} #{import_code_java.to_s} #{id} #{target_folder_full_path}`
+    apk = "#{Rails.root}/public#{Apk.all.first.apk.to_s}"
+    import_code_java_path = "#{Rails.root}/public#{import_code_java.to_s}"
+    sysout = `echo #{secret_password} | sudo -S sh #{compile_sh} #{code_import_folder_path} #{apk} #{import_code_java_path} #{id} #{target_folder_full_path}`
     result = sysout.match(/~~\S*~~/)[0]
 
     if result
@@ -43,5 +45,10 @@ class TestCode < ActiveRecord::Base
     else
       puts "Exception File Name is Error"
     end
+  end
+
+  def make_import_code_folder
+    `mkdir #{Rails.root}/public/uploads/#{self.class.to_s.underscore}/`
+    `mkdir #{Rails.root}/public/uploads/#{self.class.to_s.underscore}/import_code_class/`
   end
 end

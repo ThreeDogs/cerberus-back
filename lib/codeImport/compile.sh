@@ -4,6 +4,8 @@
 # 4 - scenario path
 # 5 - save path
 
+mkdir $5
+
 # jar 추출
 rm -r $1/temp2
 mkdir $1/temp2
