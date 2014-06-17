@@ -18,6 +18,7 @@ class DetailReport < ActiveRecord::Base
   default_scope {order('created_at DESC')}
 	belongs_to :device, foreign_key: 'device_key', primary_key: 'device_key'
   belongs_to :test_scenario
+  belongs_to :test_code
   belongs_to :total_report
   belongs_to :crash
 
