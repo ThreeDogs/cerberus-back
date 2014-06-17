@@ -1,1 +1,31 @@
-/api/v1/detail_reports/<%= @detail_report.id %>/get_battery_infos
+<%= render "shared/header" %>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<%= render 'shared/side_bar' %>	
+		<div class="col-md-12 contents">
+
+			<div class="page-title">
+				<img src="/assets/Result.png">Test Result
+			</div>
+			<div class="below-page-title">Test Result > Full Report > Detail Report</div>
+
+			<div class="deeper">
+				<div id="battery-raw-data"></div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+<script>
+d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_battery_infos", function (err, data) {
+
+	makeRawTable(
+		"battery-raw-data",
+		data,
+		["id","cpu","lcd","gps","wifi","threeg","sound","client_timestamp"],
+		["id","cpu","lcd","gps","wifi","threeg","sound","timestamp"]
+	);
+})
+</script>
+

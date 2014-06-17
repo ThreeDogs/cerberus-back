@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610043535) do
+ActiveRecord::Schema.define(version: 20140617013848) do
 
   create_table "apks", force: true do |t|
     t.string   "apk"
@@ -204,18 +204,24 @@ ActiveRecord::Schema.define(version: 20140610043535) do
     t.datetime "updated_at"
   end
 
+  create_table "test_codes", force: true do |t|
+    t.string   "import_code_java"
+    t.string   "import_code_class"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "test_codes", ["project_id"], name: "index_test_codes_on_project_id"
+
   create_table "test_scenarios", force: true do |t|
     t.string   "name"
     t.string   "description"
     t.string   "export_code"
-    t.string   "import_code_java"
-    t.string   "import_code_class"
     t.string   "activity_name"
     t.string   "package_name"
-    t.boolean  "file_type"
-    t.integer  "rank",              default: 0
+    t.integer  "rank",          default: 0
     t.integer  "project_id"
-    t.integer  "scenarioship_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

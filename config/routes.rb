@@ -58,6 +58,7 @@ CerberusBack::Application.routes.draw do
     resources :apks
     resources :total_reports
     resources :test_scenarios
+    resources :test_codes
   end
 
   resources :apks do

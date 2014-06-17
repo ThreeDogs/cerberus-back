@@ -18,7 +18,8 @@ class TestScenariosController < ServiceController
 
   # GET /test_scenarios/new
   def new
-    @test_scenario = TestScenario.new
+    @project = set_project
+    @test_scenario = @project.test_scenarios.build
   end
 
   # GET /test_scenarios/1/edit

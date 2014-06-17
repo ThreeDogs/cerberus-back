@@ -156,7 +156,10 @@ cp -r $3/lib/org $3/temp/newclz/
 cp -r $3/lib/com $3/temp/newclz/
 cp -r $3/lib/edu $3/temp/newclz/
 
-java -classpath $3/tokencopy.jar filecopy.cerberus.Main $10 $3/temp/newclz/org/cerberus/test
+testCodeClass=${10}
+testFolder=$3/temp/newclz/org/cerberus/test
+echo testFolder
+java -classpath $3/tokencopy.jar filecopy.cerberus.Main $testFolder $testCodeClass  
 
 #mkdir $3/temp/newclz/org/cerberus/test
 

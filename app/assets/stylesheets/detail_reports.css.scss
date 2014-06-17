@@ -306,3 +306,31 @@
 		display: inline-block;
 	}
 }
+
+.raw-data-table {
+	width: 100%;
+	margin-top: 20px;
+	background-color: white;
+	th {
+		background-color: #A9D8B9;
+		color: #287044;
+		font-size: 13px;
+		border: solid 1px #A9D8B9;
+		padding: 5px;
+		text-align: center;
+	}
+
+	td {
+		color: #5E5E5E;
+		font-size: 12px;
+		padding: 5px;
+		border: solid 1px #A9D8B9;
+	}
+
+	tr:hover {
+		background-color: #5DBE88;
+		td {
+			color: white;
+		}
+	}
+}

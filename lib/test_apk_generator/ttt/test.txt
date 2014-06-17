@@ -1,0 +1,1 @@
+/Users/nohsunghyun/SoftwareMaestro/cerberus-back/lib/test_apk_generator/temp/newclz/org/cerberus/test

@@ -451,10 +451,10 @@ function drawCPUDeeper(cpudata) {
 
 function drawMemDeeper(memdata) {
 	var margin = {top: 10, right: 10, bottom: 30, left: 50};
-	var width = window_x-600;
+	var width = d3.select('#memory-deeper').style('width').split("px")[0]-80;
 	var height = 300;
 
-	var mem_svg = d3.select("#mem_graph").append("svg")
+	var mem_svg = d3.select("#memory-deeper").append("svg")
 					.attr("id","mem_svg")
 					.attr("height",height+margin.top+margin.bottom)
 					.attr("width",width+margin.left+margin.right)
@@ -491,7 +491,7 @@ function drawMemDeeper(memdata) {
 
 	function MemGraph (value_name) {
 
-		var detail_box = d3.select("#mem_graph_detail_info");
+		var detail_box = d3.select("#memory-deeper-detail");
 
 		var line = d3.svg.line().interpolate("monotone")
 					.x(function(d){return x(d.client_timestamp)})
@@ -574,5 +574,18 @@ function drawMemDeeper(memdata) {
 		x.range([0,width]);
 		onZoom();
 		legend.transform();
+	}
+}
+
+function makeRawTable(div_id, data, field_list, field_label_list) {
+
+	var table = d3.select("#"+div_id).append("table").attr("class","raw-data-table");
+
+	var tr = table.append("tr");
+	tr.selectAll("th").data(field_label_list).enter().append("th").text(function (d) {return d});
+
+	tr = table.selectAll("row").data(data).enter().append("tr");
+	for (index in field_list) {
+		tr.append("td").text(function (d) {return d[field_list[index]]});
 	}
 }

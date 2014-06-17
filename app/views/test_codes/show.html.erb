@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Import code java:</strong>
+  <%= @test_code.import_code_java %>
+</p>
+
+<p>
+  <strong>Import code class:</strong>
+  <%= @test_code.import_code_class %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @test_code.project %>
+</p>
+
+<%= link_to 'Edit', edit_test_code_path(@test_code) %> |
+<%= link_to 'Back', test_codes_path %>

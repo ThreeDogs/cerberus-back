@@ -2,29 +2,23 @@
 #
 # Table name: test_scenarios
 #
-#  id              :integer          not null, primary key
-#  name            :string(255)
-#  description     :string(255)
-#  export_code     :string(255)
-#  activity_name   :string(255)
-#  package_name    :string(255)
-#  rank            :integer          default(0)
-#  project_id      :integer
-#  scenarioship_id :integer
-#  created_at      :datetime
-#  updated_at      :datetime
+#  id            :integer          not null, primary key
+#  name          :string(255)
+#  description   :string(255)
+#  export_code   :string(255)
+#  activity_name :string(255)
+#  package_name  :string(255)
+#  rank          :integer          default(0)
+#  project_id    :integer
+#  created_at    :datetime
+#  updated_at    :datetime
 #
 
 class TestScenario < ActiveRecord::Base
-  mount_uploader :import_code_java, CodeUploader
-  
   before_validation :name_generate
   before_create :make_export_code_folder
 	default_scope {order('created_at DESC')}
   belongs_to :project
-
-  scope :code, -> { where(file_type: true) }
-  scope :json, -> { where(file_type: false) }
 
   has_many :motion_events, dependent: :destroy
   accepts_nested_attributes_for :motion_events
@@ -46,10 +40,6 @@ class TestScenario < ActiveRecord::Base
       "Pass"
     end
   end
-
-  def import_code_file_name(code_url = import_code_class.to_s)
-    code_url.split("/").last
-  end 
 
   def errors
     detail_reports.collect{|d| d.crash }.uniq
@@ -81,23 +71,6 @@ class TestScenario < ActiveRecord::Base
 
     if result
       update!(export_code: "#{target_path}#{result}")
-      puts "Success"
-    else
-      puts "Exception File Name is Error"
-    end
-  end
-
-  def import_code_java_generate
-    code_import_folder_path = "#{Rails.root}/lib/codeImport"
-    target_path = "/uploads/#{self.class.to_s.underscore}/import_code_class/#{self.id}/"
-    target_folder_full_path = "#{Rails.root}/public#{target_path}"
-    compile_sh = "#{code_import_folder_path}/compile.sh"
-    apk = Apk.all.first.apk.to_s
-    sysout = `echo #{secret_password} | sudo -S sh #{compile_sh} #{code_import_folder_path} #{apk} #{import_code_java.to_s} #{id} #{target_folder_full_path}`
-    result = sysout.match(/~~\S*~~/)[0]
-
-    if result
-      update!(impord_code_class: "#{target_path}#{result}")
       puts "Success"
     else
       puts "Exception File Name is Error"

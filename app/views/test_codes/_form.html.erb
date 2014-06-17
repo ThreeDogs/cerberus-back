@@ -1,0 +1,21 @@
+<%= form_for([@project, @test_code]) do |f| %>
+  <% if @test_code.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@test_code.errors.count, "error") %> prohibited this test_code from being saved:</h2>
+
+      <ul>
+      <% @test_code.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :import_code_java %><br>
+    <%= f.file_field :import_code_java %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Import Code" %>
+  </div>
+<% end %>
