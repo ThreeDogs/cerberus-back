@@ -4,6 +4,10 @@
 # 4 - scenario path
 # 5 - save path
 
+chmod 777 $1
+chmod 777 $1/temp2
+chmod 777 $1/temp3
+
 mkdir $5
 
 # jar 추출
