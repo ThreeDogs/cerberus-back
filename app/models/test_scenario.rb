@@ -16,8 +16,7 @@
 
 class TestScenario < ActiveRecord::Base
   before_validation :name_generate
-  before_create :make_export_code_folder
-  after_create :export_code_generate_callback
+  before_create :make_export_code_folder  
 	default_scope {order('created_at DESC')}
   belongs_to :project
 
