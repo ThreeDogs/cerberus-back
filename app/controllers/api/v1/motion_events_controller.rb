@@ -10,6 +10,7 @@ class Api::V1::MotionEventsController < ApplicationController
 		MotionEvent.transaction do
 			begin
 				MotionEvent.import @motion_events
+				@test_scenario.export_code_generate_callback
 				render status: :created, json: {response: "success_created"}
 			rescue Exception => e
 				render status: :unprocessable_entity, json: {response: "error #{e}"}
