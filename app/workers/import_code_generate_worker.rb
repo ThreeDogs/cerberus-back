@@ -3,7 +3,7 @@ class ImportCodeGenerateWorker
 	sidekiq_options queue: :apk, backtrace: true, retry: false
 
 	def perform(id)
-		test_scenario = TestScenario.find(id)
-		test_scenario.import_code_generate
+		test_code = TestCode.find(id)
+		test_code.import_code_generate
 	end
 end

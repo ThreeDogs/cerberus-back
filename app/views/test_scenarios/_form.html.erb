@@ -1,4 +1,4 @@
-<%= form_for(@test_scenario) do |f| %>
+<%= form_for([@project,@test_scenario]) do |f| %>
   <% if @test_scenario.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@test_scenario.errors.count, "error") %> prohibited this test_scenario from being saved:</h2>

@@ -1,0 +1,32 @@
+<%= render "shared/header" %>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <%= render 'shared/side_bar' %>
+
+    <div class="col-md-12 contents">
+    <div class="page-title">
+      <img src="/assets/starttest.png">Import Test Code
+    </div>
+    <div class="import-code pull-right">
+      <%= link_to "Import Test Code", new_project_test_code_path(@project), class: "btn btn-success" %> 
+    </div>  
+    <br>
+    <br>
+      <div class="table-wrapper">
+      <table class="apk-new-table">
+        <tr>
+          <th>Test Code</th>
+          <th></th>
+        </tr>
+          <% @test_codes.each do |test_code| %>
+            <tr>
+              <td><%= test_code.import_code_java_file_name %></td>
+              <td><%= link_to "Delete", project_test_code_path(@project, test_code), data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-danger" %></td>
+            </tr>
+          <% end %>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>

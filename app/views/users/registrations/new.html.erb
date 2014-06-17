@@ -1,10 +1,10 @@
 <div class="container">
   <div class="col-md-4 col-md-offset-3 login-area">
-    <div class="header">
+    <div class="login-header">
       <%= image_tag "/assets/Logo.png" %>
     </div>
     <div class="login-body">
-      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),html: {class: "form-signin"}) do |f| %>
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),html: {class: "form-signin"}) do |f| %>
         <%= f.email_field :email, autofocus: true, class: "form-control login-form email-field", placeholder: "Email address", required: true %>
         <%= f.password_field :password, class: "form-control login-form", placeholder: "Password", required: true %>
 
@@ -27,9 +27,8 @@
     width: 550px;
   }
 
-  .header {
-    width: 520px;
-    margin-left: 15px;
+  .login-header {
+    width: 100%;
     text-align: center;
     background-color: #5DBE88;
     height: 124px;
@@ -42,7 +41,6 @@
 
   .login-body {
     background-color: #EFEEEE;
-    margin-top: 124px;
     padding-top: 42px;
     height: 350px;
     text-align: center;
