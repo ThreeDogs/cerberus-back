@@ -254,9 +254,65 @@ function drawDetailReports (data) {
 		resizeFunctions.push(onResize);
 	}
 
+	function drawDrawTimeChart (data) {
+
+		var width = d3.select('#draw-time-chart').style('width').split("px")[0];
+		var height = d3.select('#draw-time-chart').style('height').split("px")[0];
+		var margin = {top:10, right: 10, bottom: 30, left: 60};
+		var svg = d3.select('#draw-time-chart').append('svg')
+					.attr('width',width).attr('height',height);
+
+		var zero = data[0].load_start_timestamp;
+		for (index in data) {
+			var one = data[index];
+			one.client_timestamp = (one.load_start_timestamp - zero) /1000;
+			one.delta = one.load_finish_timestamp - one.load_start_timestamp;
+		}
+
+		var x_extent = d3.extent(data, function (d) { return d.client_timestamp });
+		var y_extent = [0,d3.max(data, function (d) { return d.delta * 1.1})];
+
+		var x_scale = d3.scale.linear().domain(x_extent).range([margin.left,width-margin.right]);
+		var y_scale = d3.scale.linear().domain(y_extent).range([height-margin.bottom,margin.top]);
+
+		var x_axis = d3.svg.axis().scale(x_scale).orient('bottom').innerTickSize(3).outerTickSize([0]);
+		var y_axis = d3.svg.axis().scale(y_scale).orient('left').innerTickSize(3).outerTickSize([0]);
+
+		var draw_time_x_axis = svg.append("g").attr("class", "x axis")
+				.attr("transform", "translate(0,"+(height-margin.bottom)+")")
+				.call(x_axis);
+
+		var draw_time_y_axis = svg.append("g").attr("class", "y axis")
+				.attr("transform", "translate("+margin.left+",0)")
+				.call(y_axis);
+
+		var lines = svg.append("g").attr("class","draw-time-lines");
+		lines.selectAll("lines").data(data).enter().append("line")
+				.attr("class",function (d) {return d.view_type+"-line"})
+				.attr("y1",function (d) {return y_scale(0)})
+				.attr("y2",function (d) {return y_scale(d.delta)})	
+				.attr("x1",function (d) {return x_scale(d.client_timestamp)})
+				.attr("x2",function (d) {return x_scale(d.client_timestamp)});
+
+		function onResize () {
+			width = d3.select('#draw-time-chart').style('width').split("px")[0];
+			svg.attr("width",width);
+			x_scale.range([margin.left,width-margin.right]);
+			x_axis.scale(x_scale);
+			draw_time_x_axis.call(x_axis);
+			lines.attr("x1",function (d) {return x_scale(d.client_timestamp)})
+				.attr("x2",function (d) {return x_scale(d.client_timestamp)});
+
+		}
+		resizeFunctions.push(onResize);
+	}
+
 	drawEventScreenshot(dataProcess(data.motion_event_infos));
 	drawCPUChart(dataProcess(data.cpu_infos));
 	drawMemChart(dataProcess(data.memory_infos));
+	//drawBatteryChart(dataProcess(data.battery_infos));
+	//drawDrawTimeChart(dataProcess(data.frame_draw_time_infos))
+
 }
 
 function dataProcess(data) {
@@ -450,8 +506,8 @@ function drawCPUDeeper(cpudata) {
 }
 
 function drawMemDeeper(memdata) {
-	var margin = {top: 10, right: 10, bottom: 30, left: 50};
-	var width = d3.select('#memory-deeper').style('width').split("px")[0]-80;
+	var margin = {top: 10, right: 50, bottom: 30, left: 50};
+	var width = d3.select('#memory-deeper').style('width').split("px")[0]-100;
 	var height = 300;
 
 	var mem_svg = d3.select("#memory-deeper").append("svg")
@@ -463,11 +519,13 @@ function drawMemDeeper(memdata) {
 
 	var x = d3.scale.linear().range([0, width]);
 	var y = d3.scale.linear().range([height, 0]);
+	var y_percentage = d3.scale.linear().range([height, 0]);
 
 	x_extent = [0, memdata[memdata.length-1].client_timestamp];
-	y_extent = [0, d3.max(memdata, function(d) { return d.mem_total; })];
+	y_extent = [0, d3.max(memdata, function(d) { return d.mem_total * 1.1; })];
 	x.domain(x_extent);
 	y.domain(y_extent);
+	y_percentage.domain([0,100]);
 
 	var xAxis = d3.svg.axis().scale(x).orient("bottom")
 				    .tickSize(-height, 0).tickPadding(6);
@@ -475,14 +533,18 @@ function drawMemDeeper(memdata) {
 	var yAxis = d3.svg.axis().scale(y).orient("left")
 				    .tickSize(-width).tickPadding(6);
 
-	var clip = mem_svg.append("clipPath").attr("id", "mem_lip")
+	var yAxis_percentage = d3.svg.axis().scale(y_percentage).orient("right")
+				    .tickSize(-width).tickPadding(6);
+
+	var clip = mem_svg.append("clipPath").attr("id", "mem_clip")
 			.append("rect").attr("id","#mem_clip_rect")
 			.attr("width",width).attr("height",height);
 
 	var zoom = d3.behavior.zoom().on("zoom", onZoom)
 				.scaleExtent([0.1,4]).x(x);
 
-	mem_svg.append("g").attr("class", "y axis")
+	mem_svg.append("g").attr("class", "y axis");
+	mem_svg.append("g").attr("class", "percent axis").attr("transform", "translate("+width+",0)");
 
 	mem_svg.append("g").attr("class", "x axis").attr("transform", "translate(0,"+height+")");
 
@@ -500,13 +562,13 @@ function drawMemDeeper(memdata) {
 		var path = mem_svg.append("path")
 					.attr("class","line")
 					.attr("clip-path","url(#mem_clip)")
-					.attr("id",value_name)
+					.attr("id",value_name+"-path")
 					.attr("d",line(memdata));
 
 		var dots = mem_svg.append("g")
 					.attr("clip-path", "url(#mem_clip)")
-					.attr("id",value_name+"dots")
-					.selectAll(value_name+"dots")
+					.attr("id",value_name+"-dots")
+					.selectAll(value_name+"-dots")
 					.data(memdata)
 					.enter()
 					.append("circle")
@@ -520,6 +582,14 @@ function drawMemDeeper(memdata) {
 						detail_box.append("div")
 							.text(value_name+" "+d[value_name]);
 					});
+
+		d3.select("#"+value_name).on("click",function (d) {
+			if (this.checked) {
+				visible();
+			} else {
+				transparent();
+			}
+		})
 
 		function transparent() {
 			path.transition().attr("opacity",0);
@@ -546,6 +616,71 @@ function drawMemDeeper(memdata) {
 		return returnObj;
 	}
 
+	function MemGraphPercentage (value_name, numerator, denominator) {
+
+		var detail_box = d3.select("#memory-deeper-detail");
+
+		var line = d3.svg.line().interpolate("monotone")
+					.x(function(d){return x(d.client_timestamp)})
+					.y(function(d){return y_percentage(d[numerator]/d[denominator]*100)});
+
+		var path = mem_svg.append("path")
+					.attr("class","line")
+					.attr("clip-path","url(#mem_clip)")
+					.attr("id",value_name+"-path")
+					.attr("d",line(memdata));
+
+		var dots = mem_svg.append("g")
+					.attr("clip-path", "url(#mem_clip)")
+					.attr("id",value_name+"-dots")
+					.selectAll(value_name+"-dots")
+					.data(memdata)
+					.enter()
+					.append("circle")
+					.attr("class",value_name+"dot dot")
+					.attr("r",2)
+					.attr("transform",function (d) {
+						return "translate("+x(d.client_timestamp)+","+y_percentage(d[numerator]/d[denominator]*100)+")";
+					})
+					.on("click",function (d) {
+						detail_box.selectAll("div").remove();
+						detail_box.append("div")
+							.text(value_name+" "+(d[numerator]/d[denominator]*100));
+					});
+
+		d3.select("#"+value_name).on("click",function (d) {
+			if (this.checked) {
+				visible();
+			} else {
+				transparent();
+			}
+		})
+
+		function transparent() {
+			path.transition().attr("opacity",0);
+			dots.transition().attr("opacity",0);
+		}
+
+		function visible() {
+			path.transition().attr("opacity",1);
+			dots.transition().attr("opacity",1);
+		}
+
+		function renew() {
+			path.attr("d",line(memdata));
+			mem_svg.selectAll("."+value_name+"dot").attr("transform",function (d) {
+				return "translate("+x(d.client_timestamp)+","+y(d[numerator]/d[denominator]*100)+")";
+			});
+		}
+
+		var returnObj = new Object();
+		returnObj.transparent = transparent;
+		returnObj.visible = visible;
+		returnObj.renew = renew;
+
+		return returnObj;
+	}
+
 	var native_heap_size = new MemGraph('native_heap_size');
 	var native_heap_alloc = new MemGraph('native_heap_alloc');
 	var dalvik_heap_size = new MemGraph('dalvik_heap_size');
@@ -553,21 +688,29 @@ function drawMemDeeper(memdata) {
 	var mem_total =	new MemGraph('mem_total');
 	var mem_alloc = new MemGraph('mem_alloc');
 
+	var native_percentage = new MemGraphPercentage('native_percentage','native_heap_alloc','native_heap_size');
+	var dalvik_percentage = new MemGraphPercentage('dalvik_percentage','dalvik_heap_alloc','dalvik_heap_size');
+	var mem_percentage = new MemGraphPercentage('mem_percentage','mem_alloc','mem_total');
+
 	function onZoom() {
 		yAxis.tickSize(-width);
 		mem_svg.select("g.x.axis").call(xAxis);
 		mem_svg.select("g.y.axis").call(yAxis);
+		mem_svg.select("g.percent.axis").call(yAxis_percentage);
 		native_heap_size.renew();
 		native_heap_alloc.renew();
 		dalvik_heap_size.renew();
 		dalvik_heap_alloc.renew();
 		mem_total.renew();
 		mem_alloc.renew();
+		native_percentage.renew();
+		dalvik_percentage.renew();
+		mem_percentage.renew();
 	}
 	onZoom();
 
 	mem_graph_resize = function onResize() {
-		width = window_x-600;
+		width = d3.select('#memory-deeper').style('width').split("px")[0]-80;
 		d3.select("#mem_svg").attr("width",width+margin.left+margin.right);
 		pane.attr("width",width);
 		clip.attr("width",width);
