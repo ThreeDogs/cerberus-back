@@ -83,7 +83,7 @@ function allTestsTable(data) {
 		row.append("td").selectAll("crash").data(function (d) {return d.crashes}).enter()
 			.append("p").text(function (d) {return d.error_name});
 		row.append("td").text(function (d) {return d.device_count});
-		row.append("td").text("link");
+		row.append("td").append("a").attr("href",function (d) {return d.link}).text("link");
 
 		sidebarHeightCorrect();
 	}
