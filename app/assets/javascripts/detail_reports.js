@@ -446,6 +446,7 @@ function methodProfiling (data) {
 		
 	function appendLi (selection) {
 		var row = selection.append("li").attr("class","method-list-row")
+
 		row.append("span").attr("class","activity-method").text(function (d) {return d.tree_key + " " + d.class_name + " " +d.method_name});
 		row.append("span").attr("class","incl").text(function (d) {return d.delta});
 		row.append("span").attr("class","excl").text(function (d) {return d.delta-d.children_time});
@@ -517,7 +518,7 @@ function drawCPUDeeper(cpudata) {
 							.on("click",function (d) {
 								detail_box.selectAll("div").remove();
 								detail_box.append("div")
-									.text("cpu usage: "+d.usage);
+									.text("cpu usage: "+d.usage+"%");
 							});
 
 	cpu_svg.append("g").attr("class", "y axis")
