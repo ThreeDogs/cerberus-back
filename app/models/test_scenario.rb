@@ -74,7 +74,7 @@ class TestScenario < ActiveRecord::Base
     sysout = `java -classpath #{code_export_folder_path}/codeExport.jar:#{code_export_folder_path}/gson-2.2.4.jar:#{code_export_folder_path}/httpclient-4.3.3.jar:#{code_export_folder_path}/httpcore-4.3.2.jar:#{code_export_folder_path}/httpmine-4.3.3.jar:#{code_export_folder_path}/commons-logging-1.1.3.jar export.scenario.cerberus.JavaCodeMaker #{activity_name} #{package_name} #{id} #{target_folder_full_path}`
 
     
-    update!(export_code: "#{target_folder_full_path}/CerberusTestRunner.java")
+    update!(export_code: "#{target_path}/CerberusTestRunner.java")
     puts "Success"
   end
 
