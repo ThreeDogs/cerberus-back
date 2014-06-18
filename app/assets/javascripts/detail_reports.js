@@ -664,13 +664,13 @@ function drawMemDeeper(memdata) {
 		})
 
 		function transparent() {
-			path.transition().attr("opacity",0);
-			dots.transition().attr("opacity",0);
+			path.transition().attr("visibility","hidden");
+			dots.transition().attr("visibility","hidden");
 		}
 
 		function visible() {
-			path.transition().attr("opacity",1);
-			dots.transition().attr("opacity",1);
+			path.transition().attr("visibility","true");
+			dots.transition().attr("visibility","true");
 		}
 
 		function renew() {
@@ -717,7 +717,7 @@ function drawMemDeeper(memdata) {
 					.on("click",function (d) {
 						detail_box.selectAll("div").remove();
 						detail_box.append("div")
-							.text(value_name+" "+(d[numerator]/d[denominator]*100));
+							.text(value_name+" "+parseInt(d[numerator]/d[denominator]*100));
 					});
 
 		d3.select("#"+value_name).on("click",function (d) {
@@ -729,19 +729,19 @@ function drawMemDeeper(memdata) {
 		})
 
 		function transparent() {
-			path.transition().attr("opacity",0);
-			dots.transition().attr("opacity",0);
+			path.transition().attr("visibility","hidden");
+			dots.transition().attr("visibility","hidden");
 		}
 
 		function visible() {
-			path.transition().attr("opacity",1);
-			dots.transition().attr("opacity",1);
+			path.transition().attr("visibility","true");
+			dots.transition().attr("visibility","true");
 		}
 
 		function renew() {
 			path.attr("d",line(memdata));
 			mem_svg.selectAll("."+value_name+"dot").attr("transform",function (d) {
-				return "translate("+x(d.client_timestamp)+","+y(d[numerator]/d[denominator]*100)+")";
+				return "translate("+x(d.client_timestamp)+","+y_percentage(d[numerator]/d[denominator]*100)+")";
 			});
 		}
 
