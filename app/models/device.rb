@@ -59,7 +59,7 @@ class Device < ActiveRecord::Base
   end
 
   def fail_get_ranks
-  	detail_reports.collect{|d| d.rank}.uniq
+  	detail_reports.collect{|d| d.rank if d.status == -1 }.uniq
   end
 
   def self.to_csv(options = {})
