@@ -42,10 +42,10 @@
 			  	</tr>
 					<%= f.fields_for :motion_events do |builder| %>
 						<tr>
-				  		<th><%= builder.object.activity_class %></th>
-				  		<th><%= builder.object.view %></th>
-				  		<th><%= builder.object.action_type %></th>
-				  		<th><%= builder.text_field :param %></th>
+				  		<tr><%= builder.object.activity_class %></tr>
+				  		<tr><%= builder.object.view %></tr>
+				  		<tr><%= builder.object.action_type %></tr>
+				  		<tr><%= builder.text_field :param %></tr>
 				  	</tr>
 					<% end %>
 			  </table>
