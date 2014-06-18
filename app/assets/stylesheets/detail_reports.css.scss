@@ -190,19 +190,47 @@
 
 	#battery-chart {
 		.battery-cpu {
-			fill: blue;
+			fill: #EA7C4B;
+			opacity: 0.5;
 		}
 		.battery-wifi {
-			fill: green;
+			fill: #ED9FBD;
+			opacity: 0.5;
 		}
 		.battery-gps {
-			fill: red;
+			fill: #34989A;
+			opacity: 0.5;
 		}
 		.battery-threeg {
-			fill: purple;
+			fill: #A28BBC;
+			opacity: 0.5;
 		}
 		.battery-sound {
-			fill: yellow;
+			fill: #D6B6EF;
+			opacity: 0.5;
+		}
+		.battery-lcd {
+			fill: #52C4D0;
+			opacity: 0.5;
+		}
+	}
+
+	#draw-time-chart {
+		.activity-line {
+			stroke-width: 3;
+			stroke: green;
+		}
+
+		.image-line {
+			stroke-width: 3;
+			stroke: blue;
+		}
+	}
+
+	#network-chart {
+		.network-response-line {
+			stroke-width: 3;
+			stroke: yellow;
 		}
 	}
 

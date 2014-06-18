@@ -11,7 +11,7 @@ function drawDetailReports (data) {
 
 		var width = d3.select('#battery-chart').style('width').split("px")[0];
 		var height = d3.select('#battery-chart').style('height').split("px")[0];
-		var margin = {top:10, right: 10, bottom: 30, left: 60};
+		var margin = {top:10, right: 10, bottom: 30, left: 40};
 		var svg = d3.select('#battery-chart').append('svg')
 					.attr('width',width).attr('height',height);
 
