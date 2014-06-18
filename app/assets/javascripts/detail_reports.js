@@ -364,7 +364,7 @@ function drawDetailReports (data) {
 	drawCPUChart(dataProcess(data.cpu_infos));
 	drawMemChart(dataProcess(data.memory_infos));
 	drawBatteryChart(dataProcess(data.battery_infos));
-	drawDrawTimeChart(dataProcess(data.frame_draw_time_infos))
+	drawDrawTimeChart(dataProcess(data.frame_draw_times))
 
 }
 

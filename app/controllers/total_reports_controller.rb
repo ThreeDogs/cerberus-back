@@ -34,7 +34,7 @@ class TotalReportsController < ServiceController
     @apk = Apk.find(params[:apk_id])
     @project = Project.find(@apk.project.id)
     @total_report = @apk.total_reports.build(project_id: @project.id)
-    device_list = JSON.parse(get_device_list)
+    device_list = JSON.parse(@total_report.get_device_list)
     session[:return_to] ||= request.referer
 
     test_scenario_ids = params[:total_report][:test_scenario_ids].collect{|key,value| key.to_i if value == "1"}.compact
