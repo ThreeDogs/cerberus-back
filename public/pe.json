@@ -3333,37 +3333,37 @@
       "network_infos_attributes":[
          {
             "request_size":0,
-            "response_size":0,
+            "response_size":10,
             "client_timestamp":1402487293906
          },
          {
             "request_size":0,
-            "response_size":0,
+            "response_size":20,
             "client_timestamp":1402487298607
          },
          {
             "request_size":0,
-            "response_size":0,
+            "response_size":30,
             "client_timestamp":1402487303217
          },
          {
             "request_size":0,
-            "response_size":0,
+            "response_size":40,
             "client_timestamp":1402487307714
          },
          {
             "request_size":0,
-            "response_size":0,
+            "response_size":50,
             "client_timestamp":1402487312324
          },
          {
             "request_size":0,
-            "response_size":0,
+            "response_size":40,
             "client_timestamp":1402487316748
          },
          {
             "request_size":0,
-            "response_size":0,
+            "response_size":30,
             "client_timestamp":1402487321220
          }
       ],

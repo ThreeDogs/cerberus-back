@@ -58,7 +58,7 @@ d3.json("/api/v1/total_reports/<%= @total_report.id %>/test_report_list",functio
 
 var temporary = {};
 <% @total_report.test_rank_status.each do |v, k| %>
-	temporary.<%= v.to_s %> = [<%= k[1] %>,<%= k[0] %>];
+	temporary.<%= v.to_s %> = [<%= k[0] %>,<%= k[1] %>];
 <% end %>
 addColoredBandGraph("band-graph",temporary);
 

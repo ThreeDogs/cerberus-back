@@ -446,6 +446,7 @@ function methodProfiling (data) {
 		
 	function appendLi (selection) {
 		var row = selection.append("li").attr("class","method-list-row")
+
 		row.append("span").attr("class","activity-method").text(function (d) {return d.tree_key + " " + d.class_name + " " +d.method_name});
 		row.append("span").attr("class","incl").text(function (d) {return d.delta});
 		row.append("span").attr("class","excl").text(function (d) {return d.delta-d.children_time});
@@ -517,7 +518,7 @@ function drawCPUDeeper(cpudata) {
 							.on("click",function (d) {
 								detail_box.selectAll("div").remove();
 								detail_box.append("div")
-									.text("cpu usage: "+d.usage);
+									.text("cpu usage: "+d.usage+"%");
 							});
 
 	cpu_svg.append("g").attr("class", "y axis")
@@ -663,13 +664,13 @@ function drawMemDeeper(memdata) {
 		})
 
 		function transparent() {
-			path.transition().attr("opacity",0);
-			dots.transition().attr("opacity",0);
+			path.transition().attr("visibility","hidden");
+			dots.transition().attr("visibility","hidden");
 		}
 
 		function visible() {
-			path.transition().attr("opacity",1);
-			dots.transition().attr("opacity",1);
+			path.transition().attr("visibility","true");
+			dots.transition().attr("visibility","true");
 		}
 
 		function renew() {
@@ -716,7 +717,7 @@ function drawMemDeeper(memdata) {
 					.on("click",function (d) {
 						detail_box.selectAll("div").remove();
 						detail_box.append("div")
-							.text(value_name+" "+(d[numerator]/d[denominator]*100));
+							.text(value_name+" "+parseInt(d[numerator]/d[denominator]*100));
 					});
 
 		d3.select("#"+value_name).on("click",function (d) {
@@ -728,19 +729,19 @@ function drawMemDeeper(memdata) {
 		})
 
 		function transparent() {
-			path.transition().attr("opacity",0);
-			dots.transition().attr("opacity",0);
+			path.transition().attr("visibility","hidden");
+			dots.transition().attr("visibility","hidden");
 		}
 
 		function visible() {
-			path.transition().attr("opacity",1);
-			dots.transition().attr("opacity",1);
+			path.transition().attr("visibility","true");
+			dots.transition().attr("visibility","true");
 		}
 
 		function renew() {
 			path.attr("d",line(memdata));
 			mem_svg.selectAll("."+value_name+"dot").attr("transform",function (d) {
-				return "translate("+x(d.client_timestamp)+","+y(d[numerator]/d[denominator]*100)+")";
+				return "translate("+x(d.client_timestamp)+","+y_percentage(d[numerator]/d[denominator]*100)+")";
 			});
 		}
 
@@ -820,7 +821,7 @@ function drawNetworkDeeper(networkdata) {
 	var y = d3.scale.linear().range([height, 0]);
 
 	x_extent = [0, networkdata[networkdata.length-1].client_timestamp];
-	y_extent = [0, 100];
+	y_extent = [0, d3.max(networkdata, function (d) {return d.response_size * 1.1})];
 	x.domain(x_extent);
 	y.domain(y_extent);
 
@@ -842,50 +843,36 @@ function drawNetworkDeeper(networkdata) {
 	var pane = network_svg.append("rect").attr("class", "pane")
 	    .attr("width", width).attr("height", height).call(zoom);
 
-	var line = d3.svg.line().interpolate("monotone")
-					.x(function(d){return x(d.client_timestamp)})
-					.y(function(d){return y(d.usage)});
+	var lines = network_svg.append("g").attr("clip-path", "url(#network_clip)")
+				.attr("class","network-response-lines")
+				.selectAll("lines").data(networkdata).enter().append("line")
+				.attr("class",function (d) {return "network-line"})
+				.attr("y1",function (d) {return y(0)})
+				.attr("y2",function (d) {return y(d.response_size)})	
+				.attr("x1",function (d) {return x(d.client_timestamp)})
+				.attr("x2",function (d) {return x(d.client_timestamp)});
 
-	var network_response = network_svg.append("path").attr("class","line")
-							.attr("clip-path", "url(#network_clip)")
-							.attr("id","cpu_usage")
-							.attr("d", line(cpudata));
 
-	var network_response_dots = network_svg.append("g").attr("clip-path", "url(#network_clip)")
-							.attr("id","dots")
-							.selectAll("dots").data(networkdata).enter()
-							.append("circle").attr("class","dot").attr("r",2)
-							.attr("transform",function (d) {
-								return "translate("+x(d.client_timestamp)+","+y(d.usage)+")";
-							})
-							.on("click",function (d) {
-								detail_box.selectAll("div").remove();
-								detail_box.append("div")
-									.text("cpu usage: "+d.usage);
-							});
+	network_svg.append("g").attr("class", "y axis")
 
-	cpu_svg.append("g").attr("class", "y axis")
-
-	cpu_svg.append("g").attr("class", "x axis")
+	network_svg.append("g").attr("class", "x axis")
 	    .attr("transform", "translate(0,"+height+")");
 
 	onZoom();
 
 	function onZoom() {
 		yAxis.tickSize(-width);
-		cpu_svg.select("g.x.axis").call(xAxis);
-		cpu_svg.select("g.y.axis").call(yAxis);
-		cpu_svg.select("#network_response").attr("d",line(networkdata));
-		cpu_svg.selectAll("circle.dot").attr("transform",function (d) {
-			return "translate("+x(d.client_timestamp)+","+y(d.usage)+")";
-		});
+		network_svg.select("g.x.axis").call(xAxis);
+		network_svg.select("g.y.axis").call(yAxis);
+		lines.attr("x1",function (d) {return x(d.client_timestamp)})
+			.attr("x2",function (d) {return x(d.client_timestamp)});
 	}
 
-	var legend_width = 80;
+	var legend_width = 120;
 	var legend_height = 30;
 	var legend_margin = {top: 10, bottom: 10, left: 10, right: 10};
 
-	var legend = cpu_svg.append("g")
+	var legend = network_svg.append("g")
 			.attr("class", "legend")
 			.attr("transform", "translate("+(width-legend_width-legend_margin.right)+","+legend_margin.top+")");
 
@@ -900,7 +887,7 @@ function drawNetworkDeeper(networkdata) {
 
 	field_list.append("rect").attr("width",5).attr("height",5)
 				.attr("x",5).attr("y",5)
-				.attr("stroke","none").attr("fill","#111111");
+				.attr("stroke","none").attr("fill","yellow");
 
 	field_list.append("text")
 				.attr("x",15).attr("y",10)

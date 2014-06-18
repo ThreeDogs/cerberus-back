@@ -25,12 +25,13 @@
 
 <script>
 d3.json("/pe.json", function (err, data) {
-
+	console.log(data.detail_report.network_infos_attributes);
+	drawNetworkDeeper(dataProcess(data.detail_report.network_infos_attributes));
 	makeRawTable(
-		"draw-time-raw-data",
-		data.network_infos_attributes,
-		["id","usage","client_timestamp"],
-		["id","cpu usage (percentage)", "timestamp"]
+		"network-raw-data",
+		data.detail_report.network_infos_attributes,
+		["response_size","client_timestamp"],
+		["response size (B)", "timestamp"]
 	);
 })
 ///api/v1/detail_reports/<%= @detail_report.id %>/get_network_infos

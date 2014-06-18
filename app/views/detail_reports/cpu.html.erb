@@ -12,7 +12,9 @@
 			<span class="page-subtitle">CPU Usage Chart</span>
 			<div class="deeper">
 				<div id="cpu-deeper" class="deeper-view"></div>
-				<div class="deeper-legend"></div>
+				<div class="deeper-legend">
+					<div id="cpu_graph_detail_info" class="detail-info-box"></div>
+				</div>
 			</div>
 			<span class="page-subtitle">Method Execution Time Chart</span>
 			<div class="deeper">
@@ -23,7 +25,7 @@
 				</div>
 				<div id="cpu-method" class="deeper"></div>
 			</div>
-			<div class="deeper">
+			<div class="raw-data-wrapper">
 				<div id="cpu-raw-data"></div>
 			</div>
 		</div>
@@ -44,8 +46,9 @@ d3.json("/pe.json", function (err, data) {
 	methodProfiling(data.detail_report.cpu_methods_attributes);
 })
 
+///api/v1/detail_reports/<%= @detail_report.id %>/get_cpu_infos
+//(cpu_infos, cpu_methods)
 </script>
 
-/api/v1/detail_reports/<%= @detail_report.id %>/get_cpu_infos 
 
-(cpu_infos, cpu_methods)
+
