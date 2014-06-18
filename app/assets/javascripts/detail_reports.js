@@ -10,7 +10,7 @@ function detailReportList (data) {
 	var th = ["Rank","Status","Test Scenario","Device","OS Version","Running Time",""];
 	table.append("tr").selectAll("th").data(th).enter().append("th").text(function (d) {return d});
 
-	var tr = table.selectAll("tr").data(data).enter().append("tr");
+	var tr = table.selectAll("row").data(data).enter().append("tr");
 
 	tr.append("td").append("div")
 		.attr("class",function (d) {return "rank "+d.rank})
@@ -255,6 +255,59 @@ function drawDetailReports (data) {
 	}
 
 	function drawDrawTimeChart (data) {
+
+		var width = d3.select('#draw-time-chart').style('width').split("px")[0];
+		var height = d3.select('#draw-time-chart').style('height').split("px")[0];
+		var margin = {top:10, right: 10, bottom: 30, left: 60};
+		var svg = d3.select('#draw-time-chart').append('svg')
+					.attr('width',width).attr('height',height);
+
+		var zero = data[0].load_start_timestamp;
+		for (index in data) {
+			var one = data[index];
+			one.client_timestamp = (one.load_start_timestamp - zero) /1000;
+			one.delta = one.load_finish_timestamp - one.load_start_timestamp;
+		}
+
+		var x_extent = d3.extent(data, function (d) { return d.client_timestamp });
+		var y_extent = [0,d3.max(data, function (d) { return d.delta * 1.1})];
+
+		var x_scale = d3.scale.linear().domain(x_extent).range([margin.left,width-margin.right]);
+		var y_scale = d3.scale.linear().domain(y_extent).range([height-margin.bottom,margin.top]);
+
+		var x_axis = d3.svg.axis().scale(x_scale).orient('bottom').innerTickSize(3).outerTickSize([0]);
+		var y_axis = d3.svg.axis().scale(y_scale).orient('left').innerTickSize(3).outerTickSize([0]);
+
+		var draw_time_x_axis = svg.append("g").attr("class", "x axis")
+				.attr("transform", "translate(0,"+(height-margin.bottom)+")")
+				.call(x_axis);
+
+		var draw_time_y_axis = svg.append("g").attr("class", "y axis")
+				.attr("transform", "translate("+margin.left+",0)")
+				.call(y_axis);
+
+		var lines = svg.append("g").attr("class","draw-time-lines");
+		lines.selectAll("lines").data(data).enter().append("line")
+				.attr("class",function (d) {return d.view_type+"-line"})
+				.attr("y1",function (d) {return y_scale(0)})
+				.attr("y2",function (d) {return y_scale(d.delta)})	
+				.attr("x1",function (d) {return x_scale(d.client_timestamp)})
+				.attr("x2",function (d) {return x_scale(d.client_timestamp)});
+
+		function onResize () {
+			width = d3.select('#draw-time-chart').style('width').split("px")[0];
+			svg.attr("width",width);
+			x_scale.range([margin.left,width-margin.right]);
+			x_axis.scale(x_scale);
+			draw_time_x_axis.call(x_axis);
+			lines.attr("x1",function (d) {return x_scale(d.client_timestamp)})
+				.attr("x2",function (d) {return x_scale(d.client_timestamp)});
+
+		}
+		resizeFunctions.push(onResize);
+	}
+
+	function drawNetworkChart (data) {
 
 		var width = d3.select('#draw-time-chart').style('width').split("px")[0];
 		var height = d3.select('#draw-time-chart').style('height').split("px")[0];
@@ -731,4 +784,120 @@ function makeRawTable(div_id, data, field_list, field_label_list) {
 	for (index in field_list) {
 		tr.append("td").text(function (d) {return d[field_list[index]]});
 	}
+}
+
+function drawNetworkDeeper(networkdata) {
+	var margin = {top: 10, right: 10, bottom: 30, left: 50};
+	var width = d3.select('#network-deeper').style('width').split("px")[0]-80;
+	var height = 420;
+
+	var network_svg = d3.select("#network-deeper").append("svg")
+					.attr("id","network_svg")
+					.attr("height",height+margin.top+margin.bottom)
+					.attr("width",width+margin.left+margin.right)
+					.append("g")
+					.attr("transform","translate("+margin.left+","+margin.top+")");
+
+	var x = d3.scale.linear().range([0, width]);
+	var y = d3.scale.linear().range([height, 0]);
+
+	x_extent = [0, networkdata[networkdata.length-1].client_timestamp];
+	y_extent = [0, 100];
+	x.domain(x_extent);
+	y.domain(y_extent);
+
+	var xAxis = d3.svg.axis().scale(x).orient("bottom")
+				    .tickSize(-height, 0).tickPadding(6);
+
+	var yAxis = d3.svg.axis().scale(y).orient("left")
+				    .tickSize(-width).tickPadding(6);
+
+	network_svg.append("clipPath").attr("id","network_clip")
+			.append("rect").attr("id","network_clip_rect")
+			.attr("width",width).attr("height",height);
+
+	var detail_box = d3.select("#network_graph_detail_info");
+
+	var zoom = d3.behavior.zoom().on("zoom", onZoom)
+				.scaleExtent([0.1,4]).x(x);
+
+	var pane = network_svg.append("rect").attr("class", "pane")
+	    .attr("width", width).attr("height", height).call(zoom);
+
+	var line = d3.svg.line().interpolate("monotone")
+					.x(function(d){return x(d.client_timestamp)})
+					.y(function(d){return y(d.usage)});
+
+	var network_response = network_svg.append("path").attr("class","line")
+							.attr("clip-path", "url(#network_clip)")
+							.attr("id","cpu_usage")
+							.attr("d", line(cpudata));
+
+	var network_response_dots = network_svg.append("g").attr("clip-path", "url(#network_clip)")
+							.attr("id","dots")
+							.selectAll("dots").data(networkdata).enter()
+							.append("circle").attr("class","dot").attr("r",2)
+							.attr("transform",function (d) {
+								return "translate("+x(d.client_timestamp)+","+y(d.usage)+")";
+							})
+							.on("click",function (d) {
+								detail_box.selectAll("div").remove();
+								detail_box.append("div")
+									.text("cpu usage: "+d.usage);
+							});
+
+	cpu_svg.append("g").attr("class", "y axis")
+
+	cpu_svg.append("g").attr("class", "x axis")
+	    .attr("transform", "translate(0,"+height+")");
+
+	onZoom();
+
+	function onZoom() {
+		yAxis.tickSize(-width);
+		cpu_svg.select("g.x.axis").call(xAxis);
+		cpu_svg.select("g.y.axis").call(yAxis);
+		cpu_svg.select("#network_response").attr("d",line(networkdata));
+		cpu_svg.selectAll("circle.dot").attr("transform",function (d) {
+			return "translate("+x(d.client_timestamp)+","+y(d.usage)+")";
+		});
+	}
+
+	var legend_width = 80;
+	var legend_height = 30;
+	var legend_margin = {top: 10, bottom: 10, left: 10, right: 10};
+
+	var legend = cpu_svg.append("g")
+			.attr("class", "legend")
+			.attr("transform", "translate("+(width-legend_width-legend_margin.right)+","+legend_margin.top+")");
+
+	legend.append("rect")
+			.attr("class", "legend_bg")
+			.attr("width",legend_width)
+			.attr("height",legend_height)
+			.attr("stroke","none")
+			.attr("fill","#eeeeee");
+
+	var field_list = legend.append("g").attr("class","field_list");
+
+	field_list.append("rect").attr("width",5).attr("height",5)
+				.attr("x",5).attr("y",5)
+				.attr("stroke","none").attr("fill","#111111");
+
+	field_list.append("text")
+				.attr("x",15).attr("y",10)
+				.text("network response");
+
+	var network_graph_resize = function onResize() {
+		width = d3.select('#network-deeper').style('width').split("px")[0]-80;
+		d3.select("#network_svg").attr("width",width+margin.left+margin.right);
+		pane.attr("width",width);
+		d3.select("#network_clip_rect").attr("width",width);
+		x.range([0,width]);
+		onZoom();
+		legend.attr("transform", "translate("+(width-legend_width-legend_margin.right)+","+legend_margin.top+")");
+	}
+
+	resizeFunctions.push(network_graph_resize);
+
 }

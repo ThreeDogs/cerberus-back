@@ -9,6 +9,12 @@
 			</div>
 			<div class="below-page-title">Test Result > Full Report > Detail Report</div>
 
+			<span class="page-subtitle">Network Response Size Chart</span>
+			<div class="deeper">
+				<div id="network-deeper" class="deeper-view"></div>
+				<div class="deeper-legend"></div>
+			</div>
+
 			<div class="deeper">
 				<div id="network-raw-data"></div>
 			</div>
@@ -18,13 +24,14 @@
 </div>
 
 <script>
-d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_network_infos", function (err, data) {
+d3.json("/pe.json", function (err, data) {
 
 	makeRawTable(
 		"draw-time-raw-data",
-		data,
+		data.network_infos_attributes,
 		["id","usage","client_timestamp"],
 		["id","cpu usage (percentage)", "timestamp"]
 	);
 })
+///api/v1/detail_reports/<%= @detail_report.id %>/get_network_infos
 </script>
