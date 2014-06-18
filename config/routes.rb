@@ -32,6 +32,7 @@ CerberusBack::Application.routes.draw do
           post 'finish_test'
         end
         member do
+          get 'get_motion_event_infos'
           get 'get_report_infos'
           get 'get_memory_infos'
           get 'get_cpu_infos'

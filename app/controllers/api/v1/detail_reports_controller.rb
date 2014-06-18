@@ -34,6 +34,12 @@ class Api::V1::DetailReportsController < ApplicationController
 		render 'detail_reports/api/get_report_infos'
 	end
 
+	def get_motion_event_infos
+		@detail_report = DetailReport.find(params[:id])
+		@motion_event_infos = @detail_report.motion_event_infos
+		render 'detail_reports/api/get_motion_event_infos'
+	end
+
 	def get_memory_infos
 		@detail_report = DetailReport.find(params[:id])
 		@memory_infos = @detail_report.memory_infos
