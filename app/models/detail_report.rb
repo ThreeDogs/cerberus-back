@@ -46,11 +46,17 @@ class DetailReport < ActiveRecord::Base
   end
 
   def rank
-    test_scenario.get_rank
+    if test_scenario
+      return test_scenario.get_rank
+    end
+    "A"
   end
 
   def test_scenario_name
-    test_scenario.name
+    if test_scenario
+      return test_scenario.name
+    end
+    "A"
   end
 
   def test_date
