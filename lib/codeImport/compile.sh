@@ -24,7 +24,7 @@ cd $1/temp2
 echo $3
 
 #javac -d $3/temp2 -cp $1/temp2/libo.jar
-javac -d $1/temp2 -cp $1/temp2/libo.jar:$1/android-support-v4.jar:$1/android.jar:$1/robotium-solo-5.1.jar:$1/lib3.jar $3
+javac -encoding UTF8 -d $1/temp2 -cp $1/temp2/libo.jar:$1/android-support-v4.jar:$1/android.jar:$1/robotium-solo-5.1.jar:$1/lib3.jar $3
 # class 변환
 
 java -classpath $1/asm-all-4.2.jar:$1/gson-2.2.4.jar:$1/codeimport.jar upload.code.cerberus.JavaCompileInfo $1/temp2/org/cerberus/test $4 $1/temp3
@@ -35,7 +35,7 @@ $1/jad158g.mac.intel/jad -o -sjava *
 
 #echo $5
 
-echo javac -d $5 -cp $1/temp2/libo.jar:$1/android-support-v4.jar:$1/android.jar:$1/robotium-solo-5.1.jar CerberusRunner_$4.class
+echo javac -encoding UTF8 -d $5 -cp $1/temp2/libo.jar:$1/android-support-v4.jar:$1/android.jar:$1/robotium-solo-5.1.jar CerberusRunner_$4.class
 
 javac -d $5 -cp $1/temp2/libo.jar:$1/android-support-v4.jar:$1/android.jar:$1/robotium-solo-5.1.jar:$1/lib3.jar CerberusRunner_$4.java
 
