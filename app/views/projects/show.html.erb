@@ -141,20 +141,20 @@
 						<img src="/assets/legend_mam.png">
 					</div>
 				</div>
+				<%= javascript_tag do %>
+
+					d3.json("/api/v1/total_reports/<%= @recent_report.id %>/device_failure_detail", function(data){
+						var data = data;
+						console.log(data);
+						drawFailByDevice(data.device_failure_detail);
+					});
+
+				<% end %>
 			<% end %>
 		</div>
 	</div>
 </div>
 
-<%= javascript_tag do %>
-
-d3.json("/api/v1/total_reports/<%= @recent_report.id %>/device_failure_detail", function(data){
-	var data = data;
-	console.log(data);
-	drawFailByDevice(data.device_failure_detail);
-});
-
-<% end %>
 
 <script>
 
