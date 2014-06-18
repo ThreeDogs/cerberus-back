@@ -306,6 +306,21 @@
 	.legend {
 		font: 12px sans-serif;
 	}
+
+	.network-line {
+		stroke-width: 4;
+		stroke: yellow;
+	}
+
+	.activity-line {
+		stroke-width: 4;
+		stroke: green;
+	}
+
+	.image-line {
+		stroke-width: 4;
+		stroke: blue;
+	}
 }
 
 #cpu-method {
