@@ -34,6 +34,7 @@ class TotalReportsController < ServiceController
     @apk = Apk.find(params[:apk_id])
     @project = Project.find(@apk.project.id)
     @total_report = @apk.total_reports.build(project_id: @project.id)
+    device_list = JSON.parse(get_device_list)
     session[:return_to] ||= request.referer
 
     test_scenario_ids = params[:total_report][:test_scenario_ids].collect{|key,value| key.to_i if value == "1"}.compact
@@ -50,6 +51,11 @@ class TotalReportsController < ServiceController
         test_scenario_ids.each do |test_scenario_id|
           @total_report.scenarioships.create!(test_scenario_id: test_scenario_id)
         end
+
+        device_list.each do |device| 
+          @total_report.devices.create!(device)
+        end
+
         redirect_to start_test_total_report_path(@total_report)
       rescue Exception => e
         redirect_to session.delete(:return_to)
