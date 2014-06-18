@@ -6,6 +6,7 @@ class CreateDetailReports < ActiveRecord::Migration
       t.float :running_time
       t.string :device_key, index: true
       t.references :test_scenario, index: true
+      t.references :test_code, index: true
       t.references :total_report, index: true
       t.references :crash, index: true
 
