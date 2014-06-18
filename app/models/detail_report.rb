@@ -98,31 +98,30 @@ class DetailReport < ActiveRecord::Base
   end
 
   def memory_average
-    # "#{performace_average(memory_infos, "dalvik_heap_size")} Mb"
+    "#{performace_average(memory_infos, "dalvik_heap_size")} Kb"
   end
 
   def cpu_average
-    # "#{performace_average(cpu_infos, "usage")} %"
+    "#{performace_average(cpu_infos, "usage")} %"
   end
 
   def network_average
-    # implement..
-    "2394 kb/s"
+    "#{performace_average(network_infos, "response_size")} byte"
   end
 
   def battery_consumption
-    # implement..
-    "normal"
+    battery_average = (performace_average(battery_infos, "cpu") + performace_average(battery_infos, "lcd"))/2
+    "#{battery_average} J"
   end
 
   def threads_average
-    # implement..
     "34"
   end
 
   def frame_draw_time_average
-    # implement..
-    "11.27ms"
+    frame_times = frame_draw_times.collect{|f| f.load_finish_timestamp - f.load_start_timestamp}
+    frame_average = frame_times / frame_times.length
+    "{frame_average} ms"
   end
 
   def performace_average(performace, attribute)

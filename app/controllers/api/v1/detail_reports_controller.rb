@@ -3,7 +3,7 @@ class Api::V1::DetailReportsController < ApplicationController
 	respond_to :json
 
 	def create
-		if params[:crash]
+		if params[:crash_status] == 1
 			crash_json = params[:crash]
 			detail_report_json = params[:detail_report]
 			DetailReportWithCrashWorker.perform_async(crash_json, detail_report_json)
