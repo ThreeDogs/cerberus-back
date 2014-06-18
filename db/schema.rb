@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20140617063652) do
     t.float    "running_time"
     t.string   "device_key"
     t.integer  "test_scenario_id"
+    t.integer  "test_code_id"
     t.integer  "total_report_id"
     t.integer  "crash_id"
     t.datetime "created_at"
@@ -99,6 +100,7 @@ ActiveRecord::Schema.define(version: 20140617063652) do
   end
 
   add_index "detail_reports", ["crash_id"], name: "index_detail_reports_on_crash_id"
+  add_index "detail_reports", ["test_code_id"], name: "index_detail_reports_on_test_code_id"
   add_index "detail_reports", ["test_scenario_id"], name: "index_detail_reports_on_test_scenario_id"
   add_index "detail_reports", ["total_report_id"], name: "index_detail_reports_on_total_report_id"
 

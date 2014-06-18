@@ -30,12 +30,9 @@
 				<div id="event-detail">Click on event for more detail</div>
 			<div>
 
-			<%= link_to "Export Code", @test_scenario.export_code, class: "btn btn-info" %>	
-			
+			<%= link_to "Export Code", @test_scenario.export_code, class: "btn btn-info" %>		
 			
 			<div class="table-wrapper">
-			<div class="edit-button"></div>
-			<%= nested_form_for([@project, @test_scenario]) do |f| %>
 			  <table class="motion-events-table">
 			  	<tr>
 			  		<th>Activity</th>
@@ -43,16 +40,16 @@
 			  		<th>Event Type</th>
 			  		<th>Parameter</th>
 			  	</tr>
-					<%= f.fields_for :motion_events do |builder| %>
+					<%= @motion_events.each do |motion_event| %>
 						<tr>
-				  		<tr><%= builder.object.activity_class %></tr>
-				  		<tr><%= builder.object.view %></tr>
-				  		<tr><%= builder.object.action_type %></tr>
-				  		<tr><%= builder.text_field :param %></tr>
+				  		<td><%= motion_event.activity_class %></td>
+				  		<td><%= motion_event.view %></td>
+				  		<td><%= motion_event.action_type %></td>
+				  		<td><%= motion_event.param %></td>
 				  	</tr>
 					<% end %>
 			  </table>
-			<% end %>
+			
 			</div>
 		</div>
 	</div>
