@@ -34,8 +34,8 @@
 						<div id="band-graph"></div>
 						<% @recent_report.test_rank_status.each do |v, k| %>
 							<%=	javascript_tag do %>
-								addBandGraph("<%= v.to_s %>",<%= k[1] %>,<%= k[0] %>);
-							<% end %>+
+								addBandGraph("<%= v.to_s %>",<%= k[0] %>,<%= k[1] %>);
+							<% end %>
 						<% end %>
 						<div class="band-graph-legend">
 							<img src="/assets/legend1.png">
