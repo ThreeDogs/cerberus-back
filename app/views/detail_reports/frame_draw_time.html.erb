@@ -25,6 +25,8 @@
 <script>
 d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_frame_draw_times", function (err, data) {
 
+	drawDrawTimeDeeper(data);
+
 	makeRawTable(
 		"draw-time-raw-data",
 		data,

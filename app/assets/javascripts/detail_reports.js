@@ -177,8 +177,6 @@ function drawDetailReports (data) {
 
 	function drawBatteryChart (data) {
 
-		console.log(data);
-
 		var width = d3.select('#battery-chart').style('width').split("px")[0];
 		var height = d3.select('#battery-chart').style('height').split("px")[0];
 		var margin = {top:10, right: 10, bottom: 30, left: 40};
@@ -906,3 +904,307 @@ function drawNetworkDeeper(networkdata) {
 	resizeFunctions.push(network_graph_resize);
 
 }
+
+
+function drawDrawTimeDeeper(drawtimedata) {
+	var margin = {top: 10, right: 10, bottom: 30, left: 50};
+	var width = d3.select('#draw-time-deeper').style('width').split("px")[0]-80;
+	var height = 420;
+
+	var draw_time_svg = d3.select("#draw-time-deeper").append("svg")
+					.attr("id","draw_time_svg")
+					.attr("height",height+margin.top+margin.bottom)
+					.attr("width",width+margin.left+margin.right)
+					.append("g")
+					.attr("transform","translate("+margin.left+","+margin.top+")");
+
+	var zero = data[0].load_start_timestamp;
+	for (index in data) {
+		var one = data[index];
+		one.client_timestamp = (one.load_start_timestamp - zero) /1000;
+		one.delta = one.load_finish_timestamp - one.load_start_timestamp;
+	}
+
+	var x = d3.scale.linear().range([0, width]);
+	var y = d3.scale.linear().range([height, 0]);
+
+	x_extent = [0, drawtimedata[drawtimedata.length-1].client_timestamp];
+	y_extent = [0, d3.max(drawtimedata, function (d) {return d.response_size * 1.1})];
+	x.domain(x_extent);
+	y.domain(y_extent);
+
+	var xAxis = d3.svg.axis().scale(x).orient("bottom")
+				    .tickSize(-height, 0).tickPadding(6);
+
+	var yAxis = d3.svg.axis().scale(y).orient("left")
+				    .tickSize(-width).tickPadding(6);
+
+	draw_time_svg.append("clipPath").attr("id","draw_time_clip")
+			.append("rect").attr("id","draw_time_clip_rect")
+			.attr("width",width).attr("height",height);
+
+	var detail_box = d3.select("#draw_time_graph_detail_info");
+
+	var zoom = d3.behavior.zoom().on("zoom", onZoom)
+				.scaleExtent([0.1,4]).x(x);
+
+	var pane = draw_time_svg.append("rect").attr("class", "pane")
+	    .attr("width", width).attr("height", height).call(zoom);
+
+	var lines = draw_time_svg.append("g").attr("clip-path", "url(#draw_time_clip)")
+				.attr("class","draw-time-lines")
+				.selectAll("lines").data(drawtimedata).enter().append("line")
+				.attr("class",function (d) {return "draw-time-line"})
+				.attr("y1",function (d) {return y(0)})
+				.attr("y2",function (d) {return y(d.response_size)})	
+				.attr("x1",function (d) {return x(d.client_timestamp)})
+				.attr("x2",function (d) {return x(d.client_timestamp)});
+
+
+	draw_time_svg.append("g").attr("class", "y axis")
+
+	draw_time_svg.append("g").attr("class", "x axis")
+	    .attr("transform", "translate(0,"+height+")");
+
+	onZoom();
+
+	function onZoom() {
+		yAxis.tickSize(-width);
+		draw_time_svg.select("g.x.axis").call(xAxis);
+		draw_time_svg.select("g.y.axis").call(yAxis);
+		lines.attr("x1",function (d) {return x(d.client_timestamp)})
+			.attr("x2",function (d) {return x(d.client_timestamp)});
+	}
+
+	var legend_width = 120;
+	var legend_height = 30;
+	var legend_margin = {top: 10, bottom: 10, left: 10, right: 10};
+
+	var legend = draw_time_svg.append("g")
+			.attr("class", "legend")
+			.attr("transform", "translate("+(width-legend_width-legend_margin.right)+","+legend_margin.top+")");
+
+	legend.append("rect")
+			.attr("class", "legend_bg")
+			.attr("width",legend_width)
+			.attr("height",legend_height)
+			.attr("stroke","none")
+			.attr("fill","#eeeeee");
+
+	var field_list = legend.append("g").attr("class","field_list");
+
+	field_list.append("rect").attr("width",5).attr("height",5)
+				.attr("x",5).attr("y",5)
+				.attr("stroke","none").attr("fill","teal");
+
+	field_list.append("text")
+				.attr("x",15).attr("y",10)
+				.text("frame draw time");
+
+	var draw_time_graph_resize = function onResize() {
+		width = d3.select('#draw-time-deeper').style('width').split("px")[0]-80;
+		d3.select("#draw_time_svg").attr("width",width+margin.left+margin.right);
+		pane.attr("width",width);
+		d3.select("#draw_time_clip_rect").attr("width",width);
+		x.range([0,width]);
+		onZoom();
+		legend.attr("transform", "translate("+(width-legend_width-legend_margin.right)+","+legend_margin.top+")");
+	}
+
+	resizeFunctions.push(draw_time_graph_resize);
+
+}
+
+function drawBatteryDeeper(batterydata) {
+	var margin = {top: 10, right: 10, bottom: 30, left: 50};
+	var width = d3.select('#battery-deeper').style('width').split("px")[0]-80;
+	var height = 420;
+
+	var battery_svg = d3.select("#battery-deeper").append("svg")
+					.attr("id","battery_svg")
+					.attr("height",height+margin.top+margin.bottom)
+					.attr("width",width+margin.left+margin.right)
+					.append("g")
+					.attr("transform","translate("+margin.left+","+margin.top+")");
+
+	for (index in batterydata) {
+		var one = batterydata[index];
+		for (key in one) {
+			if (one[key] == null) {
+				one[key] = 0;
+			}
+			else {
+				one[key] = parseInt(one[key]);
+			}
+		}
+		one.sum = one.cpu + one.gps + one.wifi + one.threeg + one.sound + one.lcd;
+	}
+
+	var x = d3.scale.linear().range([0, width]);
+	var y = d3.scale.linear().range([height, 0]);
+
+	x_extent = [0, batterydata[batterydata.length-1].client_timestamp];
+	y_extent = [0, 100];
+	x.domain(x_extent);
+	y.domain(y_extent);
+
+	var xAxis = d3.svg.axis().scale(x).orient("bottom")
+				    .tickSize(-height, 0).tickPadding(6);
+
+	var yAxis = d3.svg.axis().scale(y).orient("left")
+				    .tickSize(-width).tickPadding(6);
+
+	battery_svg.append("clipPath").attr("id","battery_clip")
+			.append("rect").attr("id","battery_clip_rect")
+			.attr("width",width).attr("height",height);
+
+	var detail_box = d3.select("#battery_graph_detail_info");
+
+	var zoom = d3.behavior.zoom().on("zoom", onZoom)
+				.scaleExtent([0.1,4]).x(x);
+
+	var pane = battery_svg.append("rect").attr("class", "pane")
+	    .attr("width", width).attr("height", height).call(zoom);
+
+	battery_svg.append("g").attr("class", "y axis")
+
+	battery_svg.append("g").attr("class", "x axis")
+	    .attr("transform", "translate(0,"+height+")");
+
+	var fields = ["cpu","gps","wifi","threeg","sound","lcd"];
+
+	var cpu_field = new Field("cpu");
+	var gps_field = new Field("gps");
+	var wifi_field = new Field("wifi");
+	var threeg_field = new Field("threeg");
+	var sound_field = new Field("sound");
+	var lcd_field = new Field("lcd");
+
+	function Field (field_name) {
+		var area = d3.svg.area()
+					.x(function (d) {return x(d.client_timestamp)})
+					.y0(function (d) {
+						var sum = 0;
+						for(var i=0; i<fields.indexOf(field_name); i++) {
+							sum += d[fields[i]];
+						}
+						return y((sum/d.sum) * 100);
+					})
+					.y1(function (d) {
+						var sum = 0;
+						for(var i=0; i<=fields.indexOf(field_name); i++) {
+							sum += d[fields[i]];
+						}
+						return y((sum/d.sum) * 100);
+					})
+		var path = battery_svg.append("path").attr("class","battery-"+field_name)
+					.attr("clip-path", "url(#battery_clip)")
+					.attr("d",area(batterydata));
+
+		var resize = function () {
+			path.attr("d",area(batterydata));
+		}
+
+		return {area:area, path:path, resize:resize};
+	}
+
+	onZoom();
+
+	function onZoom() {
+		yAxis.tickSize(-width);
+		battery_svg.select("g.x.axis").call(xAxis);
+		battery_svg.select("g.y.axis").call(yAxis);
+		cpu_field.resize();
+		gps_field.resize();
+		wifi_field.resize();
+		threeg_field.resize();
+		sound_field.resize();
+		lcd_field.resize();
+	}
+
+	pane.moveToFront();
+
+	var legend_width = 80;
+	var legend_height = 30;
+	var legend_margin = {top: 10, bottom: 10, left: 10, right: 10};
+
+	var legend = battery_svg.append("g")
+			.attr("class", "legend")
+			.attr("transform", "translate("+(width-legend_width-legend_margin.right)+","+legend_margin.top+")");
+
+	legend.append("rect")
+			.attr("class", "legend_bg")
+			.attr("width",legend_width)
+			.attr("height",legend_height)
+			.attr("stroke","none")
+			.attr("fill","#eeeeee");
+
+	var field_list = legend.append("g").attr("class","field_list");
+
+	field_list.append("rect").attr("width",5).attr("height",5)
+				.attr("x",5).attr("y",5)
+				.attr("stroke","none").attr("fill","#111111");
+
+	field_list.append("text")
+				.attr("x",15).attr("y",10)
+				.text("battery usage");
+
+	var battery_graph_resize = function onResize() {
+		width = d3.select('#battery-deeper').style('width').split("px")[0]-80;
+		d3.select("#battery_svg").attr("width",width+margin.left+margin.right);
+		pane.attr("width",width);
+		d3.select("#battery_clip_rect").attr("width",width);
+		x.range([0,width]);
+		onZoom();
+		legend.attr("transform", "translate("+(width-legend_width-legend_margin.right)+","+legend_margin.top+")");
+	}
+
+	resizeFunctions.push(battery_graph_resize);
+
+}
+
+
+// function drawBatteryChart (data) {
+
+// 		var width = d3.select('#battery-chart').style('width').split("px")[0];
+// 		var height = d3.select('#battery-chart').style('height').split("px")[0];
+// 		var margin = {top:10, right: 10, bottom: 30, left: 40};
+// 		var svg = d3.select('#battery-chart').append('svg')
+// 					.attr('width',width).attr('height',height);
+
+
+// 		var x_extent = d3.extent(data, function (d) { return d.client_timestamp });
+// 		var y_extent = [0, 100];
+
+// 		var x_scale = d3.scale.linear().domain(x_extent).range([margin.left,width-margin.right]);
+// 		var y_scale = d3.scale.linear().domain(y_extent).range([height-margin.bottom,margin.top]);
+
+// 		var x_axis = d3.svg.axis().scale(x_scale).orient('bottom').innerTickSize(3).outerTickSize([0]);
+// 		var y_axis = d3.svg.axis().scale(y_scale).orient('left').innerTickSize(3).outerTickSize([0]);
+	
+// 		var battery_x_axis = svg.append("g").attr("class", "x axis")
+// 				.attr("transform", "translate(0,"+(height-margin.bottom)+")")
+// 				.call(x_axis);
+
+// 		var battery_y_axis = svg.append("g").attr("class", "y axis")
+// 				.attr("transform", "translate("+margin.left+",0)")
+// 				.call(y_axis);
+
+		
+
+		
+
+// 		function onResize () {
+// 			width = d3.select('#battery-chart').style('width').split("px")[0];
+// 			svg.attr("width",width);
+// 			x_scale.range([margin.left,width-margin.right]);
+// 			x_axis.scale(x_scale);
+// 			battery_x_axis.call(x_axis);
+// 			cpu_field.resize();
+// 			gps_field.resize();
+// 			wifi_field.resize();
+// 			threeg_field.resize();
+// 			sound_field.resize();
+// 		}
+// 		resizeFunctions.push(onResize);
+// 	}

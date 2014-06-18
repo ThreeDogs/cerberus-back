@@ -9,6 +9,14 @@
 			</div>
 			<div class="below-page-title">Test Result > Full Report > Detail Report</div>
 
+			<span class="page-subtitle">Battery Usage Chart</span>
+			<div class="deeper">
+				<div id="battery-deeper" class="deeper-view"></div>
+				<div class="deeper-legend">
+					<div id="battery_graph_detail_info" class="detail-info-box"></div>
+				</div>
+			</div>
+
 			<div class="deeper">
 				<div id="battery-raw-data"></div>
 			</div>
@@ -26,6 +34,10 @@ d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_battery_infos", fun
 		["id","cpu","lcd","gps","wifi","threeg","sound","client_timestamp"],
 		["id","cpu","lcd","gps","wifi","threeg","sound","timestamp"]
 	);
+})
+
+d3.json("/pe.json", function (err, data) {
+	drawBatteryDeeper(dataProcess(data.detail_report.battery_infos_attributes));
 })
 </script>
 

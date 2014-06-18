@@ -327,6 +327,36 @@
 		stroke-width: 4;
 		stroke: blue;
 	}
+
+	.draw-time-line {
+		stroke-width: 4;
+		stroke: teal;
+	}
+
+	.battery-cpu {
+		fill: #EA7C4B;
+		opacity: 0.5;
+	}
+	.battery-wifi {
+		fill: #ED9FBD;
+		opacity: 0.5;
+	}
+	.battery-gps {
+		fill: #34989A;
+		opacity: 0.5;
+	}
+	.battery-threeg {
+		fill: #A28BBC;
+		opacity: 0.5;
+	}
+	.battery-sound {
+		fill: #D6B6EF;
+		opacity: 0.5;
+	}
+	.battery-lcd {
+		fill: #52C4D0;
+		opacity: 0.5;
+	}
 }
 
 #cpu-method {
