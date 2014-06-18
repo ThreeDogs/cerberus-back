@@ -56,10 +56,10 @@ class Project < ActiveRecord::Base
 
   # state _fail, _warning
   def get_color_band
-    return "color_band" unless recent_report_rank_status or recent_total_report
-    return "color_band_fail" if recent_report_rank_status["A"][1] >= 1 or recent_report_rank_status["B"][1] >= 5
-    return "color_band_warning" if recent_report_rank_status["B"][1] >= 1 or recent_report_rank_status["C"][1] >= 1 or recent_report_rank_status["D"][1] >= 1
-    "color_band"
+    return "color_band" 
+    # return "color_band_fail" if recent_report_rank_status["A"][1] >= 1 or recent_report_rank_status["B"][1] >= 5
+    # return "color_band_warning" if recent_report_rank_status["B"][1] >= 1 or recent_report_rank_status["C"][1] >= 1 or recent_report_rank_status["D"][1] >= 1
+    # "color_band"
   end
 
   def test_names
