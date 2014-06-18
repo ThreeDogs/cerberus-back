@@ -40,7 +40,11 @@ class TotalReport < ActiveRecord::Base
   end
 
   def apk_name
-  	apk.apk_name
+    if apk
+  	  apk.apk_name
+    else
+      "APK Error"
+    end
   end
 
   def package_name

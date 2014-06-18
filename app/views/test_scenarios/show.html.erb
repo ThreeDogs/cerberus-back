@@ -20,6 +20,11 @@
 				</div>
 				<div class="detail_content"><%= @test_scenario.description %></div>
 				<div class="recently_tested">recently tested on: <%= @test_scenario.recent_test_date %></div>
+				<div class="pull-right">
+					<%= link_to "Export Code", @test_scenario.export_code, class: "btn btn-success" %>	
+				</div>
+				<br>
+				<br>
 			</div>
 
 			<span class="page-subtitle">Event Path</span>
@@ -30,8 +35,6 @@
 				<div id="event-detail">Click on event for more detail</div>
 			<div>
 
-			<%= link_to "Export Code", @test_scenario.export_code, class: "btn btn-info" %>		
-			
 			<div class="table-wrapper">
 			  <table class="motion-events-table">
 			  	<tr>
