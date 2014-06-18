@@ -11,7 +11,7 @@ function drawDetailReports (data) {
 
 		var width = d3.select('#battery-chart').style('width').split("px")[0];
 		var height = d3.select('#battery-chart').style('height').split("px")[0];
-		var margin = {top:10, right: 10, bottom: 30, left: 60};
+		var margin = {top:10, right: 10, bottom: 30, left: 40};
 		var svg = d3.select('#battery-chart').append('svg')
 					.attr('width',width).attr('height',height);
 
@@ -141,6 +141,15 @@ function drawDetailReports (data) {
 	}
 
 	function dataProcess(data) {
+
+		for (var i=0; i<data.length; i++) {
+			for (key in data[i]) {
+				if (data[i][key] == null) {
+					data.splice(i,i);
+				}
+			}
+		};
+
 		data.sort(function (a, b) {
 			if (a.client_timestamp < b.client_timestamp){
 				return -1;

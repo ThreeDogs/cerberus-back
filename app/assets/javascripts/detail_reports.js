@@ -177,15 +177,26 @@ function drawDetailReports (data) {
 
 	function drawBatteryChart (data) {
 
+		console.log(data);
+
 		var width = d3.select('#battery-chart').style('width').split("px")[0];
 		var height = d3.select('#battery-chart').style('height').split("px")[0];
-		var margin = {top:10, right: 10, bottom: 30, left: 60};
+		var margin = {top:10, right: 10, bottom: 30, left: 40};
 		var svg = d3.select('#battery-chart').append('svg')
 					.attr('width',width).attr('height',height);
 
-		data.forEach(function(element, index, array) {
-			elemement.sum = element.cpu + element.gps + element.wifi + element.threeg + element.sound;
-		})
+		for (index in data) {
+			var one = data[index];
+			for (key in one) {
+				if (one[key] == null) {
+					one[key] = 0;
+				}
+				else {
+					one[key] = parseInt(one[key]);
+				}
+			}
+			one.sum = one.cpu + one.gps + one.wifi + one.threeg + one.sound + one.lcd;
+		}
 
 		var x_extent = d3.extent(data, function (d) { return d.client_timestamp });
 		var y_extent = [0, 100];
@@ -204,13 +215,14 @@ function drawDetailReports (data) {
 				.attr("transform", "translate("+margin.left+",0)")
 				.call(y_axis);
 
-		var fields = ["cpu","gps","wifi","threeg","sound"];
+		var fields = ["cpu","gps","wifi","threeg","sound","lcd"];
 
 		var cpu_field = new Field("cpu");
 		var gps_field = new Field("gps");
 		var wifi_field = new Field("wifi");
 		var threeg_field = new Field("threeg");
 		var sound_field = new Field("sound");
+		var lcd_field = new Field("lcd");
 
 		function Field (field_name) {
 			var area = d3.svg.area()
@@ -258,7 +270,7 @@ function drawDetailReports (data) {
 
 		var width = d3.select('#draw-time-chart').style('width').split("px")[0];
 		var height = d3.select('#draw-time-chart').style('height').split("px")[0];
-		var margin = {top:10, right: 10, bottom: 30, left: 60};
+		var margin = {top:10, right: 10, bottom: 30, left: 40};
 		var svg = d3.select('#draw-time-chart').append('svg')
 					.attr('width',width).attr('height',height);
 
@@ -289,6 +301,7 @@ function drawDetailReports (data) {
 		var lines = svg.append("g").attr("class","draw-time-lines");
 		lines.selectAll("lines").data(data).enter().append("line")
 				.attr("class",function (d) {return d.view_type+"-line"})
+				.attr("stroke-width",3)
 				.attr("y1",function (d) {return y_scale(0)})
 				.attr("y2",function (d) {return y_scale(d.delta)})	
 				.attr("x1",function (d) {return x_scale(d.client_timestamp)})
@@ -309,21 +322,14 @@ function drawDetailReports (data) {
 
 	function drawNetworkChart (data) {
 
-		var width = d3.select('#draw-time-chart').style('width').split("px")[0];
-		var height = d3.select('#draw-time-chart').style('height').split("px")[0];
+		var width = d3.select('#network-chart').style('width').split("px")[0];
+		var height = d3.select('#network-chart').style('height').split("px")[0];
 		var margin = {top:10, right: 10, bottom: 30, left: 60};
-		var svg = d3.select('#draw-time-chart').append('svg')
+		var svg = d3.select('#network-chart').append('svg')
 					.attr('width',width).attr('height',height);
 
-		var zero = data[0].load_start_timestamp;
-		for (index in data) {
-			var one = data[index];
-			one.client_timestamp = (one.load_start_timestamp - zero) /1000;
-			one.delta = one.load_finish_timestamp - one.load_start_timestamp;
-		}
-
 		var x_extent = d3.extent(data, function (d) { return d.client_timestamp });
-		var y_extent = [0,d3.max(data, function (d) { return d.delta * 1.1})];
+		var y_extent = [0,d3.max(data, function (d) { return d.response_size * 1.1})];
 
 		var x_scale = d3.scale.linear().domain(x_extent).range([margin.left,width-margin.right]);
 		var y_scale = d3.scale.linear().domain(y_extent).range([height-margin.bottom,margin.top]);
@@ -339,16 +345,16 @@ function drawDetailReports (data) {
 				.attr("transform", "translate("+margin.left+",0)")
 				.call(y_axis);
 
-		var lines = svg.append("g").attr("class","draw-time-lines");
+		var lines = svg.append("g").attr("class","network-response-lines");
 		lines.selectAll("lines").data(data).enter().append("line")
 				.attr("class",function (d) {return d.view_type+"-line"})
 				.attr("y1",function (d) {return y_scale(0)})
-				.attr("y2",function (d) {return y_scale(d.delta)})	
+				.attr("y2",function (d) {return y_scale(d.response_size)})	
 				.attr("x1",function (d) {return x_scale(d.client_timestamp)})
 				.attr("x2",function (d) {return x_scale(d.client_timestamp)});
 
 		function onResize () {
-			width = d3.select('#draw-time-chart').style('width').split("px")[0];
+			width = d3.select('#network-chart').style('width').split("px")[0];
 			svg.attr("width",width);
 			x_scale.range([margin.left,width-margin.right]);
 			x_axis.scale(x_scale);
@@ -364,30 +370,42 @@ function drawDetailReports (data) {
 	drawCPUChart(dataProcess(data.cpu_infos));
 	drawMemChart(dataProcess(data.memory_infos));
 	drawBatteryChart(dataProcess(data.battery_infos));
-	drawDrawTimeChart(dataProcess(data.frame_draw_times))
+	drawDrawTimeChart(dataProcess(data.frame_draw_times));
+	drawNetworkChart(dataProcess(data.network_infos));
 
 }
 
 function dataProcess(data) {
-		data.sort(function (a, b) {
-			if (a.client_timestamp < b.client_timestamp){
-				return -1;
-			} else if (a.client_timestamp > b.client_timestamp){
-				return 1;
-			} else {
-				return 0;
+
+	//to deal with null fields which cause NaN issue
+	for (var i=0; i<data.length; i++) {
+		for (key in data[i]) {
+			if (data[i][key] == null) {
+				data.splice(i,i);
+				break;
 			}
-		});
+		}
+	};
 
-		// Process the client java timestamp (ms)
-		// into relative time in second with first element at 0s
-		var zero = data[0].client_timestamp;
-		data.forEach(function (element, index) {
-			element.client_timestamp = (element.client_timestamp - zero) / 1000;
-		});
+	data.sort(function (a, b) {
+		if (a.client_timestamp < b.client_timestamp){
+			return -1;
+		} else if (a.client_timestamp > b.client_timestamp){
+			return 1;
+		} else {
+			return 0;
+		}
+	});
 
-		return data;
-	}
+	// Process the client java timestamp (ms)
+	// into relative time in second with first element at 0s
+	var zero = data[0].client_timestamp;
+	data.forEach(function (element, index) {
+		element.client_timestamp = (element.client_timestamp - zero) / 1000;
+	});
+
+	return data;
+}
 
 function methodProfiling (data) {
 
