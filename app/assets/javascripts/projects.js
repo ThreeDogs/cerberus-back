@@ -48,6 +48,18 @@ function drawFailByDevice (data) {
 	var y_domain = [];
 	for (var each in data) {
 		y_domain.push(data[each].device_name);
+		if (data[each].fail_data.A == undefined) {
+			data[each].fail_data.A = [];
+		}
+		if (data[each].fail_data.B == undefined) {
+			data[each].fail_data.B = [];
+		}
+		if (data[each].fail_data.C == undefined) {
+			data[each].fail_data.C = [];
+		}
+		if (data[each].fail_data.D == undefined) {
+			data[each].fail_data.D = [];
+		}
 	}
 
 	var x_extent = [0,data[0].fail_data.A.length+data[0].fail_data.B.length+data[0].fail_data.C.length+data[0].fail_data.D.length];
