@@ -106,6 +106,7 @@
 </div>
 
 <%= javascript_tag do %>
-	d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_report_infos",drawDetailReports);
+	d3.json("/detailreporttestdata.json", function (err, data) { drawDetailReports(data) });
+	///api/v1/detail_reports/<%= @detail_report.id %>/get_report_infos
 	//d3.json("http://127.0.0.1:3000/testdata.json",drawDetailReports);
 <% end %>

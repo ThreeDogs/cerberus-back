@@ -177,15 +177,26 @@ function drawDetailReports (data) {
 
 	function drawBatteryChart (data) {
 
+		console.log(data);
+
 		var width = d3.select('#battery-chart').style('width').split("px")[0];
 		var height = d3.select('#battery-chart').style('height').split("px")[0];
 		var margin = {top:10, right: 10, bottom: 30, left: 60};
 		var svg = d3.select('#battery-chart').append('svg')
 					.attr('width',width).attr('height',height);
 
-		data.forEach(function(element, index, array) {
-			elemement.sum = element.cpu + element.gps + element.wifi + element.threeg + element.sound;
-		})
+		for (index in data) {
+			var one = data[index];
+			for (key in one) {
+				if (one[key] == null) {
+					one[key] = 0;
+				}
+				else {
+					one[key] = parseInt(one[key]);
+				}
+			}
+			one.sum = one.cpu + one.gps + one.wifi + one.threeg + one.sound + one.lcd;
+		}
 
 		var x_extent = d3.extent(data, function (d) { return d.client_timestamp });
 		var y_extent = [0, 100];
@@ -204,13 +215,14 @@ function drawDetailReports (data) {
 				.attr("transform", "translate("+margin.left+",0)")
 				.call(y_axis);
 
-		var fields = ["cpu","gps","wifi","threeg","sound"];
+		var fields = ["cpu","gps","wifi","threeg","sound","lcd"];
 
 		var cpu_field = new Field("cpu");
 		var gps_field = new Field("gps");
 		var wifi_field = new Field("wifi");
 		var threeg_field = new Field("threeg");
 		var sound_field = new Field("sound");
+		var lcd_field = new Field("lcd");
 
 		function Field (field_name) {
 			var area = d3.svg.area()
@@ -363,12 +375,22 @@ function drawDetailReports (data) {
 	drawEventScreenshot(dataProcess(data.motion_event_infos));
 	drawCPUChart(dataProcess(data.cpu_infos));
 	drawMemChart(dataProcess(data.memory_infos));
-	//drawBatteryChart(dataProcess(data.battery_infos));
-	//drawDrawTimeChart(dataProcess(data.frame_draw_time_infos))
+	drawBatteryChart(dataProcess(data.battery_infos));
+	drawDrawTimeChart(dataProcess(data.frame_draw_times));
 
 }
 
 function dataProcess(data) {
+
+		for (var i=0; i<data.length; i++) {
+			for (key in data[i]) {
+				if (data[i][key] == null) {
+					data.splice(i,i);
+					break;
+				}
+			}
+		};
+
 		data.sort(function (a, b) {
 			if (a.client_timestamp < b.client_timestamp){
 				return -1;

@@ -141,6 +141,15 @@ function drawDetailReports (data) {
 	}
 
 	function dataProcess(data) {
+
+		for (var i=0; i<data.length; i++) {
+			for (key in data[i]) {
+				if (data[i][key] == null) {
+					data.splice(i,i);
+				}
+			}
+		};
+
 		data.sort(function (a, b) {
 			if (a.client_timestamp < b.client_timestamp){
 				return -1;
