@@ -231,6 +231,16 @@
 			stroke-width: 3;
 			stroke: blue;
 		}
+
+		.Activity-line {
+			stroke-width: 3;
+			stroke: green;
+		}
+
+		.Image-line {
+			stroke-width: 3;
+			stroke: blue;
+		}
 	}
 
 	#network-chart {
@@ -330,6 +340,16 @@
 	}
 
 	.image-line {
+		stroke-width: 4;
+		stroke: blue;
+	}
+
+	.Activity-line {
+		stroke-width: 4;
+		stroke: green;
+	}
+
+	.Image-line {
 		stroke-width: 4;
 		stroke: blue;
 	}
