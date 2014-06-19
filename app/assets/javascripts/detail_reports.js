@@ -950,18 +950,18 @@ function drawDrawTimeDeeper(drawtimedata) {
 					.append("g")
 					.attr("transform","translate("+margin.left+","+margin.top+")");
 
-	var zero = data[0].load_start_timestamp;
-	for (index in data) {
-		var one = data[index];
-		one.client_timestamp = (one.load_start_timestamp - zero) /1000;
+	for (index in drawtimedata) {
+		var one = drawtimedata[index];
+		one.client_timestamp = one.load_start_timestamp;
 		one.delta = one.load_finish_timestamp - one.load_start_timestamp;
 	}
+	drawtimedata = dataProcess(drawtimedata);
 
 	var x = d3.scale.linear().range([0, width]);
 	var y = d3.scale.linear().range([height, 0]);
 
 	x_extent = [0, drawtimedata[drawtimedata.length-1].client_timestamp];
-	y_extent = [0, d3.max(drawtimedata, function (d) {return d.response_size * 1.1})];
+	y_extent = [0, d3.max(drawtimedata, function (d) {return d.delta * 1.1})];
 	x.domain(x_extent);
 	y.domain(y_extent);
 
@@ -988,10 +988,16 @@ function drawDrawTimeDeeper(drawtimedata) {
 				.selectAll("lines").data(drawtimedata).enter().append("line")
 				.attr("class",function (d) {return "draw-time-line"})
 				.attr("y1",function (d) {return y(0)})
-				.attr("y2",function (d) {return y(d.response_size)})	
+				.attr("y2",function (d) {return y(d.delta)})	
 				.attr("x1",function (d) {return x(d.client_timestamp)})
 				.attr("x2",function (d) {return x(d.client_timestamp)});
 
+	supportLine = new SupportLine();
+	supportLine.x = x;
+	supportLine.line = draw_time_svg.append("line").attr("clip-path","url(#draw_time_clip)")
+						.attr("class","support-line")
+						.attr("x1",x(0)).attr("x2",x(0))
+						.attr("y1",y(y_extent[0])).attr("y2",y(y_extent[1]));
 
 	draw_time_svg.append("g").attr("class", "y axis")
 
@@ -1006,6 +1012,7 @@ function drawDrawTimeDeeper(drawtimedata) {
 		draw_time_svg.select("g.y.axis").call(yAxis);
 		lines.attr("x1",function (d) {return x(d.client_timestamp)})
 			.attr("x2",function (d) {return x(d.client_timestamp)});
+		supportLine.line_renew();
 	}
 
 	var legend_width = 120;

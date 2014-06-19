@@ -9,9 +9,13 @@
 			</div>
 			<div class="below-page-title">Test Result > Full Report > Detail Report</div>
 
+			<span class="page-subtitle">Event Path</span>
+			<div class="event-screenshot-wrapper">
+				<div id="event-screenshot-inner"></div>
+			</div>
+
 			<div class="deeper">
-				<div id="draw-time-deeper" class="deeper-view"></div>
-				<div class="deeper-legend"></div>
+				<div id="draw-time-deeper" class="deeper-view-full"></div>
 			</div>
 
 			<div class="deeper">
@@ -23,15 +27,20 @@
 </div>
 
 <script>
-d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_frame_draw_times", function (err, data) {
+// d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_frame_draw_times", function (err, data) {
 
-	drawDrawTimeDeeper(data);
+// 	drawDrawTimeDeeper(data);
 
-	makeRawTable(
-		"draw-time-raw-data",
-		data,
-		["id","usage","client_timestamp"],
-		["id","cpu usage (percentage)", "timestamp"]
-	);
+// 	makeRawTable(
+// 		"draw-time-raw-data",
+// 		data,
+// 		["id","usage","client_timestamp"],
+// 		["id","cpu usage (percentage)", "timestamp"]
+// 	);
+// })
+
+d3.json("/pe.json", function (err, data) {
+	drawDrawTimeDeeper(data.detail_report.frame_draw_times_attributes);
+	drawEventScreenshot(dataProcess(data.detail_report.motion_event_infos_attributes));
 })
 </script>
