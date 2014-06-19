@@ -36,8 +36,8 @@
 
 <script>
 d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_cpu_infos", function (err, data) {
-	drawCPUDeeper(dataProcess(data));
-	methodProfiling(data);
+	drawCPUDeeper(dataProcess(data.cpu_infos));
+	methodProfiling(data.cpu_methods);
 	makeRawTable(
 		"cpu-raw-data",
 		data.detail_report.cpu_infos_attributes,
