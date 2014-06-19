@@ -266,31 +266,31 @@
       ],
       "cpu_infos_attributes":[
          {
-            "usage":"S",
+            "usage":5,
             "client_timestamp":1402487293666
          },
          {
-            "usage":"R",
+            "usage":10,
             "client_timestamp":1402487298463
          },
          {
-            "usage":"S",
+            "usage":12,
             "client_timestamp":1402487303082
          },
          {
-            "usage":"S",
+            "usage":7,
             "client_timestamp":1402487307611
          },
          {
-            "usage":"S",
+            "usage":8,
             "client_timestamp":1402487312095
          },
          {
-            "usage":"S",
+            "usage":6,
             "client_timestamp":1402487316652
          },
          {
-            "usage":"S",
+            "usage":10,
             "client_timestamp":1402487321124
          }
       ],
@@ -3426,7 +3426,7 @@
             "load_start_timestamp":1402487290970,
             "view_id":"abs__up",
             "view_type":"image",
-            "load_finish_timestamp":1402487290970
+            "load_finish_timestamp":1402487290975
          },
          {
             "load_start_timestamp":1402487291007,

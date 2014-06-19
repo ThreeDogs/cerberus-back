@@ -9,6 +9,16 @@
 			</div>
 			<div class="below-page-title">Test Result > Full Report > Detail Report</div>
 
+			<span class="page-subtitle">Event Path</span>
+			<div class="event-screenshot-wrapper">
+				<div id="event-screenshot-inner"></div>
+			</div>
+
+			<span class="page-subtitle">Battery Usage Chart</span>
+			<div class="deeper">
+				<div id="battery-deeper" class="deeper-view-full"></div>
+			</div>
+
 			<div class="deeper">
 				<div id="battery-raw-data"></div>
 			</div>
@@ -19,13 +29,18 @@
 
 <script>
 d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_battery_infos", function (err, data) {
-
+	drawBatteryDeeper(dataProcess(data));
 	makeRawTable(
 		"battery-raw-data",
 		data,
 		["id","cpu","lcd","gps","wifi","threeg","sound","client_timestamp"],
 		["id","cpu","lcd","gps","wifi","threeg","sound","timestamp"]
 	);
+});
+
+d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_motion_event_infos", function (err, data) {
+	drawEventScreenshot(dataProcess(data));
 })
+
 </script>
 
