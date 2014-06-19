@@ -8,7 +8,12 @@
 				<img src="/assets/Result.png">Test Result
 			</div>
 			<div class="below-page-title">Test Result > Full Report > Detail Report</div>
-			
+
+			<span class="page-subtitle">Event Path</span>
+			<div class="event-screenshot-wrapper">
+				<div id="event-screenshot-inner"></div>
+			</div>
+
 			<span class="page-subtitle">Memory Allocation Status Chart</span>
 			<div class="deeper">
 				<div id="memory-deeper" class="deeper-view"></div>
@@ -40,15 +45,20 @@
 
 <script>
 
-d3.json("/testdata.json",function (err, data) {
-	drawMemDeeper(dataProcess(data.memory_infos));
+d3.json("/pe.json",function (err, data) {
+	drawMemDeeper(dataProcess(data.detail_report.memory_infos_attributes));
 	makeRawTable(
 		"memory-raw-data",
-		data.memory_infos,
-		["id","mem_total","mem_alloc","dalvik_heap_size","dalvik_heap_alloc","native_heap_size","native_heap_alloc","client_timestamp"],
-		["id","mem_total","mem_alloc","dalvik_heap_size","dalvik_heap_alloc","native_heap_size","native_heap_alloc","timestamp"]
+		data.detail_report.memory_infos_attributes,
+		["mem_total","mem_alloc","dalvik_heap_size","dalvik_heap_alloc","native_heap_size","native_heap_alloc","client_timestamp"],
+		["mem_total","mem_alloc","dalvik_heap_size","dalvik_heap_alloc","native_heap_size","native_heap_alloc","timestamp"]
 	);
 })
+d3.json("/pe.json", function (err, data) {
+	drawEventScreenshot(dataProcess(data.detail_report.motion_event_infos_attributes));
+})
+
+
 ///api/v1/detail_reports/<%= @detail_report.id %>/get_memory_infos
 </script>
 

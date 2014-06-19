@@ -509,5 +509,6 @@
 
 .support-line {
 	stroke: red;
-	stroke-width: 4;
+	stroke-dasharray: 5, 5;
+	stroke-width: 2;
 }

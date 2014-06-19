@@ -535,10 +535,11 @@ function drawCPUDeeper(cpudata) {
 								// 	.text("cpu usage: "+d.usage+"%");
 							});
 
-	supportLine = new SupportLine(cpu_svg);
+	supportLine = new SupportLine();
 	supportLine.x = x;
 	supportLine.line = cpu_svg.append("line").attr("clip-path","url(#cpu_clip)")
 						.attr("class","support-line")
+						.attr("x1",x(0)).attr("x2",x(0))
 						.attr("y1",y(0)).attr("y2",y(100));
 
 	cpu_svg.append("g").attr("class", "y axis")
@@ -635,6 +636,13 @@ function drawMemDeeper(memdata) {
 
 	var zoom = d3.behavior.zoom().on("zoom", onZoom)
 				.scaleExtent([0.1,4]).x(x);
+
+	supportLine = new SupportLine();
+	supportLine.x = x;
+	supportLine.line = mem_svg.append("line").attr("clip-path","url(#mem_clip)")
+						.attr("class","support-line")
+						.attr("x1",x(0)).attr("x2",x(0))
+						.attr("y1",y(y_extent[0])).attr("y2",y(y_extent[1]));
 
 	mem_svg.append("g").attr("class", "y axis");
 	mem_svg.append("g").attr("class", "percent axis").attr("transform", "translate("+width+",0)");
@@ -799,6 +807,7 @@ function drawMemDeeper(memdata) {
 		native_percentage.renew();
 		dalvik_percentage.renew();
 		mem_percentage.renew();
+		supportLine.line_renew();
 	}
 	onZoom();
 
@@ -1131,6 +1140,13 @@ function drawBatteryDeeper(batterydata) {
 		return {area:area, path:path, resize:resize};
 	}
 
+	supportLine = new SupportLine();
+	supportLine.x = x;
+	supportLine.line = battery_svg.append("line").attr("clip-path","url(#battery_clip)")
+						.attr("class","support-line")
+						.attr("x1",x(0)).attr("x2",x(0))
+						.attr("y1",y(y_extent[0])).attr("y2",y(y_extent[1]));
+
 	onZoom();
 
 	function onZoom() {
@@ -1143,12 +1159,13 @@ function drawBatteryDeeper(batterydata) {
 		threeg_field.resize();
 		sound_field.resize();
 		lcd_field.resize();
+		supportLine.line_renew();
 	}
 
 	pane.moveToFront();
 
-	var legend_width = 80;
-	var legend_height = 30;
+	var legend_width = 100;
+	var legend_height = 90;
 	var legend_margin = {top: 10, bottom: 10, left: 10, right: 10};
 
 	var legend = battery_svg.append("g")
@@ -1164,13 +1181,24 @@ function drawBatteryDeeper(batterydata) {
 
 	var field_list = legend.append("g").attr("class","field_list");
 
-	field_list.append("rect").attr("width",5).attr("height",5)
-				.attr("x",5).attr("y",5)
-				.attr("stroke","none").attr("fill","#111111");
-
-	field_list.append("text")
-				.attr("x",15).attr("y",10)
-				.text("battery usage");
+	field_list.append("rect").attr("width",5).attr("height",5).attr("x",5).attr("y",5)
+				.attr("stroke","none").attr("fill","#52C4D0");
+	field_list.append("text").attr("x",15).attr("y",10).text("LCD");
+	field_list.append("rect").attr("width",5).attr("height",5).attr("x",5).attr("y",20)
+				.attr("stroke","none").attr("fill","#D6B6EF");
+	field_list.append("text").attr("x",15).attr("y",25).text("Sound");
+	field_list.append("rect").attr("width",5).attr("height",5).attr("x",5).attr("y",35)
+				.attr("stroke","none").attr("fill","#A28BBC");
+	field_list.append("text").attr("x",15).attr("y",40).text("3G/LTE");
+	field_list.append("rect").attr("width",5).attr("height",5).attr("x",5).attr("y",50)
+				.attr("stroke","none").attr("fill","#34989A");
+	field_list.append("text").attr("x",15).attr("y",55).text("GPS");
+	field_list.append("rect").attr("width",5).attr("height",5).attr("x",5).attr("y",65)
+				.attr("stroke","none").attr("fill","#ED9FBD");
+	field_list.append("text").attr("x",15).attr("y",70).text("WIFI");
+	field_list.append("rect").attr("width",5).attr("height",5).attr("x",5).attr("y",80)
+				.attr("stroke","none").attr("fill","#EA7C4B");
+	field_list.append("text").attr("x",15).attr("y",85).text("CPU");
 
 	var battery_graph_resize = function onResize() {
 		width = d3.select('#battery-deeper').style('width').split("px")[0]-80;
@@ -1239,11 +1267,10 @@ function drawEventScreenshot (data) {
 
 }
 
-function SupportLine (svg) {
+function SupportLine () {
 	var line;
 	var x;
 	var last_timestamp;
-	var this_svg = svg;
 	function line_shift (timestamp) {
 		last_timestamp = timestamp;
 		this.line.attr("x1",this.x(timestamp)).attr("x2",this.x(timestamp));
