@@ -9,12 +9,14 @@
 			</div>
 			<div class="below-page-title">Test Result > Full Report > Detail Report</div>
 
+			<span class="page-subtitle">Event Path</span>
+			<div class="event-screenshot-wrapper">
+				<div id="event-screenshot-inner"></div>
+			</div>
+
 			<span class="page-subtitle">CPU Usage Chart</span>
 			<div class="deeper">
-				<div id="cpu-deeper" class="deeper-view"></div>
-				<div class="deeper-legend">
-					<div id="cpu_graph_detail_info" class="detail-info-box"></div>
-				</div>
+				<div id="cpu-deeper" class="deeper-view-full"></div>
 			</div>
 			<span class="page-subtitle">Method Execution Time Chart</span>
 			<div class="deeper">
@@ -33,17 +35,18 @@
 </div>
 
 <script>
-d3.json("/testdata.json", function (err, data) {
-	drawCPUDeeper(dataProcess(data.cpu_infos));
+d3.json("/pe.json", function (err, data) {
+	drawCPUDeeper(dataProcess(data.detail_report.cpu_infos_attributes));
+	methodProfiling(data.detail_report.cpu_methods_attributes);
 	makeRawTable(
 		"cpu-raw-data",
-		data.cpu_infos,
-		["id","usage","client_timestamp"],
-		["id","cpu usage (percentage)","timestamp"]
+		data.detail_report.cpu_infos_attributes,
+		["usage","client_timestamp"],
+		["cpu usage (percentage)","timestamp"]
 	);
 })
 d3.json("/pe.json", function (err, data) {
-	methodProfiling(data.detail_report.cpu_methods_attributes);
+	drawEventScreenshot(dataProcess(data.detail_report.motion_event_infos_attributes));
 })
 
 ///api/v1/detail_reports/<%= @detail_report.id %>/get_cpu_infos

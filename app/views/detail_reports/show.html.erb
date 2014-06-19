@@ -138,3 +138,9 @@
 <%= javascript_tag do %>
 	d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_report_infos", function (err, data) { drawDetailReports(data) });
 <% end %>
+
+<script>
+// d3.json("/pe.json",function (err, data) {
+// 	drawDetailReports(data);
+// })
+</script>

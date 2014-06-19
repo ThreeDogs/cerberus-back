@@ -272,6 +272,16 @@ function drawDetailReports (data) {
 		var svg = d3.select('#draw-time-chart').append('svg')
 					.attr('width',width).attr('height',height);
 
+		data.sort(function (a, b) {
+			if (a.load_start_timestamp < b.load_start_timestamp){
+				return -1;
+			} else if (a.load_start_timestamp > b.load_start_timestamp){
+				return 1;
+			} else {
+				return 0;
+			}
+		});
+
 		var zero = data[0].load_start_timestamp;
 		for (index in data) {
 			var one = data[index];
@@ -343,9 +353,9 @@ function drawDetailReports (data) {
 				.attr("transform", "translate("+margin.left+",0)")
 				.call(y_axis);
 
-		var lines = svg.append("g").attr("class","network-response-lines");
+		var lines = svg.append("g").attr("class","network-lines");
 		lines.selectAll("lines").data(data).enter().append("line")
-				.attr("class",function (d) {return d.view_type+"-line"})
+				.attr("class","network-response-line")
 				.attr("y1",function (d) {return y_scale(0)})
 				.attr("y2",function (d) {return y_scale(d.response_size)})	
 				.attr("x1",function (d) {return x_scale(d.client_timestamp)})
@@ -371,6 +381,12 @@ function drawDetailReports (data) {
 	drawDrawTimeChart(dataProcess(data.frame_draw_times));
 	drawNetworkChart(dataProcess(data.network_infos));
 
+	// drawEventScreenshot(dataProcess(data.detail_report.motion_event_infos_attributes));
+	// drawCPUChart(dataProcess(data.detail_report.cpu_infos_attributes));
+	// drawMemChart(dataProcess(data.detail_report.memory_infos_attributes));
+	// drawBatteryChart(dataProcess(data.detail_report.battery_infos_attributes));
+	// drawDrawTimeChart(dataProcess(data.detail_report.frame_draw_times_attributes));
+	// drawNetworkChart(dataProcess(data.detail_report.network_infos_attributes));
 }
 
 function dataProcess(data) {
@@ -514,10 +530,16 @@ function drawCPUDeeper(cpudata) {
 								return "translate("+x(d.client_timestamp)+","+y(d.usage)+")";
 							})
 							.on("click",function (d) {
-								detail_box.selectAll("div").remove();
-								detail_box.append("div")
-									.text("cpu usage: "+d.usage+"%");
+								// detail_box.selectAll("div").remove();
+								// detail_box.append("div")
+								// 	.text("cpu usage: "+d.usage+"%");
 							});
+
+	supportLine = new SupportLine(cpu_svg);
+	supportLine.x = x;
+	supportLine.line = cpu_svg.append("line").attr("clip-path","url(#cpu_clip)")
+						.attr("class","support-line")
+						.attr("y1",y(0)).attr("y2",y(100));
 
 	cpu_svg.append("g").attr("class", "y axis")
 
@@ -534,6 +556,7 @@ function drawCPUDeeper(cpudata) {
 		cpu_svg.selectAll("circle.dot").attr("transform",function (d) {
 			return "translate("+x(d.client_timestamp)+","+y(d.usage)+")";
 		});
+		supportLine.line_renew();
 	}
 
 	var legend_width = 80;
@@ -1163,48 +1186,73 @@ function drawBatteryDeeper(batterydata) {
 
 }
 
+function drawEventScreenshot (data) {
 
-// function drawBatteryChart (data) {
+	var inner_div = d3.select("#event-screenshot-inner");
+	var per_screenshot = {width: 130, height: 200, margin_rl: 10, margin_tb: 10};
 
-// 		var width = d3.select('#battery-chart').style('width').split("px")[0];
-// 		var height = d3.select('#battery-chart').style('height').split("px")[0];
-// 		var margin = {top:10, right: 10, bottom: 30, left: 40};
-// 		var svg = d3.select('#battery-chart').append('svg')
-// 					.attr('width',width).attr('height',height);
+	inner_div.style("width",(per_screenshot.width+20)*data.length+"px");
 
+	//process data to group activities
+	var activities = [];
+	var zero = data[0].client_timestamp;
+	for (var i in data) {
+		var flag = true;
+		var currentActivity = activities[activities.length-1];
+		data[i].client_timestamp -= zero;
+		if ( (currentActivity!=null) && (data[i].activity_class == currentActivity.name) ){
+			flag = false;
+			currentActivity.events.push(data[i]);
+			currentActivity.end_time=data[i].client_timestamp;
+		}
+		if (flag) activities.push({
+			"name":data[i].activity_class,
+			"events": [data[i]],
+			"start_time":data[i].client_timestamp,
+			"end_time":data[i].client_timestamp,
+		});
+	}
 
-// 		var x_extent = d3.extent(data, function (d) { return d.client_timestamp });
-// 		var y_extent = [0, 100];
+	var activity_div = inner_div.selectAll(".activity").data(activities).enter().append("div").attr("class","activity")
+		.attr("width",function (d) {return (per_screenshot.width + per_screenshot.margin_rl) * d.events.length})
+		.attr("height",per_screenshot.height+per_screenshot.margin_tb);
 
-// 		var x_scale = d3.scale.linear().domain(x_extent).range([margin.left,width-margin.right]);
-// 		var y_scale = d3.scale.linear().domain(y_extent).range([height-margin.bottom,margin.top]);
+	activity_div.append("div").attr("class","activity-name")
+		.text(function (d) {
+			var name_string = d.name.split('.');
+			return name_string[name_string.length-1]
+		}).attr("title",function (d) {return d.name});
 
-// 		var x_axis = d3.svg.axis().scale(x_scale).orient('bottom').innerTickSize(3).outerTickSize([0]);
-// 		var y_axis = d3.svg.axis().scale(y_scale).orient('left').innerTickSize(3).outerTickSize([0]);
-	
-// 		var battery_x_axis = svg.append("g").attr("class", "x axis")
-// 				.attr("transform", "translate(0,"+(height-margin.bottom)+")")
-// 				.call(x_axis);
+	var each_div = activity_div.selectAll(".event-screenshot-each").data(function (d) {return d.events}).enter()
+		.append("div").attr("class","event-screenshot-each")
+		.on("click", function (d) {
+			supportLine.line_shift(d.client_timestamp);
+		});
 
-// 		var battery_y_axis = svg.append("g").attr("class", "y axis")
-// 				.attr("transform", "translate("+margin.left+",0)")
-// 				.call(y_axis);
+	each_div.append("img").attr("src",function (d) {return d.src});
+	each_div.append("div").attr("class","view-each").text(function (d) {
+		return d.view})
+	each_div.append("div").attr("class","event-each").text(function (d) {
+		return d.action_type+"("+d.param+")"});
+	each_div.append("div").attr("class","sleep-each").text(function (d) {
+		return d.sleep+"ms"})
 
-		
+}
 
-		
+function SupportLine (svg) {
+	var line;
+	var x;
+	var last_timestamp;
+	var this_svg = svg;
+	function line_shift (timestamp) {
+		last_timestamp = timestamp;
+		this.line.attr("x1",this.x(timestamp)).attr("x2",this.x(timestamp));
+	}
+	function line_renew () {
+		this.line.attr("x1",this.x(last_timestamp)).attr("x2",this.x(last_timestamp));
+	}
 
-// 		function onResize () {
-// 			width = d3.select('#battery-chart').style('width').split("px")[0];
-// 			svg.attr("width",width);
-// 			x_scale.range([margin.left,width-margin.right]);
-// 			x_axis.scale(x_scale);
-// 			battery_x_axis.call(x_axis);
-// 			cpu_field.resize();
-// 			gps_field.resize();
-// 			wifi_field.resize();
-// 			threeg_field.resize();
-// 			sound_field.resize();
-// 		}
-// 		resizeFunctions.push(onResize);
-// 	}
+	return {line: line, x: x, line_shift: line_shift, line_renew: line_renew};
+}
+
+var supportLine;
