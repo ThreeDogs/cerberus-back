@@ -882,6 +882,13 @@ function drawNetworkDeeper(networkdata) {
 				.attr("x1",function (d) {return x(d.client_timestamp)})
 				.attr("x2",function (d) {return x(d.client_timestamp)});
 
+	supportLine = new SupportLine();
+	supportLine.x = x;
+	supportLine.line = network_svg.append("line").attr("clip-path","url(#network_clip)")
+						.attr("class","support-line")
+						.attr("x1",x(0)).attr("x2",x(0))
+						.attr("y1",y(y_extent[0])).attr("y2",y(y_extent[1]));
+
 
 	network_svg.append("g").attr("class", "y axis")
 
@@ -896,6 +903,7 @@ function drawNetworkDeeper(networkdata) {
 		network_svg.select("g.y.axis").call(yAxis);
 		lines.attr("x1",function (d) {return x(d.client_timestamp)})
 			.attr("x2",function (d) {return x(d.client_timestamp)});
+		supportLine.line_renew();
 	}
 
 	var legend_width = 120;
