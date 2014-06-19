@@ -35,9 +35,9 @@
 </div>
 
 <script>
-d3.json("/pe.json", function (err, data) {
-	drawCPUDeeper(dataProcess(data.detail_report.cpu_infos_attributes));
-	methodProfiling(data.detail_report.cpu_methods_attributes);
+d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_cpu_infos", function (err, data) {
+	drawCPUDeeper(dataProcess(data));
+	methodProfiling(data);
 	makeRawTable(
 		"cpu-raw-data",
 		data.detail_report.cpu_infos_attributes,
@@ -45,9 +45,11 @@ d3.json("/pe.json", function (err, data) {
 		["cpu usage (percentage)","timestamp"]
 	);
 })
-d3.json("/pe.json", function (err, data) {
-	drawEventScreenshot(dataProcess(data.detail_report.motion_event_infos_attributes));
+
+d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_motion_event_infos", function (err, data) {
+	drawEventScreenshot(dataProcess(data));
 })
+
 
 ///api/v1/detail_reports/<%= @detail_report.id %>/get_cpu_infos
 //(cpu_infos, cpu_methods)

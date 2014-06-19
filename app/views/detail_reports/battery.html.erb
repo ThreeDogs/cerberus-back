@@ -29,21 +29,18 @@
 
 <script>
 d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_battery_infos", function (err, data) {
-
+	drawBatteryDeeper(dataProcess(data));
 	makeRawTable(
 		"battery-raw-data",
 		data,
 		["id","cpu","lcd","gps","wifi","threeg","sound","client_timestamp"],
 		["id","cpu","lcd","gps","wifi","threeg","sound","timestamp"]
 	);
+});
+
+d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_motion_event_infos", function (err, data) {
+	drawEventScreenshot(dataProcess(data));
 })
 
-d3.json("/pe.json", function (err, data) {
-	drawBatteryDeeper(dataProcess(data.detail_report.battery_infos_attributes));
-})
-
-d3.json("/pe.json", function (err, data) {
-	drawEventScreenshot(dataProcess(data.detail_report.motion_event_infos_attributes));
-})
 </script>
 

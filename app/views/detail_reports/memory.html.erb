@@ -45,8 +45,8 @@
 
 <script>
 
-d3.json("/pe.json",function (err, data) {
-	drawMemDeeper(dataProcess(data.detail_report.memory_infos_attributes));
+d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_memory_infos",function (err, data) {
+	drawMemDeeper(dataProcess(data));
 	makeRawTable(
 		"memory-raw-data",
 		data.detail_report.memory_infos_attributes,
@@ -54,8 +54,8 @@ d3.json("/pe.json",function (err, data) {
 		["mem_total","mem_alloc","dalvik_heap_size","dalvik_heap_alloc","native_heap_size","native_heap_alloc","timestamp"]
 	);
 })
-d3.json("/pe.json", function (err, data) {
-	drawEventScreenshot(dataProcess(data.detail_report.motion_event_infos_attributes));
+d3.json("/api/v1/detail_reports/<%= @detail_report.id %>/get_motion_event_infos", function (err, data) {
+	drawEventScreenshot(dataProcess(data));
 })
 
 
