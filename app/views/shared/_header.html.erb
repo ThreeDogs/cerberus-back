@@ -4,7 +4,7 @@
 			<%= image_tag "/assets/Logo.png" %>
 		<% end %>
 	</div>
-	<div style="float:right;">
+	<div style="float:right;">		
 		<div class="login-status">
 			<div id="user-name"><%= current_user.email %></div>
 			<div id="login-dropdown" style="height:40px;">
@@ -15,6 +15,9 @@
 			</div>
 		</div>
 		<div id="alert-button"></div>
+	</div>
+	<div id="api-button">
+		<a href="http://docs.appxcellent.apiary.io">API Docs</a>
 	</div>
 </div>
 

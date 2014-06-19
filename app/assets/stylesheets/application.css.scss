@@ -75,6 +75,19 @@ p {
 		z-index: 10;
 	}
 
+	#api-button {
+		float: right;
+		display: inline-block;
+		height: 50px;
+		width: 60px;
+		line-height: 50px;
+		vertical-align: center;
+		margin: 0 10px;
+		a {
+			color: rgb(96,94,90);
+		}
+	}
+
 	#user-name {
 		display: inline-block;
 		width: 180px;
