@@ -7,7 +7,7 @@ class TotalReportsController < ServiceController
 
   def index
     @project = set_project
-    @total_reports = TotalReport.all
+    @total_reports = @project.total_reports.all
   end
 
   def tests

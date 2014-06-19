@@ -18,7 +18,11 @@ class Api::V1::TotalReportsController < ApplicationController
 
 	def device_failure_detail
 		@total_report = TotalReport.find(params[:id])
-		render json: {device_failure_detail: @total_report.device_fail_results}
+		unless @total_report.project.id == 1
+			render json: {device_failure_detail: @total_report.device_fail_results}
+		else
+			render json: {device_failure_detail: []}
+		end
 	end
 
 	def test_rank_rate

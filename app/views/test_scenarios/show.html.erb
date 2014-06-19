@@ -36,14 +36,14 @@
 			<div>
 
 			<div class="table-wrapper">
-			  <table class="motion-events-table">
+			  <table class="motion-events-table" style="margin-top:110px;">
 			  	<tr>
 			  		<th>Activity</th>
 			  		<th>View</th>
 			  		<th>Event Type</th>
 			  		<th>Parameter</th>
 			  	</tr>
-					<%= @motion_events.each do |motion_event| %>
+					<% @motion_events.each do |motion_event| %>
 						<tr>
 				  		<td><%= motion_event.activity_class %></td>
 				  		<td><%= motion_event.view %></td>

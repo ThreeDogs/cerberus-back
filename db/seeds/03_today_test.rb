@@ -1,0 +1,1 @@
+@today_project = @user.projects.create!(name: "Today Breaker", icon: "/assets/today.png")

@@ -49,14 +49,12 @@ class DetailReport < ActiveRecord::Base
     if test_scenario
       return test_scenario.get_rank
     end
-    "A"
   end
 
   def test_scenario_name
     if test_scenario
       return test_scenario.name
     end
-    "A"
   end
 
   def test_date
@@ -120,12 +118,20 @@ class DetailReport < ActiveRecord::Base
 
   def frame_draw_time_average
     frame_times = frame_draw_times.collect{|f| f.load_finish_timestamp - f.load_start_timestamp}
-    frame_average = frame_times.inject(:+) / frame_times.length
+    if frame_times.length != 0
+      frame_average = frame_times.inject(:+) / frame_times.length
+    else
+      frame_average = 0
+    end
     "#{frame_average} ms"
   end
 
   def performace_average(performace, attribute)
-    performace.inject(0){|sum,p| sum += p.send(attribute) } / performace.size
+    if performace.size != 0
+      performace.inject(0){|sum,p| sum += p.send(attribute) } / performace.size
+    else
+      0
+    end
   end
 
   def project_id
