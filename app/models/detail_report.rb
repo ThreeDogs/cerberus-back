@@ -120,8 +120,8 @@ class DetailReport < ActiveRecord::Base
 
   def frame_draw_time_average
     frame_times = frame_draw_times.collect{|f| f.load_finish_timestamp - f.load_start_timestamp}
-    frame_average = frame_times / frame_times.length
-    "{frame_average} ms"
+    frame_average = frame_times.inject(:+) / frame_times.length
+    "#{frame_average} ms"
   end
 
   def performace_average(performace, attribute)

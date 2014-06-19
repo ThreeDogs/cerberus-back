@@ -19,6 +19,7 @@ class MotionEventInfo < ActiveRecord::Base
   has_one :screen, foreign_key: 'client_timestamp', primary_key: 'client_timestamp'
 
   def src
-   	screen.image.url if screen
+   	# screen.image.url if screen
+   	screen.image if screen
   end 
 end

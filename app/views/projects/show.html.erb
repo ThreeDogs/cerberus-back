@@ -40,9 +40,9 @@
 						<div class="band-graph-legend">
 							<img src="/assets/legend1.png">
 						</div>
-						<%= link_to tests_total_report_path(@total_report) do %>
+						
 							<div style="padding-right: 15px;"><span class="more"><u>All Tests More</u></span></div>
-						<% end %>
+						
 					</div>
 				</div>
 				<div class="dashboard-right">
@@ -66,7 +66,7 @@
 								<% end %>
 							</tbody>
 						</table>
-						<%= link_to total_report_crashes_path(@total_report) do %><p class="more"><u>More Errors</u></p><% end %>
+						<%= link_to total_report_crashes_path(@recent_report) do %><p class="more"><u>More Errors</u></p><% end %>
 					</div>
 				</div>
 			</div>

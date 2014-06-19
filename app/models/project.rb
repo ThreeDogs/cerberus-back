@@ -11,7 +11,7 @@
 #
 
 class Project < ActiveRecord::Base
-  mount_uploader :icon, IconUploader
+  # mount_uploader :icon, IconUploader
 
 	belongs_to :user
 	has_many :apks
@@ -51,15 +51,18 @@ class Project < ActiveRecord::Base
 
   # icon.
   def get_icon
-    icon.blank? ? "/assets/default_app_icon.png" : icon.to_s
+    icon.blank? ? "/assets/default_app_icon.png" : icon
   end
 
   # state _fail, _warning
   def get_color_band
-    return "color_band" 
-    # return "color_band_fail" if recent_report_rank_status["A"][1] >= 1 or recent_report_rank_status["B"][1] >= 5
-    # return "color_band_warning" if recent_report_rank_status["B"][1] >= 1 or recent_report_rank_status["C"][1] >= 1 or recent_report_rank_status["D"][1] >= 1
-    # "color_band"
+    if self.id == 1
+      "color_band" 
+    elsif self.id == 2
+      "color_band_warning"
+    else
+      "color_band_fail"
+    end 
   end
 
   def test_names

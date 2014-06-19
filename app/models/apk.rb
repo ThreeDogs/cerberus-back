@@ -22,7 +22,7 @@ class Apk < ActiveRecord::Base
 	belongs_to :project
 	has_many :total_reports
 
-	mount_uploader :apk, ApkUploader
+	# mount_uploader :apk, ApkUploader
 
 	validates :apk, presence: true
 
